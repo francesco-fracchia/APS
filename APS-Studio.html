@@ -280,6 +280,7 @@
     <a href="#mnemo"><span class="n">🧠</span>Muro mnemonici</a>
     <a href="#flash"><span class="n">🃏</span>Flashcard (259)</a>
     <a href="#quiz"><span class="n">📝</span>Quiz crocette</a>
+    <a href="#esercizio"><span class="n">📄</span>Esercizio scritto</a>
     <a href="#bigino"><span class="n">🔥</span>Super Bigino</a>
   </nav>
   <div class="legend">
@@ -1218,6 +1219,311 @@
   <div id="quiz-container"></div>
   <p class="hint" style="text-align:center;margin-top:14px">💡 Modalità: clicca <b>Verifica tutto</b> per controllare le risposte e vedere le spiegazioni. Le verdi sono corrette, le rosse sbagliate, le arancioni tratteggiate erano quelle che mancavano da selezionare.</p>
 
+  <h2 class="sec" id="esercizio"><span class="chip">📄</span>Esercizio scritto · GYM-FIT</h2>
+  <p class="lead">Simulazione di traccia completa stile esame. Sistema originale (diverso da quelli del prof) per allenarsi sul metodo: modello dominio → SSD → contratto → sequence con GRASP → classi di progetto → pattern GoF.</p>
+
+  <div class="box expl"><div class="t">📖 Come usare questo esercizio</div>
+    <p>1. Leggi la traccia. 2. Provaci da solo (foglio bianco + Visual Paradigm) — meglio se a cronometro 160 min. 3. Apri le soluzioni una alla volta e confronta.</p>
+    <p>NON aprire le soluzioni prima: la trappola è "leggo e mi convinco di averlo capito". Disegnare a mano è l'unica cosa che ti farà passare.</p>
+  </div>
+
+  <div class="box" style="background:#fffaef;border-left:4px solid var(--amber);padding:18px 22px">
+    <div class="t" style="color:var(--amber);font-size:.95rem">📋 TRACCIA · Sistema "GYM-FIT" (160 minuti)</div>
+    <p>Si consideri il sistema <b>GYM-FIT</b> per la gestione, all'interno di una palestra, dell'iscrizione dei soci, della vendita degli abbonamenti e delle prenotazioni ai corsi collettivi.</p>
+
+    <p>Per ogni <b>socio</b> si vuole memorizzare il nome, il cognome, il codice fiscale, la data di nascita, l'email, uno o più numeri di telefono, la data di iscrizione e la tipologia (<i>Standard</i>, <i>Premium</i>, <i>VIP</i>).</p>
+
+    <p>Per ogni <b>abbonamento</b> si vuole memorizzare il tipo (mensile, trimestrale, annuale), il prezzo, la data di inizio, la data di scadenza, lo stato (attivo, scaduto) e il socio a cui appartiene. Un socio può avere più abbonamenti nel tempo, ma uno solo attivo per volta.</p>
+
+    <p>Per ogni <b>corso collettivo</b> si vuole memorizzare il nome (es. yoga, pilates, spinning, crossfit), la categoria, la durata in minuti, la capienza massima (numero massimo di partecipanti), l'orario settimanale e l'istruttore.</p>
+
+    <p>Per ogni <b>istruttore</b> si vuole memorizzare il nome, il cognome, il codice fiscale, una o più specializzazioni, le ore settimanali contrattualizzate e l'IBAN (per il pagamento dello stipendio).</p>
+
+    <p>Per ogni <b>prenotazione</b> di un socio a un corso si vuole memorizzare la data e l'ora del corso prenotato, lo stato (confermata, cancellata) e la data in cui la prenotazione è stata effettuata.</p>
+
+    <p>Per ogni <b>pagamento</b> di un abbonamento si vuole memorizzare l'importo, la data, la modalità (contanti, carta, bonifico) e un codice progressivo univoco. Per ogni pagamento viene emessa una ricevuta con numero progressivo, data, descrizione, importo e socio.</p>
+
+    <p>Il sistema tiene traccia dello storico degli abbonamenti venduti, dei pagamenti incassati e di tutte le prenotazioni effettuate. Il sistema memorizza anche il <b>saldo cassa</b> della palestra, aggiornato a ogni pagamento.</p>
+
+    <p>L'utente unico del sistema è il <b>receptionist</b>, che gestisce iscrizioni, abbonamenti, pagamenti e prenotazioni, e che si autentica con email e password.</p>
+
+    <p><b>Lo scenario principale di successo del caso d'uso "Prenota Corso" è il seguente:</b></p>
+    <ol style="margin:8px 0 8px 20px">
+      <li>Il receptionist si autentica nel sistema inserendo email e password.</li>
+      <li>Il sistema mostra la data odierna, il saldo cassa e le opzioni operative.</li>
+      <li>Il receptionist indica di voler effettuare una prenotazione.</li>
+      <li>Il sistema chiede di specificare il socio e il corso.</li>
+      <li>Il receptionist inserisce il codice del socio e il corso scelto (data + orario), e conferma. Il sistema verifica che il socio abbia un abbonamento attivo, che non abbia superato il limite giornaliero di prenotazioni concesso dalla sua tipologia, e che il corso abbia ancora posti disponibili; quindi crea la prenotazione e produce una ricevuta di conferma per il socio.</li>
+    </ol>
+    <p style="font-size:.88rem;color:var(--soft);margin-top:14px"><b>Esercizi richiesti</b>:</p>
+    <ol style="margin:4px 0 4px 22px;font-size:.92rem">
+      <li><b>Modello di dominio</b> del sistema (UML)</li>
+      <li><b>SSD</b> dello scenario principale del caso d'uso "Prenota Corso"</li>
+      <li><b>Contratto</b> dell'operazione di sistema del passo 5</li>
+      <li><b>Sequence diagram di progetto</b> del passo 5, con applicazione esplicita dei principi <b>GRASP</b></li>
+      <li><b>Diagramma delle classi di progetto</b> del sottosistema interessato dal passo 5</li>
+      <li><b>Pattern GoF</b>: il limite giornaliero di prenotazioni dipende dalla tipologia del socio (Standard = 1, Premium = 3, VIP = illimitato). Identificare il pattern GoF più opportuno per gestire questa variazione di comportamento e descriverne gli aspetti statici mediante un diagramma delle classi.</li>
+    </ol>
+  </div>
+
+  <p style="text-align:center;margin:18px 0 8px;color:var(--soft);font-style:italic">Soluzioni collassabili — apri solo dopo aver provato</p>
+
+  <details class="q" style="border-left:4px solid var(--green)">
+    <summary style="font-weight:700;color:var(--green)">✅ Soluzione 1 — Modello di dominio</summary>
+    <div class="ans" style="padding-bottom:18px">
+      <p><b>Classi del dominio</b> (con attributi semplici, NO metodi, NO classi tecniche):</p>
+      <ul>
+        <li><b>Palestra</b> {saldoCassa} <i>— una sola istanza, contesto del sistema</i></li>
+        <li><b>Receptionist</b> {email, password}</li>
+        <li><b>Socio</b> {nome, cognome, codiceFiscale, dataNascita, email, telefoni [1..*], dataIscrizione, tipologia} <i>— classe astratta</i>
+          <ul>
+            <li><b>SocioStandard</b> · <b>SocioPremium</b> · <b>SocioVIP</b> {disjoint, complete}</li>
+          </ul>
+        </li>
+        <li><b>Abbonamento</b> {tipo, prezzo, dataInizio, dataScadenza, stato}</li>
+        <li><b>Corso</b> {nome, categoria, durataMinuti, capienzaMax, orarioSettimanale}</li>
+        <li><b>Istruttore</b> {nome, cognome, codiceFiscale, specializzazioni [1..*], oreSettimanali, IBAN}</li>
+        <li><b>Prenotazione</b> {dataOraCorso, stato, dataEffettuazione}</li>
+        <li><b>Pagamento</b> {importo, data, modalità, codiceProgressivo}</li>
+        <li><b>Ricevuta</b> {numeroProgressivo, data, descrizione, importo}</li>
+      </ul>
+      <p><b>Associazioni con molteplicità</b>:</p>
+      <ul>
+        <li>Palestra ◆── 0..* Abbonamento <i>(composizione: gli abbonamenti vivono nel contesto della palestra)</i></li>
+        <li>Palestra ◆── 0..* Pagamento</li>
+        <li>Palestra ◆── 0..* Prenotazione</li>
+        <li>Palestra ──── 1..* Socio <i>(aggregazione: i soci esistono anche senza palestra)</i></li>
+        <li>Palestra ──── 1..* Istruttore</li>
+        <li>Palestra ──── 1..* Corso</li>
+        <li>Palestra ──── 1 Receptionist</li>
+        <li>Socio ──── 0..* Abbonamento <i>(1 attivo per volta = vincolo OCL/nota)</i></li>
+        <li>Socio ──── 0..* Prenotazione</li>
+        <li>Abbonamento ──── 1..* Pagamento <i>(può essere pagato a rate)</i></li>
+        <li>Pagamento ◆── 1 Ricevuta <i>(composizione: la ricevuta nasce col pagamento)</i></li>
+        <li>Prenotazione ──── 1 Corso</li>
+        <li>Corso ──── 1 Istruttore <i>(0..* da Istruttore: un istruttore tiene più corsi)</i></li>
+        <li>Receptionist ──── 0..* Prenotazione <i>(chi ha registrato)</i></li>
+        <li>Receptionist ──── 0..* Pagamento <i>(chi ha incassato)</i></li>
+      </ul>
+      <div class="fc-mnemo"><b>Errori da bocciatura da NON fare</b>: niente metodi nel dominio · niente attributi di tipo primitivo "Date" se è banale (qui Date va bene perché è un attributo standard) · niente classi tecniche tipo "Repository" · molteplicità su OGNI lato delle associazioni · ricordati il <i>{disjoint, complete}</i> sulla generalizzazione Socio.</div>
+    </div>
+  </details>
+
+  <details class="q" style="border-left:4px solid var(--green)">
+    <summary style="font-weight:700;color:var(--green)">✅ Soluzione 2 — SSD "Prenota Corso"</summary>
+    <div class="ans" style="padding-bottom:18px">
+      <p>Sistema come <b>scatola nera</b>, eventi attore↔sistema:</p>
+<pre style="background:#0f1e2e;color:#d8e3f0;padding:12px;border-radius:6px;font-size:.85rem;line-height:1.5">
+  :Receptionist                     :Sistema
+      |                                |
+      | autentica(email, password)     |
+      |───────────────────────────────▶|
+      |  dataOdierna, saldoCassa,      |
+      |  opzioni                       |
+      |◀───────────────────────────────|
+      |                                |
+      | iniziaPrenotazione()           |
+      |───────────────────────────────▶|
+      |  richiestaDati                 |
+      |◀───────────────────────────────|
+      |                                |
+      | confermaPrenotazione(          |
+      |   codSocio, codCorso,          |
+      |   dataOraCorso)                |
+      |═══════════════════════════════▶|
+      |                                |
+      |  ricevuta: Ricevuta            |
+      |◀───────────────────────────────|
+</pre>
+      <p><b>Note</b>: operazioni iniziano con un verbo (esprimono intenzione). NO tipi sui parametri. UN SSD per scenario di UC.</p>
+    </div>
+  </details>
+
+  <details class="q" style="border-left:4px solid var(--green)">
+    <summary style="font-weight:700;color:var(--green)">✅ Soluzione 3 — Contratto del passo 5</summary>
+    <div class="ans" style="padding-bottom:18px">
+      <p><b>Nome operazione</b>: <code>confermaPrenotazione(codSocio, codCorso, dataOraCorso)</code></p>
+      <p><b>Pre-condizioni</b>:</p>
+      <ul>
+        <li>Il receptionist è autenticato.</li>
+        <li>Esiste un Socio identificato da <code>codSocio</code>.</li>
+        <li>Esiste un Corso identificato da <code>codCorso</code>.</li>
+        <li>Il Socio ha un Abbonamento con stato "attivo".</li>
+        <li>Il numero di prenotazioni confermate del Socio nella data <code>dataOraCorso</code> è minore del limite consentito dalla sua tipologia.</li>
+        <li>Il numero di prenotazioni confermate del Corso per <code>dataOraCorso</code> è minore della capienza massima.</li>
+      </ul>
+      <p><b>Post-condizioni</b> (espresse al passato passivo):</p>
+      <ul>
+        <li>È stata creata una nuova istanza <code>p: Prenotazione</code>.</li>
+        <li><code>p.dataOraCorso</code> è stata impostata al valore <code>dataOraCorso</code>.</li>
+        <li><code>p.stato</code> è stato impostato a "confermata".</li>
+        <li><code>p.dataEffettuazione</code> è stata impostata alla data odierna.</li>
+        <li><code>p</code> è stata associata al Socio identificato da <code>codSocio</code> (formazione associazione).</li>
+        <li><code>p</code> è stata associata al Corso identificato da <code>codCorso</code> (formazione associazione).</li>
+        <li><code>p</code> è stata associata al Receptionist autenticato (formazione associazione).</li>
+        <li>È stata creata una nuova istanza <code>r: Ricevuta</code>.</li>
+        <li><code>r.numeroProgressivo</code>, <code>r.data</code>, <code>r.descrizione</code> sono stati impostati (creazione attributi).</li>
+        <li><code>r</code> è stata associata al Socio.</li>
+      </ul>
+      <p><b>Riferimenti incrociati</b>: passo 5 dello scenario principale del UC "Prenota Corso".</p>
+    </div>
+  </details>
+
+  <details class="q" style="border-left:4px solid var(--green)">
+    <summary style="font-weight:700;color:var(--green)">✅ Soluzione 4 — Sequence diagram con GRASP applicati</summary>
+    <div class="ans" style="padding-bottom:18px">
+      <p><b>Schema dell'interazione</b> (focus sui messaggi e sui GRASP applicati a ognuno):</p>
+<pre style="background:#0f1e2e;color:#d8e3f0;padding:12px;border-radius:6px;font-size:.83rem;line-height:1.5">
+  :Receptionist
+      │
+      │ 1: confermaPrenotazione(codSocio, codCorso, dataOraCorso)
+      ▼
+  :GestionePrenotazioni  «Controller» (GRASP Controller + Pure Fabrication)
+      │
+      │ 1.1: verificaAbbonamentoAttivo()
+      ▼
+  socio:Socio  [GRASP Information Expert: il Socio conosce i suoi abbonamenti]
+      │
+      │
+      │ 1.2: limiteRaggiunto(data)
+      ▼
+  socio:Socio  [GRASP Information Expert + Polymorphism:
+               ogni sottotipo conosce il proprio limite (vedi pattern GoF Strategy)]
+      │
+      │
+      │ 1.3: postiDisponibili(dataOraCorso)
+      ▼
+  corso:Corso  [GRASP Information Expert: il Corso ha la lista delle prenotazioni]
+      │
+      │
+      │ 1.4: «create» Prenotazione(socio, corso, dataOraCorso)
+      ▼
+  p:Prenotazione  [GRASP Creator: Controller crea via Pure Fabrication]
+      │
+      │ 1.4.1: «create» Ricevuta(socio, descrizione)
+      ▼
+  r:Ricevuta  [GRASP Creator: Prenotazione crea Ricevuta (composizione)]
+      │
+      │
+      │ 1.5: ritorna r
+      ▼
+  :Receptionist
+</pre>
+
+      <p><b>GRASP applicati nel dettaglio</b>:</p>
+      <table style="background:#fff;font-size:.88rem">
+        <tr><th>Messaggio</th><th>GRASP</th><th>Perché</th></tr>
+        <tr><td>1: confermaPrenotazione → :GestionePrenotazioni</td><td>Controller</td><td>Primo oggetto del dominio dopo la UI (Use-Case Controller del UC "Prenota Corso")</td></tr>
+        <tr><td>1.1: verificaAbbonamentoAttivo → :Socio</td><td>Information Expert</td><td>Il Socio ha la collezione dei propri Abbonamenti</td></tr>
+        <tr><td>1.2: limiteRaggiunto → :Socio</td><td>Polymorphism</td><td>Sottotipi (Standard/Premium/VIP) rispondono in modo diverso senza if/switch</td></tr>
+        <tr><td>1.3: postiDisponibili → :Corso</td><td>Information Expert</td><td>Il Corso ha la lista delle Prenotazioni</td></tr>
+        <tr><td>1.4: «create» Prenotazione</td><td>Creator + Pure Fabrication</td><td>Controller crea l'istanza; il Controller stesso è una Pure Fabrication</td></tr>
+        <tr><td>1.4.1: «create» Ricevuta</td><td>Creator</td><td>Prenotazione ◆ Ricevuta (composizione → chi contiene crea)</td></tr>
+        <tr><td>Tutta la cascata</td><td>Low Coupling</td><td>Il Controller delega, non gestisce direttamente i dettagli di Socio/Corso</td></tr>
+      </table>
+    </div>
+  </details>
+
+  <details class="q" style="border-left:4px solid var(--green)">
+    <summary style="font-weight:700;color:var(--green)">✅ Soluzione 5 — Diagramma classi di progetto (passo 5)</summary>
+    <div class="ans" style="padding-bottom:18px">
+      <p>Aggiunte rispetto al dominio: <b>Controller</b>, <b>Repository</b> (Pure Fabrication), metodi con visibilità e tipi di ritorno.</p>
+<pre style="background:#fbfcfe;border:1px solid #cfdce8;padding:12px;border-radius:6px;font-size:.84rem;line-height:1.4">
+┌──────────────────────────────────────┐
+│   «Controller»                       │
+│   GestionePrenotazioni               │
+├──────────────────────────────────────┤
+│ - socioRepo: SocioRepository         │
+│ - corsoRepo: CorsoRepository         │
+│ - prenotRepo: PrenotazioneRepository │
+├──────────────────────────────────────┤
+│ + confermaPrenotazione(...): Ricevuta│
+│ + autentica(email, pwd): bool        │
+└──────────────────────────────────────┘
+             │                  uses
+             ▼
+┌─────────────────────┐    ┌─────────────────────┐
+│ Socio  «abstract»   │    │ Corso               │
+├─────────────────────┤    ├─────────────────────┤
+│ - codiceFiscale     │    │ - capienzaMax       │
+│ - tipologia         │    │ - prenotazioni: []  │
+│ - abbonamenti: []   │    ├─────────────────────┤
+├─────────────────────┤    │ + postiDisponibili()│
+│ + verificaAbbAttivo()│   │ + getPrenotazioni() │
+│ + limiteRaggiunto() │    └─────────────────────┘
+│   { abstract }      │
+└─────────────────────┘
+         △
+   ┌─────┼─────┬─────┐
+┌────────┐ ┌────────┐ ┌────────┐
+│Standard│ │Premium │ │  VIP   │
+│limit=1 │ │limit=3 │ │limit=∞ │
+└────────┘ └────────┘ └────────┘
+
+  Prenotazione ◆── 1 Ricevuta  (composizione)
+  Socio 1 ── 0..* Prenotazione
+  Corso 1 ── 0..* Prenotazione
+</pre>
+      <p><b>Visibilità</b>: <code>+ public</code> per le interfacce esterne (es. metodi del Controller chiamati dalla UI); <code>-</code> private per attributi interni; <code>#</code> protected per metodi che le sottoclassi possono overridare.</p>
+      <p><b>Pure Fabrication</b>: i Repository sono classi inventate (non esistono nella palestra reale) per gestire la persistenza senza accoppiare il dominio al DB.</p>
+    </div>
+  </details>
+
+  <details class="q" style="border-left:4px solid var(--green)">
+    <summary style="font-weight:700;color:var(--green)">✅ Soluzione 6 — Pattern GoF per il limite di prenotazioni</summary>
+    <div class="ans" style="padding-bottom:18px">
+      <p><b>Pattern scelto: STRATEGY</b> (oppure semplice Polymorphism via sottoclassi — Strategy è più flessibile perché disaccoppia il "come si calcola il limite" dal tipo di socio).</p>
+
+      <p><b>Motivazione</b>: il problema è gestire <b>politiche di calcolo del limite intercambiabili</b> che dipendono dalla tipologia di socio. Strategy:</p>
+      <ul>
+        <li>Definisce una <b>famiglia di algoritmi</b> (politica Standard, Premium, VIP)</li>
+        <li>Li rende <b>intercambiabili</b> dietro un'<b>interfaccia comune</b></li>
+        <li>Permette di scegliere a runtime quale politica usare</li>
+        <li>Realizza i GRASP <b>Polymorphism + Protected Variations</b>: domani aggiungi "SocioOro" con limite 5 → tocchi solo una nuova classe, zero modifiche al resto</li>
+      </ul>
+
+      <p><b>Diagramma delle classi del pattern Strategy</b>:</p>
+<pre style="background:#fbfcfe;border:1px solid #cfdce8;padding:12px;border-radius:6px;font-size:.84rem;line-height:1.4">
+                    «interface»
+                  PoliticaLimite
+                  ───────────────
+                  + limiteGiornaliero(): int
+                  + raggiunto(socio, data): bool
+                        △
+                        │ realize (─ ─ ▷)
+        ┌───────────────┼───────────────┐
+        │               │               │
+  LimiteStandard   LimitePremium     LimiteVIP
+  + limite() {1}   + limite() {3}    + limite() {∞}
+  + raggiunto()    + raggiunto()     + raggiunto()
+
+        Socio ◇── 1 PoliticaLimite
+        - politica: PoliticaLimite
+        + setPolitica(p)
+        + limiteRaggiunto(data) {
+            return politica.raggiunto(this, data)
+          }
+</pre>
+
+      <p><b>Vantaggi rispetto a un semplice if/switch sul tipo</b>:</p>
+      <ul>
+        <li>Niente if/switch su <code>tipologia</code> ovunque si calcoli il limite</li>
+        <li>Aggiungere una nuova tipologia (es. SocioOro) = aggiungere una sola classe</li>
+        <li>Le politiche sono testabili in isolamento</li>
+        <li>Possibile cambiare la politica a runtime (es. promozione del socio Standard→Premium senza ricreare l'oggetto)</li>
+      </ul>
+
+      <p><b>Note da scrivere nel diagramma</b>:</p>
+      <ul>
+        <li>Aggregazione ◇ (rombo vuoto) tra Socio e PoliticaLimite: la politica può essere swappata a runtime</li>
+        <li>Le 3 classi concrete realizzano l'interfaccia (linea tratteggiata + triangolo vuoto)</li>
+        <li>Il Controller (GestionePrenotazioni) chiama <code>socio.limiteRaggiunto(data)</code> senza sapere quale politica è attiva (Polymorphism + Protected Variations)</li>
+      </ul>
+    </div>
+  </details>
+
+  <p class="hint" style="margin-top:20px">💡 Dopo aver fatto questo esercizio sei pronto al 90% per quasi tutte le tracce stile Larman: gestione di un'entità composta (palestra/negozio/biblioteca) + UC con calcoli/verifiche + pattern di variazione per tipo di entità.</p>
+
   <h2 class="sec" id="bigino"><span class="chip">🔥</span>Super Bigino</h2>
   <p class="lead">Riassunto stampabile a colonne. Per il ripasso lampo del giorno prima.</p>
 
@@ -1419,46 +1725,46 @@ updateProgress();
 // ============= FLASHCARDS — 220+ card brevi, suddivise per topic =============
 const cards = [
 // ===== PROCESSI SOFTWARE =====
-{t:"PROC", q:"Cos'è un processo software?", a:"Approccio disciplinato che definisce ruoli, attività, organizzazione temporale e metodologie per costruire/rilasciare/mantenere codice.", m:""},
-{t:"PROC", q:"7 attività di un processo software.", a:"Analisi requisiti · Progettazione · Implementazione · Validazione · Rilascio · Manutenzione · Gestione progetto.", m:""},
-{t:"PROC", q:"Cos'è il modello a cascata?", a:"Esecuzione sequenziale delle attività; ogni fase comincia solo quando finisce la precedente.", m:""},
-{t:"PROC", q:"Perché la cascata fallisce spesso?", a:"Non è flessibile ai cambiamenti; richiede requisiti stabili dall'inizio.", m:""},
-{t:"PROC", q:"Sviluppo iterativo, incrementale ed evolutivo.", a:"Multiple iterazioni a durata fissa (2-6 sett.) in cui si svolgono TUTTE le attività; si adatta il lavoro al tempo, non viceversa.", m:""},
-{t:"PROC", q:"3 vantaggi dell'iterativo.", a:"Flessibilità ai cambiamenti · Riduzione rischi precoce · Feedback utente fin da subito.", m:""},
+{t:"PROC", q:"Cos'è un processo software?", a:"Approccio disciplinato che definisce ruoli, attività, organizzazione temporale e metodologie per costruire/rilasciare/mantenere codice.", m:"Pensa a una ricetta industriale: ricetta + ruoli (chef, sguattero) + tempi (cottura) = processo. Non è un suggerimento, è una procedura."},
+{t:"PROC", q:"7 attività di un processo software.", a:"Analisi requisiti · Progettazione · Implementazione · Validazione · Rilascio · Manutenzione · Gestione progetto.", m:"🏛️ PALAZZO: Entrata=Analisi (Sherlock investiga) · Appendiabiti=Progetto (Geppetto disegna) · TV=Implementazione (programmatore al PC) · Tiragraffi=Validazione (gatto graffia tutto = testa) · Tavolo=Rilascio (cameriere serve) · Balcone=Manutenzione (giardiniere annaffia) · Cucina=Gestione (chef coordina). Acronimo: A-P-I-V-R-M-G → \"Analizzo Progetto Implemento Verifico Rilascio Manutengo Gestisco\"."},
+{t:"PROC", q:"Cos'è il modello a cascata?", a:"Esecuzione sequenziale delle attività; ogni fase comincia solo quando finisce la precedente.", m:"🏔️ Cascata = acqua che SCENDE in modo IRREVERSIBILE. Se l'acqua è già in fondo non puoi farla risalire (= se sei in implementazione, non si torna ai requisiti). Da qui la rigidità."},
+{t:"PROC", q:"Perché la cascata fallisce spesso?", a:"Non è flessibile ai cambiamenti; richiede requisiti stabili dall'inizio.", m:"🧊 Cascata = ghiacciata: rigida. Se il cliente cambia idea a metà progetto, devi sciogliere tutto e ricominciare."},
+{t:"PROC", q:"Sviluppo iterativo, incrementale ed evolutivo.", a:"Multiple iterazioni a durata fissa (2-6 sett.) in cui si svolgono TUTTE le attività; si adatta il lavoro al tempo, non viceversa.", m:"🍕 Pizza a fette: NON cuoci tutta la pizza e poi tagli (cascata). Cuoci una fetta, la assaggi, regoli sale, cuoci la prossima. Time-box = la fetta non si allarga, il condimento sì."},
+{t:"PROC", q:"3 vantaggi dell'iterativo.", a:"Flessibilità ai cambiamenti · Riduzione rischi precoce · Feedback utente fin da subito.", m:"FRF → \"Faccio · Riduco · Feedback\". Pensa al cuoco che fa assaggiare ogni fetta al cliente: se il sale non va, lo sa SUBITO, non a torta finita."},
 
 // ===== AGILE / SCRUM =====
-{t:"AGILE", q:"Cos'è il metodo agile?", a:"Forma di sviluppo iterativo che privilegia risposta rapida e flessibile ai cambiamenti.", m:""},
-{t:"AGILE", q:"4 valori agili.", a:"Semplicità · Leggerezza · Valore delle persone · Comunicazione.", m:""},
-{t:"AGILE", q:"Principio agile sulla pianificazione.", a:"Pianificazione iterativa, iterazioni brevi e time-boxed.", m:""},
-{t:"AGILE", q:"Principio agile sul misurare il progresso.", a:"Software funzionante è il principale metro di misura.", m:""},
-{t:"AGILE", q:"Cos'è SCRUM?", a:"Metodo agile centrato sull'organizzazione del lavoro e gestione del progetto.", m:""},
-{t:"AGILE", q:"Cos'è uno sprint?", a:"L'iterazione di SCRUM; dura 2-4 settimane.", m:""},
-{t:"AGILE", q:"Cos'è la velocity?", a:"Quantità di lavoro fattibile in un singolo sprint.", m:""},
-{t:"AGILE", q:"Cos'è il backlog?", a:"Lista ordinata di cose da fare (features/requisiti) gestita dal Product Owner.", m:""},
-{t:"AGILE", q:"Ruolo dello ScrumMaster.", a:"Assicura che il processo SCRUM sia seguito; fa da tramite tra team e azienda.", m:""},
-{t:"AGILE", q:"Ruolo del Product Owner.", a:"Identifica caratteristiche/requisiti del prodotto; mantiene il backlog allineato al business.", m:""},
-{t:"AGILE", q:"Dimensione tipica del team SCRUM.", a:"Auto-organizzato, non più di 7 persone.", m:""},
+{t:"AGILE", q:"Cos'è il metodo agile?", a:"Forma di sviluppo iterativo che privilegia risposta rapida e flessibile ai cambiamenti.", m:"🤸 Agile = ginnasta: si piega al momento. Niente piani rigidi, riflessi pronti."},
+{t:"AGILE", q:"4 valori agili.", a:"Semplicità · Leggerezza · Valore delle persone · Comunicazione.", m:"SLPC → \"Semplice Leggero, Persone Comunicano\". Pensa a uno zaino da trekking: leggero (no documentazione inutile), semplice (un solo scopo), portato da PERSONE che si parlano lungo la salita."},
+{t:"AGILE", q:"Principio agile sulla pianificazione.", a:"Pianificazione iterativa, iterazioni brevi e time-boxed.", m:"⏱️ Time-box = clessidra: il tempo è fisso, il contenuto si adatta. Mai allungare la sabbia, ridurre la portata."},
+{t:"AGILE", q:"Principio agile sul misurare il progresso.", a:"Software funzionante è il principale metro di misura.", m:"🏗️ Il muratore non viene pagato per il numero di mattoni nel cantiere, ma per i muri che STANNO IN PIEDI. Stesso per il software: o gira, o non conta."},
+{t:"AGILE", q:"Cos'è SCRUM?", a:"Metodo agile centrato sull'organizzazione del lavoro e gestione del progetto.", m:"🏉 SCRUM = mischia del rugby: tutti spingono insieme nello stesso istante per portare avanti il pacchetto. Coordinazione totale, durata breve."},
+{t:"AGILE", q:"Cos'è uno sprint?", a:"L'iterazione di SCRUM; dura 2-4 settimane.", m:"🏃 Sprint = scatto: corto e intenso. Non maratona. 2-4 settimane perché dopo il cervello si stanca."},
+{t:"AGILE", q:"Cos'è la velocity?", a:"Quantità di lavoro fattibile in un singolo sprint.", m:"🏎️ Velocity = come la velocità di un'auto sul rettilineo: ti dice quanta strada fai in un'unità di tempo (= sprint). Serve per stimare gli sprint futuri."},
+{t:"AGILE", q:"Cos'è il backlog?", a:"Lista ordinata di cose da fare (features/requisiti) gestita dal Product Owner.", m:"📋 Backlog = lista della spesa ORDINATA per priorità. Il Product Owner è la mamma che decide cosa serve di più. Il team prende dall'alto."},
+{t:"AGILE", q:"Ruolo dello ScrumMaster.", a:"Assicura che il processo SCRUM sia seguito; fa da tramite tra team e azienda.", m:"👮 ScrumMaster = arbitro: NON gioca (non scrive codice), fa rispettare le regole e protegge il team dagli ostacoli esterni."},
+{t:"AGILE", q:"Ruolo del Product Owner.", a:"Identifica caratteristiche/requisiti del prodotto; mantiene il backlog allineato al business.", m:"🎯 Product Owner = regista: decide COSA fare e in che ORDINE. È la voce del cliente nel team."},
+{t:"AGILE", q:"Dimensione tipica del team SCRUM.", a:"Auto-organizzato, non più di 7 persone.", m:"🍕 \"Two-pizza team\": un team SCRUM si deve poter sfamare con 2 pizze. Sopra le 7 persone, la comunicazione esplode (n² archi)."},
 
 // ===== UP =====
-{t:"UP", q:"Cosa significa UP?", a:"Unified Process: processo iterativo, incrementale, evolutivo per software OO.", m:""},
-{t:"UP", q:"4 fasi UP.", a:"Ideazione · Elaborazione · Costruzione · Transizione.", m:"IECT"},
-{t:"UP", q:"3 caratteristiche UP.", a:"Pilotato dai casi d'uso · centrato sull'architettura · iterativo.", m:"CAI"},
-{t:"UP", q:"Iterazione vs release vs incremento.", a:"Iterazione = mini-ciclo (2-6 sett). Release = versione funzionante. Incremento = diff tra due release.", m:""},
-{t:"UP", q:"Fase UP = disciplina?", a:"NO. Ogni iterazione fa tutte le discipline, cambia solo l'enfasi.", m:""},
-{t:"UP", q:"3 pratiche fondamentali UP.", a:"Verificare continuamente la qualità · coinvolgere l'utente · usare UML come modellazione visuale.", m:""},
-{t:"UP", q:"Ideazione — scopo.", a:"Definire visione del progetto e fattibilità con stime approssimative di costi e tempi.", m:""},
-{t:"UP", q:"Ideazione — quanti requisiti si analizzano?", a:"Circa il 10% (e quelli non funzionali più critici).", m:""},
-{t:"UP", q:"Elaborati principali dell'Ideazione.", a:"Visione e studio economico · Modello dei casi d'uso · Specifiche supplementari · Glossario.", m:""},
-{t:"UP", q:"Elaborazione — scopo.", a:"Realizzare l'eseguibile del nucleo dell'architettura, testato e di qualità; stabilizzare l'80% dei requisiti.", m:""},
-{t:"UP", q:"Elaborazione — % requisiti.", a:"Circa l'80% vengono stabilizzati qui.", m:""},
-{t:"UP", q:"Elaborati principali dell'Elaborazione.", a:"Modello di dominio · Modello di progetto · Documento dell'architettura · Modello dei dati.", m:""},
-{t:"UP", q:"Costruzione — scopo.", a:"Realizzazione delle capacità operative iniziali; più tempo a implementazione e test.", m:""},
-{t:"UP", q:"Transizione — scopo.", a:"Completamento del prodotto e rilascio agli utenti finali.", m:""},
-{t:"UP", q:"UP vs cascata.", a:"Cascata = sequenza unica una volta sola. UP = iterativo, ogni iterazione fa tutte le discipline.", m:""},
-{t:"UP", q:"Errore comune in ideazione.", a:"Pensare che i piani/stime siano affidabili, voler definire la maggior parte dei requisiti.", m:""},
-{t:"UP", q:"Cattiva pratica UP classica.", a:"Pensare che la prima iterazione faccia analisi completa, la seconda progettazione, la terza implementazione.", m:""},
-{t:"UP", q:"L'iterazione 1 di Elaborazione è guidata da cosa?", a:"Dal rischio e centrata sull'architettura.", m:""},
-{t:"UP", q:"UP può essere applicato in modo agile?", a:"Sì, riducendo gli elaborati e lasciando emergere requisiti/progettazione iterativamente.", m:""},
+{t:"UP", q:"Cosa significa UP?", a:"Unified Process: processo iterativo, incrementale, evolutivo per software OO.", m:"🇺 \"Unified\" perché unifica le best practices in un solo framework. È il \"buffet\" dei processi: serviti, ma con criterio."},
+{t:"UP", q:"4 fasi UP.", a:"Ideazione · Elaborazione · Costruzione · Transizione.", m:"IECT → \"Io Elaboro, Costruisco, Trasferisco\". Pensa a un palazzo: Idea (architetto pensa) · Elaboro (disegno strutturale) · Costruisco (muratori) · Transito (consegno chiavi al cliente)."},
+{t:"UP", q:"3 caratteristiche UP.", a:"Pilotato dai casi d'uso · centrato sull'architettura · iterativo.", m:"CAI → \"Caso d'uso, Architettura, Iterativo\". Il timoniere CAI: guarda la rotta (use case), tiene salda la barca (architettura), gira sempre il timone (iterazioni)."},
+{t:"UP", q:"Iterazione vs release vs incremento.", a:"Iterazione = mini-ciclo (2-6 sett). Release = versione funzionante. Incremento = diff tra due release.", m:"⛏️ Iterazione = il MARTELLO (lo strumento) · Release = la STATUA (il risultato a fine colpo) · Incremento = il TRUCIOLO che si stacca tra due colpi."},
+{t:"UP", q:"Fase UP = disciplina?", a:"NO. Ogni iterazione fa tutte le discipline, cambia solo l'enfasi.", m:"⚠️ Trappola classica! Pensa a un'orchestra: in ogni concerto suonano TUTTI gli strumenti, ma a volte il violino è in primo piano (ideazione = requisiti), a volte la batteria (costruzione = codice). Mai uno SOLO suona."},
+{t:"UP", q:"3 pratiche fondamentali UP.", a:"Verificare continuamente la qualità · coinvolgere l'utente · usare UML come modellazione visuale.", m:"QUU → \"Qualità Utente UML\". Trio del falegname agile: misuro sempre (qualità), chiedo al cliente (utente), faccio schemi (UML)."},
+{t:"UP", q:"Ideazione — scopo.", a:"Definire visione del progetto e fattibilità con stime approssimative di costi e tempi.", m:"💡 Ideazione = lampadina che si accende. Non costruisci ancora, decidi se VALE LA PENA. Studio di fattibilità + business case."},
+{t:"UP", q:"Ideazione — quanti requisiti si analizzano?", a:"Circa il 10% (e quelli non funzionali più critici).", m:"🎯 10% = quel che basta per vedere la STELLA POLARE. Non mappare tutto il territorio prima di partire: è uno spreco."},
+{t:"UP", q:"Elaborati principali dell'Ideazione.", a:"Visione e studio economico · Modello dei casi d'uso · Specifiche supplementari · Glossario.", m:"VMSG → \"Visione, Modello uc, Specifiche, Glossario\". I 4 documenti = i 4 pilastri di un negozio: l'INSEGNA (visione), il CATALOGO (uc), le CONDIZIONI (specifiche), il DIZIONARIO (glossario)."},
+{t:"UP", q:"Elaborazione — scopo.", a:"Realizzare l'eseguibile del nucleo dell'architettura, testato e di qualità; stabilizzare l'80% dei requisiti.", m:"🏗️ Elaborazione = scheletro armato del palazzo. Non è finito, ma sta in piedi. Tutto il resto (rifiniture) sarà più facile."},
+{t:"UP", q:"Elaborazione — % requisiti.", a:"Circa l'80% vengono stabilizzati qui.", m:"📊 \"80% / 80%\": 80% dei requisiti, ed è la fase più lunga (~80% del rischio assorbito)."},
+{t:"UP", q:"Elaborati principali dell'Elaborazione.", a:"Modello di dominio · Modello di progetto · Documento dell'architettura · Modello dei dati.", m:"DPAD → \"Dominio, Progetto, Architettura, Dati\". Pensa al cantiere: il TERRENO (dominio), il PROGETTO esecutivo, l'ARCHITETTURA (statica), i DATI di calcolo."},
+{t:"UP", q:"Costruzione — scopo.", a:"Realizzazione delle capacità operative iniziali; più tempo a implementazione e test.", m:"🧱 Costruzione = i MURATORI. Le scelte importanti sono fatte, ora si tira su il sistema. Implementazione + test pesi massimi."},
+{t:"UP", q:"Transizione — scopo.", a:"Completamento del prodotto e rilascio agli utenti finali.", m:"🚚 Transizione = il TRASLOCO al cliente. Beta, formazione, deploy, hand-over."},
+{t:"UP", q:"UP vs cascata.", a:"Cascata = sequenza unica una volta sola. UP = iterativo, ogni iterazione fa tutte le discipline.", m:"🌊 Cascata = fiume in piena, una sola direzione. 🌀 UP = mulinello: gira più volte ma SALE."},
+{t:"UP", q:"Errore comune in ideazione.", a:"Pensare che i piani/stime siano affidabili, voler definire la maggior parte dei requisiti.", m:"🧭 In ideazione hai una BUSSOLA, non una MAPPA dettagliata. Sapere la direzione, non ogni curva."},
+{t:"UP", q:"Cattiva pratica UP classica.", a:"Pensare che la prima iterazione faccia analisi completa, la seconda progettazione, la terza implementazione.", m:"❌ \"Cascata travestita\": dici di fare UP ma fai cascata mascherata. Il prof la riconosce sempre. Le discipline sono parallele dentro ogni iterazione."},
+{t:"UP", q:"L'iterazione 1 di Elaborazione è guidata da cosa?", a:"Dal rischio e centrata sull'architettura.", m:"⚠️ Prima iter = colpo al rischio più grosso. Pensa al chirurgo: opera prima il tumore (rischio), poi le cose minori. Se sopravvive l'architettura, sopravvive il progetto."},
+{t:"UP", q:"UP può essere applicato in modo agile?", a:"Sì, riducendo gli elaborati e lasciando emergere requisiti/progettazione iterativamente.", m:"🥗 UP agile = UP \"light\": stessi ingredienti, meno burocrazia. Tagli i documenti, mantieni le iterazioni."},
 
 // ===== REQUISITI =====
 {t:"REQ", q:"Cos'è un requisito.", a:"Capacità o condizione a cui un sistema deve essere conforme.", m:""},
