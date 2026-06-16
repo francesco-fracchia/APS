@@ -3207,6 +3207,120 @@ const QUIZ = [
 {t:"UC", q:"\"Black box use case\" significa:", o:["Solo bug","Si descrive cosa fa il sistema, non come","Solo Singleton","Solo Composite"], c:[1], m:false, e:"Black box: COSA, non COME (scatola nera)."},
 {t:"DOM", q:"Larman: il modello di dominio è \"corretto\"?", o:["Sì sempre","Larman dice: meglio chiedersi se è UTILE","Solo se Singleton","Solo per Composite"], c:[1], m:false, e:"Larman: \"utile\" > \"corretto\" (si raffina iterando)."},
 {t:"GRASP", q:"Larman dice che GRASP è un linguaggio di:", o:["Pattern UI","Comunicazione/ragionamento sui principi di assegnazione","Bug tracking","Test"], c:[1], m:false, e:"GRASP: linguaggio condiviso per ragionare sulle responsabilità."},
+
+// ===== BATCH 6: confronti multipli, vero/falso, sequenze, identificazioni =====
+
+// PROC
+{t:"PROC", q:"Quale tra queste sequenze di sviluppo è AGILE?", o:["Analisi → Design → Codice → Test (una volta)","Iterazioni brevi: spec parziale → codice → test → feedback → spec evoluta","Cascata pura","Big bang"], c:[1], m:false, e:"Agile: iterazioni brevi con feedback continuo."},
+{t:"PROC", q:"Quale tra queste affermazioni sull'iterativo è VERA?", o:["Si fanno solo i requisiti all'inizio","Ogni iterazione produce una release funzionante","Solo una iterazione","Mai test"], c:[1], m:false, e:"Iterazione → release funzionante (incrementale)."},
+{t:"PROC", q:"Caratteristiche di SCRUM (scegli una o più):", o:["Sprint time-boxed","Daily standup","Cascata","Sprint Review"], c:[0,1,3], m:true, e:"SCRUM: sprint time-boxed, daily, review. Non è cascata."},
+{t:"PROC", q:"In quale ordine avvengono in SCRUM?", o:["Daily → Planning → Review","Planning → Sprint (con Daily) → Review → Retrospective","Review → Planning","Solo Daily"], c:[1], m:false, e:"Sequenza: Planning all'inizio, Daily durante, Review e Retro alla fine."},
+{t:"PROC", q:"Quale tra queste NON è una pratica agile?", o:["TDD","Pair programming","Big Design Up Front (BDUF)","Continuous Integration"], c:[2], m:false, e:"BDUF è cascata (tutto il design prima). Agile: design emergente."},
+{t:"PROC", q:"Una caratteristica di Kanban (NON di SCRUM puro):", o:["Sprint a durata fissa","WIP limits e flusso continuo","Sprint Review","Sprint Planning"], c:[1], m:false, e:"Kanban: flusso continuo + WIP limit. Niente sprint fissi."},
+{t:"PROC", q:"Cosa è VERO sui processi software (scegli una o più):", o:["Definiscono ruoli","Definiscono attività","Definiscono tempi","Eliminano i bug"], c:[0,1,2], m:true, e:"Processo = ruoli + attività + tempi. Non elimina bug per magia."},
+{t:"PROC", q:"Quale tra questi è il modello \"ibrido\" più diffuso oggi?", o:["Cascata pura","Iterativo agile (UP-light, SCRUM)","Big bang","Cowboy coding"], c:[1], m:false, e:"Oggi prevale iterativo agile (UP-light, SCRUM, ibridi)."},
+
+// UP
+{t:"UP", q:"Ordine corretto delle fasi UP:", o:["Costruzione → Ideazione","Ideazione → Elaborazione → Costruzione → Transizione","Transizione → Ideazione","Tutte parallele"], c:[1], m:false, e:"IECT in ordine."},
+{t:"UP", q:"In quale fase si fa il modello dei dati principalmente?", o:["Ideazione","Elaborazione","Costruzione","Transizione"], c:[1], m:false, e:"Elaborazione (insieme a dominio, progetto, architettura)."},
+{t:"UP", q:"Quale tra queste NON è una caratteristica UP?", o:["Pilotato dai casi d'uso","Centrato sull'architettura","Iterativo","Sequenziale puro"], c:[3], m:false, e:"UP NON è sequenziale puro (è iterativo)."},
+{t:"UP", q:"In UP, quanti elaborati si producono in Ideazione (scegli una o più)?", o:["Visione","Glossario","Codice di produzione completo","Modello UC (iniziale)"], c:[0,1,3], m:true, e:"Visione, Glossario, Modello UC iniziale. NO codice completo (è in Costruzione)."},
+{t:"UP", q:"In una iterazione di Elaborazione, quale disciplina è enfatizzata?", o:["Solo Test","Solo Requisiti","Analisi&Design (architettura)","Solo Deployment"], c:[2], m:false, e:"In Elaborazione: focus su Analysis&Design (architettura)."},
+{t:"UP", q:"Quale tra queste è una tipica milestone di UP?", o:["Lifecycle Objective (fine Ideazione)","Lifecycle Architecture (fine Elaborazione)","Initial Operational Capability (fine Costruzione)","Tutte e tre"], c:[3], m:false, e:"4 milestone UP: LO, LA, IOC, PR. Le 4 corrispondono alle 4 fasi."},
+
+// REQ
+{t:"REQ", q:"Quale tra questi è un requisito FUNZIONALE (scegli una o più)?", o:["L'utente può creare un account","Tempo di risposta ≤ 2 sec","Il sistema invia email di conferma","Affidabilità 99.9%"], c:[0,2], m:true, e:"Funzionali: creare account, inviare email. Performance e affidabilità sono non-funzionali."},
+{t:"REQ", q:"Quale tra questi è un requisito NON FUNZIONALE (scegli una o più)?", o:["Login utente","Performance < 2 sec","Sicurezza (cifratura)","Usabilità WCAG"], c:[1,2,3], m:true, e:"Performance, sicurezza, usabilità = non funzionali."},
+{t:"REQ", q:"\"Il sistema deve essere veloce\" è:", o:["Funzionale","Obiettivo (non verificabile)","Verificabile","Bug"], c:[1], m:false, e:"\"Veloce\" non quantificato = obiettivo vago."},
+{t:"REQ", q:"\"Tempo di risposta < 200ms al 95%\" è:", o:["Funzionale","Obiettivo","Requisito non funzionale VERIFICABILE","Bug"], c:[2], m:false, e:"Quantificato e misurabile = non funzionale verificabile."},
+
+// UC
+{t:"UC", q:"In un UC \"Vendi Cialde\" (NEED-A-BREAK?), l'attore primario è:", o:["Il fornitore","L'impiegato del negozio","Il cliente diretto","Il fisco"], c:[1], m:false, e:"L'impiegato usa il sistema per vendere cialde."},
+{t:"UC", q:"In un UC \"Prenota Corso\" (GYM-FIT), l'attore primario è:", o:["Il socio","Il receptionist","L'istruttore","Il fornitore"], c:[1], m:false, e:"Il receptionist usa il sistema per prenotare al socio."},
+{t:"UC", q:"\"Prelievo bancomat\" è un UC di quale livello?", o:["Sommario","Obiettivo utente","Sotto-funzione","Niente"], c:[1], m:false, e:"Obiettivo utente: una sessione che produce valore (i soldi)."},
+{t:"UC", q:"\"Autenticati\" è un UC di quale livello?", o:["Sommario","Obiettivo utente","Sotto-funzione","Niente"], c:[2], m:false, e:"Sotto-funzione: passo riusabile da molti UC."},
+{t:"UC", q:"\"Gestione completa magazzino\" è:", o:["Sommario (obiettivo ampio, più sessioni)","Obiettivo utente","Sotto-funzione","Niente"], c:[0], m:false, e:"Sommario: obiettivo grande non realizzabile in una sessione."},
+{t:"UC", q:"In NEED-A-BREAK?, \"Autentica impiegato\" è:", o:["Sommario","Obiettivo utente","Sotto-funzione (include)","Sempre extend"], c:[2], m:false, e:"Sotto-funzione, tipicamente «include» in altri UC."},
+{t:"UC", q:"Quanti SSD si fanno per UC tipicamente?", o:["1 (per scenario principale)","10","100","0"], c:[0], m:false, e:"1 per scenario principale (+ eventuali alternativi)."},
+
+// DOM
+{t:"DOM", q:"Quali sono buoni nomi per classi di dominio (scegli una o più)?", o:["Cliente","Order","OrderRepository","Telefono"], c:[0,1,3], m:true, e:"Cliente, Order, Telefono = dominio. Repository = tecnico."},
+{t:"DOM", q:"Quali sono nomi NON appropriati per il modello di dominio (scegli una o più)?", o:["Manager","Repository","Service","Cliente"], c:[0,1,2], m:true, e:"Manager/Repository/Service = tecnici. Cliente OK."},
+{t:"DOM", q:"In un Ordine, quale tra questi è un buon attributo?", o:["calcolaTotale() (è un metodo!)","totale: double","-saldo","-private"], c:[1], m:false, e:"Solo attributi semplici. Niente metodi nel dominio."},
+{t:"DOM", q:"Quale relazione descrive \"un ordine ha 1+ righe\"?", o:["Generalizzazione","Composizione (Ordine ◆ Riga, molt 1..*)","Aggregazione","Realizzazione"], c:[1], m:false, e:"Composizione: le righe vivono solo nell'ordine."},
+{t:"DOM", q:"Quale relazione descrive \"un cliente ha 0..* ordini\"?", o:["Composizione (ordini muoiono col cliente)","Associazione 1 - 0..* (o aggregazione)","Generalizzazione","Realizzazione"], c:[1], m:false, e:"Cliente e Ordini sono indipendenti (associazione/aggregazione)."},
+{t:"DOM", q:"Quale relazione descrive \"un Dipendente È-UN Cliente\"?", o:["Generalizzazione (Dipendente eredita da Cliente)","Composizione","Associazione","Realizzazione"], c:[0], m:false, e:"\"È-un\" = generalizzazione."},
+{t:"DOM", q:"Quale relazione descrive \"un Adapter REALIZZA IAdapter\"?", o:["Generalizzazione","Realizzazione (linea tratteggiata + triangolo vuoto)","Composizione","Aggregazione"], c:[1], m:false, e:"Implementare interfaccia = realizzazione."},
+
+// SSD
+{t:"SSD", q:"Quale tra questi è un evento di sistema VALIDO?", o:["sale()","createSale(date)","Sale","Sale.createSale"], c:[1], m:false, e:"Verbo + parametri opzionali. \"Sale\" da solo è sostantivo, no."},
+{t:"SSD", q:"Quale NON è una pratica corretta per SSD?", o:["Disegnare oggetti interni","Sistema come unica scatola nera","Eventi attore↔sistema","Frecce di ritorno"], c:[0], m:false, e:"NO oggetti interni in SSD (è SD invece)."},
+
+// CONTR
+{t:"CONTR", q:"Pre-condizione tipica di \"confermaOrdine()\":", o:["L'utente ha effettuato il login","L'ordine è già stato creato","Cliente registrato","Tutti i precedenti"], c:[3], m:false, e:"Tutte sono pre-condizioni ragionevoli."},
+{t:"CONTR", q:"Post-condizione tipica di \"confermaOrdine()\" (scegli una o più):", o:["Ordine creato","Ordine associato al cliente","Fattura creata","Saldo aggiornato"], c:[0,1,2,3], m:true, e:"Tutte sono post-condizioni tipiche."},
+{t:"CONTR", q:"Quale tra queste è una post-cond MAL formulata?", o:["\"v è stata creata\"","\"v.totale è stato impostato a 100\"","\"v è stata associata a c\"","\"il sistema esegue l'algoritmo X\""], c:[3], m:false, e:"Le post descrivono STATO, non algoritmo."},
+
+// ARCH
+{t:"ARCH", q:"In architettura a 3 strati, il dominio NON dovrebbe importare:", o:["Math","Standard library","Framework UI (es. React)","Niente"], c:[2], m:false, e:"Dominio indipendente dalla UI."},
+{t:"ARCH", q:"Quale tra queste è una DIPENDENZA AMMESSA?", o:["UI → Dominio","Dominio → UI","Persistenza → UI","Tutte"], c:[0], m:false, e:"Solo verso il basso: UI→Dominio→Persistenza."},
+{t:"ARCH", q:"In architettura a 3 strati, una decisione di business va in:", o:["UI","Dominio","Persistenza","Framework"], c:[1], m:false, e:"Business logic = strato Dominio."},
+
+// INTERAZ
+{t:"INTERAZ", q:"In un sequence di \"Confermo Ordine\", il primo messaggio è tipicamente:", o:["UI → Domain Object","Attore (Cliente) → Controller","DB → Cliente","Niente"], c:[1], m:false, e:"Found message: Attore (o UI) → Controller."},
+{t:"INTERAZ", q:"In un sequence, dopo che il Controller riceve il messaggio:", o:["Solo aspetta","Delega ai domain object (Information Expert)","Si autodistrugge","Va al DB direttamente"], c:[1], m:false, e:"Controller delega: chiama i domain object (Expert) per il vero lavoro."},
+{t:"INTERAZ", q:"Quale tra questi NON è un operatore di interazione UML?", o:["alt","loop","sale","opt"], c:[2], m:false, e:"\"sale\" non è un operatore. Ci sono alt, loop, opt, par, seq, strict, break, ref, ecc."},
+
+// GRASP - quiz approfonditi
+{t:"GRASP", q:"In un esercizio: chi crea Vendita?", o:["Sempre Cliente","Sempre Magazzino","Il Controller (Pure Fabrication) o l'oggetto che la contiene/usa","Solo Singleton"], c:[2], m:false, e:"Spesso il Controller crea la Vendita via Pure Fabrication."},
+{t:"GRASP", q:"In NEED-A-BREAK?, il Magazzino conosce le ScatolaCialde, quindi è Information Expert per:", o:["Calcolo del prezzo","Verifica disponibilità + rimuovi scatole","Solo per Singleton","Solo per Composite"], c:[1], m:false, e:"Magazzino ha le scatole → fa lui verifica e rimozione."},
+{t:"GRASP", q:"Una classe di pure fabrication tipica del progetto è:", o:["Cliente","ServiziDiSistema, FacadeController, Repository","Sempre Singleton","Solo Adapter"], c:[1], m:false, e:"Controller, Service, Repository sono tipici Pure Fabrication."},
+{t:"GRASP", q:"Cosa è VERO sulla scelta di Controller?", o:["Sempre 1 per progetto (god class)","Multipli Use-Case Controllers per evitare bloated controller","Solo Singleton","Niente"], c:[1], m:false, e:"Use-Case Controllers (uno per UC) evitano il bloated controller."},
+
+// GoF - quiz approfonditi
+{t:"GoF", q:"Singleton: in un'app multi-thread senza synchronized, cosa succede?", o:["Funziona perfettamente","Race condition: 2 thread possono creare 2 istanze","Niente","Compila ma rallenta"], c:[1], m:false, e:"Lazy senza lock → 2 istanze in race condition."},
+{t:"GoF", q:"In Composite, l'operazione `operation()` su un Composite:", o:["Lavora solo localmente","Itera sui figli chiamando operation() su ognuno","Sempre Singleton","Solo per Leaf"], c:[1], m:false, e:"Composite.operation() = delega a tutti i figli (ricorsione)."},
+{t:"GoF", q:"In Strategy, se voglio aggiungere una nuova strategia:", o:["Devo modificare il Context","Aggiungo una nuova classe ConcreteStrategy (OCP)","Modifico l'interfaccia","Aggiungo if/else"], c:[1], m:false, e:"OCP: nuova ConcreteStrategy, zero modifiche al resto."},
+{t:"GoF", q:"In Observer, se un Subscriber si disiscrive durante notify():", o:["Crash garantito","Va gestito con cura (es. iterare su una copia della lista)","Niente","Solo Singleton"], c:[1], m:false, e:"Modifica concorrente lista durante iterazione: trappola comune, gestire."},
+{t:"GoF", q:"In Adapter, se l'Adaptee cambia API:", o:["Tutto il sistema cambia","Solo l'Adapter cambia (resto del codice è isolato)","Solo Singleton","Solo Composite"], c:[1], m:false, e:"Vantaggio di Adapter: cambi solo lui, il resto è isolato (PV)."},
+{t:"GoF", q:"In Factory, se aggiungo un nuovo tipo di prodotto:", o:["Cambio tutto il client","Modifico Factory (e/o aggiungo ConcreteProduct), il Client non cambia","Solo Singleton","Solo Composite"], c:[1], m:false, e:"Factory isola il client dai concreti: client invariato."},
+
+// UML
+{t:"UML", q:"Quanti elementi tipicamente nel diagramma Adapter (mattoncini)?", o:["1","4 (Client, Target, Adapter, Adaptee)","100","2"], c:[1], m:false, e:"4 mattoncini: Client, Target, Adapter, Adaptee."},
+{t:"UML", q:"Quanti elementi tipicamente nel diagramma Strategy?", o:["1","3-4 (Strategy, ConcreteStrategy, Context, opzionale Client)","100","2"], c:[1], m:false, e:"~4 mattoncini: Strategy, ConcreteStrategy, Context, Client."},
+{t:"UML", q:"Quanti elementi tipicamente nel diagramma Composite?", o:["3 (Component, Leaf, Composite)","1","100","2"], c:[0], m:false, e:"3 mattoncini: Component, Leaf, Composite (+ opzionale Client)."},
+
+// CLASSI
+{t:"CLASSI", q:"Il metodo getInstance() del Singleton è:", o:["public static","public abstract","private static","private final"], c:[0], m:false, e:"public static getInstance() (sottolineato in UML)."},
+{t:"CLASSI", q:"Il costruttore di un Singleton:", o:["public","private","static","abstract"], c:[1], m:false, e:"Private: solo getInstance() può crearlo."},
+
+// STATI
+{t:"STATI", q:"Per un Ordine, stati tipici sono:", o:["Creato","In lavorazione","Spedito, Consegnato","Tutti i precedenti"], c:[3], m:false, e:"Ciclo di vita Ordine: Creato → Lavorazione → Spedito → Consegnato."},
+{t:"STATI", q:"Per un Documento, stati tipici sono:", o:["Bozza","Pubblicato","Archiviato","Tutti i precedenti"], c:[3], m:false, e:"Documento: Bozza → Pubblicato → Archiviato."},
+{t:"STATI", q:"Una transizione TEMPORALE tipica:", o:["evento click","after(30 days) — dopo 30 giorni il documento scade","sempre","quando il sistema parte"], c:[1], m:false, e:"Eventi temporali: after(), when()."},
+
+// ATTIV
+{t:"ATTIV", q:"In un activity diagram, lo splitting in flussi paralleli si rappresenta con:", o:["Fork (barra orizzontale)","Decision (rombo)","Final","Initial"], c:[0], m:false, e:"Fork: barra orizzontale che divide in flussi paralleli."},
+{t:"ATTIV", q:"In activity, il ricongiungimento di flussi paralleli:", o:["Join (barra orizzontale)","Decision","Initial","Final"], c:[0], m:false, e:"Join: barra orizzontale che ricongiunge i flussi paralleli."},
+
+// TDD
+{t:"TDD", q:"Sequenza TDD corretta:", o:["Refactor → Red → Green","Red → Green → Refactor","Green → Red → Refactor","Refactor → Green → Red"], c:[1], m:false, e:"R-G-R sempre in quest'ordine."},
+{t:"TDD", q:"Quale tra questi NON è un livello di test?", o:["Unità","Integrazione","Compilazione","E2E"], c:[2], m:false, e:"Compilazione non è un livello di test (è una pre-condizione)."},
+{t:"TDD", q:"Quale code smell suggerisce \"Extract Method\"?", o:["Long Method","High Cohesion","Low Coupling","Niente"], c:[0], m:false, e:"Long Method → estrai in metodi più piccoli."},
+{t:"TDD", q:"Quale code smell suggerisce \"Extract Class\"?", o:["Long Method","Large Class (troppe responsabilità)","Feature Envy","Niente"], c:[1], m:false, e:"Large Class → spezza in classi con responsabilità coese."},
+{t:"TDD", q:"Quale code smell suggerisce \"Move Method\"?", o:["Feature Envy (il metodo usa più i dati di un'altra classe)","High Cohesion","Niente","Solo per Singleton"], c:[0], m:false, e:"Feature Envy → sposta il metodo dove sono i dati."},
+
+// Cross
+{t:"GoF", q:"Adapter realizza il GRASP _____.", o:["Information Expert","Indirection + Polymorphism","Solo Singleton","Solo Composite"], c:[1], m:false, e:"Adapter = Indirection (intermediario) + Polymorphism (stessa interfaccia)."},
+{t:"GoF", q:"Strategy realizza il GRASP _____.", o:["Information Expert","Polymorphism + PV","Solo Singleton","Solo Creator"], c:[1], m:false, e:"Strategy = Polymorphism + PV."},
+{t:"GoF", q:"Facade realizza il GRASP _____.", o:["Indirection + Protected Variations","Solo Information Expert","Solo Creator","Solo Composite"], c:[0], m:false, e:"Facade = Indirection + PV."},
+{t:"GoF", q:"Singleton è LEGATO a quale GRASP?", o:["Pure Fabrication (è una classe artificiale)","Solo Information Expert","Solo Creator","Solo Composite"], c:[0], m:false, e:"Singleton è una Pure Fabrication."},
+
+// Mappa processi extra
+{t:"PROC", q:"Quale tra questi è una FAMIGLIA di modelli?", o:["Iterativi (incl. incrementale, evolutivo)","Solo cascata","Solo cowboy","Niente"], c:[0], m:false, e:"Iterativo = famiglia che include incrementale ed evolutivo."},
+{t:"PROC", q:"Cascata + iterativo = ?", o:["Sono sinonimi","Modelli OPPOSTI di organizzazione","UP","Agile"], c:[1], m:false, e:"Cascata vs Iterativo = modelli di organizzazione opposti."},
+{t:"PROC", q:"Agile + UP = ?", o:["Sono sinonimi","Sono ortogonali: UP può essere applicato in modo agile","Sono incompatibili","Niente"], c:[1], m:false, e:"Ortogonali: UP è il processo, agile è lo stile."},
+{t:"PROC", q:"SCRUM + UP = ?", o:["Identici","Sono entrambi processi/metodi concreti, ma SCRUM è più leggero","Incompatibili","Niente"], c:[1], m:false, e:"Entrambi processi concreti; SCRUM è leggero, UP più strutturato."},
 ];
 
 const QUIZ_TOPIC_LABEL = {
