@@ -3458,6 +3458,133 @@ const QUIZ = [
 {t:"GRASP", q:"Quali tra questi sono GRASP \"base\" (scegli una o più)?", o:["Information Expert","Creator","Pure Fabrication","Controller"], c:[0,1,3], m:true, e:"Base: CILHC. Pure Fabrication è avanzato."},
 {t:"GRASP", q:"Quali tra questi sono GRASP \"avanzati\" (scegli una o più)?", o:["Polymorphism","Pure Fabrication","Indirection","Information Expert"], c:[0,1,2], m:true, e:"Avanzati: PPIP. Information Expert è base."},
 {t:"UC", q:"Quali tra questi sono attori (scegli una o più)?", o:["Cliente","Sistema di pagamento esterno","Database interno","Fisco"], c:[0,1,3], m:true, e:"Cliente (primario), gateway (supporto), fisco (fuori scena). DB interno NON è attore."},
+
+// ===== BATCH 8: storia, esercizi tipo orale, mappe avanzate =====
+
+// PROC - storia
+{t:"PROC", q:"Anno del Manifesto Agile?", o:["1991","2001","2011","2021"], c:[1], m:false, e:"2001."},
+{t:"PROC", q:"Anno del libro Design Patterns della Gang of Four?", o:["1984","1994","2004","2014"], c:[1], m:false, e:"GoF book: 1994."},
+{t:"PROC", q:"Chi sono i \"3 amigos\" di UP?", o:["Jacobson, Booch, Rumbaugh","Larman, Sommerville, Pressman","Bezos, Gates, Jobs","Niente"], c:[0], m:false, e:"3 amigos = Ivar Jacobson, Grady Booch, James Rumbaugh."},
+{t:"PROC", q:"Da chi è scritto \"Applying UML and Patterns\"?", o:["Larman","Sommerville","Booch","Knuth"], c:[0], m:false, e:"Craig Larman, libro del corso APS."},
+{t:"PROC", q:"\"Software craftsmanship\" è un movimento legato a:", o:["Cascata","Agile e qualità del codice","Solo Singleton","Solo Composite"], c:[1], m:false, e:"Software craftsmanship: estensione dell'agile sulla qualità del codice."},
+{t:"PROC", q:"Quanti sono i firmatari originali del Manifesto Agile?", o:["3","17","100","1"], c:[1], m:false, e:"17 firmatari originali (Beck, Sutherland, Schwaber, Cockburn, ecc.)."},
+
+// UP - approfondimenti
+{t:"UP", q:"\"Architecturally significant\" sono i requisiti che:", o:["Hanno impatto sul sistema architetturalmente","Sono solo cosmetici","Sono solo non funzionali","Niente"], c:[0], m:false, e:"Architetturalmente significativi = vanno in Elaborazione, definiscono l'architettura."},
+{t:"UP", q:"\"Iteration assessment\" si fa:", o:["A fine iterazione, per valutare cosa migliorare","All'inizio iterazione","Mai","Solo per Singleton"], c:[0], m:false, e:"Assessment a fine iterazione: cosa funziona, cosa no, cambi per la prossima."},
+{t:"UP", q:"In UP, l'attività di gestione del progetto produce:", o:["Phase plan","Iteration plan","Risk list","Tutti e tre"], c:[3], m:false, e:"Project management UP: phase plan, iteration plan, risk list."},
+{t:"UP", q:"Vantaggio chiave dell'approccio UP rispetto alla cascata:", o:["Più documenti","Riduzione del rischio dovuta a iterazioni precoci","Solo veloce","Solo cheap"], c:[1], m:false, e:"Iterazioni precoci affrontano i rischi prima → meno sorprese tardive."},
+
+// UC - approfondimenti
+{t:"UC", q:"Quale tra questi è un esempio di UC \"essenziale\"?", o:["L'utente clicca \"Acquista\" e seleziona dal menu a tendina","L'utente decide cosa acquistare e completa l'acquisto","Solo codice","Solo UI"], c:[1], m:false, e:"Essenziale: COSA fa, non come (no UI di dettaglio)."},
+{t:"UC", q:"Quale tra questi è un esempio di UC \"reale\"?", o:["L'utente decide cosa acquistare","L'utente clicca \"Acquista\", seleziona dal menu Bootstrap, completa form HTML5","Solo codice","Solo bug"], c:[1], m:false, e:"Reale: include UI/tecnologia di dettaglio."},
+{t:"UC", q:"\"Brief use case\" è:", o:["Lo stesso di esteso","Il formato breve in 1 paragrafo","Sempre lungo","Niente"], c:[1], m:false, e:"Brief = formato breve."},
+{t:"UC", q:"\"Casual use case\" è:", o:["Lo stesso di esteso","Il formato informale a paragrafi","Sempre lungo","Niente"], c:[1], m:false, e:"Casual = formato informale."},
+{t:"UC", q:"\"Fully dressed\" use case è:", o:["Il formato esteso/dettagliato","Brief","Casual","Niente"], c:[0], m:false, e:"Fully dressed = formato completo, 3-10 pagine."},
+
+// DOM
+{t:"DOM", q:"\"Dizionario visuale\" è un sinonimo di:", o:["Glossario","Modello di dominio","Codice","Diagramma classi di progetto"], c:[1], m:false, e:"Larman: modello di dominio = dizionario visuale."},
+{t:"DOM", q:"Quale tra questi NON è una categoria comune di classi concettuali?", o:["Persone (Cliente)","Luoghi (Negozio)","Eventi (Vendita)","Algoritmi"], c:[3], m:false, e:"Algoritmi NON sono classi del dominio. Le categorie comuni: persone, luoghi, eventi, oggetti fisici, transazioni, ecc."},
+{t:"DOM", q:"\"Transazione\" come categoria del dominio include:", o:["Vendita, Pagamento, Ordine","Solo bug","Solo Singleton","Niente"], c:[0], m:false, e:"Transazioni di business: vendita, pagamento, ordine."},
+
+// SSD/CONTR
+{t:"SSD", q:"In un SSD, il sistema riceve un evento e produce:", o:["Sempre una post-condizione","Una risposta opzionale + cambio di stato","Solo bug","Solo codice"], c:[1], m:false, e:"Sistema reagisce: stato cambia + eventuale risposta."},
+{t:"CONTR", q:"\"Output\" di un'operazione in un contratto:", o:["Si scrive in pre-condizioni","Non è esplicito; si descrive lo stato finale (post)","Solo bug","Solo codice"], c:[1], m:false, e:"Output implicito nello stato post (es. \"v.id = nuovo id\")."},
+
+// ARCH
+{t:"ARCH", q:"Quale dei seguenti è un anti-pattern architetturale?", o:["Strict layers","God class (classe gigante che fa tutto)","Modular","Layered"], c:[1], m:false, e:"God class: anti-pattern, viola coesione e SRP."},
+{t:"ARCH", q:"\"Spaghetti code\" è caratterizzato da:", o:["Alta modularità","Alto accoppiamento e poco struttura","Solo Singleton","Solo composto"], c:[1], m:false, e:"Spaghetti: dipendenze caotiche, alto accoppiamento."},
+{t:"ARCH", q:"Quale tra questi è un pattern architetturale (NON GoF)?", o:["MVC","Strategy","Adapter","Singleton"], c:[0], m:false, e:"MVC = pattern architetturale. Gli altri 3 sono GoF."},
+{t:"ARCH", q:"MVC sta per:", o:["Model View Controller","Multiple View Composition","Master View Container","Niente"], c:[0], m:false, e:"MVC = Model-View-Controller (pattern UI)."},
+{t:"ARCH", q:"In MVC, il Model:", o:["Conosce la View","Non conosce la View direttamente (è notificato via Observer tipicamente)","Solo Singleton","Solo astratto"], c:[1], m:false, e:"Model-View separation: Model non conosce View."},
+
+// INTERAZ
+{t:"INTERAZ", q:"\"Lifeline\" è caratterizzata da:", o:["Linea verticale tratteggiata sotto un oggetto","Linea orizzontale","Solo per Singleton","Niente"], c:[0], m:false, e:"Lifeline = verticale tratteggiata."},
+{t:"INTERAZ", q:"\"Execution specification\" (barra) è:", o:["Lo stesso della lifeline","La barra che indica l'attività dell'oggetto","Solo per Singleton","Niente"], c:[1], m:false, e:"Execution spec / focus of control: barra di attività."},
+{t:"INTERAZ", q:"In CD (communication diagram), i messaggi sono numerati:", o:["Niente numeri","Con notazione gerarchica (1, 1.1, 1.2, ...)","Solo per Singleton","Casuale"], c:[1], m:false, e:"Numeri gerarchici per indicare l'ordine."},
+
+// GRASP - 5 caselle
+{t:"GRASP", q:"Quando dici a voce \"Introducimi Information Expert\", una buona casella 1 è:", o:["Solo l'esempio","Problema: a chi assegnare una responsabilità?","Solo Singleton","Solo Composite"], c:[1], m:false, e:"Casella 1: il problema che il pattern affronta."},
+{t:"GRASP", q:"Casella 2 di una risposta GRASP a voce:", o:["Soluzione: alla classe che ha le informazioni","Solo bug","Solo Singleton","Niente"], c:[0], m:false, e:"Casella 2: soluzione del pattern."},
+{t:"GRASP", q:"Casella 3 di una risposta GRASP a voce:", o:["Esempio concreto (es. dal gestionale)","Solo bug","Niente","Sempre Singleton"], c:[0], m:false, e:"Casella 3: esempio per rendere concreto."},
+{t:"GRASP", q:"Casella 4 di una risposta GRASP a voce:", o:["Pro/contro","Solo bug","Niente","Sempre Singleton"], c:[0], m:false, e:"Casella 4: pro e contro del pattern."},
+{t:"GRASP", q:"Casella 5 di una risposta GRASP a voce:", o:["Correlati (es. \"abilita Protected Variations\")","Solo bug","Niente","Sempre Singleton"], c:[0], m:false, e:"Casella 5: pattern correlati."},
+
+// GoF - schemi
+{t:"GoF", q:"In Adapter, l'Adapter «realizza» (linea tratteggiata + triangolo) verso:", o:["Adaptee","Target (IAdapter)","Client","Singleton"], c:[1], m:false, e:"Adapter realizza Target/IAdapter (interfaccia)."},
+{t:"GoF", q:"In Adapter, l'Adapter «ha» (linea con freccia o rombo) verso:", o:["Target","Adaptee (lo aggrega/usa)","Client","Singleton"], c:[1], m:false, e:"Adapter contiene/usa l'Adaptee."},
+{t:"GoF", q:"In Strategy, il Context «ha» (rombo) verso:", o:["Strategy («interface»)","ConcreteStrategy direttamente","Client","Niente"], c:[0], m:false, e:"Context ha-a Strategy (interfaccia, non concreta)."},
+{t:"GoF", q:"In Composite, la freccia da Composite a Component:", o:["Generalizzazione","Aggregazione con 0..*","Realizzazione","Niente"], c:[1], m:false, e:"Aggregazione 0..*: Composite contiene una lista di Component."},
+{t:"GoF", q:"In Observer, la freccia da Publisher a Subscriber:", o:["Generalizzazione","Aggregazione con 0..* (lista di Subscriber)","Realizzazione","Niente"], c:[1], m:false, e:"Lista 0..* di Subscriber nel Publisher."},
+{t:"GoF", q:"In Facade, la freccia dalla Facade alle classi del sottosistema:", o:["Aggregazione","Dipendenza (usa)","Generalizzazione","Realizzazione"], c:[1], m:false, e:"Facade USA le classi del sottosistema → dipendenza."},
+
+// UML - simboli
+{t:"UML", q:"Una linea continua semplice senza freccia significa:", o:["Generalizzazione","Associazione (bidirezionale o non specificata)","Dipendenza","Niente"], c:[1], m:false, e:"Linea continua = associazione."},
+{t:"UML", q:"Una linea continua con freccia piena ad UN capo:", o:["Generalizzazione","Associazione orientata (la freccia indica la navigabilità)","Realizzazione","Niente"], c:[1], m:false, e:"Associazione orientata."},
+{t:"UML", q:"Il \"navigability\" indica:", o:["Velocità di esecuzione","Da dove a dove si può andare (chi conosce chi)","Solo Singleton","Niente"], c:[1], m:false, e:"Navigabilità = chi tiene il riferimento all'altro."},
+
+// CLASSI
+{t:"CLASSI", q:"\"public class Adapter implements IAdapter\" in UML corrisponde a:", o:["Solo associazione","Realizzazione (Adapter ⇢ IAdapter)","Generalizzazione","Niente"], c:[1], m:false, e:"implements = realizzazione UML."},
+{t:"CLASSI", q:"\"public class Dipendente extends Cliente\" in UML corrisponde a:", o:["Realizzazione","Generalizzazione (Dipendente ───▷ Cliente)","Associazione","Niente"], c:[1], m:false, e:"extends = generalizzazione UML."},
+{t:"CLASSI", q:"\"private List<Component> children\" in UML corrisponde a:", o:["Solo generalizzazione","Associazione con molteplicità 0..*","Realizzazione","Niente"], c:[1], m:false, e:"Lista privata = associazione 0..*."},
+
+// STATI
+{t:"STATI", q:"\"State invariant\" si scrive:", o:["Niente","Tra graffe dentro lo stato","Solo per Singleton","Solo per UI"], c:[1], m:false, e:"State invariant: predicato vero quando l'oggetto è in quello stato."},
+{t:"STATI", q:"\"Submachine\" (sotto-macchina) è:", o:["Una macchina annidata in uno stato composito","Solo per Singleton","Niente","Solo per Composite"], c:[0], m:false, e:"Submachine: macchina di stati dentro uno stato composito."},
+
+// ATTIV
+{t:"ATTIV", q:"\"Pin\" in activity diagram è:", o:["Un object node attaccato a un'azione (input/output di parametri)","Solo bug","Niente","Solo per Singleton"], c:[0], m:false, e:"Pin: piccolo rettangolo su un'azione, rappresenta input/output."},
+{t:"ATTIV", q:"\"Send signal action\" è:", o:["Un'azione che invia un segnale ad altro oggetto","Solo bug","Niente","Solo per Singleton"], c:[0], m:false, e:"Send signal action: azione concava che invia un segnale."},
+
+// TDD - dettagli
+{t:"TDD", q:"\"Arrange-Act-Assert\" è:", o:["Pattern di struttura di un test","Solo per Singleton","Niente","Solo per UI"], c:[0], m:false, e:"AAA: arrange dati, act (chiama il metodo), assert risultato."},
+{t:"TDD", q:"\"Given-When-Then\" è:", o:["Sintassi BDD per descrivere test","Solo per Singleton","Niente","Solo per UI"], c:[0], m:false, e:"BDD: Given (contesto), When (azione), Then (risultato atteso)."},
+{t:"TDD", q:"\"Test isolation\" significa:", o:["Test indipendenti l'uno dall'altro (no dipendenze, no ordine)","Test sempre insieme","Solo per Singleton","Niente"], c:[0], m:false, e:"Isolamento: un test non deve dipendere dall'esito o stato di altri."},
+{t:"TDD", q:"Tecnica di refactoring per ridurre Long Parameter List:", o:["Parameter Object (raggruppa in un oggetto)","Solo Singleton","Niente","Solo per Composite"], c:[0], m:false, e:"Parameter Object: raggruppa parametri correlati in un oggetto."},
+
+// Strategie d'esame
+{t:"GRASP", q:"In un SD del passo \"confermaVendita\", l'oggetto Controller delega a:", o:["UI","Magazzino (Info Expert per disponibilità) e altre classi dominio","DB direttamente","Niente"], c:[1], m:false, e:"Controller delega ai domain expert (Magazzino verifica, Vendita calcola, ecc.)."},
+{t:"GRASP", q:"In un SD, quando appare «create»?", o:["Quando si distrugge un oggetto","Quando si crea una nuova istanza","Solo per Singleton","Solo per Composite"], c:[1], m:false, e:"«create» = creazione di una nuova istanza (Creator GRASP)."},
+{t:"GRASP", q:"Nel sequence di \"confermaVendita\", chi crea la Fattura?", o:["Il Cliente","La Vendita (composizione: Vendita ◆ Fattura, Creator)","Il DB","Singleton"], c:[1], m:false, e:"Vendita ◆ Fattura → Vendita la crea."},
+
+// Mappa avanzata
+{t:"PROC", q:"Quanti VALORI ha il Manifesto Agile?", o:["3","4","12","17"], c:[1], m:false, e:"4 valori. 12 principi. 17 firmatari."},
+{t:"PROC", q:"Quanti PRINCIPI ha il Manifesto Agile?", o:["3","4","12","17"], c:[2], m:false, e:"12 principi."},
+{t:"GRASP", q:"Quanti GRASP totali?", o:["7","9","11","23"], c:[1], m:false, e:"9 GRASP (5 base + 4 avanzati)."},
+{t:"GoF", q:"Quanti GoF totali?", o:["7","9","23","100"], c:[2], m:false, e:"23 GoF (5+7+11)."},
+{t:"GoF", q:"Quanti GoF spiega il prof Riganelli?", o:["3","7","11","23"], c:[1], m:false, e:"7 del prof (2-3-2)."},
+{t:"UP", q:"Quante fasi UP?", o:["3","4 (IECT)","5","9"], c:[1], m:false, e:"4 fasi: Ideazione, Elaborazione, Costruzione, Transizione."},
+{t:"UP", q:"Quante caratteristiche fondamentali UP?", o:["1","3 (CAI)","5","9"], c:[1], m:false, e:"3 caratteristiche: Casi d'uso, Architettura, Iterativo."},
+{t:"UC", q:"Quanti livelli di UC?", o:["1","3 (sommario, obiettivo utente, sotto-funzione)","5","9"], c:[1], m:false, e:"3 livelli."},
+{t:"UC", q:"Quanti formati di UC?", o:["1","3 (breve, informale, esteso)","5","9"], c:[1], m:false, e:"3 formati."},
+{t:"UC", q:"Quanti test per validare un UC?", o:["1","3 (capo, EBP, dimensione)","5","9"], c:[1], m:false, e:"3 test (CED)."},
+{t:"CONTR", q:"Quanti elementi del contratto?", o:["2","3","4 (nome, pre, post, riferimenti)","5"], c:[2], m:false, e:"4 elementi."},
+{t:"CONTR", q:"Quanti tipi di post-condizioni?", o:["1","3 (creazione, modifica, associazione)","5","9"], c:[1], m:false, e:"3 tipi."},
+{t:"STATI", q:"Quanti tipi di eventi?", o:["2","4 (CSVT: chiamata, segnale, variazione, temporale)","6","9"], c:[1], m:false, e:"4 tipi (CSVT)."},
+{t:"TDD", q:"Quanti livelli di test (UIEA)?", o:["2","4 (unità, integrazione, E2E, accettazione)","6","9"], c:[1], m:false, e:"4 livelli."},
+{t:"TDD", q:"Quante proprietà di un test di unità (PEVR)?", o:["2","4 (piccolo, eseguibile isolato, veloce, ripetibile)","6","9"], c:[1], m:false, e:"4 proprietà."},
+{t:"INTERAZ", q:"Quanti tipi di diagrammi di interazione UML?", o:["2","4 (sequence, communication, interaction overview, timing)","6","9"], c:[1], m:false, e:"4 tipi."},
+{t:"INTERAZ", q:"Quanti frame in SD (opt/alt/loop/break/ref)?", o:["3","5","7","9"], c:[1], m:false, e:"5 frame principali."},
+
+// Diagrammi - identificazione
+{t:"UML", q:"Se vedi una linea con un rombo PIENO ◆, è:", o:["Aggregazione","Composizione","Generalizzazione","Realizzazione"], c:[1], m:false, e:"Rombo pieno = composizione."},
+{t:"UML", q:"Se vedi una linea con un rombo VUOTO ◇, è:", o:["Aggregazione","Composizione","Generalizzazione","Realizzazione"], c:[0], m:false, e:"Rombo vuoto = aggregazione."},
+{t:"UML", q:"Se vedi una linea con un triangolo VUOTO ▷, è:", o:["Aggregazione","Composizione","Generalizzazione o Realizzazione","Niente"], c:[2], m:false, e:"Triangolo vuoto = generalizzazione (continua) o realizzazione (tratteggiata)."},
+{t:"UML", q:"Se vedi una linea con una freccia piena ►, è:", o:["Generalizzazione","Associazione orientata o Dipendenza","Composizione","Aggregazione"], c:[1], m:false, e:"Freccia piena = associazione (continua) o dipendenza (tratteggiata)."},
+
+// Mnemonici
+{t:"GRASP", q:"\"CILHC\" è mnemonico per:", o:["I 5 GRASP base (Creator, Info Expert, Low Coupling, High Cohesion, Controller)","I 4 avanzati","Niente","Solo Singleton"], c:[0], m:false, e:"CILHC = 5 GRASP base."},
+{t:"GRASP", q:"\"PPIP\" è mnemonico per:", o:["I 5 base","I 4 avanzati (Polymorphism, Pure Fabrication, Indirection, Protected Variations)","Niente","Solo Singleton"], c:[1], m:false, e:"PPIP = 4 avanzati."},
+{t:"UP", q:"\"IECT\" è mnemonico per:", o:["Le 4 fasi UP (Ideazione, Elaborazione, Costruzione, Transizione)","I 4 valori agile","Niente","Solo SCRUM"], c:[0], m:false, e:"IECT = 4 fasi UP."},
+{t:"UP", q:"\"CAI\" è mnemonico per:", o:["Le 4 fasi UP","Le 3 caratteristiche UP (Casi d'uso, Architettura, Iterativo)","Niente","Solo Singleton"], c:[1], m:false, e:"CAI = 3 caratteristiche UP."},
+{t:"UC", q:"\"PFSF\" è mnemonico per:", o:["I 4 tipi di attori (Primario, Fuori scena, Supporto, Fattore esterno)","I 3 formati","Niente","Solo Singleton"], c:[0], m:false, e:"PFSF = 4 attori."},
+{t:"UC", q:"\"CED\" è mnemonico per:", o:["I 4 attori","I 3 test UC (Capo, EBP, Dimensione)","Niente","Solo Singleton"], c:[1], m:false, e:"CED = 3 test."},
+{t:"STATI", q:"\"CSVT\" è mnemonico per:", o:["I 4 tipi di eventi (Chiamata, Segnale, Variazione, Temporale)","Le 4 fasi UP","Niente","Solo Singleton"], c:[0], m:false, e:"CSVT = 4 eventi macchina a stati."},
+{t:"TDD", q:"\"RGR\" è mnemonico per:", o:["Le 4 fasi UP","Il ciclo TDD (Red, Green, Refactor)","Niente","Solo Singleton"], c:[1], m:false, e:"RGR = ciclo TDD."},
+{t:"TDD", q:"\"UIEA\" è mnemonico per:", o:["I 4 livelli di test (Unità, Integrazione, E2E, Accettazione)","Le 4 fasi UP","Niente","Solo Singleton"], c:[0], m:false, e:"UIEA = 4 livelli test."},
+{t:"TDD", q:"\"PEVR\" è mnemonico per:", o:["Le 4 proprietà di un test di unità (Piccolo, Eseguibile isolato, Veloce, Ripetibile)","Le 4 fasi UP","Niente","Solo Singleton"], c:[1], m:false, e:"PEVR = proprietà test unità."},
+{t:"GoF", q:"\"5-7-11\" è mnemonico per:", o:["Distribuzione dei 23 GoF per famiglia (Creazionali-Strutturali-Comportamentali)","Le fasi UP","Niente","Solo Singleton"], c:[0], m:false, e:"5+7+11 = 23 GoF."},
+{t:"GoF", q:"\"2-3-2\" è mnemonico per:", o:["I 7 GoF del prof per famiglia","Le fasi UP","Niente","Solo Singleton"], c:[0], m:false, e:"2+3+2 = 7 GoF del prof."},
 ];
 
 const QUIZ_TOPIC_LABEL = {
