@@ -264,6 +264,7 @@
     <div class="stage">📅 Piano</div>
     <a href="#piano"><span class="n">P</span>Piano 10 giorni + orale</a>
     <div class="stage">📚 Teoria</div>
+    <a href="#mappa-proc"><span class="n">🗺️</span>Mappa processi</a>
     <a href="#up"><span class="n">01</span>UP — Unified Process</a>
     <a href="#uc"><span class="n">02</span>Casi d'uso</a>
     <a href="#dom"><span class="n">03</span>Modello di dominio</a>
@@ -631,6 +632,76 @@
   <!-- ============================== TEORIA ============================== -->
 
   <!-- ===== 01 UP ===== -->
+  <h2 class="sec" id="mappa-proc"><span class="chip">🗺️</span>Mappa dei processi software</h2>
+  <p class="lead">Cascata · iterativo · UP · agile · SCRUM: cosa sta su cosa? La gerarchia per non confondersi mai più.</p>
+
+  <div class="box expl"><div class="t">📖 La confusione tipica</div>
+    <p>I libri mescolano termini che vivono su <b>livelli diversi</b>: \"processo\", \"modello\", \"metodo\", \"filosofia\". Il prof all'orale ti aspetta proprio qui: se rispondi \"agile è un processo\" sei già in fuori onda. Mappa in 3 livelli:</p>
+  </div>
+
+  <h3>I 3 livelli da tenere distinti</h3>
+
+  <div class="box" style="background:#eef4fb;border-left:4px solid #3858e9;padding:14px 18px">
+    <div class="t" style="color:#3858e9;font-size:.95rem">🔵 LIVELLO 1 — Concetto generale</div>
+    <p><b>Processo software</b> = approccio disciplinato che definisce ruoli, attività e organizzazione temporale per costruire/rilasciare/mantenere il software.</p>
+    <p style="font-style:italic;color:var(--soft)">Pensa al \"motore\" dell'auto: ogni auto ce l'ha, ma può essere di tipi diversi.</p>
+  </div>
+
+  <div class="box" style="background:#fff5e0;border-left:4px solid #b9760a;padding:14px 18px">
+    <div class="t" style="color:#b9760a;font-size:.95rem">🟠 LIVELLO 2 — Modelli di organizzazione temporale</div>
+    <p>Come distribuisco nel tempo le attività del processo. <b>2 famiglie principali</b>:</p>
+    <ul>
+      <li><b>📉 Cascata</b>: sequenziale, una sola passata (analisi → progetto → codice → test). Rigida ai cambiamenti.</li>
+      <li><b>🌀 Iterativo + incrementale + evolutivo</b>: N iterazioni di 2-6 settimane, ognuna fa <b>tutte</b> le attività. Flessibile, feedback continuo.</li>
+    </ul>
+    <p style="font-style:italic;color:var(--soft)">Pensa al \"cambio\" dell'auto: 1ª marcia (cascata) o automatico (iterativo).</p>
+  </div>
+
+  <div class="box" style="background:#f0eaff;border-left:4px solid #6b40d8;padding:14px 18px">
+    <div class="t" style="color:#6b40d8;font-size:.95rem">🟣 LIVELLO 3 — Cose concrete che incontri</div>
+    <table style="background:#fff;font-size:.9rem;margin:8px 0">
+      <tr><th>Nome</th><th>Cos'è davvero</th><th>Esempio</th></tr>
+      <tr><td><b>UP</b> (Unified Process)</td><td><c>Processo concreto</c> che usa il modello iterativo</td><td>Larman: 4 fasi IECT, casi d'uso, GRASP</td></tr>
+      <tr><td><b>Agile</b></td><td><c>Filosofia / mindset</c>, NON un processo</td><td>Manifesto 2001: 4 valori + 12 principi</td></tr>
+      <tr><td><b>SCRUM</b></td><td><c>Metodo concreto</c> che realizza la filosofia agile</td><td>Sprint, ScrumMaster, Product Owner, backlog</td></tr>
+      <tr><td><b>XP, Kanban, Crystal</b></td><td>Altri metodi agili</td><td>Stessa filosofia, regole diverse</td></tr>
+    </table>
+  </div>
+
+  <h3>⚠️ Le confusioni tipiche d'esame (dispelle)</h3>
+
+  <div class="box warn"><div class="t">❌ \"Agile è alternativa a UP\"</div>
+    <p>FALSO. Agile e UP vivono su livelli diversi. UP <b>PUÒ ESSERE applicato in modo agile</b> (alleggerendo gli elaborati). Sono <c>ortogonali</c>.</p>
+  </div>
+
+  <div class="box warn"><div class="t">❌ \"SCRUM è la stessa cosa di Agile\"</div>
+    <p>FALSO. Agile è il <i>cappello</i>, SCRUM è <i>uno dei tanti vestiti</i> sotto quel cappello. Confondere il <c>genere</c> con la <c>specie</c>.</p>
+  </div>
+
+  <div class="box warn"><div class="t">❌ \"Iterativo = Agile\"</div>
+    <p>FALSO. Iterativo è un <c>modello di organizzazione</c>; agile è una <c>filosofia</c>. Tutti i metodi agili sono iterativi, ma <b>non</b> tutti gli iterativi sono agili (UP nasce iterativo \"pesante\", non agile).</p>
+  </div>
+
+  <div class="box warn"><div class="t">❌ \"La cascata fa solo una iterazione\"</div>
+    <p>Quasi vero ma fuorviante. La cascata <b>non è \"una iterazione\"</b>: è proprio un <c>altro modello</c> (sequenziale puro, niente cicli). Non si parla di \"iterazione\" in cascata.</p>
+  </div>
+
+  <div class="box mnem"><div class="t">🧠 Mnemonico dei livelli</div>
+    <ul>
+      <li><b>PROCESSO</b> = il MOTORE dell'auto (concetto generico)</li>
+      <li><b>MODELLO</b> = il CAMBIO (cascata = 1ª marcia · iterativo = automatico)</li>
+      <li><b>UP / SCRUM</b> = le MARCHE di auto (Toyota UP, Ferrari SCRUM)</li>
+      <li><b>AGILE</b> = lo STILE DI GUIDA (calmo, reattivo)</li>
+    </ul>
+    <p style="margin-top:8px">UP può essere guidato \"agile\" (stile reattivo). La cascata di solito \"rigido\". Sono <b>dimensioni indipendenti</b>.</p>
+  </div>
+
+  <div class="box key"><div class="t">🎤 Risposta-tipo all'orale</div>
+    <p style="font-style:italic">\"Un processo software è un approccio disciplinato che definisce ruoli, attività e organizzazione temporale. Esistono diversi <b>modelli di organizzazione</b>, principalmente la <b>cascata</b> (sequenziale, una sola passata) e l'<b>iterativo/incrementale</b> (più cicli di 2-6 settimane). Un esempio concreto di processo iterativo è <b>UP</b>, che ha 4 fasi (IECT) ed è pilotato dai casi d'uso. <b>Agile</b>, invece, non è un processo: è una filosofia di sviluppo del Manifesto 2001 che privilegia flessibilità e collaborazione col cliente. <b>SCRUM</b> è un metodo concreto che realizza la filosofia agile, con sprint, ruoli (ScrumMaster, Product Owner) e backlog.\"</p>
+  </div>
+
+  <hr>
+
   <h2 class="sec" id="up"><span class="chip">01</span>UP — Unified Process</h2>
   <p class="lead">Processo iterativo, incrementale, evolutivo per software OO.</p>
 
@@ -1731,6 +1802,15 @@ const cards = [
 {t:"PROC", q:"Perché la cascata fallisce spesso?", a:"Non è flessibile ai cambiamenti; richiede requisiti stabili dall'inizio.", m:"🧊 Cascata = ghiacciata: rigida. Se il cliente cambia idea a metà progetto, devi sciogliere tutto e ricominciare."},
 {t:"PROC", q:"Sviluppo iterativo, incrementale ed evolutivo.", a:"Multiple iterazioni a durata fissa (2-6 sett.) in cui si svolgono TUTTE le attività; si adatta il lavoro al tempo, non viceversa.", m:"🍕 Pizza a fette: NON cuoci tutta la pizza e poi tagli (cascata). Cuoci una fetta, la assaggi, regoli sale, cuoci la prossima. Time-box = la fetta non si allarga, il condimento sì."},
 {t:"PROC", q:"3 vantaggi dell'iterativo.", a:"Flessibilità ai cambiamenti · Riduzione rischi precoce · Feedback utente fin da subito.", m:"FRF → \"Faccio · Riduco · Feedback\". Pensa al cuoco che fa assaggiare ogni fetta al cliente: se il sale non va, lo sa SUBITO, non a torta finita."},
+{t:"PROC", q:"Agile è un processo?", a:"NO. È una filosofia/mindset (Manifesto 2001). Non si sostituisce a un processo, si applica SOPRA un processo/metodo.", m:"🤸 Agile = STILE DI GUIDA, non l'auto. Puoi guidare \"agile\" qualsiasi processo iterativo (anche UP)."},
+{t:"PROC", q:"SCRUM è la stessa cosa di Agile?", a:"NO. Agile è il CAPPELLO (filosofia). SCRUM è UNO DEI VESTITI sotto quel cappello (metodo concreto che la realizza).", m:"☂️ Agile = OMBRELLO. SCRUM, XP, Kanban, Crystal = le SPECIE sotto l'ombrello. Confondere genere e specie = errore d'esame."},
+{t:"PROC", q:"3 livelli da tenere distinti.", a:"1) Processo (concetto generico) · 2) Modello di organizzazione (cascata/iterativo) · 3) Cose concrete (UP=processo, Agile=filosofia, SCRUM=metodo).", m:"🚗 MOTORE (processo) · CAMBIO (modello: 1ª/automatico) · MARCHE (UP, SCRUM) · STILE DI GUIDA (agile)."},
+{t:"PROC", q:"Iterativo = Agile?", a:"NO. Iterativo è un MODELLO di organizzazione. Agile è una FILOSOFIA. Tutti i metodi agili sono iterativi, MA non tutti gli iterativi sono agili (UP nasce iterativo \"pesante\").", m:"🔄 vs 🤸 Iterativo = COME organizzo il tempo (cicli). Agile = COME PENSO il progetto (mindset). Due dimensioni diverse."},
+{t:"PROC", q:"UP può essere agile?", a:"SÌ. UP è un processo iterativo che PUÒ essere applicato in modo agile, alleggerendo gli elaborati e lasciando emergere requisiti/progettazione iterativamente.", m:"🥗 UP \"light\": tagli i documenti, mantieni le iterazioni. UP non è opposto ad agile, sono dimensioni ortogonali."},
+{t:"PROC", q:"Differenza tra modello e processo.", a:"Modello = scheletro temporale (cascata o iterativo). Processo = istanza concreta con ruoli/attività/artefatti definiti (es. UP).", m:"📐 vs 🏗️ MODELLO = blueprint. PROCESSO = la casa effettivamente costruita seguendo il blueprint."},
+{t:"PROC", q:"4 valori del Manifesto Agile.", a:"Individui e interazioni > processi e strumenti · Software funzionante > documentazione esaustiva · Collaborazione col cliente > negoziazione contratti · Risposta al cambiamento > seguire un piano.", m:"ISCR → \"Individui Software Cliente Risposta\". 4 PRIORITÀ: gli elementi a sinistra valgono di più, MA quelli a destra esistono ancora. \"Valore più, non escludere\"."},
+{t:"PROC", q:"Cascata vs Iterativo: differenza chiave.", a:"Cascata = UNA passata sequenziale, niente ritorni. Iterativo = N passate (release multiple), ognuna fa tutte le attività.", m:"📉 vs 🌀 1 passaggio dritto vs N giri della spirale. La cascata ti fa vedere il risultato a fine progetto; l'iterativo ad ogni giro."},
+{t:"PROC", q:"Iterazione in cascata?", a:"NON esiste \"iterazione in cascata\". La cascata è SEQUENZIALE per definizione. Se senti \"iterazione\", siamo in modello iterativo.", m:"❌ \"Cascata iterativa\" = ossimoro. O sei cascata (1 passata), o sei iterativo (N passate)."},
 
 // ===== AGILE / SCRUM =====
 {t:"AGILE", q:"Cos'è il metodo agile?", a:"Forma di sviluppo iterativo che privilegia risposta rapida e flessibile ai cambiamenti.", m:"🤸 Agile = ginnasta: si piega al momento. Niente piani rigidi, riflessi pronti."},
