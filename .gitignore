@@ -1,0 +1,26 @@
+# PDF di appunti di compagni di corso (non miei, non vanno pubblicati)
+*.pdf
+
+# File proprietari / lavori personali
+*.docx
+*.lnk
+desktop.ini
+
+# Cartelle con materiale del prof o lavoro personale
+Esame/
+Esercitazioni/
+Laboratori + Pre Appello/
+Slide/
+
+# Immagini grezze estratte dai PDF dei compagni (tieni solo le uml_*.png/jpeg processate)
+_uml_appunti/blue_*
+_uml_appunti/sofia_*
+_uml_appunti/_manifest.txt
+
+# Sistema
+Thumbs.db
+.DS_Store
+
+# Editor
+.vscode/
+.idea/
