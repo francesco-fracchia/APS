@@ -2657,6 +2657,332 @@ const QUIZ = [
 {t:"UML", q:"Linea tratteggiata + triangolo vuoto:", o:["Generalizzazione","Realizzazione (classe implementa interfaccia)","Composizione","Associazione"], c:[1], m:false, e:"Tratteggiata + triangolo vuoto = realizzazione (classe → «interface»)."},
 {t:"UML", q:"Il rombo pieno (◆) suggerisce:", o:["Aggregazione","Composizione + Creator GRASP","Generalizzazione","Dipendenza"], c:[1], m:false, e:"Composizione: parte muore col tutto, suggerisce Creator (chi contiene crea)."},
 {t:"UML", q:"Sottolineato in UML significa:", o:["Privato","Static (di classe)","Astratto","Deprecated"], c:[1], m:false, e:"Sottolineato = static. Tipico in Singleton: instance e getInstance() sottolineati."},
+
+// ===== BATCH 2: copertura completa programma =====
+
+// PROC
+{t:"PROC", q:"Quale tra queste è caratteristica della cascata?", o:["Iterazioni brevi","Sequenza unica analisi→test","Feedback continuo","Time-boxing"], c:[1], m:false, e:"Cascata = sequenza unica e rigida."},
+{t:"PROC", q:"Il modello evolutivo è:", o:["Una variante della cascata","Una forma di iterativo dove il sistema cresce per release successive","Un tipo di test","Un metodo agile"], c:[1], m:false, e:"Evolutivo = iterativo che fa evolvere il prodotto in release successive."},
+{t:"PROC", q:"Quale durata è tipica per un'iterazione in UP?", o:["1-2 giorni","2-6 settimane","6-12 mesi","Solo qualche ora"], c:[1], m:false, e:"2-6 settimane: time-box che bilancia feedback e produttività."},
+{t:"PROC", q:"Quale tra questi è un metodo agile?", o:["Cascata","SCRUM","UP rigido","Modello a V"], c:[1], m:false, e:"SCRUM è un metodo agile. Cascata e UP rigido NO. Modello a V è una variante della cascata."},
+{t:"PROC", q:"XP (Extreme Programming) è:", o:["Un linguaggio di programmazione","Un metodo agile","Un anti-pattern","Una versione di UP"], c:[1], m:false, e:"XP è un metodo agile, focus su pratiche di sviluppo (pair programming, TDD, refactoring continuo)."},
+{t:"PROC", q:"Kanban è:", o:["Un metodo agile basato su flusso continuo","Una variante di SCRUM","Un linguaggio UML","Una metrica"], c:[0], m:false, e:"Kanban: visualizzazione del flusso, limiti WIP, niente sprint fissi."},
+{t:"PROC", q:"Manifesto Agile: anno di pubblicazione?", o:["1995","2001","2010","2020"], c:[1], m:false, e:"Il Manifesto Agile è del 2001."},
+{t:"PROC", q:"Caratteristica condivisa da tutti i metodi agili:", o:["Iterazioni brevi","Cascata pura","Niente test","Documentazione esaustiva"], c:[0], m:false, e:"Tutti i metodi agili sono iterativi con cicli brevi."},
+{t:"PROC", q:"Il \"daily standup\" di SCRUM dura:", o:["Tutta la mattina","15 minuti circa","Un'ora","Un giorno"], c:[1], m:false, e:"Il daily standup è max ~15 min, in piedi, per allinearsi."},
+{t:"PROC", q:"Cos'è la sprint retrospective?", o:["Un meeting per pianificare lo sprint","Un meeting a fine sprint per migliorare il processo","Un test funzionale","Un documento UML"], c:[1], m:false, e:"Retrospettiva: a fine sprint, il team riflette su cosa migliorare."},
+{t:"PROC", q:"Sprint planning serve a:", o:["Decidere cosa includere nello sprint","Sostituire il backlog","Eliminare i ruoli","Cambiare metodo"], c:[0], m:false, e:"Sprint planning = inizio sprint, si seleziona dal backlog cosa fare."},
+{t:"PROC", q:"Cosa si intende per \"time-boxing\"?", o:["Allungare gli sprint quando serve","Durata fissa: si adatta il lavoro al tempo, non viceversa","Eliminare i tempi morti","Una metrica di codice"], c:[1], m:false, e:"Time-box: il tempo è fisso, lo scope si adatta."},
+{t:"PROC", q:"Quale tra queste NON è un'attività del processo software?", o:["Analisi requisiti","Progettazione","Implementazione","Vendita"], c:[3], m:false, e:"Vendita NON fa parte del processo software (analisi, progetto, impl, validaz, rilascio, manuten, gestione)."},
+{t:"PROC", q:"In agile, il software funzionante è:", o:["Una conseguenza secondaria","Il principale metro di misura del progresso","Solo per la beta","Non importante"], c:[1], m:false, e:"Principio agile: software funzionante è il metro di misura del progresso."},
+{t:"PROC", q:"Pair programming è una pratica di:", o:["Cascata","XP (Extreme Programming)","UP rigido","Kanban"], c:[1], m:false, e:"Pair programming è una pratica di XP."},
+{t:"PROC", q:"Cosa è un Product Backlog?", o:["Una lista ordinata di features/requisiti, gestita dal Product Owner","Una lista dei bug","Un documento UML","Un report di vendite"], c:[0], m:false, e:"Product Backlog: lista ordinata per priorità, mantenuta dal Product Owner."},
+{t:"PROC", q:"Cosa è il Sprint Backlog?", o:["Le sole features selezionate per lo sprint corrente","Tutta la lista di features del progetto","Una lista di bug","Un report"], c:[0], m:false, e:"Sprint Backlog = subset del Product Backlog scelto per lo sprint."},
+{t:"PROC", q:"Cos'è un burndown chart?", o:["Un grafico che mostra il lavoro residuo nel tempo","Un report di vendita","Un diagramma UML","Una metrica di sicurezza"], c:[0], m:false, e:"Burndown chart: lavoro rimanente vs tempo. Curva ideale verso lo zero a fine sprint."},
+
+// UP
+{t:"UP", q:"UP è un processo:", o:["A cascata","Iterativo, incrementale, evolutivo, OO","Solo cascata-friendly","Senza casi d'uso"], c:[1], m:false, e:"UP è iterativo, incrementale, evolutivo per software OO."},
+{t:"UP", q:"Quale fase di UP termina con il rilascio agli utenti finali?", o:["Ideazione","Elaborazione","Costruzione","Transizione"], c:[3], m:false, e:"Transizione = beta, formazione, deploy, hand-over."},
+{t:"UP", q:"Costruzione UP — focus principale:", o:["Studio fattibilità","Stabilizzazione architettura","Implementazione massiva + test","Hand-over al cliente"], c:[2], m:false, e:"Costruzione: implementazione delle capacità operative + test pesante."},
+{t:"UP", q:"Ideazione UP — quante iterazioni?", o:["Sempre molte","Una sola iterazione \"zero\"","Tutte le iterazioni","Dipende dal cliente"], c:[1], m:false, e:"Ideazione tipicamente ha 1 sola iterazione zero, breve."},
+{t:"UP", q:"Workshop dei requisiti tipicamente in UP avviene in:", o:["Solo Ideazione","Solo Costruzione","Brevi sessioni in più fasi","Mai"], c:[2], m:false, e:"Workshop brevi e ripetuti, adattano i requisiti basandosi sui feedback delle iterazioni."},
+{t:"UP", q:"Pratica fondamentale UP — quale?", o:["Documentare il 100% prima di codare","Verificare continuamente la qualità","Aspettare i requisiti completi","Vietare modifiche"], c:[1], m:false, e:"Pratica UP: verificare continuamente la qualità (test presto, spesso, realistici)."},
+{t:"UP", q:"\"Pilotato dal rischio\" in UP significa:", o:["Rischio sopra tutto","I rischi maggiori vanno ridotti quanto prima","Eliminare ogni rischio","Solo a fine progetto"], c:[1], m:false, e:"UP riduce i rischi maggiori nelle prime iterazioni per stabilizzare il nucleo."},
+{t:"UP", q:"In UP, il modello dei dati si produce principalmente in:", o:["Ideazione","Elaborazione","Costruzione","Transizione"], c:[1], m:false, e:"Modello dei dati = elaborato di Elaborazione (con dominio, progetto, architettura)."},
+{t:"UP", q:"Glossario in UP è un elaborato di:", o:["Requisiti","Architettura","Test","Rilascio"], c:[0], m:false, e:"Glossario = elaborato dei requisiti (insieme a Visione, Modello UC, Specifiche)."},
+{t:"UP", q:"Il documento dell'architettura si produce in:", o:["Ideazione","Elaborazione","Transizione","Manutenzione"], c:[1], m:false, e:"Documento dell'architettura = elaborato di Elaborazione."},
+{t:"UP", q:"Quale errore in Elaborazione è classico?", o:["Affrontare il rischio architetturale","Non affrontare le fondamenta dell'architettura","Coinvolgere il cliente","Testare presto"], c:[1], m:false, e:"Errore comune: non affrontare le fondamenta + elementi rischiosi in Elaborazione."},
+{t:"UP", q:"Il nucleo architetturale è stabilizzato entro fine:", o:["Ideazione","Elaborazione","Costruzione","Transizione"], c:[1], m:false, e:"Elaborazione = nucleo architetturale stabile, testato, di qualità."},
+{t:"UP", q:"Quale tra questi è un'attribuzione corretta?", o:["Visione → Costruzione","Modello UC → Ideazione/Requisiti","Codice → Ideazione","Documento architettura → Transizione"], c:[1], m:false, e:"Modello UC = elaborato di requisiti, inizia in Ideazione e si raffina."},
+
+// REQ
+{t:"REQ", q:"Esempio di requisito non funzionale:", o:["L'utente clicca su \"Acquista\"","Il tempo di risposta deve essere ≤2 sec","Il sistema invia un'email","L'admin crea utenti"], c:[1], m:false, e:"Tempo di risposta = qualità (performance) = NON funzionale."},
+{t:"REQ", q:"Esempio di requisito funzionale:", o:["Il sistema deve scalare a 1M utenti","Il sistema deve supportare il login con email/password","Il tempo di risposta è 1 sec","La UI deve essere responsive"], c:[1], m:false, e:"Funzionale = COSA fa (capacità/servizio). Login = funzione."},
+{t:"REQ", q:"Quale tra questi è obiettivo, non un requisito non funzionale verificabile?", o:["Risposta ≤ 1 sec al 95%","Deve essere veloce","Disponibilità 99.9%","Throughput ≥ 1000 req/s"], c:[1], m:false, e:"\"Veloce\" non è quantificato → obiettivo vago, non verificabile."},
+{t:"REQ", q:"Quale tra questi termini si usa per requisiti opzionali?", o:["Deve","Dovrebbe","È vietato","Sempre"], c:[1], m:false, e:"\"Dovrebbe\" = desiderabile. \"Deve\" = obbligatorio."},
+{t:"REQ", q:"Quale documento NON è un elaborato dei requisiti UP?", o:["Visione","Glossario","Modello UC","Codice sorgente"], c:[3], m:false, e:"Codice sorgente NON è un documento dei requisiti."},
+{t:"REQ", q:"Le specifiche supplementari in UP contengono:", o:["Solo requisiti funzionali","Solo bug","Requisiti non funzionali e altri vincoli (es. performance)","Manuali utente"], c:[2], m:false, e:"Specifiche supplementari = non funzionali, vincoli, regole di business."},
+{t:"REQ", q:"Un requisito ambiguo è:", o:["Sempre accettabile","Un problema: porta a bug e contenziosi col cliente","Più creativo","Tipico dell'agile"], c:[1], m:false, e:"Requisito ambiguo = problema, va sempre chiarito."},
+
+// UC
+{t:"UC", q:"Quale tra questi è un test per validare UC?", o:["Test del capo","Test EBP","Test della dimensione","Tutti i precedenti"], c:[3], m:false, e:"CED: Capo · EBP · Dimensione. Tutti e 3."},
+{t:"UC", q:"Quale livello di UC è raggiungibile in una sessione utente?", o:["Sommario","Obiettivo utente","Sotto-funzione","Solo gli ultimi 2"], c:[1], m:false, e:"Obiettivo utente = una sessione di 5-10 min."},
+{t:"UC", q:"\"Autenticazione utente\" tipicamente è quale livello?", o:["Obiettivo utente","Sotto-funzione","Sommario","Nessuno"], c:[1], m:false, e:"Autenticazione = sotto-funzione, è un pezzo riusabile da altri UC."},
+{t:"UC", q:"In UC essenziale si scrive:", o:["Solo lo scenario principale, formato lungo","Stile narrativo per più scenari","Solo eventi di sistema","Codice"], c:[1], m:false, e:"Formato essenziale/informale: stile narrativo per scenari diversi."},
+{t:"UC", q:"Relazione UC \"Include\" significa:", o:["A volte si fa","Sempre si fa","Mai","Specializzazione"], c:[1], m:false, e:"Include = sempre fai questo UC dentro l'altro (es. \"Autentica utente\" dentro \"Crea ordine\")."},
+{t:"UC", q:"Relazione UC \"Extend\" significa:", o:["Sempre","Estensione opzionale (a volte)","Eredità","Niente"], c:[1], m:false, e:"Extend = a volte si fa, in condizioni particolari."},
+{t:"UC", q:"Relazione UC \"Generalizzazione\" significa:", o:["Include","Extend","Un UC specializzato di un altro","Composizione"], c:[2], m:false, e:"Generalizzazione UC: \"X è un caso speciale di Y\"."},
+{t:"UC", q:"Cosa NON è uno scenario di un UC?", o:["Scenario principale di successo","Scenario alternativo","Scenario di fallimento","Diagramma UML"], c:[3], m:false, e:"Gli scenari sono testuali. Un diagramma UML è altro."},
+{t:"UC", q:"In un UC, l'attore primario è:", o:["Sempre il sistema","Chi avvia il caso d'uso per raggiungere il proprio obiettivo","Sempre umano","Solo il fisco"], c:[1], m:false, e:"Primario: chi avvia l'UC per il proprio obiettivo. Può essere umano o sistema."},
+{t:"UC", q:"L'attore di supporto:", o:["Avvia l'UC","Offre un servizio al sistema (es. servizio di pagamento)","È un sostituto del Controller","Non esiste"], c:[1], m:false, e:"Attore di supporto = servizio esterno chiamato dal sistema (es. gateway pagamenti)."},
+{t:"UC", q:"L'attore fuori scena:", o:["Avvia l'UC","Ha interesse ma non interagisce direttamente","È invisibile","È il Controller"], c:[1], m:false, e:"Fuori scena = ha un interesse (es. fisco) ma non clicca pulsanti."},
+
+// DOM
+{t:"DOM", q:"Un attributo nel modello di dominio DEVE essere:", o:["Una classe complessa","Un tipo semplice (primitivo)","Un metodo","Un repository"], c:[1], m:false, e:"Attributi nel dominio = tipi semplici. Se diventa complesso, è una classe."},
+{t:"DOM", q:"La classe descrittiva serve a:", o:["Mostrare la UI","Descrivere caratteristiche di qualcos'altro, preservandole anche quando le istanze descritte spariscono","Sostituire il Controller","Eliminare attributi"], c:[1], m:false, e:"Classe descrittiva: descrive (es. ModelloProdotto) e sopravvive anche se non ci sono istanze descritte."},
+{t:"DOM", q:"Un'associazione binaria si rappresenta con:", o:["Triangolo vuoto","Linea continua etichettata con molteplicità","Solo nome","Punto"], c:[1], m:false, e:"Linea continua + nome + molteplicità ai 2 capi."},
+{t:"DOM", q:"Molteplicità 1..* significa:", o:["Zero o uno","Almeno uno (uno o più)","Zero o più","Esattamente uno"], c:[1], m:false, e:"1..* = almeno uno. 0..* = zero o più. * = abbreviazione di 0..*."},
+{t:"DOM", q:"\"Magazzino contiene Scatola\" si modella tipicamente con:", o:["Aggregazione","Composizione (le scatole possono morire col magazzino)","Generalizzazione","Realizzazione"], c:[1], m:false, e:"Tipico esempio di composizione (rombo pieno)."},
+{t:"DOM", q:"\"Squadra ha Giocatori\" si modella tipicamente con:", o:["Composizione","Aggregazione (giocatori sopravvivono al cambio squadra)","Generalizzazione","Realizzazione"], c:[1], m:false, e:"Aggregazione: i giocatori sopravvivono allo scioglimento della squadra."},
+{t:"DOM", q:"La molteplicità sull'associazione si scrive:", o:["Sopra il nome della classe","Agli estremi dell'associazione","Solo da un lato","Mai"], c:[1], m:false, e:"Molteplicità ai 2 estremi della linea, indica quante istanze partecipano."},
+{t:"DOM", q:"\"Cliente possiede uno o più Account\" si scrive:", o:["Cliente 1 ---- 0..* Account","Cliente 1 ---- 1..* Account","Cliente 0..* ---- 1 Account","Cliente 1 ---- 1 Account"], c:[1], m:false, e:"Almeno un account = 1..* dal lato Account."},
+{t:"DOM", q:"Una classe astratta nel dominio:", o:["Non esiste","Si scrive in corsivo o con stereotipo «abstract»","È solo software","È sempre Controller"], c:[1], m:false, e:"Classe astratta: nome in corsivo o «abstract». Si usa per gerarchie (es. Cliente astratto, Standard/VIP concreti)."},
+
+// SSD
+{t:"SSD", q:"Nell'SSD il sistema è rappresentato come:", o:["Una classe","Una scatola nera unica","Tante lifelines","Un attore"], c:[1], m:false, e:"SSD: il sistema è UN'unica lifeline (scatola nera)."},
+{t:"SSD", q:"Cosa appare in un SSD?", o:["Oggetti interni del sistema","Eventi di sistema attore↔sistema","Database query","Test"], c:[1], m:false, e:"SSD mostra SOLO eventi attore↔sistema, niente oggetti interni."},
+{t:"SSD", q:"Il nome di un'operazione di sistema deve essere:", o:["Un sostantivo","Un verbo che esprime intenzione","Una parola random","Un codice numerico"], c:[1], m:false, e:"Verbo: createSale, enterItem, confirm."},
+{t:"SSD", q:"Quale tra questi NON è un evento di sistema?", o:["enterItem()","makePayment()","insertCustomer()","calcolaTotaleInterno()"], c:[3], m:false, e:"calcolaTotaleInterno = è interno al sistema, non un evento attore↔sistema."},
+
+// CONTR
+{t:"CONTR", q:"Nelle post-condizioni descriviamo:", o:["Come è cambiato lo stato del sistema (istanze, attributi, associazioni)","L'algoritmo","Il codice da scrivere","La UI"], c:[0], m:false, e:"Post-cond: descrive cosa è cambiato nello stato, NON come."},
+{t:"CONTR", q:"Una post-condizione \"Vendita v è stata creata\" è di tipo:", o:["Modifica di attributo","Creazione di istanza","Formazione di associazione","Distruzione di istanza"], c:[1], m:false, e:"\"È stata creata\" = creazione di istanza."},
+{t:"CONTR", q:"\"v è stata associata a Cliente c\" è di tipo:", o:["Modifica di attributo","Creazione di istanza","Formazione di associazione","Distruzione di istanza"], c:[2], m:false, e:"Formazione di associazione (link creato tra istanze esistenti)."},
+{t:"CONTR", q:"Quale tempo verbale è giusto per le post?", o:["Presente","Passato passivo","Futuro","Imperativo"], c:[1], m:false, e:"Passato passivo: il sistema agisce a scatola nera (\"è stato creato\")."},
+
+// ARCH
+{t:"ARCH", q:"Il sub-strato \"Application\" della logica applicativa serve a:", o:["Gestire DB","Coordinare il flusso dalla UI alle classi di dominio","Disegnare la UI","Eseguire query"], c:[1], m:false, e:"Application = orchestrazione del flusso UI→Dominio."},
+{t:"ARCH", q:"In architettura a strati STRETTA, posso saltare livelli?", o:["Sì","No, solo immediatamente sottostante","Solo verso l'alto","Dipende"], c:[1], m:false, e:"Stretta = solo lo strato immediatamente sotto."},
+{t:"ARCH", q:"In architettura a strati RILASSATA:", o:["Le dipendenze sono libere","Posso saltare livelli verso il basso","Posso andare verso l'alto","Niente strati"], c:[1], m:false, e:"Rilassata: posso chiamare anche strati più in basso, non solo immediato."},
+{t:"ARCH", q:"Il principio Modello-Vista è violato se:", o:["UI chiama Domino","Dominio chiama UI direttamente","Si usa Observer","Si usano repository"], c:[1], m:false, e:"Violazione: il dominio non deve conoscere/chiamare la UI direttamente."},
+{t:"ARCH", q:"Un buon layering:", o:["Mette tutto nella UI","Separa per responsabilità coese e usa dipendenze verso il basso","Mette tutto nel DB","Non serve"], c:[1], m:false, e:"Buon layering: strati coesi, dipendenze unidirezionali verso il basso."},
+{t:"ARCH", q:"In UML, un package si disegna:", o:["Con un cerchio","Come un rettangolo con linguetta in alto","Con un triangolo","Con un rombo"], c:[1], m:false, e:"Rettangolo con \"tab\" in alto (come una cartella)."},
+{t:"ARCH", q:"La dipendenza tra package va dal:", o:["Package che dipende verso quello da cui dipende","Mai","Senza freccia","Dal basso verso l'alto"], c:[0], m:false, e:"Freccia tratteggiata: dal package dipendente verso quello da cui dipende."},
+
+// INTERAZ
+{t:"INTERAZ", q:"In un SD, l'oggetto attivo si rappresenta con:", o:["Cerchio","Barra rettangolare verticale sulla lifeline","Pallino","Stella"], c:[1], m:false, e:"Barra (focus di controllo) sulla lifeline = oggetto attivo."},
+{t:"INTERAZ", q:"Il messaggio sincrono in SD:", o:["Tratteggiato","Continuo con freccia piena","Non esiste","Solo asincrono"], c:[1], m:false, e:"Sincrono = linea continua, freccia piena."},
+{t:"INTERAZ", q:"Il messaggio di ritorno:", o:["Continuo","Tratteggiato","Solo testuale","Non esiste"], c:[1], m:false, e:"Ritorno = freccia tratteggiata."},
+{t:"INTERAZ", q:"Il frame \"alt\" rappresenta:", o:["Loop","Alternative (if/else)","Opzionale","Riferimento"], c:[1], m:false, e:"alt = alternative (più rami, uno scelto in base a guardia)."},
+{t:"INTERAZ", q:"Il frame \"loop\" rappresenta:", o:["Alternative","Iterazione","Riferimento","Opzionale"], c:[1], m:false, e:"loop = iterazione (min/max o finché condizione)."},
+{t:"INTERAZ", q:"Il frame \"ref\" rappresenta:", o:["Reference: rimanda a un altro sequence","Loop","Alternative","Break"], c:[0], m:false, e:"ref = riferimento a un altro sequence diagram."},
+{t:"INTERAZ", q:"In communication diagram, i messaggi sono:", o:["Numerati per indicare l'ordine","Non hanno ordine","Solo testuali","Senza nome"], c:[0], m:false, e:"Communication: numeri sequenziali (1, 1.1, 1.2) per leggere l'ordine."},
+{t:"INTERAZ", q:"Un'auto-delega è:", o:["Un messaggio che un oggetto invia a se stesso","Un attacco di sicurezza","Un loop","Un timer"], c:[0], m:false, e:"Auto-delega = freccia che torna sulla stessa lifeline."},
+{t:"INTERAZ", q:"Il \"found message\" è:", o:["Un messaggio perso","Il primo messaggio che dà il via all'interazione (dall'esterno)","Un timer","Un loop"], c:[1], m:false, e:"Found message = origine \"dal nulla\", innesca l'interazione."},
+
+// GRASP — più varianti
+{t:"GRASP", q:"Information Expert: a chi assegnare la responsabilità?", o:["Alla classe più vuota","A chi ha le informazioni necessarie","Al Controller","A Singleton"], c:[1], m:false, e:"Expert = a chi possiede i dati per soddisfarla."},
+{t:"GRASP", q:"Creator: chi crea VoceOrdine?", o:["Cliente","Ordine (che la contiene = composizione)","Controller","Singleton"], c:[1], m:false, e:"Composizione Ordine◆VoceOrdine → Ordine crea le sue voci."},
+{t:"GRASP", q:"Low Coupling è un...?", o:["Pattern concreto","Criterio di valutazione tra design alternativi","Algoritmo","Anti-pattern"], c:[1], m:false, e:"Criterio di valutazione, non una ricetta diretta."},
+{t:"GRASP", q:"High Cohesion: quale principio?", o:["Tante responsabilità per classe","Responsabilità correlate e focalizzate","Nessuna responsabilità","Solo Singleton"], c:[1], m:false, e:"Cohesion = responsabilità correlate, classe focalizzata."},
+{t:"GRASP", q:"Controller: chi gestisce un evento di sistema?", o:["La UI direttamente","Il primo oggetto del dominio oltre la UI","Sempre il Singleton","Il database"], c:[1], m:false, e:"Controller = primo oggetto oltre la UI per gestire l'evento di sistema."},
+{t:"GRASP", q:"Polymorphism GRASP: come gestisco varianti per tipo?", o:["Con if/switch sul tipo","Con operazioni polimorfe (eredità/interfaccia)","Solo con Singleton","Mai"], c:[1], m:false, e:"Polymorphism: operazioni polimorfe invece di if sul tipo."},
+{t:"GRASP", q:"Pure Fabrication esempio:", o:["Ordine","OrderRepository (inventato, non di dominio)","Cliente","Fattura"], c:[1], m:false, e:"OrderRepository non esiste nel mondo reale, lo inventi per coesione."},
+{t:"GRASP", q:"Indirection esempio:", o:["Cliente parla con DB direttamente","UI → Service → DB (Service in mezzo)","Singleton globale","If sul tipo"], c:[1], m:false, e:"Service come intermediario tra UI e DB = Indirection."},
+{t:"GRASP", q:"Protected Variations: come isolo le variazioni?", o:["Con if/switch","Con un'interfaccia stabile attorno al punto di variazione","Mai","Con Singleton"], c:[1], m:false, e:"PV = interfaccia stabile, dietro cui le variazioni non impattano il resto."},
+{t:"GRASP", q:"RDD (Responsibility-Driven Design) significa:", o:["Progettare considerando il sistema come comunità di oggetti con responsabilità","Solo classi statiche","Senza GRASP","Senza UML"], c:[0], m:false, e:"RDD: oggetti come comunità collaborativa, ognuno con le sue responsabilità."},
+{t:"GRASP", q:"2 tipi di responsabilità nella RDD:", o:["Pubbliche e private","Di fare (doing) e di conoscere (knowing)","Manuali e automatiche","Veloci e lente"], c:[1], m:false, e:"Doing (calcolare, coordinare) e Knowing (sapere dati, riferimenti)."},
+{t:"GRASP", q:"Bloated controller — soluzione:", o:["Aumentare gli attributi","Spezzare in più controller (es. uno per UC)","Eliminarlo","Renderlo Singleton"], c:[1], m:false, e:"Spezzare in più Controller per recuperare coesione."},
+
+// GoF — più varianti
+{t:"GoF", q:"Strategy: il Client...:", o:["Sceglie la strategia e la inietta nel Context","Crea ogni strategia all'occorrenza","Non esiste","Implementa l'interfaccia"], c:[0], m:false, e:"Client crea ConcreteStrategy e la inietta via setStrategy."},
+{t:"GoF", q:"Composite: cuore del pattern (cardinalità):", o:["1..1","0..* (Composite verso Component)","1","Nessuna"], c:[1], m:false, e:"0..* da Composite a Component = la ricorsione."},
+{t:"GoF", q:"Facade: tipico uso:", o:["Tradurre interfacce","Semplificare l'accesso a un sottosistema complesso","Memorizzare istanze uniche","Costruire alberi"], c:[1], m:false, e:"Facade = unico ingresso che orchestra internamente."},
+{t:"GoF", q:"Observer: chi tiene la lista?", o:["Il Subscriber","Il Publisher","Il Client","Il Singleton"], c:[1], m:false, e:"Publisher tiene la lista 0..* di Subscriber."},
+{t:"GoF", q:"Singleton: getInstance() è:", o:["Privato","Pubblico statico","Astratto","Protected"], c:[1], m:false, e:"Public static getInstance(). Sottolineato in UML."},
+{t:"GoF", q:"Adapter: chi NON va modificato?", o:["Il Client","L'Adapter","L'Adaptee (preesistente)","L'interfaccia Target"], c:[2], m:false, e:"L'Adaptee è preesistente, non lo tocchi."},
+{t:"GoF", q:"Factory restituisce:", o:["Una classe concreta nota","Un'interfaccia (Product)","Sempre un Singleton","Sempre void"], c:[1], m:false, e:"Factory ritorna interfaccia → client disaccoppiato."},
+{t:"GoF", q:"Quale tra questi NON è uno dei 7 del prof?", o:["Adapter","Factory","Visitor","Strategy"], c:[2], m:false, e:"Visitor NON è tra i 7 del prof. Lui spiega: Factory, Singleton, Adapter, Composite, Facade, Strategy, Observer."},
+{t:"GoF", q:"\"Bridge\" è un pattern:", o:["GoF strutturale","GoF comportamentale","Non esiste","GRASP"], c:[0], m:false, e:"Bridge = GoF strutturale (ma non tra i 7 del prof)."},
+{t:"GoF", q:"Strategy realizza quale GRASP?", o:["Solo Information Expert","Polymorphism + Protected Variations","Solo Creator","Solo Singleton"], c:[1], m:false, e:"Strategy = Polymorphism + Protected Variations."},
+{t:"GoF", q:"In Composite, Leaf:", o:["Contiene una lista di figli","NON contiene figli, è il caso atomico","È un Singleton","È un Controller"], c:[1], m:false, e:"Leaf = caso atomico, foglia dell'albero."},
+{t:"GoF", q:"Facade Controller è:", o:["Sempre un anti-pattern","Un caso speciale di Facade GoF","Un GRASP avanzato","Non esiste"], c:[1], m:false, e:"Façade Controller = caso speciale di Facade (controller che fa da facciata al sistema)."},
+{t:"GoF", q:"In Observer, update() viene chiamato:", o:["Una volta sola","Per ogni cambio di stato del Publisher (su tutti i Subscriber registrati)","Dal Singleton","Dal Controller"], c:[1], m:false, e:"Publisher notifica TUTTI i Subscriber chiamando update() su ciascuno."},
+
+// UML
+{t:"UML", q:"«interface» si scrive:", o:["Sotto il nome","Sopra il nome, tra virgolette francesi","In corsivo","Niente"], c:[1], m:false, e:"Stereotipo «...» sopra il nome della classe."},
+{t:"UML", q:"«abstract» indica:", o:["Singleton","Classe astratta (anche nome in corsivo)","Static","Final"], c:[1], m:false, e:"Stereotipo o nome in corsivo = classe astratta."},
+{t:"UML", q:"Cosa indica una freccia tratteggiata con freccia piena?", o:["Ereditarietà","Dipendenza (usa al volo)","Composizione","Aggregazione"], c:[1], m:false, e:"Tratteggiata + freccia piena = dipendenza (usa al volo)."},
+{t:"UML", q:"Molteplicità 0..* è equivalente a:", o:["1","*","1..*","0..1"], c:[1], m:false, e:"0..* = * (zero o molti)."},
+{t:"UML", q:"In UML, classe \"Cliente\" con nome in corsivo significa:", o:["È static","È astratta","È package-private","È final"], c:[1], m:false, e:"Nome in corsivo = classe astratta (alternativa a «abstract»)."},
+
+// CLASSI
+{t:"CLASSI", q:"Sintassi corretta di un metodo UML:", o:["+ nome:tipo","- nome(par):ret","public nome()","fn nome()"], c:[1], m:false, e:"visibilità nome(parametri): tipo_ritorno."},
+{t:"CLASSI", q:"Un attributo di tipo collezione si scrive:", o:["Senza molteplicità","- nome: Tipo [0..*]","- nome: Tipo []","Solo dopo l'eredità"], c:[1], m:false, e:"Sintassi: - nome: Tipo [molteplicità]."},
+{t:"CLASSI", q:"In UML, un metodo astratto si rappresenta:", o:["In grassetto","In corsivo","Tra parentesi","Sottolineato"], c:[1], m:false, e:"Corsivo = astratto. Sottolineato = static."},
+{t:"CLASSI", q:"Un costruttore in UML:", o:["Si scrive sempre static","Si scrive come metodo con nome della classe","Si omette","Si scrive +new"], c:[1], m:false, e:"Costruttore: stesso nome della classe."},
+
+// STATI
+{t:"STATI", q:"In macchina a stati, le AZIONI nelle transizioni:", o:["Sono opzionali","Si scrivono dopo lo slash /","Sono solo per i compositi","Niente"], c:[1], m:false, e:"Sintassi: evento [condizione] / azione."},
+{t:"STATI", q:"La GUARDIA si scrive:", o:["Tra parentesi quadre","Tra graffe","Dopo lo slash","Prima dell'evento"], c:[0], m:false, e:"[guardia] tra parentesi quadre."},
+{t:"STATI", q:"Una macchina a stati ortogonale modella:", o:["Stati alternativi","Regioni concorrenti (sotto-macchine parallele)","Solo composizione","Niente"], c:[1], m:false, e:"Ortogonale = più regioni in parallelo."},
+{t:"STATI", q:"Lo pseudo-stato H (history) ricorda:", o:["L'ultimo stato di livello 1","L'ultimo sotto-stato attivo dello stato composito","Tutti gli stati","Niente"], c:[1], m:false, e:"H = ricorda l'ultimo sotto-stato attivo (memoria di livello 1)."},
+{t:"STATI", q:"H* (storia profonda):", o:["Ricorda solo il primo livello","Memoria multilivello (anche sotto-sotto-stati)","È un fork","È un join"], c:[1], m:false, e:"H* = memoria profonda."},
+{t:"STATI", q:"Fork suddivide il flusso in:", o:["Sequenziale","Più flussi paralleli","Niente","Solo un loop"], c:[1], m:false, e:"Fork divide in flussi concorrenti. Join ricongiunge."},
+{t:"STATI", q:"Un evento temporale è:", o:["dopo(3 sec) o quando(scadenza)","Solo un timer","Sempre asincrono","Non esiste"], c:[0], m:false, e:"Evento temporale: dopo(...) o quando(...) — il tempo scatena la transizione."},
+{t:"STATI", q:"Stato finale UML si rappresenta:", o:["Pallino nero","Pallino in cerchio (bersaglio)","Triangolo","Stella"], c:[1], m:false, e:"Pallino in cerchio = stato finale (\"bersaglio\")."},
+{t:"STATI", q:"Stato iniziale UML si rappresenta:", o:["Pallino nero pieno","Cerchio bianco","Quadrato","Triangolo"], c:[0], m:false, e:"Pallino nero pieno = stato iniziale."},
+{t:"STATI", q:"Uno stato si disegna:", o:["Rettangolo angoli vivi","Rettangolo arrotondato col nome","Cerchio","Diamante"], c:[1], m:false, e:"Rettangolo arrotondato con il nome dello stato."},
+
+// ATTIV
+{t:"ATTIV", q:"In un diagramma di attività, una decisione si rappresenta:", o:["Quadrato","Rombo (diamante)","Cerchio","Triangolo"], c:[1], m:false, e:"Rombo = nodo decisione/merge."},
+{t:"ATTIV", q:"Le swimlane (corsie) servono a:", o:["Decorazione","Mostrare chi è responsabile di ogni azione (ruoli/attori)","Sostituire le frecce","Disegnare i dati"], c:[1], m:false, e:"Swimlane = corsia = ruolo/attore responsabile."},
+{t:"ATTIV", q:"Un nodo azione esegue quando:", o:["Sempre","Ha un token su ogni arco in entrata","Mai","Dopo l'azione successiva"], c:[1], m:false, e:"Azione: scatta quando ha tutti i token in entrata."},
+
+// TDD
+{t:"TDD", q:"Quale livello di test è il più ampio in scope?", o:["Unità","Integrazione","Accettazione (test funzionali dal punto di vista del cliente)","Bug fix"], c:[2], m:false, e:"Accettazione = punto di vista cliente, tipicamente E2E."},
+{t:"TDD", q:"Test di integrazione verificano:", o:["Singole funzioni","Interazione tra moduli/componenti","Solo UI","Solo bug"], c:[1], m:false, e:"Integrazione: come moduli/componenti collaborano insieme."},
+{t:"TDD", q:"In TDD, dopo che il test passa (Green), il passo successivo è:", o:["Aggiungere un nuovo test","Refactor (ripulire mantenendo i test verdi)","Ignorare","Pubblicare"], c:[1], m:false, e:"Dopo Green, Refactor."},
+{t:"TDD", q:"Il refactoring senza test è:", o:["Sicuro","Russian roulette (rischi di rompere senza accorgertene)","Necessario","Più veloce"], c:[1], m:false, e:"Senza test, ogni cambio è rischio non controllato."},
+{t:"TDD", q:"Long parameter list è un code smell perché:", o:["Più parametri = più potenza","Indica un metodo poco coeso o un oggetto-parametro mancante","È sempre obbligatorio","Non esiste"], c:[1], m:false, e:"Lista lunga di parametri: spesso significa che serve un oggetto-parametro o spezzare il metodo."},
+{t:"TDD", q:"\"Large class\" code smell — soluzione tipica:", o:["Aggiungere altri attributi","Extract Class (estrarre più classi con responsabilità coese)","Eliminare la classe","Renderla statica"], c:[1], m:false, e:"Extract Class: spezzare la classe grande in più classi coese."},
+
+// PROG2COD
+{t:"PROG2COD", q:"L'associazione 0..* in UML si traduce in codice come:", o:["Un singolo oggetto","Una collezione (List, Set, Array)","Un attributo nullable","Niente"], c:[1], m:false, e:"0..* in codice = collezione."},
+{t:"PROG2COD", q:"L'ereditarietà UML si traduce in codice come:", o:["Composizione","extends (classe) o implements (interfaccia)","Singleton","Friend"], c:[1], m:false, e:"Generalizzazione → extends. Realizzazione → implements."},
+
+// ===== BATCH 3: varianti, esempi, trappole =====
+
+// PROC - varianti
+{t:"PROC", q:"\"Risposta al cambiamento sopra il piano\" è:", o:["Un anti-pattern","Uno dei 4 valori del Manifesto Agile","Un principio di cascata","Una metrica"], c:[1], m:false, e:"4° valore del Manifesto Agile."},
+{t:"PROC", q:"\"Software funzionante sopra documentazione esaustiva\" è:", o:["Anti-pattern","Valore del Manifesto Agile","Solo di SCRUM","Solo di XP"], c:[1], m:false, e:"2° valore del Manifesto Agile (tutti e 4 i metodi agili lo condividono)."},
+{t:"PROC", q:"\"Individui e interazioni sopra processi e strumenti\" è:", o:["Cascata","1° valore del Manifesto Agile","Anti-pattern","Solo SCRUM"], c:[1], m:false, e:"1° valore del Manifesto Agile."},
+{t:"PROC", q:"\"Collaborazione col cliente sopra negoziazione contrattuale\" è:", o:["Cascata pura","3° valore del Manifesto Agile","Anti-pattern","Solo Kanban"], c:[1], m:false, e:"3° valore del Manifesto Agile."},
+{t:"PROC", q:"Quanti sono i principi del Manifesto Agile?", o:["4","12","23","9"], c:[1], m:false, e:"Manifesto Agile: 4 valori + 12 principi."},
+{t:"PROC", q:"Chi NON è un ruolo SCRUM?", o:["ScrumMaster","Product Owner","Team di sviluppo","Database Admin"], c:[3], m:false, e:"DBA non è ruolo SCRUM. I 3 ruoli: ScrumMaster, PO, Team."},
+{t:"PROC", q:"Il Product Owner è:", o:["Il manager del team","La voce del cliente nel team, gestisce il backlog","Solo un tester","Il DBA"], c:[1], m:false, e:"PO = voce del cliente, gestisce backlog e priorità."},
+{t:"PROC", q:"In SCRUM, chi decide COSA fare nello sprint?", o:["ScrumMaster","Product Owner (decide il cosa); il team decide come","Il management","Il cliente direttamente"], c:[1], m:false, e:"PO sceglie cosa, il Team decide come."},
+{t:"PROC", q:"In SCRUM, chi protegge il team dalle distrazioni?", o:["Product Owner","ScrumMaster","Cliente","Tester"], c:[1], m:false, e:"ScrumMaster: protegge il team, rimuove ostacoli, fa rispettare il processo."},
+{t:"PROC", q:"Il \"sprint review\" serve a:", o:["Pianificare lo sprint","Mostrare al cliente l'incremento prodotto","Discutere bug","Sostituire la retrospettiva"], c:[1], m:false, e:"Sprint review: a fine sprint, demo al cliente del software funzionante."},
+{t:"PROC", q:"\"Velocity\" è:", o:["Velocità del codice","Quantità di lavoro completato in uno sprint (story points)","Una metrica di sicurezza","Una funzione UML"], c:[1], m:false, e:"Velocity = lavoro fatto in uno sprint. Serve per stimare gli sprint futuri."},
+{t:"PROC", q:"Quale tra questi è un metodo agile?", o:["XP","Kanban","Crystal","Tutti i precedenti"], c:[3], m:false, e:"XP, Kanban, Crystal sono tutti metodi agili."},
+{t:"PROC", q:"\"WIP limit\" è una pratica tipica di:", o:["Cascata","Kanban","UP rigido","Modello a V"], c:[1], m:false, e:"WIP (Work-In-Progress) limit è pratica Kanban: limita quanto lavoro \"in volo\" insieme."},
+{t:"PROC", q:"Il \"backlog refinement\" (grooming) è:", o:["Un'attività SCRUM in cui si raffina/preparare il backlog","Un test","Un anti-pattern","Un documento UML"], c:[0], m:false, e:"Grooming = raffinamento continuo del backlog (descrizioni, stime, dipendenze)."},
+{t:"PROC", q:"Il modello a V è:", o:["Un metodo agile","Una variante della cascata con test allineati alle fasi","SCRUM","Sinonimo di UP"], c:[1], m:false, e:"Modello a V: cascata con test corrispondenti a ogni fase di sviluppo."},
+{t:"PROC", q:"Cosa significa \"continuous integration\"?", o:["Test manuali","Integrare e testare il codice frequentemente (più volte al giorno)","Solo per CI/CD avanzata","Mai usato in agile"], c:[1], m:false, e:"CI: integra spesso, test automatici a ogni push."},
+{t:"PROC", q:"Test-Driven Development (TDD) è una pratica di:", o:["Solo cascata","XP e in generale agile","Solo SCRUM","Solo per junior"], c:[1], m:false, e:"TDD nasce in XP, è adottato da molti metodi agili."},
+
+// UP - varianti
+{t:"UP", q:"Quale fase UP è la più lunga tipicamente?", o:["Ideazione","Elaborazione","Costruzione","Transizione"], c:[2], m:false, e:"Costruzione: implementa la maggior parte del sistema, dura più delle altre."},
+{t:"UP", q:"In UP, il \"modello di progetto\" è:", o:["Documento di marketing","Il diagramma delle classi di progetto + altri artefatti di progettazione","Solo i test","Solo il codice"], c:[1], m:false, e:"Modello di progetto = artefatti di progettazione (classi, sequence, ecc.)."},
+{t:"UP", q:"In UP, in quale fase si fa la \"visione\"?", o:["Solo Costruzione","Ideazione (in primis)","Solo Transizione","Mai"], c:[1], m:false, e:"Visione: elaborato di Ideazione (che si raffina nelle iterazioni successive)."},
+{t:"UP", q:"In UP, in quale fase produciamo il \"modello di dominio\"?", o:["Ideazione (abbozzato)","Elaborazione (principale)","Costruzione","Transizione"], c:[1], m:false, e:"Modello di dominio: elaborato principale di Elaborazione."},
+{t:"UP", q:"In UP, la fase di \"Costruzione\" produce:", o:["Solo i requisiti","La maggior parte del codice + test","Solo i contratti","Solo SSD"], c:[1], m:false, e:"Costruzione: implementazione massiva delle capacità operative."},
+{t:"UP", q:"Quale di queste è una caratteristica fondamentale di UP?", o:["Sequenziale","Pilotato dai casi d'uso","Senza UML","Senza test"], c:[1], m:false, e:"3 caratteristiche UP: pilotato dai casi d'uso, centrato sull'architettura, iterativo."},
+{t:"UP", q:"UP è centrato su:", o:["I bug","L'architettura","Il marketing","I DB"], c:[1], m:false, e:"UP: \"architecture-centric\"."},
+{t:"UP", q:"Quale tra queste NON è una fase UP?", o:["Ideazione","Elaborazione","Refactoring","Transizione"], c:[2], m:false, e:"Refactoring NON è una fase UP. Le 4 fasi sono IECT."},
+{t:"UP", q:"\"Workshop dei requisiti\" si fa:", o:["Solo all'inizio","Brevi sessioni ripetute in varie iterazioni","Una sola volta","Mai"], c:[1], m:false, e:"Workshop ripetuti: adattano i requisiti basandosi sui feedback."},
+
+// REQ varianti
+{t:"REQ", q:"\"Il sistema deve gestire 1000 utenti contemporaneamente\" è:", o:["Funzionale","Non funzionale (scalabilità)","Né uno né l'altro","Solo SCRUM"], c:[1], m:false, e:"Scalabilità = qualità → non funzionale."},
+{t:"REQ", q:"\"Il sistema deve permettere di esportare in PDF\" è:", o:["Funzionale","Non funzionale","Solo per backup","Anti-pattern"], c:[0], m:false, e:"Funzionalità (capacità di esportare) = funzionale."},
+{t:"REQ", q:"\"Il sistema deve avere un'interfaccia accessibile WCAG 2.1\" è:", o:["Funzionale","Non funzionale (usabilità/accessibilità)","Niente","Bug"], c:[1], m:false, e:"Accessibilità = qualità → non funzionale."},
+{t:"REQ", q:"\"Il sistema deve cifrare le password con bcrypt\" è:", o:["Funzionale","Non funzionale (sicurezza)","Solo manutenzione","Nessuno"], c:[1], m:false, e:"Sicurezza = qualità → non funzionale."},
+{t:"REQ", q:"Quale elaborato contiene il vocabolario condiviso col cliente?", o:["Visione","Glossario","Modello UC","Architettura"], c:[1], m:false, e:"Glossario = vocabolario condiviso, parte degli elaborati requisiti."},
+{t:"REQ", q:"La \"visione\" UP è:", o:["Un elenco di bug","Una sintesi di alto livello del progetto (business case, obiettivi)","Solo per il PM","Un test"], c:[1], m:false, e:"Visione: documento di alto livello, contesto, obiettivi, valore."},
+{t:"REQ", q:"Quale tra questi è un esempio di requisito verificabile?", o:["Deve essere veloce","Risposta media ≤ 2 sec, p95 ≤ 5 sec","Più o meno veloce","Quanto Google"], c:[1], m:false, e:"Verificabile = misurabile con criteri oggettivi."},
+
+// UC varianti
+{t:"UC", q:"Nel diagramma UC, l'attore primario si disegna:", o:["Dentro la system boundary","A sinistra, fuori dalla boundary","Sopra il sistema","Senza linea"], c:[1], m:false, e:"Primario a sinistra, fuori dal boundary. Supporto a destra (di solito)."},
+{t:"UC", q:"\"Crea ordine\" è tipicamente:", o:["Sotto-funzione","Obiettivo utente","Sommario","Niente"], c:[1], m:false, e:"\"Crea ordine\" = obiettivo utente (una sessione, valore misurabile)."},
+{t:"UC", q:"\"Login\" come UC è tipicamente:", o:["Obiettivo utente","Sotto-funzione (riusabile da molti UC)","Sommario","Mai un UC"], c:[1], m:false, e:"Login = sotto-funzione, riusato come «include» da molti altri UC."},
+{t:"UC", q:"Lo scenario principale di successo è:", o:["Il flusso quando tutto va male","Il flusso quando tutto va bene","Solo le pre-condizioni","Solo i test"], c:[1], m:false, e:"Scenario principale = happy path, tutto bene fino alla fine."},
+{t:"UC", q:"Gli scenari alternativi descrivono:", o:["Solo errori","Variazioni dello scenario principale, sia di successo che di fallimento","Solo bug","Solo i test"], c:[1], m:false, e:"Alternativi: variazioni che divergono dal principale."},
+{t:"UC", q:"Le pre-condizioni in UC esteso:", o:["Sono il codice","Sono ciò che deve essere vero PRIMA di iniziare l'UC","Sono solo per Singleton","Non esistono"], c:[1], m:false, e:"Pre-cond: stato richiesto prima dell'esecuzione dell'UC."},
+{t:"UC", q:"Le garanzie di successo in UC esteso:", o:["Sono le post-condizioni","Sono le pre-condizioni","Sono test","Sono UI"], c:[0], m:false, e:"Garanzie di successo = post-condizioni: cosa è vero alla fine dello scenario."},
+{t:"UC", q:"Il \"trigger\" di un UC è:", o:["Il database","L'evento che fa partire il UC","Sempre il login","Il Singleton"], c:[1], m:false, e:"Trigger: evento che dà il via all'UC (es. \"cliente preme bottone\")."},
+
+// DOM varianti
+{t:"DOM", q:"Una \"classe descrittiva\" è utile quando:", o:["Mai","Eliminare le istanze descritte farebbe perdere informazioni descrittive importanti","Solo per Singleton","Solo per Controller"], c:[1], m:false, e:"Tipico esempio: ModelloProdotto descrive un tipo, sopravvive quando i singoli prodotti finiscono."},
+{t:"DOM", q:"Quale tra questi è un buon nome per una classe del dominio?", o:["Manager","Controller","Cliente","Service"], c:[2], m:false, e:"Cliente = concetto del mondo reale. Manager/Controller/Service = classi tecniche, niente dominio."},
+{t:"DOM", q:"\"Strato di vendite\" è:", o:["Una classe del dominio","Non una classe (è uno strato dell'architettura)","Un attributo","Un evento"], c:[1], m:false, e:"Gli strati sono partizioni architetturali, NON classi del dominio."},
+{t:"DOM", q:"\"Sale\" e \"Cassa\" nello stesso dominio sono:", o:["La stessa classe","2 classi concettuali distinte","Solo astratte","Una superclasse"], c:[1], m:false, e:"Sono 2 concetti diversi: una vendita (transazione) e una cassa (POS)."},
+{t:"DOM", q:"\"Ogni Sale ha al massimo 1 Payment\" si modella con:", o:["1..1 o semplicemente 1","0..*","1..*","*..*"], c:[0], m:false, e:"\"Al massimo 1\" → 0..1 oppure 1 se obbligatorio."},
+{t:"DOM", q:"Ruolo di un'associazione si scrive:", o:["Al centro della linea","Vicino agli estremi (capi)","Sotto il nome dell'associazione","Mai"], c:[1], m:false, e:"Ruolo: vicino al capo della linea che rappresenta quel partecipante."},
+
+// GRASP varianti
+{t:"GRASP", q:"Domanda fondamentale che GRASP risolve:", o:["Quale linguaggio usare","A chi assegnare ogni responsabilità","Quale UML disegnare","Quanti developer servono"], c:[1], m:false, e:"GRASP: chi fa cosa (assegnazione di responsabilità)."},
+{t:"GRASP", q:"Information Expert deriva da chi avere ricco di...:", o:["Soldi","Informazioni necessarie per la responsabilità","Metodi","Codice"], c:[1], m:false, e:"Expert = chi possiede i dati."},
+{t:"GRASP", q:"Quando NON usare Information Expert?", o:["Sempre va usato","Quando porterebbe a violare coesione/accoppiamento (allora Pure Fabrication)","Mai","Solo in agile"], c:[1], m:false, e:"Quando Expert crea \"mostro\", escape con Pure Fabrication."},
+{t:"GRASP", q:"Esempio classico di Pure Fabrication:", o:["Una classe Sale","Un Repository inventato per la persistenza","Una classe Cliente","Un Order"], c:[1], m:false, e:"Repository = inventato per non sporcare il dominio con SQL."},
+{t:"GRASP", q:"Quando si applica Creator nel modello?", o:["Sempre","Quando B aggrega/contiene/registra/usa/ha i dati di A","Mai","Solo se Singleton"], c:[1], m:false, e:"5 condizioni (almeno 1) per cui B crea A."},
+{t:"GRASP", q:"Façade Controller è:", o:["Anti-pattern","Una variante di Controller che rappresenta il sistema/sottosistema","Sempre dannoso","Solo per CLI"], c:[1], m:false, e:"Façade Controller = oggetto che rappresenta il sistema."},
+{t:"GRASP", q:"Use-Case Controller è:", o:["Variante che rappresenta uno scenario di UC","Anti-pattern","Solo per CLI","Solo per UI"], c:[0], m:false, e:"Use-Case Controller = uno per scenario di UC (più granulare del Façade)."},
+{t:"GRASP", q:"Quando preferire Use-Case Controller?", o:["Mai","Quando il sistema è complesso e UN solo Controller diventerebbe \"bloated\"","Solo per piccoli sistemi","Solo per Singleton"], c:[1], m:false, e:"Use-Case Controller scala meglio quando i casi d'uso sono molti."},
+{t:"GRASP", q:"Indirection si nota tipicamente come:", o:["Sempre Singleton","Inserimento di un intermediario tra due elementi","If/switch","Anti-pattern"], c:[1], m:false, e:"Intermediario per disaccoppiare."},
+{t:"GRASP", q:"Polymorphism realizza quale obiettivo di Protected Variations?", o:["Niente","Isolare variazioni per tipo","Solo Singleton","Solo Composite"], c:[1], m:false, e:"Polymorphism = scudo di PV per le variazioni che dipendono dal tipo."},
+
+// GoF varianti
+{t:"GoF", q:"Quale pattern usi per modalità di pagamento intercambiabili?", o:["Singleton","Strategy","Composite","Facade"], c:[1], m:false, e:"Politiche intercambiabili = Strategy."},
+{t:"GoF", q:"Quale pattern usi per gestire una struttura ad albero?", o:["Strategy","Composite","Adapter","Singleton"], c:[1], m:false, e:"Albero ricorsivo = Composite."},
+{t:"GoF", q:"Quale pattern usi per nascondere la complessità di un sottosistema?", o:["Facade","Strategy","Adapter","Singleton"], c:[0], m:false, e:"Sottosistema con tante classi → Facade come unico ingresso."},
+{t:"GoF", q:"Quale pattern usi per notificare osservatori?", o:["Observer","Strategy","Adapter","Singleton"], c:[0], m:false, e:"Notifica subscriber = Observer."},
+{t:"GoF", q:"Quale pattern usi per integrare una libreria esterna con API diversa?", o:["Adapter","Strategy","Composite","Singleton"], c:[0], m:false, e:"Tradurre API esterna = Adapter."},
+{t:"GoF", q:"Quale pattern usi per garantire una sola istanza globale?", o:["Singleton","Strategy","Composite","Facade"], c:[0], m:false, e:"Una sola istanza = Singleton."},
+{t:"GoF", q:"Quale pattern usi per creare oggetti senza esporre il \"come\"?", o:["Factory","Singleton","Adapter","Composite"], c:[0], m:false, e:"Creazione incapsulata = Factory."},
+{t:"GoF", q:"Adapter Object vs Adapter Class:", o:["Sono lo stesso","Object usa composizione (più flessibile); Class usa eredità multipla","Solo Object esiste","Solo Class esiste"], c:[1], m:false, e:"Object Adapter: composizione (preferito). Class Adapter: eredità multipla (limitato in linguaggi senza)."},
+{t:"GoF", q:"Cosa si intende per pattern \"creazionale\"?", o:["Pattern che riguardano la creazione di oggetti","Pattern di refactoring","Pattern per UI","Pattern di test"], c:[0], m:false, e:"Creazionali: Factory, Singleton, Builder, Prototype, Abstract Factory."},
+{t:"GoF", q:"Cosa si intende per pattern \"strutturale\"?", o:["Pattern che gestiscono la composizione di classi/oggetti","Pattern di test","Pattern algoritmici","Pattern di UI"], c:[0], m:false, e:"Strutturali: Adapter, Composite, Facade, Bridge, Decorator, Proxy, Flyweight."},
+{t:"GoF", q:"Cosa si intende per pattern \"comportamentale\"?", o:["Pattern di test","Pattern che riguardano le interazioni/comunicazioni tra oggetti","Pattern UI","Pattern di sicurezza"], c:[1], m:false, e:"Comportamentali: Strategy, Observer, State, Command, ecc."},
+{t:"GoF", q:"\"Open/Closed Principle\" è realizzato bene da:", o:["Singleton","Strategy (aperto a estensione, chiuso a modifica)","Solo Composite","Solo Adapter"], c:[1], m:false, e:"Strategy permette di aggiungere strategie senza toccare il Context (aperto a estensione)."},
+{t:"GoF", q:"Quale GoF è \"l'ombrello\" per Protected Variations più frequentemente?", o:["Solo Adapter","Strategy, Facade, Observer, Adapter realizzano tutti PV","Solo Singleton","Solo Composite"], c:[1], m:false, e:"PV è ombrello: Strategy, Facade, Observer, Adapter, Indirection, Polymorphism."},
+
+// UML varianti
+{t:"UML", q:"Il rombo aperto (vuoto) ◇ vicino a Composite indica:", o:["Composizione","Aggregazione","Generalizzazione","Niente"], c:[1], m:false, e:"Vuoto = aggregazione."},
+{t:"UML", q:"Una nota in UML si rappresenta come:", o:["Rettangolo con angolo piegato","Cerchio","Triangolo","Stella"], c:[0], m:false, e:"Nota = rettangolo con angolo piegato in alto a destra."},
+{t:"UML", q:"L'asterisco * in molteplicità significa:", o:["0..1","0..* (zero o molti)","1","Niente"], c:[1], m:false, e:"* = 0..*. Stessa cosa."},
+{t:"UML", q:"In una freccia di associazione, la freccia piena indica:", o:["Direzione di navigabilità","Forza del legame","Ereditarietà","Niente"], c:[0], m:false, e:"Freccia piena: navigabilità (chi conosce chi)."},
+{t:"UML", q:"La generalizzazione UML corrisponde in codice a:", o:["Composizione","Ereditarietà (extends)","Singleton","Repository"], c:[1], m:false, e:"Generalizzazione → extends (eredita classe)."},
+{t:"UML", q:"La realizzazione UML corrisponde in codice a:", o:["extends","implements (un'interfaccia)","new","static"], c:[1], m:false, e:"Realizzazione → implements (interfaccia)."},
+{t:"UML", q:"L'associazione con rombo vuoto suggerisce in codice:", o:["Composizione forte (l'oggetto crea/distrugge l'altro)","Riferimento debole (il contenitore non distrugge la parte)","Eredità","Static"], c:[1], m:false, e:"Aggregazione → riferimento debole."},
+{t:"UML", q:"L'associazione con rombo pieno suggerisce in codice:", o:["Riferimento debole","Composizione forte: contenitore crea e gestisce la vita della parte","Solo static","Singleton"], c:[1], m:false, e:"Composizione → contenitore controlla la vita della parte (suggerisce Creator)."},
+
+// CLASSI varianti
+{t:"CLASSI", q:"Una classe astratta in UML si distingue:", o:["Niente","Nome in corsivo o stereotipo «abstract»","Sottolineato","In grassetto"], c:[1], m:false, e:"Corsivo o «abstract»."},
+{t:"CLASSI", q:"Un'interfaccia in UML si distingue:", o:["Nessun simbolo","Stereotipo «interface» sopra il nome","Sottolineato","Doppia linea"], c:[1], m:false, e:"Stereotipo «interface»."},
+{t:"CLASSI", q:"In UML, un attributo \"derived\" si scrive:", o:["Con /","Con ~","Con *","Con #"], c:[0], m:false, e:"Slash / prima del nome = attributo derivato (calcolato)."},
+{t:"CLASSI", q:"Esempio: \"/eta: int\" significa:", o:["Età static","Età derivata (calcolata da dataNascita)","Età private","Età obsoleta"], c:[1], m:false, e:"/ = derivato. Esempio: età calcolata da data di nascita."},
+{t:"CLASSI", q:"Un metodo statico in UML si rappresenta:", o:["Con #","Con ~","Sottolineato","Tra parentesi quadre"], c:[2], m:false, e:"Sottolineato = static. Tipico per getInstance()."},
+
+// STATI varianti
+{t:"STATI", q:"\"entry / action\" in uno stato significa:", o:["Azione all'uscita","Azione eseguita all'ingresso nello stato","Una transizione","Una guardia"], c:[1], m:false, e:"entry / = azione eseguita ENTRANDO nello stato."},
+{t:"STATI", q:"\"exit / action\" in uno stato significa:", o:["All'ingresso","Azione eseguita all'uscita dallo stato","Una guardia","Un loop"], c:[1], m:false, e:"exit / = azione eseguita USCENDO dallo stato."},
+{t:"STATI", q:"\"do / activity\" in uno stato significa:", o:["Azione istantanea","Attività che dura mentre l'oggetto è nello stato","Una guardia","Una pre-condizione"], c:[1], m:false, e:"do / = attività che dura tutta la permanenza nello stato."},
+{t:"STATI", q:"Una transizione interna (senza cambio di stato):", o:["Non esiste","Si rappresenta dentro la box dello stato (es. \"evento / azione\")","È un anti-pattern","È un loop infinito"], c:[1], m:false, e:"Transizione interna: scritta dentro lo stato, NON cambia stato."},
+{t:"STATI", q:"Pseudo-stato \"choice\":", o:["È uno stato finale","Un punto di decisione (sceglie tra rami basandosi su guardie)","Un fork","Un join"], c:[1], m:false, e:"Choice: scelta tra alternative a runtime, in base a guardie."},
+
+// TDD varianti
+{t:"TDD", q:"Refactoring tipico: \"Extract Method\" serve a:", o:["Aggiungere bug","Spezzare un metodo lungo in più metodi più piccoli","Rimuovere test","Cambiare comportamento"], c:[1], m:false, e:"Extract Method: estrai parti coese in nuovi metodi più piccoli."},
+{t:"TDD", q:"Refactoring tipico: \"Rename Variable\" serve a:", o:["Cambiare comportamento","Migliorare leggibilità con nomi più chiari","Aumentare bug","Rimuovere test"], c:[1], m:false, e:"Rename: cambi il nome per leggibilità, comportamento invariato."},
+{t:"TDD", q:"Refactoring tipico: \"Move Method\" serve a:", o:["Cancellare metodo","Spostare un metodo in una classe più appropriata (es. Feature Envy)","Aggiungere bug","Cambiare comportamento"], c:[1], m:false, e:"Move Method: spostare dove i dati sono (Information Expert)."},
+{t:"TDD", q:"Quale tra questi è uno smell?", o:["Shotgun surgery (modifica sparpagliata in tante classi)","High Cohesion","Low Coupling","Good naming"], c:[0], m:false, e:"Shotgun surgery: piccola modifica funzionale richiede toccare 10 classi → mal progettato."},
+{t:"TDD", q:"\"Magic numbers\" è un code smell perché:", o:["Aumenta performance","Numeri letterali senza significato chiaro nel codice (es. 86400)","Solo per Singleton","Niente"], c:[1], m:false, e:"Magic numbers: usare costanti con nome (es. SECONDS_PER_DAY)."},
+
+// PROG2COD varianti
+{t:"PROG2COD", q:"La composizione UML (◆) in codice si traduce con:", o:["Riferimento a oggetto creato e distrutto col contenitore","Sempre Singleton","Solo static","Solo interfaccia"], c:[0], m:false, e:"Composizione: il contenitore crea la parte e gestisce la sua vita."},
+{t:"PROG2COD", q:"L'aggregazione UML (◇) in codice si traduce con:", o:["La parte viene creata altrove e passata al contenitore","Sempre Singleton","Solo static","Solo costruttore privato"], c:[0], m:false, e:"Aggregazione: la parte è creata altrove, il contenitore tiene solo un riferimento."},
+{t:"PROG2COD", q:"In codice, l'associazione orientata si realizza con:", o:["Un attributo che riferisce all'altra classe","Sempre eredità","Sempre static","Sempre Singleton"], c:[0], m:false, e:"Attributo che contiene il riferimento all'altra classe."},
+
+// SSD/CONTR varianti
+{t:"SSD", q:"In SSD, le frecce di ritorno:", o:["Sono sempre obbligatorie","Sono opzionali (tratteggiate, con valore di ritorno)","Continue + freccia","Niente"], c:[1], m:false, e:"Ritorni in SSD: tratteggiate, mostrano valore di ritorno."},
+{t:"SSD", q:"In SSD, si possono usare frame opt/alt/loop?", o:["Mai","Sì, sono UML standard","Solo in SD","Solo in CD"], c:[1], m:false, e:"Frame opt/alt/loop sono UML, usabili anche in SSD."},
+{t:"CONTR", q:"Quale tra questi NON è una post-condizione tipica?", o:["Creazione di istanza","Modifica di attributo","Formazione di associazione","Compilazione del codice"], c:[3], m:false, e:"Compilazione non è uno stato del dominio."},
+{t:"CONTR", q:"\"Pre: l'utente è autenticato\" è:", o:["Una post-condizione","Una pre-condizione","Un attributo","Un metodo"], c:[1], m:false, e:"Pre-cond: stato richiesto PRIMA."},
+
+// ARCH/INTERAZ
+{t:"ARCH", q:"Esempio di strato \"servizi tecnici\":", o:["UI React","Dominio (Order, Customer)","Repository, log, autenticazione tecnica","Marketing"], c:[2], m:false, e:"Servizi tecnici: persistenza, log, mailing, autenticazione tecnica."},
+{t:"ARCH", q:"In layered architecture, dove vanno le regole di business?", o:["UI","Dominio (logica applicativa)","Persistenza","Database"], c:[1], m:false, e:"Logica di business = strato dominio."},
+{t:"ARCH", q:"Layered + Modello-Vista: cosa concretamente impedisco?", o:["Il dominio importa moduli UI","La UI importa il dominio","I test","Il framework"], c:[0], m:false, e:"Il dominio NON importa la UI: separazione netta."},
+{t:"INTERAZ", q:"In SD, una creazione di oggetto si rappresenta come:", o:["Freccia normale","Freccia con stereotipo «create» che termina sulla testa della lifeline","Solo testo","Niente"], c:[1], m:false, e:"«create» punta alla nascita della lifeline."},
+{t:"INTERAZ", q:"In SD, una distruzione si rappresenta come:", o:["X grande alla fine della lifeline","Solo testo","Niente","Una freccia tratteggiata"], c:[0], m:false, e:"X (grande croce) chiude la lifeline = distruzione dell'oggetto."},
+{t:"INTERAZ", q:"In SD, parametri del messaggio:", o:["Tra parentesi accanto al nome","Mai","Solo testo libero","Solo numeri"], c:[0], m:false, e:"Sintassi: messaggio(par1, par2)."},
+
+// Cross-topic
+{t:"GoF", q:"In NEED-A-BREAK?, le tipologie di pagamento (Standard/Premium/VIP) si modellano meglio con:", o:["Singleton","Strategy (politiche intercambiabili)","Composite","Adapter"], c:[1], m:false, e:"Politiche di pagamento per tipo cliente → Strategy."},
+{t:"GoF", q:"Per gestire una gerarchia di Cliente (astratto) con Standard/VIP, il pattern di base è:", o:["Solo Strategy","Polymorphism + eventualmente Strategy per comportamenti variabili","Solo Singleton","Solo Composite"], c:[1], m:false, e:"Polymorphism per i comportamenti per tipo + Strategy per estensibilità."},
+{t:"GRASP", q:"Strategy realizza quali GRASP?", o:["Solo Information Expert","Polymorphism + Protected Variations","Solo Creator","Solo Singleton"], c:[1], m:false, e:"Strategy = Polymorphism + Protected Variations."},
+{t:"GRASP", q:"Facade realizza quali GRASP?", o:["Solo Singleton","Indirection + Protected Variations","Solo Creator","Solo Composite"], c:[1], m:false, e:"Facade = Indirection (intermediario) + PV (interfaccia stabile)."},
+{t:"GRASP", q:"Observer realizza quali GRASP?", o:["Solo Singleton","Indirection + Protected Variations","Solo Creator","Solo Composite"], c:[1], m:false, e:"Observer = Indirection (publisher) + PV (interfaccia Subscriber)."},
+{t:"GRASP", q:"Quando aggregare i Repository come Pure Fabrication?", o:["Mai","Quando vogliamo isolare la persistenza dal dominio","Solo per Singleton","Solo per Composite"], c:[1], m:false, e:"Repository = classico Pure Fabrication + Indirection."},
+{t:"PROG2COD", q:"\"public + nome(parametri): tipo\" in UML mappa a:", o:["Sempre static","Metodo pubblico in codice","Solo abstract","Solo Singleton"], c:[1], m:false, e:"Notazione UML: visibilità + nome(par): tipo_ret."},
+
+// Mappa processi
+{t:"PROC", q:"\"UP è un processo iterativo\" è VERO o FALSO?", o:["Falso","Vero","Dipende","Solo in cascata"], c:[1], m:false, e:"UP è iterativo, incrementale, evolutivo."},
+{t:"PROC", q:"\"Agile è un processo\" è:", o:["Vero","FALSO: è una filosofia/mindset","Vero solo in SCRUM","Vero solo in XP"], c:[1], m:false, e:"Agile = filosofia. SCRUM/XP/Kanban sono i processi/metodi concreti."},
+{t:"PROC", q:"\"SCRUM è una filosofia\" è:", o:["Vero","FALSO: SCRUM è un metodo concreto che REALIZZA la filosofia agile","Sempre vero","Solo nel libro\""], c:[1], m:false, e:"SCRUM = metodo concreto, non filosofia."},
+{t:"PROC", q:"\"UP è agile\" è:", o:["Sempre vero","Sempre falso","UP può essere applicato in modo agile (alleggerendo elaborati)","Solo se Singleton"], c:[2], m:false, e:"UP e agile sono ortogonali; UP può essere applicato in modo agile."},
+{t:"PROC", q:"Quanti livelli concettuali ci sono nella mappa dei processi?", o:["1","2","3 (concetto generale · modelli · cose concrete)","100"], c:[2], m:false, e:"3 livelli: processo (generale), modello di organizzazione (cascata/iterativo), cose concrete (UP, agile, SCRUM)."},
+{t:"PROC", q:"Quale tra queste vivono allo STESSO livello concettuale?", o:["UP e Agile","UP e SCRUM (entrambi processi concreti)","Cascata e SCRUM","Iterativo e Cascata"], c:[1], m:false, e:"UP e SCRUM sono entrambi processi concreti (anche se filosofie diverse)."},
 ];
 
 const QUIZ_TOPIC_LABEL = {
