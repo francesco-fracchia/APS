@@ -227,6 +227,64 @@
   .quiz-q.checked label.opt.wrong-opt{background:#fdeaec;border-color:var(--red)}
   .quiz-q.checked label.opt.missed{background:#fff4e6;border-color:var(--amber);border-style:dashed}
   .quiz-q.checked label.opt input{pointer-events:none}
+  /* ============ ESAME SIMULATO ============ */
+  .exam-card{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:18px 22px;margin:14px 0;box-shadow:var(--shadow)}
+  .exam-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;font-size:.85rem;color:var(--soft);font-weight:700;text-transform:uppercase;letter-spacing:.4px}
+  .exam-header .live{display:inline-flex;align-items:center;gap:5px}
+  .exam-header .dot{width:7px;height:7px;border-radius:50%;background:var(--green);animation:blink 1.6s ease-in-out infinite}
+  @keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+  .exam-progress{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+  .exam-progress .bar{flex:1;height:10px;background:#eef0f3;border-radius:5px;overflow:hidden}
+  .exam-progress .fill{height:100%;background:linear-gradient(90deg,var(--green),var(--blue));width:0%;transition:width .35s}
+  .exam-progress .stats{font-size:.85rem;color:var(--soft);min-width:130px;text-align:right}
+  .exam-progress .stats b{color:var(--green)}
+  .exam-progress .stats .wrong{color:var(--red)}
+  .exam-cat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px;margin:12px 0}
+  .exam-cat{display:flex;align-items:center;gap:9px;padding:10px 14px;border:1px solid var(--line);border-radius:8px;cursor:pointer;background:var(--paper);transition:.15s;font-size:.92rem}
+  .exam-cat:hover{border-color:var(--blue)}
+  .exam-cat input{margin:0;cursor:pointer;accent-color:var(--blue)}
+  .exam-cat.checked{background:#eaeeff;border-color:var(--blue);font-weight:600;color:var(--blue)}
+  .exam-cat .badge{background:rgba(0,0,0,.08);color:inherit;border-radius:8px;padding:1px 7px;font-size:.74rem;margin-left:auto;font-weight:700}
+  .exam-cat.checked .badge{background:rgba(56,88,233,.25)}
+  .exam-setup-row{display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin:14px 0;padding:12px 14px;background:#f5f7fa;border-radius:8px;font-size:.9rem}
+  .exam-setup-row label{display:flex;align-items:center;gap:6px;color:var(--soft);font-weight:600}
+  .exam-setup-row select,.exam-setup-row input[type=number]{padding:7px 11px;border-radius:8px;border:1px solid var(--line);background:var(--paper);font-family:inherit;font-size:.92rem;color:var(--ink)}
+  .exam-action{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+  .exam-btn-primary{padding:12px 24px;background:var(--blue);color:#fff;border:0;border-radius:9px;cursor:pointer;font-weight:700;font-size:.95rem;transition:.15s}
+  .exam-btn-primary:hover{background:#2746c4}
+  .exam-btn-primary:disabled{background:#aaa;cursor:not-allowed}
+  .exam-qhead{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;font-size:.88rem}
+  .exam-qhead .topic{background:#f0eaff;color:#5e2887;padding:2px 10px;border-radius:14px;font-weight:700;font-size:.78rem}
+  .exam-qtext{font-size:1.08rem;font-weight:600;line-height:1.4;margin:10px 0 14px}
+  .exam-qtext .multi{font-size:.78rem;color:var(--violet);font-weight:600;margin-left:6px}
+  .exam-opt{display:flex;align-items:flex-start;gap:11px;padding:11px 14px;margin:6px 0;border-radius:9px;cursor:pointer;border:1px solid var(--line);transition:.12s;background:var(--paper);font-size:.95rem;line-height:1.4}
+  .exam-opt:hover{background:#f4f6fa;border-color:#bcc6d9}
+  .exam-opt input{margin-top:3px;flex-shrink:0;cursor:pointer;accent-color:var(--blue)}
+  .exam-opt.selected{background:#eaeeff;border-color:var(--blue)}
+  .exam-opt.correct-shown{background:#e6f6ee;border-color:var(--green);font-weight:600}
+  .exam-opt.wrong-shown{background:#fdeaec;border-color:var(--red)}
+  .exam-opt.missed-shown{background:#fff4e6;border-color:var(--amber);border-style:dashed}
+  .exam-feedback{margin-top:12px;padding:10px 13px;border-radius:8px;font-size:.9rem;display:none}
+  .exam-feedback.ok{display:block;background:#e6f6ee;border-left:3px solid var(--green);color:#0e6b58}
+  .exam-feedback.bad{display:block;background:#fdeaec;border-left:3px solid var(--red);color:#911322}
+  .exam-feedback b{display:block;margin-bottom:4px}
+  .exam-results{text-align:center;padding:22px}
+  .exam-results h3{font-size:1.5rem;margin:8px 0;border:0;padding:0}
+  .exam-score-big{font-size:3.5rem;font-weight:800;letter-spacing:-1px;margin:10px 0}
+  .exam-score-big.ok{color:var(--green)}
+  .exam-score-big.mid{color:var(--amber)}
+  .exam-score-big.bad{color:var(--red)}
+  .exam-pct{font-size:1.2rem;color:var(--soft);font-weight:600}
+  .exam-breakdown{margin:22px 0;text-align:left}
+  .exam-breakdown h4{color:var(--blue);margin:8px 0;font-size:1rem}
+  .exam-topic-row{display:flex;align-items:center;gap:10px;margin:6px 0;padding:8px 12px;background:var(--paper);border:1px solid var(--line);border-radius:7px}
+  .exam-topic-row .name{font-weight:600;min-width:120px;font-size:.9rem}
+  .exam-topic-row .bar-bg{flex:1;height:8px;background:#eef0f3;border-radius:4px;overflow:hidden}
+  .exam-topic-row .bar-fill{height:100%;border-radius:4px}
+  .exam-topic-row .pct{font-weight:700;min-width:60px;text-align:right;font-size:.88rem}
+  .exam-topic-row.ok .bar-fill{background:var(--green)} .exam-topic-row.ok .pct{color:var(--green)}
+  .exam-topic-row.mid .bar-fill{background:var(--amber)} .exam-topic-row.mid .pct{color:var(--amber)}
+  .exam-topic-row.bad .bar-fill{background:var(--red)} .exam-topic-row.bad .pct{color:var(--red)}
   .quiz-q .expl{display:none;background:#fffaef;border-left:3px solid var(--amber);padding:9px 13px;border-radius:6px;margin-top:9px;font-size:.88rem;color:#5a4a18}
   .quiz-q .expl b{color:var(--amber)}
   .quiz-q.checked .expl{display:block}
@@ -281,6 +339,7 @@
     <a href="#mnemo"><span class="n">🧠</span>Muro mnemonici</a>
     <a href="#flash"><span class="n">🃏</span>Flashcard (259)</a>
     <a href="#quiz"><span class="n">📝</span>Quiz crocette</a>
+    <a href="#esame-sim"><span class="n">🎓</span>Esame simulato</a>
     <a href="#esercizio"><span class="n">📄</span>Esercizio scritto</a>
     <a href="#bigino"><span class="n">🔥</span>Super Bigino</a>
   </nav>
@@ -1289,6 +1348,102 @@
   <div class="topic-filters" id="quiz-filters"></div>
   <div id="quiz-container"></div>
   <p class="hint" style="text-align:center;margin-top:14px">💡 Modalità: clicca <b>Verifica tutto</b> per controllare le risposte e vedere le spiegazioni. Le verdi sono corrette, le rosse sbagliate, le arancioni tratteggiate erano quelle che mancavano da selezionare.</p>
+
+  <h2 class="sec" id="esame-sim"><span class="chip">🎓</span>Esame simulato</h2>
+  <p class="lead">Domande casuali dalle categorie scelte. Progresso live. Risultati per topic alla fine. Setup → vai.</p>
+
+  <!-- SCHERMATA SETUP -->
+  <div class="exam-card" id="exam-setup">
+    <div class="exam-header"><span>⚙️ Setup esame</span></div>
+
+    <p style="margin:6px 0 12px;font-size:.95rem">Scegli le categorie (anche solo una, o "Tutte"), il numero di domande e il modo di feedback.</p>
+
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin:6px 0 12px">
+      <button class="btn" onclick="examSelectAllCats(true)">✅ Seleziona tutte</button>
+      <button class="btn" onclick="examSelectAllCats(false)">⬜ Deseleziona tutte</button>
+    </div>
+
+    <div class="exam-cat-grid" id="exam-cat-grid"></div>
+
+    <div class="exam-setup-row">
+      <label>Numero domande:
+        <select id="exam-n">
+          <option value="10">10</option>
+          <option value="20" selected>20</option>
+          <option value="30">30</option>
+          <option value="50">50</option>
+          <option value="0">Tutte le disponibili</option>
+        </select>
+      </label>
+      <label>Feedback:
+        <select id="exam-fb">
+          <option value="immediate" selected>Immediato (dopo ogni risposta)</option>
+          <option value="end">Solo alla fine</option>
+        </select>
+      </label>
+      <label>Ordine:
+        <select id="exam-order">
+          <option value="random" selected>Casuale</option>
+          <option value="topic">Per topic</option>
+        </select>
+      </label>
+    </div>
+
+    <div class="exam-action">
+      <button class="exam-btn-primary" id="exam-start-btn" onclick="examStart()">🚀 Inizia esame</button>
+      <span id="exam-pool-info" style="align-self:center;color:var(--soft);font-size:.88rem"></span>
+    </div>
+  </div>
+
+  <!-- SCHERMATA DOMANDA (live) -->
+  <div class="exam-card hidden" id="exam-live">
+    <div class="exam-header">
+      <span class="live"><span class="dot"></span> Esame in corso</span>
+      <span id="exam-current-num">1 / 20</span>
+    </div>
+    <div class="exam-progress">
+      <div class="bar"><div class="fill" id="exam-progress-fill"></div></div>
+      <div class="stats">
+        <b id="exam-correct">0</b> giuste ·
+        <span class="wrong" id="exam-wrong">0</span> sbagliate
+      </div>
+    </div>
+
+    <div class="exam-qhead">
+      <span>Domanda <span id="exam-qnum">1</span></span>
+      <span class="topic" id="exam-qtopic">Topic</span>
+    </div>
+    <div class="exam-qtext" id="exam-qtext">Caricamento...</div>
+
+    <div id="exam-opts"></div>
+
+    <div class="exam-feedback" id="exam-feedback"></div>
+
+    <div class="exam-action">
+      <button class="exam-btn-primary" id="exam-next-btn" onclick="examNext()">Conferma →</button>
+      <button class="btn" onclick="examAbort()">⏹ Termina anticipatamente</button>
+    </div>
+  </div>
+
+  <!-- SCHERMATA RISULTATI -->
+  <div class="exam-card hidden" id="exam-results">
+    <div class="exam-results">
+      <h3 id="exam-result-title">🎉 Esame terminato</h3>
+      <div class="exam-score-big" id="exam-result-big">0/0</div>
+      <div class="exam-pct" id="exam-result-pct">0%</div>
+      <p id="exam-result-msg" style="color:var(--soft);margin:10px 0"></p>
+    </div>
+
+    <div class="exam-breakdown" id="exam-result-breakdown">
+      <h4>📊 Risultati per topic</h4>
+      <div id="exam-result-topics"></div>
+    </div>
+
+    <div class="exam-action" style="justify-content:center">
+      <button class="exam-btn-primary" onclick="examRestart()">🔄 Nuovo esame</button>
+      <button class="btn" onclick="examReviewWrong()">🔴 Rivedi solo sbagliate</button>
+    </div>
+  </div>
 
   <h2 class="sec" id="esercizio"><span class="chip">📄</span>Esercizio scritto · GYM-FIT</h2>
   <p class="lead">Simulazione di traccia completa stile esame. Sistema originale (diverso da quelli del prof) per allenarsi sul metodo: modello dominio → SSD → contratto → sequence con GRASP → classi di progetto → pattern GoF.</p>
@@ -2428,6 +2583,80 @@ const QUIZ = [
 {t:"PROG2COD", q:"In un approccio iterativo, durante l'implementazione si possono apportare cambiamenti al progetto?", o:["Sì, è normale che emergano modifiche e si raffinino i diagrammi","No, mai: il progetto è immutabile","Solo dopo approvazione formale","Solo in cascata"], c:[0], m:false, e:"Nell'iterativo/agile è normale che il design evolva durante l'implementazione."},
 {t:"PROG2COD", q:"Come si mappano associazioni 1..* in codice?", o:["Si evitano","Con collezioni (List, Set, Array)","Solo con database","Con singolo oggetto"], c:[1], m:false, e:"1..* si rappresenta naturalmente con collezioni nel codice."},
 {t:"PROG2COD", q:"I diagrammi di interazione (sequence) servono per:", o:["Generare codice automaticamente","Guidare la scrittura dei metodi mostrando le collaborazioni","Sostituire i test","Sostituire i requisiti"], c:[1], m:false, e:"I sequence diagram mostrano CHI chiama COSA, guidando l'implementazione dei metodi."},
+
+// ===== NUOVI: AGILE, SCRUM, MAPPA PROCESSI =====
+{t:"PROC", q:"Agile è un processo software?", o:["Sì, è un processo con regole rigide","No, è una filosofia/mindset che si applica sopra un processo","Sì, è equivalente a SCRUM","No, è un linguaggio di modellazione"], c:[1], m:false, e:"Agile è una filosofia (Manifesto 2001), non un processo. SCRUM, XP, Kanban sono metodi che la realizzano."},
+{t:"PROC", q:"SCRUM è la stessa cosa di Agile?", o:["Sì, sono sinonimi","No: Agile è la filosofia, SCRUM è un metodo concreto che la realizza","Sì, ma SCRUM è la versione semplificata","No: SCRUM è un processo a cascata"], c:[1], m:false, e:"Genere vs specie: Agile = cappello, SCRUM = un vestito sotto. XP e Kanban sono altri esempi."},
+{t:"PROC", q:"Quali sono i 4 valori del Manifesto Agile?", o:["Individui e interazioni > processi e strumenti","Documentazione esaustiva > software funzionante","Collaborazione col cliente > negoziazione contrattuale","Risposta al cambiamento > seguire un piano"], c:[0,2,3], m:true, e:"I 4 valori privilegiano gli elementi a sinistra. La documentazione esaustiva è proprio l'OPPOSTO del valore agile (software funzionante)."},
+{t:"PROC", q:"UP può essere applicato in modo agile?", o:["No, è incompatibile con l'agile","Sì, alleggerendo gli elaborati e facendo emergere il design","Solo nella fase di Costruzione","Solo se cambi il libro di riferimento"], c:[1], m:false, e:"UP e Agile sono ortogonali: UP è il processo, Agile è lo stile. Si può fare UP \"light\" agile."},
+{t:"PROC", q:"Iterativo è uguale ad Agile?", o:["Sì, sono sinonimi","No: iterativo è un modello di organizzazione; agile è una filosofia","Sì, ma agile è più moderno","No: agile è solo per piccoli team"], c:[1], m:false, e:"Tutti gli agili sono iterativi, MA non tutti gli iterativi sono agili (UP nasce iterativo non-agile)."},
+{t:"PROC", q:"Quali sono ruoli definiti in SCRUM?", o:["ScrumMaster","Product Owner","Team di sviluppo","Architect"], c:[0,1,2], m:true, e:"3 ruoli SCRUM: ScrumMaster (custode del processo), Product Owner (gestisce backlog), Team (auto-organizzato). Architect NON è un ruolo SCRUM."},
+{t:"PROC", q:"Cosa NON appartiene al livello \"modello di organizzazione\"?", o:["Cascata","Iterativo","SCRUM","Incrementale"], c:[2], m:false, e:"SCRUM è un metodo concreto, non un modello di organizzazione. Cascata e iterativo SÌ."},
+{t:"PROC", q:"\"Cascata iterativa\" è un termine sensato?", o:["Sì, è la versione moderna della cascata","No: è un ossimoro, sono modelli opposti","Sì, ma solo in agile","Sì, è quello che usa UP"], c:[1], m:false, e:"La cascata è SEQUENZIALE per definizione (1 sola passata). Se ci sono iterazioni, NON è cascata."},
+{t:"PROC", q:"Cos'è uno sprint?", o:["L'iterazione di SCRUM, di durata 2-4 settimane","Il meeting quotidiano del team","La durata totale del progetto","La fase di rilascio"], c:[0], m:false, e:"Sprint = iterazione SCRUM. Lo \"scrum\" è invece la riunione giornaliera (daily standup)."},
+{t:"PROC", q:"Quale dimensione del team SCRUM è considerata ottimale?", o:["3-5 persone","Auto-organizzato, non più di 7 persone","10-15 persone","Oltre 20 persone"], c:[1], m:false, e:"\"Two-pizza team\": team SCRUM auto-organizzato ≤7. Sopra, la comunicazione esplode (n²)."},
+
+// ===== NUOVI: UP avanzato =====
+{t:"UP", q:"In quale fase di UP si stabilizza ~80% dei requisiti?", o:["Ideazione","Elaborazione","Costruzione","Transizione"], c:[1], m:false, e:"Elaborazione = nucleo dell'architettura + ~80% dei requisiti."},
+{t:"UP", q:"L'iterazione 1 di Elaborazione è guidata da:", o:["Dal calendario","Dal rischio e centrata sull'architettura","Dai casi d'uso meno importanti","Dal cliente"], c:[1], m:false, e:"Prima iterazione = colpo al rischio architetturale principale."},
+{t:"UP", q:"In Ideazione si analizzano:", o:["Tutti i requisiti","Circa il 10% dei requisiti + i non funzionali più critici","L'80% dei requisiti","Solo i requisiti funzionali"], c:[1], m:false, e:"Ideazione = visione e fattibilità: ~10%."},
+{t:"UP", q:"Cattiva pratica UP più tipica:", o:["Coinvolgere il cliente nelle iterazioni","Testare presto e spesso","Pensare \"prima iterazione = analisi, seconda = progetto, terza = codice\"","Usare UML come strumento"], c:[2], m:false, e:"Errore classico: associare ciecamente ogni fase a una sola disciplina."},
+{t:"UP", q:"Cos'è un incremento in UP?", o:["Una nuova iterazione","La differenza tra due release successive","Un documento UML","Un test di accettazione"], c:[1], m:false, e:"Incremento = delta tra release. Iterazione produce release, release - precedente = incremento."},
+
+// ===== NUOVI: UC avanzato =====
+{t:"UC", q:"3 livelli di un caso d'uso.", o:["Obiettivo utente, Sotto-funzione, Sommario","Alto, Medio, Basso","Funzionale, Non funzionale, Tecnico","UI, Dominio, Persistenza"], c:[0], m:false, e:"Larman: 3 livelli. Obiettivo utente = una sessione · Sotto-funzione = step interno · Sommario = obiettivo ampio."},
+{t:"UC", q:"Cosa testa il \"test del capo\"?", o:["Se il sistema compila","Se l'UC è riferibile al capo come risultato di valore misurabile","Se il capo ha approvato","Se è scritto in tempo"], c:[1], m:false, e:"Test del capo: \"cos'hai fatto oggi?\" → la risposta è un risultato di valore? Se sì, è obiettivo utente."},
+{t:"UC", q:"3 relazioni tra UC nel diagramma:", o:["Include, Extend, Generalizzazione","Composizione, Aggregazione, Associazione","Pre, Post, Inv","Public, Private, Protected"], c:[0], m:false, e:"3 relazioni standard tra UC: include (sempre), extend (a volte), generalizzazione (\"è un\")."},
+{t:"UC", q:"Il formato dettagliato/esteso di UC ha lunghezza tipica:", o:["1 paragrafo","Tra 3 e 10 pagine","Oltre 30 pagine","Solo 1 pagina"], c:[1], m:false, e:"3-10 pagine. Sotto: troppo poco. Sopra: stai scrivendo un romanzo."},
+{t:"UC", q:"Scrivere un UC \"a scatola nera\" significa:", o:["Si descrive solo il codice interno","Si descrive COSA fa il sistema, non come","Si nasconde l'output","Si nascondono gli attori"], c:[1], m:false, e:"Scatola nera = focus su comportamento osservabile, non su implementazione interna."},
+
+// ===== NUOVI: GRASP avanzato =====
+{t:"GRASP", q:"Quale tra questi è un GRASP, NON un GoF?", o:["Adapter","Pure Fabrication","Singleton","Strategy"], c:[1], m:false, e:"Pure Fabrication è GRASP. Adapter/Singleton/Strategy sono GoF. Confusione classica all'esame."},
+{t:"GRASP", q:"Information Expert e Pure Fabrication: quando preferisci Pure Fabrication?", o:["Mai, Information Expert è sempre meglio","Quando applicare Expert porterebbe a violare coesione o accoppiamento","Quando vuoi più classi","Quando il prof lo chiede"], c:[1], m:false, e:"Pure Fabrication è l'escape valve: si usa quando Expert produrrebbe una classe \"mostro\"."},
+{t:"GRASP", q:"Protected Variations è realizzato da quali pattern?", o:["Adapter","Strategy","Facade","Singleton"], c:[0,1,2], m:true, e:"PV è un principio ombrello, realizzato da Adapter, Strategy, Facade, Observer, Indirection, Polymorphism. Singleton no."},
+{t:"GRASP", q:"La composizione (◆) suggerisce quale GRASP?", o:["Information Expert","Creator","Low Coupling","Controller"], c:[1], m:false, e:"Composizione → Creator: chi contiene la parte è responsabile di crearla."},
+{t:"GRASP", q:"Un Controller \"bloated\" è:", o:["Un Controller con poche responsabilità","Un Controller con troppe responsabilità (bassa coesione)","Un Controller della UI","Un Controller obsoleto"], c:[1], m:false, e:"Bloated controller = troppe responsabilità → coesione bassa → spezzare in più Controller (es. uno per UC)."},
+{t:"GRASP", q:"Quale tra questi NON è una condizione di Creator?", o:["B aggrega A","B contiene A","B eredita da A","B usa strettamente A"], c:[2], m:false, e:"L'ereditarietà NON è tra le condizioni di Creator (Aggrega/Contiene/Registra/Usa/Dati)."},
+{t:"GRASP", q:"Polymorphism (GRASP) vs Polimorfismo del linguaggio:", o:["Sono sinonimi","GRASP = QUANDO usarlo (principio); linguaggio = COME (override)","Linguaggio è solo per Java","GRASP è solo per UML"], c:[1], m:false, e:"GRASP è il principio (\"usa polimorfismo per gestire alternative\"). Il linguaggio fornisce l'overriding."},
+
+// ===== NUOVI: GoF avanzato =====
+{t:"GoF", q:"In Composite, qual è la freccia cruciale?", o:["Quella tra Client e Composite","La 0..* da Composite verso Component","Quella tra Leaf e Client","Quella tra Leaf e Composite"], c:[1], m:false, e:"Senza la freccia 0..* da Composite a Component, non c'è ricorsione, non è Composite."},
+{t:"GoF", q:"Strategy vs State, differenza chiave:", o:["Sono identici","Strategy: il client sceglie. State: l'oggetto cambia da solo in base allo stato interno","Strategy è creazionale, State è strutturale","State realizza Strategy"], c:[1], m:false, e:"Chi sceglie l'algoritmo: esterno (Strategy) o interno (State)."},
+{t:"GoF", q:"Facade semplifica un sottosistema. Adapter invece:", o:["Lo nasconde","Traduce un'interfaccia in un'altra incompatibile","Lo crea","Lo distrugge"], c:[1], m:false, e:"Facade N→1 (semplifica). Adapter 1↔1 (traduce). Differenza ricorrente all'esame."},
+{t:"GoF", q:"Observer è l'eccezione a quale principio?", o:["Low Coupling","Separazione Modello-Vista","High Cohesion","Pure Fabrication"], c:[1], m:false, e:"Observer è l'eccezione legittima: il Modello conosce le Viste, ma SOLO come interfaccia Subscriber."},
+{t:"GoF", q:"Singleton: trappola più nota del prof.", o:["Costruttore pubblico","Lazy senza synchronized: due thread possono creare 2 istanze","Manca il metodo getInstance()","Troppi attributi"], c:[1], m:false, e:"Lazy senza lock → race condition → 2 istanze. Il pattern \"Single\"-ton si rompe."},
+{t:"GoF", q:"Factory ritorna:", o:["Una classe concreta nota al client","Un'interfaccia: il client non sa il sottotipo","Sempre un Singleton","Sempre un Composite"], c:[1], m:false, e:"Factory disaccoppia il client dalla classe concreta: ritorna l'interfaccia."},
+{t:"GoF", q:"In Adapter, l'Adaptee è:", o:["Un nuovo componente che disegni","Un componente preesistente con interfaccia diversa","Una sottoclasse del Client","L'interfaccia che il Client conosce"], c:[1], m:false, e:"L'Adaptee è il vecchio componente non modificabile. L'Adapter lo wrappa traducendo."},
+{t:"GoF", q:"Quale combo è tipica nelle implementazioni?", o:["Factory + Singleton","Strategy + Composite","Observer + Adapter","Singleton + State"], c:[0], m:false, e:"Factory + Singleton: una sola fabbrica globale. Combo iconica."},
+{t:"GoF", q:"I 7 GoF del prof, distribuzione per famiglia:", o:["3-3-1","2-3-2","2-2-3","4-2-1"], c:[1], m:false, e:"2 Creazionali (Factory, Singleton) · 3 Strutturali (Adapter, Composite, Facade) · 2 Comportamentali (Strategy, Observer)."},
+{t:"GoF", q:"Adapter realizza quali GRASP?", o:["Solo Information Expert","Indirection + Polymorphism → Protected Variations","Solo Creator","Solo Pure Fabrication"], c:[1], m:false, e:"Adapter = Indirection (mette in mezzo) + Polymorphism (stessa interfaccia) → PV."},
+
+// ===== NUOVI: SSD/Contratti avanzati =====
+{t:"SSD", q:"Quanti SSD si fanno per un caso d'uso?", o:["Uno per lo scenario principale di successo","Uno per ogni passo del UC","Uno solo per tutto il sistema","Dipende dal numero di attori"], c:[0], m:false, e:"Uno per scenario principale. Eventualmente extra per gli alternativi."},
+{t:"SSD", q:"Le operazioni di sistema iniziano con:", o:["Un sostantivo","Un verbo (esprimono intenzione)","Una preposizione","Un articolo"], c:[1], m:false, e:"Verbo imperativo: createSale, enterItem, confirmOrder. Esprimono azione."},
+{t:"CONTR", q:"Tempo verbale delle post-condizioni:", o:["Presente attivo","Passato passivo (è stato creato, è stato impostato)","Futuro semplice","Imperativo"], c:[1], m:false, e:"Passato passivo: il sistema agisce a scatola nera, soggetto implicito."},
+{t:"CONTR", q:"Senza post-condizioni, il contratto:", o:["È perfetto","Non ha senso scriverlo","Va bene per UC semplici","È più chiaro"], c:[1], m:false, e:"Le post sono il CUORE: senza, il contratto non descrive cosa il sistema garantisce."},
+
+// ===== NUOVI: Architettura e Modello-Vista =====
+{t:"ARCH", q:"Regola d'oro delle dipendenze tra strati:", o:["Verso l'alto","Verso il basso","Bidirezionali","Casuali"], c:[1], m:false, e:"Solo verso il basso: superiore conosce inferiore, mai il contrario."},
+{t:"ARCH", q:"Architettura a strati STRETTA:", o:["Uno strato chiama solo l'immediatamente sottostante","Uno strato chiama ovunque","Non esistono strati","Solo per UI"], c:[0], m:false, e:"Stretta = scaletta rigida. Rilassata = puoi saltare i gradini."},
+{t:"ARCH", q:"Il principio di separazione Modello-Vista vieta:", o:["Tutte le forme di comunicazione UI-dominio","Che gli oggetti di dominio siano direttamente accoppiati a oggetti UI","L'uso del Controller","L'uso di Repository"], c:[1], m:false, e:"Il dominio NON conosce la UI. Observer è l'unica eccezione legittima (via interfaccia)."},
+
+// ===== NUOVI: Stati avanzati =====
+{t:"STATI", q:"Quando si disegna una macchina a stati?", o:["Per ogni classe","Per oggetti state-dependent (comportamento che varia in base allo stato)","Solo per la UI","Solo per il sistema intero"], c:[1], m:false, e:"Macchina a stati ha senso solo per oggetti il cui comportamento cambia con lo stato interno."},
+{t:"STATI", q:"Sintassi corretta di una transizione:", o:["evento [condizione] / azione","stato -> evento -> stato","precondizione -> postcondizione","nome (parametro): tipo"], c:[0], m:false, e:"evento [guardia] / azione. La guardia tra [] è opzionale."},
+{t:"STATI", q:"Stato composito ortogonale:", o:["Ha una sola regione","Ha più regioni concorrenti, ognuna con la propria sotto-macchina","È identico a quello semplice","Non esiste in UML"], c:[1], m:false, e:"Ortogonale = più regioni parallele. Es. uno studente con esami in parallelo a pagamento tasse."},
+
+// ===== NUOVI: TDD avanzato =====
+{t:"TDD", q:"Sequenza corretta del ciclo TDD:", o:["Code → Test → Refactor","Red → Green → Refactor","Test → Refactor → Code","Plan → Do → Check"], c:[1], m:false, e:"RGR: Red (test fallisce) → Green (codice minimo) → Refactor."},
+{t:"TDD", q:"Il refactoring cambia il comportamento esterno?", o:["Sì, sempre","No, solo la struttura interna","Solo in caso di bug","Solo in agile"], c:[1], m:false, e:"Refactoring = struttura interna invariata nel comportamento. Se cambia il comportamento, NON è refactoring."},
+{t:"TDD", q:"Quale tra questi NON è un code smell?", o:["Long method","Duplicated code","High cohesion","Feature envy"], c:[2], m:false, e:"High cohesion è una QUALITÀ desiderata, non un smell. Gli altri sono problemi da risolvere."},
+
+// ===== NUOVI: UML legenda =====
+{t:"UML", q:"Linea continua + triangolo vuoto:", o:["Generalizzazione (ereditarietà)","Realizzazione","Aggregazione","Dipendenza"], c:[0], m:false, e:"Continua + triangolo vuoto = ereditarietà (sottoclasse → superclasse)."},
+{t:"UML", q:"Linea tratteggiata + triangolo vuoto:", o:["Generalizzazione","Realizzazione (classe implementa interfaccia)","Composizione","Associazione"], c:[1], m:false, e:"Tratteggiata + triangolo vuoto = realizzazione (classe → «interface»)."},
+{t:"UML", q:"Il rombo pieno (◆) suggerisce:", o:["Aggregazione","Composizione + Creator GRASP","Generalizzazione","Dipendenza"], c:[1], m:false, e:"Composizione: parte muore col tutto, suggerisce Creator (chi contiene crea)."},
+{t:"UML", q:"Sottolineato in UML significa:", o:["Privato","Static (di classe)","Astratto","Deprecated"], c:[1], m:false, e:"Sottolineato = static. Tipico in Singleton: instance e getInstance() sottolineati."},
 ];
 
 const QUIZ_TOPIC_LABEL = {
@@ -2585,6 +2814,262 @@ function quizUpdateScore() {
 }
 quizBuildFilters();
 quizRender();
+
+// ============= ESAME SIMULATO =============
+let examState = {
+  pool: [],          // domande estratte
+  idx: 0,            // indice corrente
+  answers: [],       // {qi, selected:Set, correct:bool}
+  correct: 0,
+  wrong: 0,
+  selectedCats: new Set(Object.keys(QUIZ_TOPIC_LABEL)), // di default tutte
+  fbMode: 'immediate',
+  finished: false,
+  wrongOnlyMode: false
+};
+
+function examBuildCatGrid() {
+  const grid = document.getElementById('exam-cat-grid');
+  if (!grid) return;
+  const counts = {};
+  QUIZ.forEach(q => counts[q.t] = (counts[q.t]||0)+1);
+  grid.innerHTML = '';
+  QUIZ_TOPIC_ORDER.forEach(t => {
+    if (!counts[t]) return;
+    const lbl = document.createElement('label');
+    lbl.className = 'exam-cat checked';
+    lbl.dataset.t = t;
+    lbl.innerHTML = '<input type="checkbox" checked onchange="examToggleCat(\''+t+'\', this.checked)"> '
+                  + QUIZ_TOPIC_LABEL[t]
+                  + ' <span class="badge">'+counts[t]+'</span>';
+    grid.appendChild(lbl);
+  });
+  examUpdatePoolInfo();
+}
+function examToggleCat(t, on) {
+  if (on) examState.selectedCats.add(t);
+  else examState.selectedCats.delete(t);
+  document.querySelectorAll('.exam-cat').forEach(c => {
+    c.classList.toggle('checked', examState.selectedCats.has(c.dataset.t));
+  });
+  examUpdatePoolInfo();
+}
+function examSelectAllCats(on) {
+  document.querySelectorAll('.exam-cat input').forEach(inp => {
+    inp.checked = on;
+    const t = inp.closest('.exam-cat').dataset.t;
+    if (on) examState.selectedCats.add(t);
+    else examState.selectedCats.delete(t);
+    inp.closest('.exam-cat').classList.toggle('checked', on);
+  });
+  examUpdatePoolInfo();
+}
+function examUpdatePoolInfo() {
+  const pool = QUIZ.filter(q => examState.selectedCats.has(q.t));
+  const info = document.getElementById('exam-pool-info');
+  const btn = document.getElementById('exam-start-btn');
+  if (pool.length === 0) {
+    info.textContent = '⚠️ Nessuna categoria selezionata';
+    info.style.color = 'var(--red)';
+    btn.disabled = true;
+  } else {
+    info.textContent = '📚 Pool disponibile: ' + pool.length + ' domande';
+    info.style.color = 'var(--soft)';
+    btn.disabled = false;
+  }
+}
+function examStart() {
+  let pool = QUIZ.map((q,i)=>({q,i})).filter(x => examState.selectedCats.has(x.q.t));
+  if (!pool.length) return;
+  const n = parseInt(document.getElementById('exam-n').value) || pool.length;
+  examState.fbMode = document.getElementById('exam-fb').value;
+  const order = document.getElementById('exam-order').value;
+  // shuffle del pool
+  for (let i=pool.length-1; i>0; i--) {
+    const j = Math.floor(Math.random()*(i+1));
+    [pool[i], pool[j]] = [pool[j], pool[i]];
+  }
+  const wanted = (n === 0) ? pool.length : Math.min(n, pool.length);
+  let selected = pool.slice(0, wanted);
+  if (order === 'topic') {
+    selected.sort((a,b) => QUIZ_TOPIC_ORDER.indexOf(a.q.t) - QUIZ_TOPIC_ORDER.indexOf(b.q.t));
+  }
+  examState.pool = selected;
+  examState.idx = 0;
+  examState.answers = [];
+  examState.correct = 0;
+  examState.wrong = 0;
+  examState.finished = false;
+  examState.wrongOnlyMode = false;
+  document.getElementById('exam-setup').classList.add('hidden');
+  document.getElementById('exam-results').classList.add('hidden');
+  document.getElementById('exam-live').classList.remove('hidden');
+  examRenderQuestion();
+  // scroll alla sezione
+  document.getElementById('exam-sim').scrollIntoView({behavior:'smooth', block:'start'});
+}
+function examRenderQuestion() {
+  const total = examState.pool.length;
+  const i = examState.idx;
+  const item = examState.pool[i];
+  const q = item.q;
+  document.getElementById('exam-current-num').textContent = (i+1) + ' / ' + total;
+  document.getElementById('exam-qnum').textContent = (i+1);
+  document.getElementById('exam-qtopic').textContent = QUIZ_TOPIC_LABEL[q.t] || q.t;
+  const multi = q.m ? '<span class="multi">(una o più alternative)</span>' : '';
+  document.getElementById('exam-qtext').innerHTML = q.q + ' ' + multi;
+  const opts = document.getElementById('exam-opts');
+  opts.innerHTML = '';
+  const inputType = q.m ? 'checkbox' : 'radio';
+  q.o.forEach((opt, oi) => {
+    const lbl = document.createElement('label');
+    lbl.className = 'exam-opt';
+    lbl.dataset.oi = oi;
+    lbl.innerHTML = '<input type="'+inputType+'" name="exq" '
+                  + 'onchange="examSelectOpt('+oi+', '+q.m+')"> '
+                  + '<span>'+opt+'</span>';
+    opts.appendChild(lbl);
+  });
+  document.getElementById('exam-feedback').className = 'exam-feedback';
+  document.getElementById('exam-feedback').innerHTML = '';
+  document.getElementById('exam-next-btn').textContent = 'Conferma →';
+  document.getElementById('exam-next-btn').dataset.phase = 'answer';
+  examState._currentSel = new Set();
+  examUpdateProgress();
+}
+function examSelectOpt(oi, multi) {
+  if (document.getElementById('exam-next-btn').dataset.phase !== 'answer') return;
+  if (!examState._currentSel) examState._currentSel = new Set();
+  if (multi) {
+    if (examState._currentSel.has(oi)) examState._currentSel.delete(oi);
+    else examState._currentSel.add(oi);
+  } else {
+    examState._currentSel = new Set([oi]);
+  }
+  document.querySelectorAll('.exam-opt').forEach(lbl => {
+    lbl.classList.toggle('selected', examState._currentSel.has(parseInt(lbl.dataset.oi)));
+  });
+}
+function examUpdateProgress() {
+  const total = examState.pool.length;
+  const done = examState.idx;
+  const pct = total ? Math.round(done/total*100) : 0;
+  document.getElementById('exam-progress-fill').style.width = pct + '%';
+  document.getElementById('exam-correct').textContent = examState.correct;
+  document.getElementById('exam-wrong').textContent = examState.wrong;
+}
+function examNext() {
+  const btn = document.getElementById('exam-next-btn');
+  if (btn.dataset.phase === 'answer') {
+    // verifica e mostra feedback
+    const item = examState.pool[examState.idx];
+    const q = item.q;
+    const userSel = examState._currentSel || new Set();
+    const correctSet = new Set(q.c);
+    let isCorrect = userSel.size === correctSet.size;
+    if (isCorrect) userSel.forEach(v => { if (!correctSet.has(v)) isCorrect = false; });
+    examState.answers.push({qi: item.i, q: q, selected: userSel, correct: isCorrect});
+    if (isCorrect) examState.correct++; else examState.wrong++;
+    if (examState.fbMode === 'immediate') {
+      // mostra opzioni colorate + spiegazione
+      document.querySelectorAll('.exam-opt').forEach(lbl => {
+        const oi = parseInt(lbl.dataset.oi);
+        const sel = userSel.has(oi);
+        const isC = correctSet.has(oi);
+        lbl.classList.remove('selected');
+        if (sel && isC) lbl.classList.add('correct-shown');
+        else if (sel && !isC) lbl.classList.add('wrong-shown');
+        else if (!sel && isC) lbl.classList.add('missed-shown');
+      });
+      const fb = document.getElementById('exam-feedback');
+      fb.className = 'exam-feedback ' + (isCorrect ? 'ok' : 'bad');
+      fb.innerHTML = (isCorrect ? '<b>✅ Corretta!</b>' : '<b>❌ Sbagliata.</b>') + (q.e || '');
+      btn.dataset.phase = 'next';
+      btn.textContent = (examState.idx + 1 >= examState.pool.length) ? 'Mostra risultati →' : 'Prossima →';
+    } else {
+      // feedback alla fine: salta direttamente alla prossima
+      examState.idx++;
+      examUpdateProgress();
+      if (examState.idx >= examState.pool.length) examShowResults();
+      else examRenderQuestion();
+    }
+  } else {
+    // phase = next: vai alla prossima domanda
+    examState.idx++;
+    examUpdateProgress();
+    if (examState.idx >= examState.pool.length) examShowResults();
+    else examRenderQuestion();
+  }
+}
+function examShowResults() {
+  examState.finished = true;
+  document.getElementById('exam-live').classList.add('hidden');
+  document.getElementById('exam-results').classList.remove('hidden');
+  const tot = examState.answers.length;
+  const ok = examState.correct;
+  const pct = tot ? Math.round(ok/tot*100) : 0;
+  const big = document.getElementById('exam-result-big');
+  big.textContent = ok + '/' + tot;
+  big.className = 'exam-score-big ' + (pct >= 75 ? 'ok' : (pct >= 50 ? 'mid' : 'bad'));
+  document.getElementById('exam-result-pct').textContent = pct + '%';
+  const msg = document.getElementById('exam-result-msg');
+  if (pct >= 90) msg.textContent = '🌟 Sei pronto! Performance da esame.';
+  else if (pct >= 75) msg.textContent = '✅ Buono. Rivedi quelle sbagliate.';
+  else if (pct >= 50) msg.textContent = '⚠️ Insufficienza al limite. Ripassa i topic deboli.';
+  else msg.textContent = '🔴 Da rivedere. Concentrati sui topic deboli.';
+  // breakdown per topic
+  const byTopic = {};
+  examState.answers.forEach(a => {
+    const t = a.q.t;
+    if (!byTopic[t]) byTopic[t] = {ok:0, tot:0};
+    byTopic[t].tot++;
+    if (a.correct) byTopic[t].ok++;
+  });
+  const breakdown = document.getElementById('exam-result-topics');
+  breakdown.innerHTML = '';
+  Object.keys(byTopic).sort((a,b) => {
+    const pa = byTopic[a].ok / byTopic[a].tot;
+    const pb = byTopic[b].ok / byTopic[b].tot;
+    return pa - pb; // peggiori primi
+  }).forEach(t => {
+    const tb = byTopic[t];
+    const p = Math.round(tb.ok/tb.tot*100);
+    const cls = p >= 75 ? 'ok' : (p >= 50 ? 'mid' : 'bad');
+    const row = document.createElement('div');
+    row.className = 'exam-topic-row ' + cls;
+    row.innerHTML = '<span class="name">'+(QUIZ_TOPIC_LABEL[t]||t)+'</span>'
+                  + '<div class="bar-bg"><div class="bar-fill" style="width:'+p+'%"></div></div>'
+                  + '<span class="pct">'+tb.ok+'/'+tb.tot+' ('+p+'%)</span>';
+    breakdown.appendChild(row);
+  });
+  document.getElementById('exam-sim').scrollIntoView({behavior:'smooth', block:'start'});
+}
+function examRestart() {
+  document.getElementById('exam-results').classList.add('hidden');
+  document.getElementById('exam-setup').classList.remove('hidden');
+  document.getElementById('exam-sim').scrollIntoView({behavior:'smooth', block:'start'});
+}
+function examReviewWrong() {
+  const wrongs = examState.answers.filter(a => !a.correct).map(a => ({q: a.q, i: a.qi}));
+  if (!wrongs.length) { alert('🎉 Nessuna sbagliata! Sei a posto.'); return; }
+  // riusa stesso flusso ma con solo sbagliate
+  examState.pool = wrongs;
+  examState.idx = 0;
+  examState.answers = [];
+  examState.correct = 0;
+  examState.wrong = 0;
+  examState.finished = false;
+  examState.wrongOnlyMode = true;
+  document.getElementById('exam-results').classList.add('hidden');
+  document.getElementById('exam-live').classList.remove('hidden');
+  examRenderQuestion();
+}
+function examAbort() {
+  if (confirm('Terminare l\'esame ora? Vedrai i risultati parziali.')) {
+    examShowResults();
+  }
+}
+examBuildCatGrid();
 
 function buildFilters() {
   const cont = document.getElementById('topic-filters');
