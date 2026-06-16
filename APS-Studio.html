@@ -3087,6 +3087,126 @@ const QUIZ = [
 {t:"UML", q:"Trappola: verso del triangolo di ereditarietà?", o:["Verso la sottoclasse","Sempre verso il padre (superclasse o interfaccia)","Bidirezionale","Senza verso"], c:[1], m:false, e:"⚠️ Verso il padre, sempre."},
 {t:"STATI", q:"Trappola: macchina a stati per quale classe?", o:["Sempre per tutte","Solo per oggetti state-dependent","Solo per Singleton","Mai"], c:[1], m:false, e:"⚠️ Solo per state-dependent. Se l'oggetto non cambia comportamento, niente macchina."},
 {t:"GoF", q:"Trappola: il cuore del Composite è...?", o:["Il Singleton","La freccia 0..* da Composite a Component","Solo Leaf","Solo Client"], c:[1], m:false, e:"⚠️ Senza la 0..*, NON è Composite."},
+
+// ===== BATCH 5: scenari pratici, applicazioni, multi-choice, gerarchie =====
+
+// PROC
+{t:"PROC", q:"In SCRUM, l'incremento è:", o:["Un bug","La somma di tutti gli elementi del Product Backlog completati nello sprint + precedenti","Solo un test","Una versione cascata"], c:[1], m:false, e:"Incremento SCRUM = lavoro completato sommato a tutti gli incrementi precedenti."},
+{t:"PROC", q:"\"Pillole\" SCRUM (eventi) sono:", o:["Sprint, Sprint Planning, Daily, Sprint Review, Retrospective","Solo Daily","Solo Sprint","Solo Retrospective"], c:[0], m:false, e:"5 eventi SCRUM: lo sprint stesso + 4 incontri formali."},
+{t:"PROC", q:"\"Artefatti\" SCRUM sono:", o:["Product Backlog, Sprint Backlog, Incremento","Solo il codice","Solo il backlog","Solo i bug"], c:[0], m:false, e:"3 artefatti SCRUM."},
+{t:"PROC", q:"\"User story\" è:", o:["Un test","Una breve descrizione di una funzionalità dal punto di vista dell'utente","Solo per UI","Un evento"], c:[1], m:false, e:"\"Come [ruolo], voglio [feature] per [beneficio]\"."},
+{t:"PROC", q:"Quale tra questi è una tipica metrica agile?", o:["Velocity","Burn-down","Cycle time","Tutti i precedenti"], c:[3], m:false, e:"Tutti e 3 sono metriche agili tipiche."},
+
+// UP
+{t:"UP", q:"Disciplina di UP per attività di analisi/progettazione:", o:["Configuration & Change Management","Analysis & Design","Test","Environment"], c:[1], m:false, e:"Analysis & Design = disciplina che include analisi OO e progettazione."},
+{t:"UP", q:"Disciplina di UP per la gestione delle versioni:", o:["Test","Configuration & Change Management","Project Management","Requirements"], c:[1], m:false, e:"CCM: versionamento, baseline, controllo modifiche."},
+{t:"UP", q:"Disciplina UP per ambienti/strumenti di sviluppo:", o:["Environment","Test","Deployment","Business Modeling"], c:[0], m:false, e:"Environment: configurazione tool, ambienti, infrastruttura."},
+{t:"UP", q:"\"Phase Plan\" in UP è:", o:["Mai usato","Pianificazione di alto livello delle 4 fasi","Solo per Costruzione","Solo per Transizione"], c:[1], m:false, e:"Phase plan: vista d'insieme delle fasi e milestone."},
+{t:"UP", q:"\"Iteration Plan\" in UP è:", o:["Pianificazione di dettaglio di una singola iterazione","Solo per la prima","Mai","Per i bug"], c:[0], m:false, e:"Iteration plan: cosa fare in QUESTA iterazione."},
+
+// REQ
+{t:"REQ", q:"Una user story tipica include:", o:["Codice completo","\"Come X voglio Y per Z\"","Solo bug","Solo UI"], c:[1], m:false, e:"Formato user story: Ruolo, feature, beneficio."},
+{t:"REQ", q:"\"Acceptance criteria\":", o:["Sono opzionali","Definiscono quando una user story è \"done\"","Solo Singleton","Solo per UI"], c:[1], m:false, e:"AC: criteri per dichiarare la story completa."},
+{t:"REQ", q:"Esempio classico di requisito non funzionale di SICUREZZA:", o:["Login","Cifratura dei dati sensibili","Email","Lista"], c:[1], m:false, e:"Sicurezza/cifratura = non funzionale."},
+{t:"REQ", q:"Esempio di requisito non funzionale di USABILITÀ:", o:["L'utente preme un bottone","Il sistema deve essere usabile da utenti con disabilità motorie (WCAG)","Solo per dev","Niente"], c:[1], m:false, e:"Usabilità = qualità → non funzionale."},
+
+// UC
+{t:"UC", q:"Quando si scrive \"il sistema deve\" in un UC?", o:["Sempre","Quando si descrive l'azione del sistema in risposta","Solo per Singleton","Mai"], c:[1], m:false, e:"Pattern: \"L'attore fa X\" → \"Il sistema fa Y\"."},
+{t:"UC", q:"Un UC mal scritto fa l'errore:", o:["Descrive UI di dettaglio prematuramente","Solo bug","Solo successo","Niente"], c:[0], m:false, e:"Errore: descrivere UI/tecnologia in essenziale. Usa formato reale per quello."},
+{t:"UC", q:"Quanti UC tipici ha un sistema medio-piccolo?", o:["1","10-30","100000","Mai più di 5"], c:[1], m:false, e:"Sistema medio-piccolo: 10-30 UC. Sistemi grandi possono averne centinaia."},
+
+// DOM
+{t:"DOM", q:"\"Codice fiscale\" come attributo di Cliente:", o:["Una classe","Un attributo (tipo string)","Sempre Singleton","Solo astratto"], c:[1], m:false, e:"Codice fiscale = stringa → attributo."},
+{t:"DOM", q:"\"Indirizzo\" può essere:", o:["Solo string","String oppure classe se ha struttura (via, città, CAP, paese)","Solo Singleton","Solo astratto"], c:[1], m:false, e:"Dipende: se ha struttura ricca, classe; se è solo una stringa, attributo."},
+{t:"DOM", q:"\"Categoria prodotto\" può essere:", o:["Attributo enum","Classe se gerarchica/dinamica","Entrambi (dipende dal contesto)","Niente"], c:[2], m:false, e:"Dipende dai requisiti. Se solo 3-4 valori, enum. Se dinamica con sottocategorie, classe."},
+{t:"DOM", q:"Vincoli di unicità nel modello di dominio si scrivono:", o:["Come metodo","Come note UML o vincoli OCL","Mai","Solo nel codice"], c:[1], m:false, e:"Nota o vincolo OCL: \"{unique}\", \"{key}\"."},
+
+// SSD/CONTR
+{t:"SSD", q:"In NEED-A-BREAK?, lo scenario \"Vendi Cialde\" ha quanti SSD?", o:["0","Almeno 1 (per scenario principale)","Sempre 10","Solo per bug"], c:[1], m:false, e:"Almeno 1 per scenario principale. Possibili extra per alternativi."},
+{t:"CONTR", q:"Una post-cond \"Magazzino.stato aggiornato\" è di tipo:", o:["Creazione","Modifica di attributo","Associazione","Distruzione"], c:[1], m:false, e:"Modifica di attributo (stato cambia valore)."},
+{t:"CONTR", q:"\"Pre: scatole disponibili in magazzino\" è una:", o:["Post","Pre-cond","Trigger","Niente"], c:[1], m:false, e:"Stato richiesto PRIMA: pre-condizione."},
+
+// ARCH
+{t:"ARCH", q:"Hexagonal Architecture (ports & adapters) è una variante:", o:["Di cascata","Layered con dominio al centro e adapter esterni","Sempre rigida","Solo UI"], c:[1], m:false, e:"Hexagonal: dominio al centro, adapter per UI/DB/API agli esterni."},
+{t:"ARCH", q:"In layering pulito, il dominio NON dovrebbe:", o:["Avere business logic","Importare framework di UI o ORM","Avere classi","Niente"], c:[1], m:false, e:"Dominio = puro, non importa framework esterni."},
+{t:"ARCH", q:"DTO (Data Transfer Object) sta in quale strato?", o:["Solo dominio","Tipicamente nello strato applicazione/presentazione (interfaccia tra livelli)","Solo persistenza","Niente"], c:[1], m:false, e:"DTO: oggetto per trasferire dati tra strati (es. UI ↔ application)."},
+
+// INTERAZ
+{t:"INTERAZ", q:"Un asynchronous message in SD:", o:["Sincrono","Freccia con coda aperta (>)","Solo testuale","Niente"], c:[1], m:false, e:"Asincrono: freccia con coda \"aperta\" (>)."},
+{t:"INTERAZ", q:"Self-message in SD si rappresenta come:", o:["Freccia ad arco che torna sulla stessa lifeline","Niente","Solo testo","Sempre tratteggiato"], c:[0], m:false, e:"Self-message: arco che esce e rientra sulla stessa lifeline."},
+{t:"INTERAZ", q:"\"Activation bar\" è:", o:["La barra verticale che indica il periodo attivo dell'oggetto","Solo per Singleton","Niente","Solo per Composite"], c:[0], m:false, e:"Barra rettangolare = focus di controllo / activation."},
+
+// GRASP
+{t:"GRASP", q:"In NEED-A-BREAK?, chi calcola il ricavo totale di una Vendita?", o:["Il Magazzino","La Vendita stessa (Information Expert)","Il Controller","Il database"], c:[1], m:false, e:"Vendita ha le scatole vendute → calcola il totale (Expert)."},
+{t:"GRASP", q:"In NEED-A-BREAK?, chi crea la Fattura?", o:["Il Cliente","La Vendita (composizione Vendita◆Fattura → Creator)","Il Singleton","La UI"], c:[1], m:false, e:"Vendita contiene Fattura (composizione) → Vendita la crea (Creator)."},
+{t:"GRASP", q:"In NEED-A-BREAK?, chi verifica la disponibilità di scatole?", o:["La UI","Il Magazzino (Information Expert, ha le scatole)","Il database direttamente","Il Cliente"], c:[1], m:false, e:"Il Magazzino ha la collezione delle scatole → fa lui il check (Expert)."},
+{t:"GRASP", q:"Quando uso Polymorphism + Strategy nei pagamenti?", o:["Mai","Quando il tipo di cliente determina le modalità di pagamento ammesse (Standard solo contanti/carta, Premium anche credito)","Solo per Singleton","Solo per Composite"], c:[1], m:false, e:"Politiche di pagamento per tipo cliente → Polymorphism (GRASP) + Strategy (GoF)."},
+{t:"GRASP", q:"Per gestire il Singleton del DB connection, quale GRASP è alla base?", o:["Solo Information Expert","Indirection + Pure Fabrication","Solo Creator","Solo Composite"], c:[1], m:false, e:"DB Pool/Connection = Pure Fabrication + Indirection."},
+
+// GoF
+{t:"GoF", q:"In NEED-A-BREAK?, per gestire pagamenti per tipologia cliente uso:", o:["Singleton","Strategy (politiche intercambiabili)","Composite","Adapter"], c:[1], m:false, e:"Strategy: politiche di pagamento per tipo cliente."},
+{t:"GoF", q:"In GYM-FIT, per il limite prenotazioni per tipo socio uso:", o:["Strategy o Polymorphism (politiche di limite intercambiabili)","Singleton","Composite","Adapter"], c:[0], m:false, e:"Strategy/Polymorphism: limite per Standard=1, Premium=3, VIP=∞."},
+{t:"GoF", q:"Per integrare un servizio di pagamenti esterno (Stripe) uso:", o:["Adapter","Singleton","Composite","Strategy"], c:[0], m:false, e:"Servizio esterno con API diversa → Adapter (traduco l'interfaccia)."},
+{t:"GoF", q:"Per mandare notifiche a più sistemi al cambio stato di un Ordine uso:", o:["Singleton","Observer (Publisher/Subscriber)","Composite","Adapter"], c:[1], m:false, e:"Cambio stato → notifica più sistemi → Observer."},
+{t:"GoF", q:"Per modellare un menu gerarchico (voci dentro voci) uso:", o:["Composite","Strategy","Adapter","Singleton"], c:[0], m:false, e:"Struttura ad albero ricorsiva → Composite."},
+{t:"GoF", q:"Per un'API \"facile\" verso un sottosistema con 10 classi uso:", o:["Singleton","Facade","Strategy","Composite"], c:[1], m:false, e:"Semplificare sottosistema complesso → Facade."},
+{t:"GoF", q:"Per garantire UN solo DB pool globalmente uso:", o:["Singleton (1 istanza globale)","Composite","Adapter","Observer"], c:[0], m:false, e:"Una sola istanza globale → Singleton."},
+{t:"GoF", q:"Per creare diversi tipi di oggetti dipendentemente da una configurazione uso:", o:["Factory","Composite","Observer","Strategy"], c:[0], m:false, e:"Creazione di tipi diversi su input → Factory."},
+
+// UML
+{t:"UML", q:"Quale tra questi è uno STEREOTIPO UML?", o:["«interface»","«abstract»","«Controller»","Tutti i precedenti"], c:[3], m:false, e:"Stereotipo: «...» qualsiasi etichetta. Anche custom come «Controller»."},
+{t:"UML", q:"Una classe con stereotipo «entity» suggerisce:", o:["Niente","Una classe di dominio persistente (pattern enterprise)","Solo UI","Solo Singleton"], c:[1], m:false, e:"«entity»: pattern enterprise, classe di dominio persistente."},
+{t:"UML", q:"Una nota legata a un metodo serve a:", o:["Cancellarlo","Commentare/specificare contratto (es. body, pre/post)","Eliminarlo","Solo UI"], c:[1], m:false, e:"Nota: specifica body, vincoli, contratti, commenti."},
+
+// CLASSI
+{t:"CLASSI", q:"Quando un metodo ritorna un'istanza creata internamente:", o:["È una Factory method","È sempre Singleton","È un test","Niente"], c:[0], m:false, e:"Factory method: ritorna oggetto creato internamente, tipo dichiarato è l'interfaccia."},
+{t:"CLASSI", q:"\"Public + getName(): string\" descrive un:", o:["Attributo","Metodo getter pubblico che ritorna stringa","Costruttore","Singleton"], c:[1], m:false, e:"Getter pubblico, return string."},
+{t:"CLASSI", q:"Un metodo \"setStrategia(s: Strategia): void\" è un:", o:["Getter","Setter (riceve, modifica stato, non torna nulla)","Costruttore","Distruttore"], c:[1], m:false, e:"Setter: setX(value): void."},
+
+// STATI
+{t:"STATI", q:"\"composite state\" in UML è:", o:["Uno stato che contiene una o più sotto-macchine","Solo stato iniziale","Solo finale","Mai usato"], c:[0], m:false, e:"Composite state: contiene altri stati (annidamento)."},
+{t:"STATI", q:"Una macchina a stati di base ha:", o:["Solo uno stato","Almeno uno stato iniziale, uno o più stati, transizioni","Solo composito","Niente"], c:[1], m:false, e:"Componenti base: stato iniziale, stati, transizioni, eventualmente finale."},
+{t:"STATI", q:"\"Transition action\" si esegue:", o:["Prima della transizione","Mentre la transizione avviene (in mezzo, atomicamente)","Solo per fork","Niente"], c:[1], m:false, e:"Action della transizione: eseguita atomicamente durante la transizione."},
+
+// ATTIV
+{t:"ATTIV", q:"\"Decision node\" in attività si rappresenta come:", o:["Cerchio","Rombo con guardia sui rami in uscita","Triangolo","Quadrato"], c:[1], m:false, e:"Rombo + guardie [cond] sui rami → decisione."},
+{t:"ATTIV", q:"\"Action\" in attività è:", o:["Solo per Singleton","Unità atomica di lavoro","Solo decorazione","Niente"], c:[1], m:false, e:"Action: passo atomico di lavoro nell'attività."},
+
+// TDD
+{t:"TDD", q:"\"Red\" nel ciclo TDD significa:", o:["Test passa","Test FALLISCE (non c'è ancora il codice)","Solo bug","Niente"], c:[1], m:false, e:"Red: scrivi test, fallisce perché il codice non esiste."},
+{t:"TDD", q:"\"Green\" nel ciclo TDD significa:", o:["Solo bug","Test passa con il codice minimo possibile","Niente test","Solo refactoring"], c:[1], m:false, e:"Green: scrivi codice minimo che fa passare il test."},
+{t:"TDD", q:"\"Refactor\" nel ciclo TDD significa:", o:["Aggiungere bug","Migliorare la struttura interna mantenendo i test verdi","Cancellare i test","Solo per UI"], c:[1], m:false, e:"Refactor: ripulisci codice, test rimangono verdi."},
+{t:"TDD", q:"Pratiche XP correlate al TDD:", o:["Pair programming","Continuous integration","Refactoring continuo","Tutti i precedenti"], c:[3], m:false, e:"XP: TDD, pair programming, CI, refactoring sono tutti correlati."},
+{t:"TDD", q:"Vantaggio principale della TDD:", o:["Solo coverage","Design migliore (testabilità) + sicurezza per refactoring","Solo bug","Niente"], c:[1], m:false, e:"TDD: codice testabile + rete per refactoring."},
+
+// Cross + tipiche d'esame
+{t:"GRASP", q:"Quale GRASP risolve \"chi gestisce un evento dalla UI?\"", o:["Information Expert","Creator","Controller","Singleton"], c:[2], m:false, e:"Controller GRASP."},
+{t:"GRASP", q:"Quale GRASP risolve \"chi crea istanze?\"", o:["Information Expert","Creator","Controller","Singleton"], c:[1], m:false, e:"Creator GRASP."},
+{t:"GRASP", q:"Quale GRASP risolve \"a chi assegnare una responsabilità che richiede dati X?\"", o:["Information Expert","Creator","Controller","Singleton"], c:[0], m:false, e:"Information Expert GRASP."},
+{t:"GRASP", q:"Quale GRASP risolve \"come gestire varianti per tipo?\"", o:["Polymorphism","Indirection","Pure Fabrication","Controller"], c:[0], m:false, e:"Polymorphism GRASP."},
+{t:"GRASP", q:"Quale GRASP risolve \"a chi dare la responsabilità se Expert produce mostri?\"", o:["Pure Fabrication","Controller","Information Expert","Composite"], c:[0], m:false, e:"Pure Fabrication."},
+{t:"GoF", q:"Quale GoF risolve \"vari algoritmi intercambiabili\"?", o:["Strategy","Singleton","Composite","Adapter"], c:[0], m:false, e:"Strategy GoF."},
+{t:"GoF", q:"Quale GoF risolve \"trattare foglia e composto allo stesso modo\"?", o:["Composite","Strategy","Facade","Adapter"], c:[0], m:false, e:"Composite GoF."},
+{t:"GoF", q:"Quale GoF risolve \"semplificare interfaccia complessa\"?", o:["Facade","Strategy","Composite","Singleton"], c:[0], m:false, e:"Facade GoF."},
+{t:"GoF", q:"Quale GoF risolve \"notificare osservatori\"?", o:["Observer","Singleton","Composite","Adapter"], c:[0], m:false, e:"Observer GoF."},
+{t:"GoF", q:"Quale GoF risolve \"tradurre interfacce incompatibili\"?", o:["Adapter","Strategy","Facade","Composite"], c:[0], m:false, e:"Adapter GoF."},
+{t:"GoF", q:"Quale GoF risolve \"creare oggetti senza esporre la classe concreta\"?", o:["Factory","Strategy","Composite","Adapter"], c:[0], m:false, e:"Factory GoF."},
+{t:"GoF", q:"Quale GoF risolve \"una sola istanza globale\"?", o:["Singleton","Factory","Strategy","Adapter"], c:[0], m:false, e:"Singleton GoF."},
+
+// Trappole + casi limite
+{t:"DOM", q:"Trappola: mettere \"Repository\" nel modello di dominio?", o:["Sì, sempre","NO, Repository è classe tecnica (Pure Fabrication), non di dominio","Solo se Singleton","Solo se Adapter"], c:[1], m:false, e:"Repository = classe software, NON di dominio."},
+{t:"DOM", q:"Trappola: usare int come tipo nel modello di dominio?", o:["Sempre OK","Solo per attributi semplici (codice numerico, quantità); per concetti complessi serve classe","Mai","Solo per Singleton"], c:[1], m:false, e:"Attributi sì tipo semplice. Se è un concetto, classe."},
+{t:"UC", q:"Trappola: descrivere la UI di dettaglio in UC essenziale?", o:["Sempre OK","No, l'essenziale astrae dalla UI","Solo per Singleton","Solo Composite"], c:[1], m:false, e:"UC essenziale: COSA fa, non come (UI di dettaglio è nel formato \"reale\")."},
+{t:"GRASP", q:"Trappola: Controller fa anche la business logic dettagliata?", o:["Sì sempre","No: Controller coordina, DELEGA al dominio per la logica vera","Solo se Singleton","Solo per Composite"], c:[1], m:false, e:"Controller coordina, non gestisce la logica direttamente (low coupling)."},
+{t:"GoF", q:"Trappola: confondere Strategy e State?", o:["Sono uguali","Strategy: client sceglie · State: oggetto cambia da solo in base allo stato","Solo Strategy esiste","Solo State esiste"], c:[1], m:false, e:"Differenza chiave: chi decide il cambio comportamento."},
+{t:"GoF", q:"Trappola: confondere Adapter e Facade?", o:["Sono uguali","Adapter traduce 1↔1 · Facade semplifica N→1","Solo Adapter","Solo Facade"], c:[1], m:false, e:"Adapter: traduzione 1↔1. Facade: semplificazione N→1."},
+{t:"GoF", q:"Trappola: Facade nasconde sempre il sottosistema?", o:["No","Sì: il Client conosce SOLO la Facade","Solo se Singleton","Solo se Composite"], c:[1], m:false, e:"Facade nasconde i dettagli interni al Client."},
+
+// Knowledge "leggere meglio Larman"
+{t:"UC", q:"Larman: l'EBP corrisponde a quale tipo di UC?", o:["Sotto-funzione","Obiettivo utente (livello \"sea\")","Sommario","Niente"], c:[1], m:false, e:"EBP ≡ sea-level ≡ obiettivo utente."},
+{t:"UC", q:"\"Black box use case\" significa:", o:["Solo bug","Si descrive cosa fa il sistema, non come","Solo Singleton","Solo Composite"], c:[1], m:false, e:"Black box: COSA, non COME (scatola nera)."},
+{t:"DOM", q:"Larman: il modello di dominio è \"corretto\"?", o:["Sì sempre","Larman dice: meglio chiedersi se è UTILE","Solo se Singleton","Solo per Composite"], c:[1], m:false, e:"Larman: \"utile\" > \"corretto\" (si raffina iterando)."},
+{t:"GRASP", q:"Larman dice che GRASP è un linguaggio di:", o:["Pattern UI","Comunicazione/ragionamento sui principi di assegnazione","Bug tracking","Test"], c:[1], m:false, e:"GRASP: linguaggio condiviso per ragionare sulle responsabilità."},
 ];
 
 const QUIZ_TOPIC_LABEL = {
