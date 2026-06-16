@@ -2983,6 +2983,110 @@ const QUIZ = [
 {t:"PROC", q:"\"UP è agile\" è:", o:["Sempre vero","Sempre falso","UP può essere applicato in modo agile (alleggerendo elaborati)","Solo se Singleton"], c:[2], m:false, e:"UP e agile sono ortogonali; UP può essere applicato in modo agile."},
 {t:"PROC", q:"Quanti livelli concettuali ci sono nella mappa dei processi?", o:["1","2","3 (concetto generale · modelli · cose concrete)","100"], c:[2], m:false, e:"3 livelli: processo (generale), modello di organizzazione (cascata/iterativo), cose concrete (UP, agile, SCRUM)."},
 {t:"PROC", q:"Quale tra queste vivono allo STESSO livello concettuale?", o:["UP e Agile","UP e SCRUM (entrambi processi concreti)","Cascata e SCRUM","Iterativo e Cascata"], c:[1], m:false, e:"UP e SCRUM sono entrambi processi concreti (anche se filosofie diverse)."},
+
+// ===== BATCH 4: ulteriore copertura, scenari, esempi del gestionale =====
+
+// PROC ulteriori
+{t:"PROC", q:"Cosa rende l'iterativo \"evolutivo\"?", o:["Le iterazioni non sono pianificate","Ogni release evolve in base al feedback delle precedenti","Si rifà tutto da zero","Non si testa"], c:[1], m:false, e:"Evolutivo = il prodotto evolve in base al feedback, non si pianifica tutto a priori."},
+{t:"PROC", q:"In agile, il valore principale è:", o:["Documentazione esaustiva","Software funzionante che genera valore per il cliente","Tempi rigidi","Niente cambio dopo il piano"], c:[1], m:false, e:"Agile mette al centro il valore per il cliente, non i processi."},
+{t:"PROC", q:"Una \"definition of done\" in SCRUM è:", o:["Un test specifico","Una checklist condivisa di criteri che definiscono \"completo\"","Solo per il PM","Una metrica"], c:[1], m:false, e:"DoD: criteri condivisi (test, code review, documentazione) per dire \"fatto\"."},
+{t:"PROC", q:"Quando si pianificano gli sprint in SCRUM?", o:["Solo all'inizio del progetto","All'inizio di ogni sprint (sprint planning)","Mai","Solo a fine progetto"], c:[1], m:false, e:"Sprint planning a inizio sprint."},
+{t:"PROC", q:"Tipica durata di uno sprint:", o:["1 giorno","2-4 settimane","6-12 mesi","Solo 1 ora"], c:[1], m:false, e:"Sprint: 2-4 settimane, time-boxed."},
+{t:"PROC", q:"Quale tra questi NON è valore agile?", o:["Software funzionante","Documentazione esaustiva","Individui e interazioni","Risposta al cambiamento"], c:[1], m:false, e:"Documentazione esaustiva = ANTI-valore (è quello che agile sacrifica)."},
+{t:"PROC", q:"\"Risposta al cambiamento sopra seguire un piano\" significa:", o:["Mai pianificare","Pianificare ma essere pronti a cambiare","Sempre cambiare","Solo per startup"], c:[1], m:false, e:"Pianificare sì, ma adattare al cambiamento dei requisiti."},
+
+// UP ulteriori
+{t:"UP", q:"\"Modello dei test\" in UP è:", o:["Solo un test unitario","L'insieme di artefatti che descrivono come e cosa testare","Sempre vuoto","Mai esistito"], c:[1], m:false, e:"Modello dei test in UP raccoglie i test case e l'architettura di testing."},
+{t:"UP", q:"In UP, il \"caso d'uso reale\" vs \"essenziale\":", o:["Sinonimi","Essenziale: che cosa fa il sistema; Reale: con UI e tecnologia","Solo reale esiste","Solo essenziale esiste"], c:[1], m:false, e:"Essenziale ignora UI/tecnologia; reale include dettagli concreti."},
+{t:"UP", q:"Risk-driven development in UP significa:", o:["Mai testare","Attaccare prima i rischi maggiori (architetturali) nelle prime iterazioni","Eliminare ogni rischio","Solo nel marketing"], c:[1], m:false, e:"UP è guidato dal rischio: rischi maggiori → prime iterazioni."},
+{t:"UP", q:"\"Architecturally significant requirements\" sono:", o:["Tutti i requisiti","Quelli che impattano l'architettura: vanno indirizzati in Elaborazione","Solo quelli non funzionali","Solo i bug"], c:[1], m:false, e:"Requisiti architetturalmente significativi vanno trattati prima (Elaborazione)."},
+
+// UC ulteriori
+{t:"UC", q:"Un caso d'uso descrive:", o:["Solo il codice","Una sequenza di interazioni tra attori e sistema per un obiettivo","Solo il database","Solo i bug"], c:[1], m:false, e:"UC: storia attore↔sistema per un obiettivo."},
+{t:"UC", q:"Il \"livello di mare\" (sea-level) corrisponde a:", o:["Sommario","Obiettivo utente","Sotto-funzione","Niente"], c:[1], m:false, e:"Larman: \"sea-level\" = obiettivo utente."},
+{t:"UC", q:"Il \"livello cervo volante\" (kite) corrisponde a:", o:["Obiettivo utente","Sommario (vista più ampia)","Sotto-funzione","Test"], c:[1], m:false, e:"Kite = sommario, obiettivi più ampi."},
+{t:"UC", q:"Il \"livello pesce\" (fish) corrisponde a:", o:["Obiettivo utente","Sotto-funzione (sotto il mare)","Sommario","Niente"], c:[1], m:false, e:"Fish = sotto-funzione, sotto il livello del mare."},
+{t:"UC", q:"\"Stakeholder\" in UC è:", o:["Solo il PM","Chiunque abbia interesse nel sistema o nell'esito","Solo il dev","Solo il cliente"], c:[1], m:false, e:"Stakeholder: tutti gli interessati al sistema/esito (utenti, cliente, regolatori, ecc.)."},
+{t:"UC", q:"Per scrivere un UC, l'ordine giusto è:", o:["Confini → Attori → Obiettivi → Nome","Solo Nome","Solo Codice","Solo Test"], c:[0], m:false, e:"CAON: Confini, Attori, Obiettivi, Nome."},
+{t:"UC", q:"Un UC deve essere scritto in:", o:["Linguaggio naturale comprensibile al cliente","Solo codice","Solo gergo tecnico","Solo UML"], c:[0], m:false, e:"UC: linguaggio naturale, comprensibile a tutti gli stakeholder."},
+
+// DOM ulteriori
+{t:"DOM", q:"Quale tra questi è la classe del dominio MENO appropriata?", o:["Cliente","Ordine","Prodotto","DAOFactory"], c:[3], m:false, e:"DAOFactory è classe tecnica/software, NON di dominio."},
+{t:"DOM", q:"\"Catalogo prodotti\" può essere:", o:["Solo un attributo","Una classe del dominio (concetto del business)","Solo un metodo","Solo Singleton"], c:[1], m:false, e:"Catalogo = concetto del business → classe del dominio."},
+{t:"DOM", q:"Quanti modelli di dominio si fanno per progetto?", o:["1 per ogni iterazione che lo arricchisce","Sempre 1 al primo giorno","100","Mai"], c:[0], m:false, e:"In UP iterativo, il modello evolve iterazione per iterazione."},
+{t:"DOM", q:"\"Quantità venduta\" in un Ordine è tipicamente:", o:["Classe","Attributo numerico","Solo Singleton","Solo astratto"], c:[1], m:false, e:"Quantità = attributo semplice numerico."},
+{t:"DOM", q:"Un modello di dominio è:", o:["Solo UI mockup","Una rappresentazione visuale dei concetti del problema (analisi)","Solo DB schema","Solo codice"], c:[1], m:false, e:"Modello di dominio: analisi OO, concetti del problema."},
+
+// SSD/Contratti ulteriori
+{t:"SSD", q:"L'SSD precede o segue il modello di dominio?", o:["Sempre precede","Si fanno in parallelo: SSD usa concetti del dominio","Sempre segue","Sono indipendenti"], c:[1], m:false, e:"SSD e dominio si elaborano in parallelo nell'iterazione di Elaborazione."},
+{t:"SSD", q:"Una freccia di ritorno di un'operazione SSD può portare:", o:["Niente","Il valore di ritorno (es. il numero di scontrino)","Solo bool","Solo NULL"], c:[1], m:false, e:"Ritorno: valore tipato (es. \"saleId: int\")."},
+{t:"CONTR", q:"\"Sezione più importante del contratto\" è:", o:["Pre-condizioni","Post-condizioni","Riferimenti","Nome"], c:[1], m:false, e:"Post-condizioni: senza, il contratto è muto."},
+{t:"CONTR", q:"Esempio di post-condizione di tipo \"associazione\":", o:["\"L'utente clicca\"","\"v è stata associata al Cliente c\"","\"DB query SELECT\"","\"Nuovo file creato\""], c:[1], m:false, e:"Formazione di associazione tra istanze esistenti."},
+
+// ARCH/INTERAZ ulteriori
+{t:"ARCH", q:"In una webapp 3 strati, il browser fa parte di:", o:["Dominio","Presentazione (UI)","Persistenza","Niente"], c:[1], m:false, e:"Browser e codice React/HTML = strato presentazione."},
+{t:"ARCH", q:"In una webapp 3 strati, il DB MySQL fa parte di:", o:["Presentazione","Dominio","Persistenza/Servizi tecnici","Marketing"], c:[2], m:false, e:"DB = strato persistenza."},
+{t:"ARCH", q:"Domain Object \"Ordine\" sta in:", o:["UI","Dominio","Persistenza","Nessuno"], c:[1], m:false, e:"Oggetto di dominio (business) = strato dominio."},
+{t:"INTERAZ", q:"\"strict mode\" in un SD:", o:["Stesso degli altri","Modalità dove l'ordine delle interazioni è imposto strettamente","Solo per Strategy","Non esiste"], c:[1], m:false, e:"Strict mode: ordine rigoroso degli eventi (operatore strict)."},
+{t:"INTERAZ", q:"\"seq\" come operatore di interazione:", o:["Loop","Sequenza temporale (default)","Alternative","Niente"], c:[1], m:false, e:"seq = sequenziale (l'ordine vale per messaggi sulla stessa lifeline)."},
+{t:"INTERAZ", q:"\"par\" come operatore di interazione:", o:["Parallel: due flussi in parallelo","Loop","Alternative","Niente"], c:[0], m:false, e:"par = parallelo (più sequenze indipendenti che si possono interfogliare)."},
+
+// GRASP ulteriori
+{t:"GRASP", q:"Information Expert si applica per la responsabilità:", o:["Calcola totale di un Ordine → all'Ordine (ha le righe)","Solo al Singleton","Solo al Controller","Mai"], c:[0], m:false, e:"L'Ordine ha le righe → calcola lui il totale (Expert)."},
+{t:"GRASP", q:"Quale tra questi è esempio di Creator?", o:["Sale crea SalesLineItem","UI crea Domain Object","DB crea oggetti","Singleton crea tutto"], c:[0], m:false, e:"Sale contiene SalesLineItem → Sale è Creator per SalesLineItem."},
+{t:"GRASP", q:"Esempio di Low Coupling:", o:["Una classe che importa 50 altre","Una classe che dipende solo da poche, stabili classi","Singleton globale ovunque","Niente"], c:[1], m:false, e:"Low coupling: dipendenze minime e su elementi stabili."},
+{t:"GRASP", q:"Esempio di High Cohesion:", o:["Classe che fa 50 cose diverse","Classe che ha un solo mestiere chiaro","Sempre Singleton","Sempre static"], c:[1], m:false, e:"High cohesion: classe focalizzata su un mestiere."},
+{t:"GRASP", q:"Tipica trappola con Controller:", o:["Non averlo","Avere UN Controller per TUTTO il sistema (bloated)","Avere uno per ogni UC","Solo Façade"], c:[1], m:false, e:"Trappola: \"god Controller\" che gestisce tutto → bassa coesione."},
+{t:"GRASP", q:"Indirection vs Pure Fabrication: somiglianze?", o:["Sono identici","Spesso un Repository è ENTRAMBI (Indirection + Pure Fabrication)","Mai si combinano","Sono opposti"], c:[1], m:false, e:"Repository = Pure Fabrication (coesione) + Indirection (disaccoppia DB)."},
+{t:"GRASP", q:"PV si applica a:", o:["Solo classi","Punti di variazione (cose che cambieranno) + EVOLUTION POINT (cose che potrebbero cambiare)","Solo Singleton","Solo Composite"], c:[1], m:false, e:"PV protegge variation point e evolution point."},
+
+// GoF ulteriori
+{t:"GoF", q:"Singleton: come si chiama il metodo di accesso?", o:["build()","getInstance()","new()","construct()"], c:[1], m:false, e:"Convenzione: getInstance() static."},
+{t:"GoF", q:"In Strategy, il Context contiene:", o:["Una collezione di strategy","Un riferimento alla strategy corrente","Mai una strategy","Solo Singleton"], c:[1], m:false, e:"Context ha UN riferimento alla strategy correntemente in uso."},
+{t:"GoF", q:"In Composite, chi può avere children?", o:["Tutti","Solo Composite (Leaf no)","Solo Leaf","Solo Singleton"], c:[1], m:false, e:"Solo Composite ha children. Leaf è la foglia atomica."},
+{t:"GoF", q:"Observer: subscribe/unsubscribe sono di:", o:["Solo Subscriber","Solo Publisher (gestisce la lista)","Solo Singleton","Nessuno"], c:[1], m:false, e:"Publisher espone subscribe()/unsubscribe() per gestire i suoi observer."},
+{t:"GoF", q:"Adapter: il Client conosce:", o:["L'Adaptee","Solo l'interfaccia Target","Tutto","Niente"], c:[1], m:false, e:"Client conosce solo Target. L'Adapter realizza Target e nasconde l'Adaptee."},
+{t:"GoF", q:"Singleton: perché è criticato?", o:["È sempre buono","Spesso abusato come variabile globale, accoppia tutto","Non si compila","Solo per UI"], c:[1], m:false, e:"Singleton abusato = high coupling. Va usato con parsimonia."},
+{t:"GoF", q:"Quale combinazione fa Factory + Singleton?", o:["Crea una sola Factory globale","Crea tante Factory","Niente","Solo per Composite"], c:[0], m:false, e:"Factory come Singleton = una sola istanza globale per creare oggetti."},
+
+// UML ulteriori
+{t:"UML", q:"Cosa significa la \"system boundary\" in UC?", o:["Linea che separa la rete da Internet","Il rettangolo che delimita ciò che è dentro il sistema","Il database","Niente"], c:[1], m:false, e:"System boundary: rettangolo che separa attori (fuori) da UC (dentro)."},
+{t:"UML", q:"In un class diagram, un attributo di classe (static) si scrive:", o:["Tra parentesi","Sottolineato","In corsivo","Tra graffe"], c:[1], m:false, e:"Sottolineato = static."},
+{t:"UML", q:"Molteplicità 1..1 si abbrevia:", o:["1","0..*","*","1..*"], c:[0], m:false, e:"1 = 1..1 (esattamente uno)."},
+{t:"UML", q:"In UML, un commento si lega con:", o:["Linea continua","Linea tratteggiata che collega la nota all'elemento","Senza linea","Solo testo libero"], c:[1], m:false, e:"Linea tratteggiata collega nota → elemento commentato."},
+
+// CLASSI ulteriori
+{t:"CLASSI", q:"Una classe astratta può avere:", o:["Solo metodi astratti","Sia metodi astratti che concreti","Solo attributi","Niente"], c:[1], m:false, e:"Classe astratta: può avere mix di astratti e concreti."},
+{t:"CLASSI", q:"Un'interfaccia in UML può avere:", o:["Solo signature di metodi (senza implementazione)","Codice","Solo attributi","Anche Singleton"], c:[0], m:false, e:"Interfaccia: solo signature. Implementazione nelle classi che la realizzano."},
+{t:"CLASSI", q:"\"Visibility\" in UML serve a:", o:["Niente","Indicare l'accessibilità di attributi/metodi dall'esterno","Solo per static","Solo per abstract"], c:[1], m:false, e:"Visibility (+,-,#,~) = accessibilità."},
+
+// STATI ulteriori
+{t:"STATI", q:"\"Final state\" all'interno di uno stato composito:", o:["Termina tutta la macchina","Termina solo la sotto-macchina di quella regione","Niente","Solo per H"], c:[1], m:false, e:"Final state interno: chiude la regione corrente, non l'intera macchina (se ortogonale)."},
+{t:"STATI", q:"\"Self-transition\" è:", o:["Una transizione da uno stato a se stesso","Un'auto-delega","Niente","Solo per Singleton"], c:[0], m:false, e:"Self-transition: torna nello stesso stato (esegue exit e entry)."},
+{t:"STATI", q:"Una macchina a stati di un Ordine può avere stati:", o:["Solo 1","Creato, In lavorazione, Spedito, Consegnato (ad esempio)","Solo 1000","Niente"], c:[1], m:false, e:"Tipico esempio: ciclo di vita dell'Ordine con vari stati."},
+
+// ATTIV ulteriori
+{t:"ATTIV", q:"\"Merge node\" in attività:", o:["Splitting","Unisce più rami alternativi in un singolo punto","Solo per loop","Niente"], c:[1], m:false, e:"Merge: unisce più archi in un singolo flusso (logico OR)."},
+{t:"ATTIV", q:"In un activity diagram, un cerchio nero pieno:", o:["Stato","Initial node (nodo iniziale)","Final","Decisione"], c:[1], m:false, e:"Cerchio nero = nodo iniziale dell'attività."},
+{t:"ATTIV", q:"Un \"object node\" in attività:", o:["Solo decorazione","Contiene dati che fluiscono tra azioni","Sempre Singleton","Solo per UI"], c:[1], m:false, e:"Object node: pila/coda di token-oggetto tra azioni."},
+
+// TDD ulteriori
+{t:"TDD", q:"Test di unità testano:", o:["Più moduli insieme","Una singola classe/metodo in isolamento","L'intera UI","Solo bug"], c:[1], m:false, e:"Unità: una classe/metodo isolato."},
+{t:"TDD", q:"Test E2E testano:", o:["Una funzione","Il sistema dall'inizio alla fine, come un utente reale","Solo bug","Solo performance"], c:[1], m:false, e:"E2E: scenario completo, come un utente reale."},
+{t:"TDD", q:"\"Mock\" o \"stub\" servono a:", o:["Sostituire dipendenze esterne nei test (isolamento)","Niente","Sostituire la UI","Solo per Singleton"], c:[0], m:false, e:"Mock/stub: simulano dipendenze (DB, API) per isolare il test."},
+{t:"TDD", q:"\"Test pyramide\" suggerisce:", o:["Più test E2E che di unità","Più test di UNITÀ alla base, pochi E2E in cima","Solo manuali","Niente"], c:[1], m:false, e:"Test pyramid: tanti unitari (veloci) alla base, pochi E2E (lenti) in cima."},
+{t:"TDD", q:"\"Code coverage\" è:", o:["Una garanzia di qualità","Una % di codice eseguito dai test (utile ma non sufficiente)","Bug counter","Niente"], c:[1], m:false, e:"Coverage = % di codice testato. NON garantisce qualità (puoi avere 100% senza test reali)."},
+
+// Cross-topic & domande del prof tipiche
+{t:"GRASP", q:"Quando il prof chiede \"Introducimi i GRASP\", devi:", o:["Elencare i 23 GoF","Dire \"9 GRASP, 5 base (CILHC) + 4 avanzati (PPIP)\"","Solo Singleton","Niente"], c:[1], m:false, e:"Risposta-tipo: 9 GRASP = 5 base + 4 avanzati. CILHC + PPIP."},
+{t:"GoF", q:"Quando il prof chiede \"Introducimi i GoF\", devi:", o:["Solo Singleton","Dire \"23 totali, divisi 5+7+11; il corso ne approfondisce 7 (2-3-2)\"","Niente","Solo i creazionali"], c:[1], m:false, e:"Risposta-tipo: 23 totali, 5-7-11, corso 7 (2-3-2)."},
+{t:"PROC", q:"\"Introducimi il modello a cascata\" — risposta giusta in 1 frase:", o:["È iterativo","Esecuzione sequenziale rigida delle attività: analisi → progetto → codice → test","È SCRUM","Solo agile"], c:[1], m:false, e:"Cascata = sequenza rigida."},
+{t:"PROC", q:"\"Introducimi UP\" in una frase:", o:["UP = cascata","Processo iterativo, incrementale, evolutivo per software OO; 4 fasi (IECT), 3 caratteristiche (CAI)","Solo SCRUM","Niente"], c:[1], m:false, e:"UP definizione completa: iterativo+incrementale+evolutivo OO, IECT+CAI."},
+{t:"DOM", q:"Trappola del prof: \"calcola totale\" nel modello di dominio?", o:["Si mette come metodo","NON si mette: niente metodi nel dominio (è analisi, non progettazione)","Sempre metodo","Solo per Singleton"], c:[1], m:false, e:"⚠️ TRAPPOLA: niente metodi nel modello di dominio."},
+{t:"GoF", q:"Trappola: \"Factory è un GRASP?\"", o:["Sì","NO, è un GoF (realizza Pure Fabrication GRASP)","Sempre","Mai"], c:[1], m:false, e:"⚠️ TRAPPOLA classica del prof."},
+{t:"UML", q:"Trappola: verso del triangolo di ereditarietà?", o:["Verso la sottoclasse","Sempre verso il padre (superclasse o interfaccia)","Bidirezionale","Senza verso"], c:[1], m:false, e:"⚠️ Verso il padre, sempre."},
+{t:"STATI", q:"Trappola: macchina a stati per quale classe?", o:["Sempre per tutte","Solo per oggetti state-dependent","Solo per Singleton","Mai"], c:[1], m:false, e:"⚠️ Solo per state-dependent. Se l'oggetto non cambia comportamento, niente macchina."},
+{t:"GoF", q:"Trappola: il cuore del Composite è...?", o:["Il Singleton","La freccia 0..* da Composite a Component","Solo Leaf","Solo Client"], c:[1], m:false, e:"⚠️ Senza la 0..*, NON è Composite."},
 ];
 
 const QUIZ_TOPIC_LABEL = {
