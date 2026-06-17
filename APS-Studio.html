@@ -1366,10 +1366,21 @@
     <button class="btn" onclick="quizShuffle()">🔀 Mischia</button>
     <button class="btn" onclick="quizReset()">↻ Reset</button>
     <button class="btn" onclick="quizOnlyWrong()">🔴 Solo sbagliate</button>
-    <button class="btn" id="quiz-check-all-btn" onclick="quizCheckAll()" style="background:var(--green);color:#fff;border-color:var(--green);font-weight:700">✓ Verifica tutto (fine sessione)</button>
+    <label style="display:flex;align-items:center;gap:5px;font-size:.85rem;color:var(--soft);font-weight:600">📦 Sessione da
+      <select id="quiz-batch-size" onchange="quizSetBatchSize(this.value)" style="padding:6px 8px;border-radius:7px;border:1px solid var(--line);background:var(--paper);font-family:inherit;font-size:.88rem">
+        <option value="10">10</option>
+        <option value="20" selected>20</option>
+        <option value="30">30</option>
+        <option value="50">50</option>
+        <option value="0">tutte</option>
+      </select>
+      domande
+    </label>
+    <span id="quiz-batch-info" style="font-weight:600;color:var(--violet);font-size:.85rem"></span>
+    <button class="btn" id="quiz-check-all-btn" onclick="quizCheckAll()" style="background:var(--green);color:#fff;border-color:var(--green);font-weight:700">✓ Verifica sessione</button>
     <span class="score" id="quiz-score">— / —</span>
   </div>
-  <p class="hint" style="margin:0 0 10px;font-size:.82rem;color:var(--soft)">💡 Per non farti influenzare dai risultati: rispondi a tutte le domande senza premere "Verifica risposta", poi clicca <b>✓ Verifica tutto</b> alla fine per il riepilogo completo.</p>
+  <p class="hint" style="margin:0 0 10px;font-size:.82rem;color:var(--soft)">💡 Sessioni da 20 (default) per mantenere ritmo: rispondi a 20 senza verifica singola → <b>✓ Verifica sessione</b> → vedi risultati → <b>Sessione successiva →</b> nel riepilogo.</p>
   <div class="topic-filters" id="quiz-filters"></div>
 
   <!-- Slideshow controls -->
@@ -1392,22 +1403,24 @@
 
   <p class="hint" style="text-align:center;margin-top:14px">💡 Una domanda alla volta. Rispondi, premi <b>✓ Verifica</b>, leggi la spiegazione, poi <b>Succ →</b>.<br>Scorciatoie tastiera: <kbd>←</kbd> <kbd>→</kbd> naviga · <kbd>Spazio</kbd>/<kbd>Invio</kbd> verifica · <kbd>S</kbd> mischia.</p>
 
-  <!-- Riepilogo "Verifica tutto" (nascosto fino al click) -->
+  <!-- Riepilogo "Verifica sessione" (nascosto fino al click) -->
   <div class="exam-card hidden" id="quiz-summary">
     <div class="exam-results">
       <h3 id="quiz-summary-title">📊 Riepilogo sessione</h3>
       <div class="exam-score-big" id="quiz-summary-big">0/0</div>
       <div class="exam-pct" id="quiz-summary-pct">0%</div>
       <p id="quiz-summary-msg" style="color:var(--soft);margin:10px 0"></p>
+      <p id="quiz-summary-batch" style="color:var(--violet);margin:6px 0;font-weight:600"></p>
     </div>
     <div class="exam-breakdown">
       <h4>📊 Risultati per topic</h4>
       <div id="quiz-summary-topics"></div>
     </div>
     <div class="exam-action" style="justify-content:center">
-      <button class="exam-btn-primary" onclick="quizSummaryReview()">🔍 Rivedi domanda per domanda</button>
-      <button class="btn" onclick="quizSummaryClose()">✕ Chiudi riepilogo</button>
+      <button class="exam-btn-primary" id="quiz-next-batch-btn" onclick="quizNextBatch()" style="background:var(--green);border-color:var(--green)">▶ Sessione successiva</button>
+      <button class="btn" onclick="quizSummaryReview()">🔍 Rivedi domanda per domanda</button>
       <button class="btn" onclick="quizOnlyWrong(); quizSummaryClose();" style="background:var(--red);color:#fff;border-color:var(--red)">🔴 Riprova solo sbagliate</button>
+      <button class="btn" onclick="quizSummaryClose()">✕ Chiudi riepilogo</button>
     </div>
   </div>
 
@@ -3703,11 +3716,75 @@ function gotoQuiz(t) {
 }
 
 let quizCurrent = 'ALL';
-let quizOrder = QUIZ.map((_,i)=>i);
+let quizFullPool = QUIZ.map((_,i)=>i);  // tutte le domande filtrate per topic
+let quizBatchSize = 20;                  // domande per sessione (0 = tutte)
+let quizBatchIdx = 0;                    // sessione corrente (0-based)
+let quizOrder = QUIZ.map((_,i)=>i);      // batch corrente (subset di quizFullPool)
 let quizSelected = {}; // {questionIdx: Set of optIndexes}
 let quizChecked = false;
 let quizIdx = 0;            // indice slideshow nella quizOrder
 let quizResults = {};       // {questionIdx: boolean correct}
+
+function quizTotalBatches() {
+  if (quizBatchSize === 0) return 1;
+  return Math.max(1, Math.ceil(quizFullPool.length / quizBatchSize));
+}
+function quizBuildBatch() {
+  if (quizBatchSize === 0) {
+    quizOrder = quizFullPool.slice();
+  } else {
+    const start = quizBatchIdx * quizBatchSize;
+    quizOrder = quizFullPool.slice(start, start + quizBatchSize);
+  }
+}
+function quizUpdateBatchInfo() {
+  const el = document.getElementById('quiz-batch-info');
+  if (!el) return;
+  const total = quizTotalBatches();
+  if (total <= 1 && quizBatchSize === 0) {
+    el.textContent = '(' + quizFullPool.length + ' totali)';
+  } else {
+    el.textContent = '· Sessione ' + (quizBatchIdx+1) + '/' + total + ' (' + quizFullPool.length + ' totali)';
+  }
+}
+function quizSetBatchSize(v) {
+  quizBatchSize = parseInt(v) || 0;
+  quizBatchIdx = 0;
+  quizBuildBatch();
+  quizSelected = {};
+  quizResults = {};
+  quizIdx = 0;
+  quizRender();
+  quizUpdateBatchInfo();
+}
+function quizNextBatch() {
+  const total = quizTotalBatches();
+  if (quizBatchIdx + 1 >= total) {
+    alert('🎉 Hai completato tutte le sessioni di questo filtro!');
+    return;
+  }
+  quizBatchIdx++;
+  quizBuildBatch();
+  quizSelected = {};
+  quizResults = {};
+  quizIdx = 0;
+  document.getElementById('quiz-summary').classList.add('hidden');
+  quizRender();
+  quizUpdateBatchInfo();
+  document.getElementById('quiz').scrollIntoView({behavior:'smooth', block:'start'});
+}
+function quizPrevBatch() {
+  if (quizBatchIdx === 0) return;
+  quizBatchIdx--;
+  quizBuildBatch();
+  quizSelected = {};
+  quizResults = {};
+  quizIdx = 0;
+  document.getElementById('quiz-summary').classList.add('hidden');
+  quizRender();
+  quizUpdateBatchInfo();
+  document.getElementById('quiz').scrollIntoView({behavior:'smooth', block:'start'});
+}
 
 function quizBuildFilters() {
   const cont = document.getElementById('quiz-filters');
@@ -3732,13 +3809,18 @@ function quizBuildFilters() {
 }
 function quizSetTopic(t) {
   quizCurrent = t;
-  quizOrder = (t === 'ALL') ? QUIZ.map((_,i)=>i) : QUIZ.map((q,i)=>q.t===t?i:-1).filter(i=>i>=0);
+  quizFullPool = (t === 'ALL') ? QUIZ.map((_,i)=>i) : QUIZ.map((q,i)=>q.t===t?i:-1).filter(i=>i>=0);
+  quizBatchIdx = 0;
+  quizBuildBatch();
   quizSelected = {};
   quizResults = {};
   quizChecked = false;
   quizIdx = 0;
   document.querySelectorAll('#quiz-filters button').forEach(b => b.classList.toggle('on', b.dataset.t === t));
   quizRender();
+  quizUpdateBatchInfo();
+  // chiudi il riepilogo se aperto
+  const sm = document.getElementById('quiz-summary'); if (sm) sm.classList.add('hidden');
 }
 // SLIDESHOW: mostra solo la domanda corrente
 function quizRender() {
@@ -3925,6 +4007,27 @@ function quizCheckAll() {
                   '<span class="pct">'+tb.ok+'/'+tb.tot+' ('+tp+'%)</span>';
     breakdown.appendChild(row);
   });
+  // Info batch nel riepilogo
+  const batchEl = document.getElementById('quiz-summary-batch');
+  const totalBatches = quizTotalBatches();
+  const nextBtn = document.getElementById('quiz-next-batch-btn');
+  if (batchEl) {
+    if (totalBatches > 1) {
+      batchEl.textContent = '📦 Sessione ' + (quizBatchIdx+1) + ' di ' + totalBatches + ' completata';
+      batchEl.style.display = '';
+    } else {
+      batchEl.style.display = 'none';
+    }
+  }
+  // Mostra/nasconde "Sessione successiva"
+  if (nextBtn) {
+    if (totalBatches > 1 && quizBatchIdx + 1 < totalBatches) {
+      nextBtn.style.display = '';
+      nextBtn.textContent = '▶ Sessione successiva (' + (quizBatchIdx+2) + '/' + totalBatches + ')';
+    } else {
+      nextBtn.style.display = 'none';
+    }
+  }
   // Apri il riepilogo
   document.getElementById('quiz-summary').classList.remove('hidden');
   document.getElementById('quiz-summary').scrollIntoView({behavior:'smooth', block:'start'});
@@ -3947,19 +4050,28 @@ function quizReset() {
   quizSelected = {};
   quizResults = {};
   quizChecked = false;
+  quizBatchIdx = 0;
+  quizBuildBatch();
   quizIdx = 0;
+  document.getElementById('quiz-summary').classList.add('hidden');
   quizRender();
+  quizUpdateBatchInfo();
 }
 function quizShuffle() {
-  for (let i = quizOrder.length-1; i > 0; i--) {
+  // Mischia il FULL POOL così le sessioni successive sono diverse
+  for (let i = quizFullPool.length-1; i > 0; i--) {
     const j = Math.floor(Math.random()*(i+1));
-    [quizOrder[i], quizOrder[j]] = [quizOrder[j], quizOrder[i]];
+    [quizFullPool[i], quizFullPool[j]] = [quizFullPool[j], quizFullPool[i]];
   }
+  quizBatchIdx = 0;
+  quizBuildBatch();
   quizSelected = {};
   quizResults = {};
   quizChecked = false;
   quizIdx = 0;
+  document.getElementById('quiz-summary').classList.add('hidden');
   quizRender();
+  quizUpdateBatchInfo();
 }
 function quizOnlyWrong() {
   const wrongIds = [];
@@ -3968,12 +4080,17 @@ function quizOnlyWrong() {
   });
   if (!Object.keys(quizResults).length) { alert('Prima rispondi e verifica almeno qualche domanda.'); return; }
   if (!wrongIds.length) { alert('🎉 Nessuna sbagliata! Sei a posto.'); return; }
-  quizOrder = wrongIds;
+  // Le sbagliate diventano il nuovo full pool, organizzato in batch
+  quizFullPool = wrongIds;
+  quizBatchIdx = 0;
+  quizBuildBatch();
   quizSelected = {};
   quizResults = {};
   quizChecked = false;
   quizIdx = 0;
+  document.getElementById('quiz-summary').classList.add('hidden');
   quizRender();
+  quizUpdateBatchInfo();
 }
 function quizUpdateScore() {
   const s = document.getElementById('quiz-score');
@@ -4010,7 +4127,9 @@ document.addEventListener('keydown', (e) => {
   else if (e.key === 's' || e.key === 'S') { e.preventDefault(); quizShuffle(); }
 });
 quizBuildFilters();
+quizBuildBatch();
 quizRender();
+quizUpdateBatchInfo();
 
 // ============= ESAME SIMULATO =============
 let examState = {
