@@ -1172,6 +1172,17 @@
       <tr><td class="elem">Client</td><td class="type">classe</td><td>—</td><td class="meth">+ doWork()</td></tr>
     </table>
   </div>
+  <div class="fc-explain">
+    <div class="fc-explain-h">⚙️ Come funziona</div>
+    <p>Il <b>Client</b> vuole usare un servizio ma il sistema esistente (<b>Adaptee</b>) ha un'interfaccia incompatibile. Si interpone un <b>Adapter</b> che <i>realizza</i> l'interfaccia attesa dal Client (<b>Target/IAdapter</b>) e, al suo interno, <i>traduce</i> ogni chiamata in una chiamata all'Adaptee. Il Client non sa che dietro c'è una traduzione.</p>
+    <div class="fc-explain-h">🧩 Le classi</div>
+    <ul>
+      <li><b>Client</b> — chi vuole il servizio; conosce solo Target</li>
+      <li><b>Target (IAdapter)</b> — «interface», il contratto che il Client si aspetta</li>
+      <li><b>Adapter</b> — implementa Target e contiene un riferimento all'Adaptee; in <code>request()</code> chiama <code>adaptee.specificRequest()</code></li>
+      <li><b>Adaptee</b> — classe preesistente con interfaccia diversa; non viene modificata</li>
+    </ul>
+  </div>
 
   <h3>2. Factory <span class="pill c">creazionale</span></h3>
   <p><b>A cosa serve</b>: Pure Fabrication che incapsula la creazione complessa e ritorna un'interfaccia.</p>
@@ -1191,6 +1202,17 @@
       <tr><td class="elem">Client</td><td class="type">classe</td><td class="attr">- factory: Factory</td><td>(usa solo Product)</td></tr>
     </table>
   </div>
+  <div class="fc-explain">
+    <div class="fc-explain-h">⚙️ Come funziona</div>
+    <p>Il <b>Client</b> non costruisce direttamente i prodotti (<code>new ConcreteProductA()</code>) ma chiede alla <b>Factory</b> di farlo. La Factory ritorna sempre il tipo <b>Product</b> (interfaccia), nascondendo quale sottoclasse concreta è stata creata. Cambiare l'implementazione = modificare solo la Factory, il Client resta intatto.</p>
+    <div class="fc-explain-h">🧩 Le classi</div>
+    <ul>
+      <li><b>Product</b> — «interface», il tipo che il Client conosce</li>
+      <li><b>ConcreteProduct A/B…</b> — le implementazioni reali; il Client non le vede</li>
+      <li><b>Factory</b> — Pure Fabrication con <code>create(): Product</code>; decide quale concreto istanziare</li>
+      <li><b>Client</b> — tiene un riferimento alla Factory e chiama solo <code>factory.create()</code></li>
+    </ul>
+  </div>
 
   <h3>3. Singleton <span class="pill c">creazionale</span></h3>
   <p><b>A cosa serve</b>: garantire una sola istanza con accesso globale.</p>
@@ -1207,6 +1229,15 @@
       <tr><td class="elem">Singleton</td><td class="type">classe (molt. "1")</td><td class="attr">- <u>instance</u>: Singleton</td><td class="meth">- Singleton() priv.<br>+ <u>getInstance()</u>: Singleton</td></tr>
       <tr><td class="elem">Client</td><td class="type">classe</td><td>—</td><td>(chiama Singleton.getInstance())</td></tr>
     </table>
+  </div>
+  <div class="fc-explain">
+    <div class="fc-explain-h">⚙️ Come funziona</div>
+    <p>Si vuole garantire che esista <b>una sola istanza</b> di una classe e renderla accessibile globalmente. Il costruttore viene reso <i>privato</i>: nessuno può fare <code>new</code> dall'esterno. L'accesso passa da un metodo statico <code>getInstance()</code> che, la prima volta, crea l'istanza e la salva in un attributo statico; nelle volte successive la ritorna. La classe quindi è "auto-controllata".</p>
+    <div class="fc-explain-h">🧩 Le classi</div>
+    <ul>
+      <li><b>Singleton</b> — ha attributo statico <u>instance</u>, costruttore privato e metodo statico <u>getInstance()</u></li>
+      <li><b>Client</b> — chiama <code>Singleton.getInstance()</code> ovunque servisse l'istanza</li>
+    </ul>
   </div>
   <div class="box warn"><div class="t">⚠️ Trappola del prof</div>
     Versione lazy senza synchronized: due thread possono creare 2 istanze.
@@ -1233,6 +1264,17 @@
       <tr><td class="elem">Context</td><td class="type">classe</td><td class="attr">- strategy</td><td class="meth">+ setStrategy(s)<br>+ doSomething() { strategy.execute() }</td></tr>
     </table>
   </div>
+  <div class="fc-explain">
+    <div class="fc-explain-h">⚙️ Come funziona</div>
+    <p>Servono <b>algoritmi intercambiabili</b> per lo stesso scopo (es. tre tipi di calcolo sconto). Si definisce un'interfaccia <b>Strategy</b> con il metodo <code>execute()</code> e tante <b>ConcreteStrategy</b> quante varianti. Il <b>Context</b> tiene un riferimento a una Strategy corrente e, quando deve fare il lavoro, delega: <code>strategy.execute()</code>. Niente <code>if/switch</code> sul tipo: il polimorfismo sceglie da solo l'implementazione giusta.</p>
+    <div class="fc-explain-h">🧩 Le classi</div>
+    <ul>
+      <li><b>Strategy</b> — «interface», il contratto comune (<code>execute(data)</code>)</li>
+      <li><b>ConcreteStrategy A/B/C</b> — le implementazioni reali degli algoritmi</li>
+      <li><b>Context</b> — ha l'attributo <code>strategy</code>, un <code>setStrategy(s)</code> per cambiarla a runtime, e in <code>doSomething()</code> chiama <code>strategy.execute()</code></li>
+      <li><b>Client</b> — inietta nel Context la strategia voluta</li>
+    </ul>
+  </div>
 
   <h3>5. Composite <span class="pill a">strutturale</span></h3>
   <p><b>A cosa serve</b>: trattare foglia e gruppo nello stesso modo (alberi).</p>
@@ -1250,6 +1292,17 @@
       <tr><td class="elem">Leaf</td><td class="type">classe (realizza Component)</td><td>—</td><td class="meth">+ execute()</td></tr>
       <tr><td class="elem">Composite</td><td class="type">classe (realizza Component)</td><td class="attr">- children: Component[]</td><td class="meth">+ add(c) · + remove(c)<br>+ execute() { children.forEach(c=>c.execute()) }</td></tr>
     </table>
+  </div>
+  <div class="fc-explain">
+    <div class="fc-explain-h">⚙️ Come funziona</div>
+    <p>Servono strutture <b>ad albero</b> (cartelle/file, menu/voci, gruppi di figure) trattando il singolo e il gruppo allo <i>stesso modo</i>. Si definisce <b>Component</b> come interfaccia comune con <code>operation()</code>. La <b>Leaf</b> è il nodo terminale. Il <b>Composite</b> contiene una lista di Component (figli) e, nella sua <code>operation()</code>, itera sui figli chiamando ricorsivamente la loro <code>operation()</code>. Il Client lavora solo con Component, senza distinguere foglie e gruppi.</p>
+    <div class="fc-explain-h">🧩 Le classi</div>
+    <ul>
+      <li><b>Component</b> — «interface» con <code>operation()</code> e (opzionale) <code>add/remove/getChildren</code></li>
+      <li><b>Leaf</b> — implementa Component; nodo foglia senza figli</li>
+      <li><b>Composite</b> — implementa Component, contiene <code>0..*</code> Component figli; la sua <code>operation()</code> delega a ciascun figlio</li>
+      <li><b>Client</b> — lavora solo con Component: non distingue foglie e gruppi</li>
+    </ul>
   </div>
 
   <h3>6. Facade <span class="pill a">strutturale</span></h3>
@@ -1269,6 +1322,16 @@
       <tr><td class="elem">Client</td><td class="type">classe</td><td>—</td><td>(usa solo Facade)</td></tr>
     </table>
   </div>
+  <div class="fc-explain">
+    <div class="fc-explain-h">⚙️ Come funziona</div>
+    <p>Un sottosistema è formato da molte classi che il Client dovrebbe orchestrare a mano. Si introduce una <b>Facade</b>: una classe unica con metodi ad alto livello (<code>doX()</code>, <code>doY()</code>) che, dietro le quinte, chiama in sequenza le classi del sottosistema. Il Client conosce solo la Facade e ignora completamente l'esistenza delle classi interne. Accoppiamento ridotto al minimo.</p>
+    <div class="fc-explain-h">🧩 Le classi</div>
+    <ul>
+      <li><b>Facade</b> — il punto d'ingresso unico; espone metodi semplici, dentro orchestra il sottosistema</li>
+      <li><b>Subsystem A/B/C…</b> — le classi reali del sottosistema; il Client non le tocca</li>
+      <li><b>Client</b> — interagisce solo con Facade</li>
+    </ul>
+  </div>
 
   <h3>7. Observer <span class="pill v">comportamentale</span></h3>
   <p><b>A cosa serve</b>: più subscriber notificati ai cambiamenti del publisher.</p>
@@ -1286,6 +1349,17 @@
       <tr><td class="elem">ConcreteSubscribers</td><td class="type">classi (realizzano Subscriber)</td><td>—</td><td class="meth">+ update(context)</td></tr>
       <tr><td class="elem">Publisher</td><td class="type">classe</td><td class="attr">- subscribers: Subscriber[]<br>- mainState</td><td class="meth">+ subscribe(s) · + unsubscribe(s)<br>+ notifySubscribers()<br>+ mainBusinessLogic()</td></tr>
     </table>
+  </div>
+  <div class="fc-explain">
+    <div class="fc-explain-h">⚙️ Come funziona</div>
+    <p>Un <b>Publisher</b> (Subject) cambia stato e deve <i>notificare</i> tanti <b>Subscriber</b> interessati, senza sapere chi sono. Il Publisher mantiene una lista di Subscriber (visti tramite un'interfaccia comune con <code>update()</code>). Chi è interessato si registra con <code>subscribe()</code>. Al cambio di stato, il Publisher fa <code>notifySubscribers()</code> che itera sulla lista e chiama <code>s.update(this)</code> su ognuno. Ogni Subscriber decide poi cosa farsene dell'informazione.</p>
+    <div class="fc-explain-h">🧩 Le classi</div>
+    <ul>
+      <li><b>Publisher (Subject)</b> — ha <code>0..*</code> Subscriber, metodi <code>subscribe/unsubscribe/notifySubscribers</code>; quando cambia stato fa partire <code>notifySubscribers()</code></li>
+      <li><b>Subscriber</b> — «interface» con <code>update(subject)</code></li>
+      <li><b>ConcreteSubscriber A/B…</b> — implementano Subscriber; nel loro <code>update()</code> leggono i dati dal Publisher e reagiscono ciascuno a modo suo</li>
+      <li><b>Client</b> — crea Publisher e Subscriber, e fa le <code>subscribe()</code></li>
+    </ul>
   </div>
 
   <div class="box warn"><div class="t">⚠️ Trappole GoF (super frequenti all'orale)</div>
