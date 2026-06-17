@@ -5467,13 +5467,13 @@ function renderCard(autoTrigger) {
   }
   const c = cards[order[idx]];
   const label = TOPIC_LABEL[c.t] || c.t;
-  // Topic in alto/sotto: cliccabili → teoria
+  // Topic in alto/sotto: solo etichetta, NON cliccabili (per non intercettare il flip)
   ['fc-topic','fc-topic-b'].forEach(id => {
     const el = document.getElementById(id);
     el.textContent = label;
-    el.style.cursor = 'pointer';
-    el.title = 'Vai alla teoria di ' + label;
-    el.onclick = (e) => { e.stopPropagation(); gotoTeoria(c.t); };
+    el.style.cursor = '';
+    el.title = '';
+    el.onclick = null;
   });
   document.getElementById('fc-q').textContent = c.q;
   document.getElementById('fc-a').textContent = c.a;
