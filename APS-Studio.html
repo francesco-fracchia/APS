@@ -2909,6 +2909,18 @@ const cards = [
 {t:"TDD", q:"Feature envy.", a:"Metodo che usa più i dati di un'altra classe che della propria: spostare il metodo lì.", m:"🥹 INVIDIA: il metodo guarda continuamente i dati del VICINO. \"Sposta a casa sua!\" → applica Information Expert (sposta il metodo dove sono i dati)."},
 {t:"TDD", q:"Perché scrivere prima il test.", a:"Garantisce che il codice sia testabile, costringe a pensare all'interfaccia, e dà rete di sicurezza per il refactoring.", m:"3 vantaggi: 🧪 testabilità garantita · 📐 forzi a pensare l'interfaccia PRIMA · 🛡️ rete di sicurezza per modifiche future. Trio vincente."},
 {t:"TDD", q:"Vantaggio della rete di test prima del refactoring.", a:"Permette di modificare la struttura interna senza paura di rompere il comportamento.", m:"🛡️ \"Test = paracadute\". Cambi il codice, lanci i test: se passano, hai modificato senza rompere. Senza test, ogni refactoring è russian roulette."},
+
+// ===== PROG2COD — dal progetto UML al codice =====
+{t:"PROG2COD", q:"Passaggio da progettazione UML a codice — principio chiave.", a:"I nomi UML (classi, attributi, metodi, associazioni) guidano direttamente la scrittura del codice: stesso nome, stessa semantica.", m:"📐➡️💻 UML = pre-codice in linguaggio universale. Se nel diagramma c'è <code>Cliente.calcolaTotale()</code>, in codice scriverai <code>cliente.calcolaTotale()</code>. Mantieni la TRADUZIONE 1:1."},
+{t:"PROG2COD", q:"In iterativo, durante l'implementazione si possono cambiare i diagrammi?", a:"Sì. In approccio iterativo/agile è normale che il design evolva mentre si codifica; i diagrammi vengono aggiornati o rifatti.", m:"🔄 ITERATIVO ≠ CASCATA. In cascata: design congelato → codice. In iterativo: design e codice si influenzano a vicenda. Cambi durante il codice = normale."},
+{t:"PROG2COD", q:"Come si mappa una molteplicità 1..* (o 0..*) in codice?", a:"Con una collezione: List, Set, array, Collection a seconda del linguaggio.", m:"📋 0..* / 1..* in UML = <code>List&lt;X&gt;</code> in codice. Es. <code>Sale</code> ha 1..* <code>SaleLineItem</code> → <code>private List&lt;SaleLineItem&gt; items;</code>."},
+{t:"PROG2COD", q:"I diagrammi di interazione (sequence) servono a:", a:"Guidare l'implementazione dei metodi: mostrano CHI chiama COSA e in quale ordine, traducendosi quasi 1:1 in chiamate di metodo.", m:"📞 SEQUENCE = TRACCIA del codice. Ogni messaggio nel diagramma → una riga di codice (chiamata di metodo). Disegnare il sequence è quasi scrivere lo pseudocodice."},
+{t:"PROG2COD", q:"L'ereditarietà UML (generalizzazione) si traduce in codice come:", a:"<code>extends</code> (per classi). La realizzazione (verso «interface») si traduce con <code>implements</code>.", m:"🔺 EREDITARIETÀ = extends (Java/C#) / : in C++. 🔺- - - REALIZZAZIONE = implements. Triangolo solido vs tratteggiato → keyword diversa."},
+{t:"PROG2COD", q:"La composizione UML (◆ rombo pieno) si traduce in codice come:", a:"Il contenitore crea la parte e ne gestisce il ciclo di vita: la parte vive e muore col tutto.", m:"◆ COMPOSIZIONE → la parte nasce DENTRO il contenitore: <code>this.motore = new Motore();</code>. Se distruggi l'Auto, il Motore muore con lei. Suggerisce GRASP Creator."},
+{t:"PROG2COD", q:"L'aggregazione UML (◇ rombo vuoto) si traduce in codice come:", a:"Il contenitore tiene un riferimento alla parte, ma la parte è creata altrove e vive indipendentemente.", m:"◇ AGGREGAZIONE → la parte viene PASSATA al contenitore: <code>uni.iscrivi(studente)</code>. Se l'università chiude, lo studente vive ancora altrove."},
+{t:"PROG2COD", q:"Un'associazione orientata in UML in codice diventa:", a:"Un attributo (campo) della classe sorgente che contiene il riferimento all'altra classe.", m:"➡️ A → B in UML = <code>class A { private B b; }</code>. La freccia indica chi conosce chi: A ha B come campo, B non sa di A."},
+{t:"PROG2COD", q:"Sintassi UML di un metodo (cosa scrive il prof).", a:"<code>visibilità nome(parametro: Tipo): TipoRitorno</code>. Es. <code>+ calcolaTotale(sconto: double): double</code>.", m:"🎯 FORMA STANDARD: simbolo visibilità (+/-/#/~) + nome + ( parametri tipizzati ) + : + tipo di ritorno. È la firma del metodo \"in UML\"."},
+{t:"PROG2COD", q:"Cosa NON deve cambiare passando da UML a codice?", a:"I nomi delle classi e dei metodi pubblici: sono il contratto. Si possono cambiare strutture interne, mai i nomi del modello.", m:"🔒 NOMI PUBBLICI = CONTRATTO. Il modello UML è la \"specifica\": il codice ne è la realizzazione. Cambiare nome = rompere il contratto col modello."},
 ];
 
 // Topic descrittivi (per filtri)
@@ -2916,9 +2928,10 @@ const TOPIC_LABEL = {
   PROC:"Processi", AGILE:"Agile/Scrum", UP:"UP", REQ:"Requisiti",
   UC:"Casi d'uso", ARCH:"Architettura", DOM:"Dominio", SSD:"SSD",
   CONTR:"Contratti", INTERAZ:"Interazione", GRASP:"GRASP", GoF:"GoF",
-  UML:"UML", CLASSI:"Classi", STATI:"Stati", ATTIV:"Attività", TDD:"TDD"
+  UML:"UML", CLASSI:"Classi", STATI:"Stati", ATTIV:"Attività", TDD:"TDD",
+  PROG2COD:"Da UML a codice"
 };
-const TOPIC_ORDER = ["PROC","AGILE","UP","REQ","UC","ARCH","DOM","SSD","CONTR","INTERAZ","GRASP","GoF","UML","CLASSI","STATI","ATTIV","TDD"];
+const TOPIC_ORDER = ["PROC","AGILE","UP","REQ","UC","ARCH","DOM","SSD","CONTR","INTERAZ","GRASP","GoF","UML","CLASSI","STATI","ATTIV","TDD","PROG2COD"];
 
 let currentTopic = 'ALL';
 let order = cards.map((_, i) => i);
