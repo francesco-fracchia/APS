@@ -1637,18 +1637,13 @@
     </ul>
   </div>
 
-  <h3>La piramide dei test</h3>
-  <div class="box expl"><div class="t">📖 Come distribuire i test</div>
-    <p>L'idea: avere <b>molti test di unità</b> (veloci, granulari, alla base), <b>meno test di integrazione</b> al centro, <b>pochissimi test E2E</b> in cima. Il motivo è il <b>costo</b>: gli unitari girano in ms, gli E2E in secondi/minuti. Se inverti la piramide ("gelato rovesciato") hai una pipeline lenta e fragile.</p>
-  </div>
-  <div class="box key"><div class="t">⭐ I 4 livelli (dal più basso al più alto)</div>
-    <table style="font-size:.9rem">
-      <tr><th>Livello</th><th>Cosa testa</th><th>Velocità</th><th>Quanti</th></tr>
-      <tr><td><b>Unità</b></td><td>Singola classe/metodo isolato</td><td>Millisecondi</td><td>Migliaia</td></tr>
-      <tr><td><b>Integrazione</b></td><td>Più moduli che collaborano</td><td>Decimi di sec</td><td>Centinaia</td></tr>
-      <tr><td><b>End-to-end</b></td><td>Intero flusso utente</td><td>Secondi/minuti</td><td>Decine</td></tr>
-      <tr><td><b>Accettazione</b></td><td>Criteri di business (cliente firma)</td><td>Manuali o E2E</td><td>Pochi</td></tr>
-    </table>
+  <h3>I 3 livelli di test</h3>
+  <div class="box key"><div class="t">⭐ Dal più basso al più alto</div>
+    <ul>
+      <li><b>Test di unità</b>: singole classi o metodi (verifica il comportamento del codice in isolamento).</li>
+      <li><b>Test di integrazione</b>: comunicazione tra elementi architetturali del sistema.</li>
+      <li><b>Test di accettazione</b>: funzionamento complessivo del sistema a scatola nera, dal punto di vista del cliente.</li>
+    </ul>
   </div>
 
   <h3>Cosa è un "code smell"</h3>
@@ -1661,45 +1656,18 @@
     <span class="who">Appunti di Sofia (autorizzata) — definizione di code smell</span>
   </div>
 
-  <h3>Catalogo dei principali code smell</h3>
-  <div class="box key"><div class="t">⭐ I "bloaters" (codice gonfio)</div>
+  <h3>Catalogo dei principali code smell (i 9 di programma)</h3>
+  <div class="box key"><div class="t">⭐ I 9 code smell</div>
     <ul>
-      <li><b>Long Method</b>: metodo troppo lungo. Refactoring: <i>Extract Method</i>.</li>
+      <li><b>Long Method</b>: metodo troppo lungo (&gt; 10 righe). Refactoring: <i>Extract Method</i>.</li>
       <li><b>Large Class</b>: classe con troppi attributi/metodi. Refactoring: <i>Extract Class</i>.</li>
       <li><b>Long Parameter List</b>: troppi parametri in un metodo. Refactoring: <i>Introduce Parameter Object</i>.</li>
-      <li><b>Primitive Obsession</b>: usare tipi primitivi (string, int) dove servirebbe un oggetto (es. CodiceFiscale come string). Refactoring: <i>Replace Data Value with Object</i>.</li>
-      <li><b>Data Clumps</b>: gli stessi 3-4 parametri/attributi compaiono insieme ovunque. Refactoring: <i>Extract Class</i>.</li>
-    </ul>
-  </div>
-  <div class="box key"><div class="t">⭐ Object-orientation abusers (mal-uso OO)</div>
-    <ul>
       <li><b>Switch Statements</b>: switch/if-else lunghi sul tipo di oggetto. Refactoring: <i>Replace Conditional with Polymorphism</i>.</li>
       <li><b>Refused Bequest</b>: sottoclasse che non usa l'eredità del padre. Suggerisce che l'eredità è sbagliata, forse serve composizione.</li>
-      <li><b>Alternative Classes with Different Interfaces</b>: due classi fanno cose simili ma con metodi diversi. Refactoring: uniformare le interfacce.</li>
-    </ul>
-  </div>
-  <div class="box key"><div class="t">⭐ Change preventers (frenano i cambiamenti)</div>
-    <ul>
-      <li><b>Divergent Change</b>: una classe cambia per N motivi diversi. Bassa coesione. Refactoring: <i>Extract Class</i>.</li>
       <li><b>Shotgun Surgery</b>: un cambiamento richiede di toccare N classi sparse. Refactoring: <i>Move Method/Field</i> per concentrare le responsabilità.</li>
-      <li><b>Parallel Inheritance Hierarchies</b>: ogni volta che aggiungi una sottoclasse di A, devi aggiungerne una di B. Refactoring: collassare le gerarchie.</li>
-    </ul>
-  </div>
-  <div class="box key"><div class="t">⭐ Couplers (accoppiamento eccessivo)</div>
-    <ul>
+      <li><b>Duplicated Code</b>: stesso codice in più posti. Refactoring: <i>Extract Method</i> + chiamata, oppure <i>Pull Up Method</i> nella superclasse.</li>
+      <li><b>Comments</b>: commenti che spiegano cosa fa il codice. Spesso indicano codice poco chiaro: <i>Extract Method</i> con nome esplicativo.</li>
       <li><b>Feature Envy</b>: metodo che usa più i dati di un'altra classe che della propria. Refactoring: <i>Move Method</i> nella classe "invidiata".</li>
-      <li><b>Inappropriate Intimacy</b>: due classi conoscono troppi dettagli interni l'una dell'altra.</li>
-      <li><b>Message Chains</b>: catene tipo <code>a.getB().getC().getD()</code>. Refactoring: <i>Hide Delegate</i>.</li>
-      <li><b>Middle Man</b>: una classe non fa altro che delegare a un'altra. Refactoring: <i>Remove Middle Man</i>.</li>
-    </ul>
-  </div>
-  <div class="box key"><div class="t">⭐ Dispensables (codice sacrificabile)</div>
-    <ul>
-      <li><b>Comments</b>: commenti che spiegano cosa fa il codice. Spesso indicano codice poco chiaro: <i>Extract Method</i> con un nome esplicativo.</li>
-      <li><b>Duplicate Code</b>: stesso codice in più posti. Refactoring: <i>Extract Method</i> + chiamata, oppure <i>Pull Up Method</i> nella superclasse.</li>
-      <li><b>Lazy Class</b>: classe che fa troppo poco per giustificare la propria esistenza. Refactoring: <i>Inline Class</i>.</li>
-      <li><b>Dead Code</b>: codice mai eseguito. Refactoring: cancellalo. (Git lo ricorda se ti serve.)</li>
-      <li><b>Speculative Generality</b>: astrazioni create "in caso servano in futuro". YAGNI (You Aren't Gonna Need It).</li>
     </ul>
   </div>
 
@@ -1733,9 +1701,8 @@
     <details class="q"><summary>Ciclo TDD.</summary><div class="ans">Red → Green → Refactor (RGR).</div></details>
     <details class="q"><summary>4 livelli test.</summary><div class="ans">Unità · Integrazione · E2E · Accettazione (UIEA).</div></details>
     <details class="q"><summary>4 proprietà test unità.</summary><div class="ans">Piccolo · Eseguibile isolato · Veloce · Ripetibile (PEVR).</div></details>
-    <details class="q"><summary>Cosa è la piramide dei test.</summary><div class="ans">Tanti test di unità alla base, meno di integrazione, pochi E2E in cima. Distribuzione che minimizza costo e massimizza feedback rapido.</div></details>
     <details class="q"><summary>Cos'è un code smell.</summary><div class="ans">Indizio che il codice è strutturato male. Non è un bug, è un sintomo. Si rimuove col refactoring.</div></details>
-    <details class="q"><summary>Esempi di "bloater" code smells.</summary><div class="ans">Long Method, Large Class, Long Parameter List, Primitive Obsession, Data Clumps.</div></details>
+    <details class="q"><summary>Esempi di code smell.</summary><div class="ans">Long Method, Large Class, Long Parameter List, Switch Statements, Refused Bequest, Shotgun Surgery, Duplicated Code, Comments, Feature Envy.</div></details>
     <details class="q"><summary>Feature Envy e refactoring relativo.</summary><div class="ans">Metodo che usa più i dati di un'altra classe che della propria. Refactoring: Move Method nella classe invidiata.</div></details>
     <details class="q"><summary>Shotgun Surgery.</summary><div class="ans">Un cambiamento richiede di modificare N classi sparse. Refactoring: Move Method/Field per concentrare le responsabilità.</div></details>
     <details class="q"><summary>Cosa è la "regola del tre" di Fowler.</summary><div class="ans">La prima volta scrivi, la seconda noti la duplicazione, la terza rifattorizzi.</div></details>
@@ -2660,13 +2627,7 @@ const cards = [
 {t:"STATI", q:"Self-transition vs transizione interna.", a:"Self-transition: esce e rientra (esegue entry/exit). Interna: NON esce, non triggera entry/exit, si scrive dentro lo stato.", m:"Differenza sottile ma cruciale all'orale."},
 {t:"STATI", q:"Cosa puoi scrivere dentro uno stato UML.", a:"entry / azione · exit / azione · do / attività · evento / azione (transizione interna).", m:"Entry = all'ingresso. Exit = all'uscita. Do = mentre ci sei. Transizione interna = scattano senza cambiare stato."},
 {t:"TDD", q:"3 obiettivi pratici del TDD.", a:"Design guidato dai test · rete di sicurezza per il refactoring · documentazione viva.", m:"Tre vantaggi che vanno OLTRE il \"semplice avere test\"."},
-{t:"TDD", q:"Cosa è la piramide dei test.", a:"Tanti test di unità alla base, meno di integrazione al centro, pochi E2E in cima. Minimizza costo, massimizza feedback rapido.", m:"\"Gelato rovesciato\" (inversa) = pipeline lenta e fragile, anti-pattern."},
-{t:"TDD", q:"Primitive Obsession — cos'è.", a:"Usare tipi primitivi (string, int) dove servirebbe un oggetto strutturato (es. CodiceFiscale come string semplice).", m:"Refactoring: Replace Data Value with Object."},
-{t:"TDD", q:"Data Clumps — cos'è.", a:"Gli stessi 3-4 dati/parametri compaiono insieme ovunque. Suggerisce di averli aggregati in un oggetto.", m:"Refactoring: Extract Class."},
-{t:"TDD", q:"Divergent Change — cos'è.", a:"Una classe cambia per N motivi diversi. Bassa coesione: ha più di una responsabilità.", m:"Refactoring: Extract Class per separare le responsabilità."},
-{t:"TDD", q:"Shotgun Surgery — cos'è.", a:"Un singolo cambiamento richiede di modificare N classi sparse. Concettualmente l'opposto di Divergent Change.", m:"Refactoring: Move Method/Field per concentrare le responsabilità nello stesso posto."},
-{t:"TDD", q:"Message Chains — cos'è.", a:"Catene tipo a.getB().getC().getD(). Espone troppi dettagli interni della struttura.", m:"Refactoring: Hide Delegate."},
-{t:"TDD", q:"Speculative Generality — cos'è.", a:"Astrazioni create \"in caso servano in futuro\" ma usate da un solo cliente.", m:"YAGNI: You Aren't Gonna Need It. Astrai SOLO quando hai 2-3 casi reali."},
+{t:"TDD", q:"Shotgun Surgery — cos'è.", a:"Un singolo cambiamento richiede di modificare N classi sparse.", m:"Refactoring: Move Method/Field per concentrare le responsabilità nello stesso posto."},
 {t:"TDD", q:"Replace Conditional with Polymorphism — quando.", a:"Quando hai switch/if-else lunghi sul tipo di oggetto. Sostituisci con classi che fanno overriding.", m:"È il refactoring che applica concretamente Polymorphism GRASP."},
 {t:"TDD", q:"Regola del tre di Fowler.", a:"Prima volta scrivi · seconda noti la duplicazione · terza rifattorizzi.", m:"Evita di astrarre prematuramente. Aspetta che il pattern emerga davvero."},
 {t:"TDD", q:"Quando NON fare refactoring.", a:"Codice che stai per buttare · codice di terze parti · codice senza test (prima scrivi test \"characterization\").", m:"Refactoring senza test = russian roulette."},
@@ -2966,7 +2927,7 @@ const cards = [
 // ===== TDD + REFACTORING =====
 {t:"TDD", q:"Cos'è il TDD.", a:"Test-Driven Development: si scrive prima il test, poi il codice minimo che lo fa passare, poi si ripulisce.", m:"🎯 TDD = \"sparami prima il bersaglio, poi ti do la freccia\". Inverti l'ordine naturale: test PRIMA del codice."},
 {t:"TDD", q:"Ciclo TDD.", a:"Red (test fallisce) → Green (codice minimo) → Refactor (ripulisci).", m:"🚦 RGR = SEMAFORO al contrario. Parti dal ROSSO (test in errore), passi al VERDE (passa), poi REFACTOR (pulisci). Mai saltare un colore."},
-{t:"TDD", q:"4 livelli di test.", a:"Unità · Integrazione · End-to-end · Accettazione.", m:"🏛️ PIRAMIDE TDD (UIEA): base UNITÀ (tanti, piccoli, veloci) → INTEGRAZIONE (medi) → E2E (lenti) → cima ACCETTAZIONE (il cliente firma). Più sali, meno test, più lenti."},
+{t:"TDD", q:"3 livelli di test.", a:"Test di unità · Test di integrazione · Test di accettazione.", m:"🧪 UIA: UNITÀ (singole classi/metodi) · INTEGRAZIONE (comunicazione tra parti) · ACCETTAZIONE (sistema a scatola nera dal punto di vista del cliente)."},
 {t:"TDD", q:"4 proprietà di un test di unità.", a:"Piccolo · Eseguibile in isolamento · Veloce · Ripetibile.", m:"PEVR → \"Per Esami Veri Ripeti\" 🎓. Test = come una flashcard: PICCOLA, autosufficiente, VELOCE, ti ripeto identica. Se manca una, non è un buon test di unità."},
 {t:"TDD", q:"Cos'è il refactoring.", a:"Cambiare la struttura interna del codice senza alterarne il comportamento esterno.", m:"🔧 REFACTOR = riordinare l'armadio. I vestiti (comportamento) ci sono ancora tutti, ma adesso sono ben piegati e raggiungibili."},
 {t:"TDD", q:"Refactoring cambia il comportamento esterno?", a:"NO. Solo la struttura interna. Va supportato da test.", m:"⚠️ MAI cambia comportamento esterno. Se cambia il \"come si comporta visto da fuori\", non è refactoring → è modifica funzionale (= test rotti)."},
@@ -2977,11 +2938,6 @@ const cards = [
 {t:"TDD", q:"Feature envy.", a:"Metodo che usa più i dati di un'altra classe che della propria: spostare il metodo lì.", m:"🥹 INVIDIA: il metodo guarda continuamente i dati del VICINO. \"Sposta a casa sua!\" → applica Information Expert (sposta il metodo dove sono i dati)."},
 {t:"TDD", q:"Perché scrivere prima il test.", a:"Garantisce che il codice sia testabile, costringe a pensare all'interfaccia, e dà rete di sicurezza per il refactoring.", m:"3 vantaggi: 🧪 testabilità garantita · 📐 forzi a pensare l'interfaccia PRIMA · 🛡️ rete di sicurezza per modifiche future. Trio vincente."},
 {t:"TDD", q:"Vantaggio della rete di test prima del refactoring.", a:"Permette di modificare la struttura interna senza paura di rompere il comportamento.", m:"🛡️ \"Test = paracadute\". Cambi il codice, lanci i test: se passano, hai modificato senza rompere. Senza test, ogni refactoring è russian roulette."},
-{t:"TDD", q:"Cosa sono mock e stub nei test?", a:"\"Oggetti finti\" che sostituiscono le dipendenze esterne (DB, API, file system) per isolare il codice in test e renderlo veloce e ripetibile.", m:"🎭 Mock = ATTORE che FINGE di essere il vero servizio. Test di Ordine? Stubbo il database: il test non parte davvero col DB, gira in millisecondi. Isolamento."},
-{t:"TDD", q:"Cos'è un mocking framework?", a:"Una libreria che permette di creare facilmente mock e stub di interfacce/classi, configurando il loro comportamento riga per riga.", m:"🧰 LIBRERIA che ti dà le PASTILLE per finti oggetti già pronti. Senza scriverli a mano. Es. <code>when(repo.find(1)).thenReturn(cliente)</code>."},
-{t:"TDD", q:"Esempi di mocking framework.", a:"Mockito (Java), Sinon (JS), Jest (JS, ha mock integrati), Moq (.NET), unittest.mock (Python).", m:"🇯🇸 Sinon · 🟦 Jest · ☕ Mockito · 🟪 Moq · 🐍 unittest.mock. Stesso pattern in tutti i linguaggi."},
-{t:"TDD", q:"Differenza mock vs stub.", a:"<b>Stub</b> = fornisce risposte predefinite (passivo). <b>Mock</b> = verifica anche COME è stato chiamato (assertion sulla chiamata).", m:"📞 STUB risponde \"sì/42\" e basta. 🎬 MOCK risponde E memorizza chi/quando/quanto è stato chiamato per fare assert nel test."},
-{t:"TDD", q:"Perché si usano mock invece del DB vero nei test?", a:"Velocità (millisecondi vs secondi), determinismo (no dipendenze esterne flaky), isolamento (testi una classe alla volta).", m:"⚡ VELOCITÀ + 🎯 DETERMINISMO + 🔬 ISOLAMENTO. Test che fa una vera query SQL è lento E può fallire per cause esterne (rete giù) → test \"flaky\" inaffidabile."},
 
 ];
 
@@ -3409,12 +3365,6 @@ const QUIZ = [
 {t:"STATI", q:"Fork in una macchina a stati serve a:", o:["Terminare l'intera macchina","Dividere il flusso in più rami concorrenti","Solo Singleton","Niente"], c:[1], m:false, e:"Fork = divide. Join = ricongiunge. Tipici per macchine ortogonali."},
 {t:"STATI", q:"Differenza self-transition vs transizione interna:", o:["Sono identiche","Self esce e rientra (esegue entry/exit). Interna NON esce, scritta dentro lo stato","Solo Singleton","Niente"], c:[1], m:false, e:"Sottile ma cruciale all'orale: la transizione interna non triggera entry/exit."},
 {t:"STATI", q:"Dentro un rettangolo arrotondato di uno stato posso scrivere:", o:["entry/exit/do/transizioni interne","Solo il nome","Solo bug","Solo if/else"], c:[0], m:false, e:"entry / exit / do (mentre ci sei) / transizioni interne (evento / azione)."},
-{t:"TDD", q:"Cos'è la \"piramide dei test\"?", o:["Tutto E2E","Tanti unit alla base, meno integration, pochi E2E in cima","Solo manuali","Solo Singleton"], c:[1], m:false, e:"Piramide normale: ottimizza costo/feedback. Inversa = \"gelato rovesciato\", anti-pattern."},
-{t:"TDD", q:"Primitive Obsession è:", o:["Avere troppi metodi","Usare tipi primitivi dove servirebbe un oggetto strutturato","Solo per Singleton","Niente"], c:[1], m:false, e:"Es. CodiceFiscale come string semplice senza validazione. Refactoring: Replace Data Value with Object."},
-{t:"TDD", q:"Data Clumps è:", o:["Troppi dati casuali","Gli stessi 3-4 dati compaiono insieme ovunque","Solo bug","Solo cascata"], c:[1], m:false, e:"Refactoring: Extract Class per raggruppare."},
-{t:"TDD", q:"Divergent Change vs Shotgun Surgery:", o:["Sono identici","Divergent = una classe cambia per N motivi. Shotgun = N classi cambiano per 1 motivo","Solo Singleton","Niente"], c:[1], m:false, e:"Concettualmente opposti. Divergent = coesione bassa. Shotgun = accoppiamento sparso."},
-{t:"TDD", q:"Message Chains tipo a.getB().getC().getD():", o:["Sono ottime","Sono un code smell: espongono troppi dettagli interni","Sempre da fare","Solo per Singleton"], c:[1], m:false, e:"Refactoring: Hide Delegate (un metodo che espone solo ciò che serve)."},
-{t:"TDD", q:"Speculative Generality è:", o:["Sempre buona","Astrazioni create \"in caso servano\" ma usate da un solo cliente. Anti-pattern (YAGNI)","Solo bug","Solo Singleton"], c:[1], m:false, e:"YAGNI: You Aren't Gonna Need It. Astrai solo quando hai 2-3 casi reali."},
 {t:"TDD", q:"Replace Conditional with Polymorphism — quando si applica?", o:["Mai","Quando hai switch/if-else lunghi sul tipo di un oggetto","Solo Singleton","Solo cascata"], c:[1], m:false, e:"È la realizzazione concreta del GRASP Polymorphism."},
 {t:"TDD", q:"Regola del tre di Fowler:", o:["Prima scrivi · seconda noti la duplicazione · terza rifattorizzi","Solo per Singleton","Mai","Solo bug"], c:[0], m:false, e:"Evita di astrarre prematuramente. Aspetta che il pattern emerga davvero."},
 {t:"TDD", q:"Quando NON fare refactoring?", o:["Sempre meglio farlo","Codice che stai per buttare · terze parti · codice senza test","Solo per Singleton","Mai"], c:[1], m:false, e:"Refactoring senza test = russian roulette. Prima scrivi i test \"characterization\"."},
@@ -3437,7 +3387,6 @@ const QUIZ = [
 {t:"PROC", q:"Manifesto Agile: anno di pubblicazione?", o:["1995","2001","2010","2020"], c:[1], m:false, e:"Il Manifesto Agile è del 2001."},
 {t:"PROC", q:"Caratteristica condivisa da tutti i metodi agili:", o:["Iterazioni brevi","Cascata pura","Niente test","Documentazione esaustiva"], c:[0], m:false, e:"Tutti i metodi agili sono iterativi con cicli brevi."},
 {t:"PROC", q:"Il \"daily standup\" di SCRUM dura:", o:["Tutta la mattina","15 minuti circa","Un'ora","Un giorno"], c:[1], m:false, e:"Il daily standup è max ~15 min, in piedi, per allinearsi."},
-{t:"PROC", q:"Cos'è la sprint retrospective?", o:["Un meeting per pianificare lo sprint","Un meeting a fine sprint per migliorare il processo","Un test funzionale","Un documento UML"], c:[1], m:false, e:"Retrospettiva: a fine sprint, il team riflette su cosa migliorare."},
 {t:"PROC", q:"Sprint planning serve a:", o:["Decidere cosa includere nello sprint","Sostituire il backlog","Eliminare i ruoli","Cambiare metodo"], c:[0], m:false, e:"Sprint planning = inizio sprint, si seleziona dal backlog cosa fare."},
 {t:"PROC", q:"Cosa si intende per \"time-boxing\"?", o:["Allungare gli sprint quando serve","Durata fissa: si adatta il lavoro al tempo, non viceversa","Eliminare i tempi morti","Una metrica di codice"], c:[1], m:false, e:"Time-box: il tempo è fisso, lo scope si adatta."},
 {t:"PROC", q:"Quale tra queste NON è un'attività del processo software?", o:["Analisi requisiti","Progettazione","Implementazione","Vendita"], c:[3], m:false, e:"Vendita NON fa parte del processo software (analisi, progetto, impl, validaz, rilascio, manuten, gestione)."},
@@ -3445,7 +3394,6 @@ const QUIZ = [
 {t:"PROC", q:"Pair programming è una pratica di:", o:["Cascata","XP (Extreme Programming)","UP rigido","Kanban"], c:[1], m:false, e:"Pair programming è una pratica di XP."},
 {t:"PROC", q:"Cosa è un Product Backlog?", o:["Una lista ordinata di features/requisiti, gestita dal Product Owner","Una lista dei bug","Un documento UML","Un report di vendite"], c:[0], m:false, e:"Product Backlog: lista ordinata per priorità, mantenuta dal Product Owner."},
 {t:"PROC", q:"Cosa è il Sprint Backlog?", o:["Le sole features selezionate per lo sprint corrente","Tutta la lista di features del progetto","Una lista di bug","Un report"], c:[0], m:false, e:"Sprint Backlog = subset del Product Backlog scelto per lo sprint."},
-{t:"PROC", q:"Cos'è un burndown chart?", o:["Un grafico che mostra il lavoro residuo nel tempo","Un report di vendita","Un diagramma UML","Una metrica di sicurezza"], c:[0], m:false, e:"Burndown chart: lavoro rimanente vs tempo. Curva ideale verso lo zero a fine sprint."},
 
 // UP
 {t:"UP", q:"UP è un processo:", o:["A cascata","Iterativo, incrementale, evolutivo, OO","Solo cascata-friendly","Senza casi d'uso"], c:[1], m:false, e:"UP è iterativo, incrementale, evolutivo per software OO."},
@@ -3612,7 +3560,6 @@ const QUIZ = [
 {t:"PROC", q:"Quale tra questi è un metodo agile?", o:["XP","Kanban","Crystal","Tutti i precedenti"], c:[3], m:false, e:"XP, Kanban, Crystal sono tutti metodi agili."},
 {t:"PROC", q:"\"WIP limit\" è una pratica tipica di:", o:["Cascata","Kanban","UP rigido","Modello a V"], c:[1], m:false, e:"WIP (Work-In-Progress) limit è pratica Kanban: limita quanto lavoro \"in volo\" insieme."},
 {t:"PROC", q:"Il \"backlog refinement\" (grooming) è:", o:["Un'attività SCRUM in cui si raffina/preparare il backlog","Un test","Un anti-pattern","Un documento UML"], c:[0], m:false, e:"Grooming = raffinamento continuo del backlog (descrizioni, stime, dipendenze)."},
-{t:"PROC", q:"Il modello a V è:", o:["Un metodo agile","Una variante della cascata con test allineati alle fasi","SCRUM","Sinonimo di UP"], c:[1], m:false, e:"Modello a V: cascata con test corrispondenti a ogni fase di sviluppo."},
 {t:"PROC", q:"Cosa significa \"continuous integration\"?", o:["Test manuali","Integrare e testare il codice frequentemente (più volte al giorno)","Solo per CI/CD avanzata","Mai usato in agile"], c:[1], m:false, e:"CI: integra spesso, test automatici a ogni push."},
 {t:"PROC", q:"Test-Driven Development (TDD) è una pratica di:", o:["Solo cascata","XP e in generale agile","Solo SCRUM","Solo per junior"], c:[1], m:false, e:"TDD nasce in XP, è adottato da molti metodi agili."},
 
@@ -3710,7 +3657,6 @@ const QUIZ = [
 {t:"TDD", q:"Refactoring tipico: \"Rename Variable\" serve a:", o:["Cambiare comportamento","Migliorare leggibilità con nomi più chiari","Aumentare bug","Rimuovere test"], c:[1], m:false, e:"Rename: cambi il nome per leggibilità, comportamento invariato."},
 {t:"TDD", q:"Refactoring tipico: \"Move Method\" serve a:", o:["Cancellare metodo","Spostare un metodo in una classe più appropriata (es. Feature Envy)","Aggiungere bug","Cambiare comportamento"], c:[1], m:false, e:"Move Method: spostare dove i dati sono (Information Expert)."},
 {t:"TDD", q:"Quale tra questi è uno smell?", o:["Shotgun surgery (modifica sparpagliata in tante classi)","High Cohesion","Low Coupling","Good naming"], c:[0], m:false, e:"Shotgun surgery: piccola modifica funzionale richiede toccare 10 classi → mal progettato."},
-{t:"TDD", q:"\"Magic numbers\" è un code smell perché:", o:["Aumenta performance","Numeri letterali senza significato chiaro nel codice (es. 86400)","Solo per Singleton","Niente"], c:[1], m:false, e:"Magic numbers: usare costanti con nome (es. SECONDS_PER_DAY)."},
 
 // PROG2COD varianti
 
@@ -3832,7 +3778,6 @@ const QUIZ = [
 // TDD ulteriori
 {t:"TDD", q:"Test di unità testano:", o:["Più moduli insieme","Una singola classe/metodo in isolamento","L'intera UI","Solo bug"], c:[1], m:false, e:"Unità: una classe/metodo isolato."},
 {t:"TDD", q:"Test E2E testano:", o:["Una funzione","Il sistema dall'inizio alla fine, come un utente reale","Solo bug","Solo performance"], c:[1], m:false, e:"E2E: scenario completo, come un utente reale."},
-{t:"TDD", q:"\"Mock\" o \"stub\" servono a:", o:["Sostituire dipendenze esterne nei test (isolamento)","Niente","Sostituire la UI","Solo per Singleton"], c:[0], m:false, e:"Mock/stub: simulano dipendenze (DB, API) per isolare il test."},
 {t:"TDD", q:"\"Test pyramide\" suggerisce:", o:["Più test E2E che di unità","Più test di UNITÀ alla base, pochi E2E in cima","Solo manuali","Niente"], c:[1], m:false, e:"Test pyramid: tanti unitari (veloci) alla base, pochi E2E (lenti) in cima."},
 {t:"TDD", q:"\"Code coverage\" è:", o:["Una garanzia di qualità","Una % di codice eseguito dai test (utile ma non sufficiente)","Bug counter","Niente"], c:[1], m:false, e:"Coverage = % di codice testato. NON garantisce qualità (puoi avere 100% senza test reali)."},
 
@@ -3851,7 +3796,6 @@ const QUIZ = [
 
 // PROC
 {t:"PROC", q:"In SCRUM, l'incremento è:", o:["Un bug","La somma di tutti gli elementi del Product Backlog completati nello sprint + precedenti","Solo un test","Una versione cascata"], c:[1], m:false, e:"Incremento SCRUM = lavoro completato sommato a tutti gli incrementi precedenti."},
-{t:"PROC", q:"\"Pillole\" SCRUM (eventi) sono:", o:["Sprint, Sprint Planning, Daily, Sprint Review, Retrospective","Solo Daily","Solo Sprint","Solo Retrospective"], c:[0], m:false, e:"5 eventi SCRUM: lo sprint stesso + 4 incontri formali."},
 {t:"PROC", q:"\"Artefatti\" SCRUM sono:", o:["Product Backlog, Sprint Backlog, Incremento","Solo il codice","Solo il backlog","Solo i bug"], c:[0], m:false, e:"3 artefatti SCRUM."},
 {t:"PROC", q:"\"User story\" è:", o:["Un test","Una breve descrizione di una funzionalità dal punto di vista dell'utente","Solo per UI","Un evento"], c:[1], m:false, e:"\"Come [ruolo], voglio [feature] per [beneficio]\"."},
 {t:"PROC", q:"Quale tra questi è una tipica metrica agile?", o:["Velocity","Burn-down","Cycle time","Tutti i precedenti"], c:[3], m:false, e:"Tutti e 3 sono metriche agili tipiche."},
@@ -3966,7 +3910,6 @@ const QUIZ = [
 {t:"PROC", q:"Quale tra queste sequenze di sviluppo è AGILE?", o:["Analisi → Design → Codice → Test (una volta)","Iterazioni brevi: spec parziale → codice → test → feedback → spec evoluta","Cascata pura","Big bang"], c:[1], m:false, e:"Agile: iterazioni brevi con feedback continuo."},
 {t:"PROC", q:"Quale tra queste affermazioni sull'iterativo è VERA?", o:["Si fanno solo i requisiti all'inizio","Ogni iterazione produce una release funzionante","Solo una iterazione","Mai test"], c:[1], m:false, e:"Iterazione → release funzionante (incrementale)."},
 {t:"PROC", q:"Caratteristiche di SCRUM (scegli una o più):", o:["Sprint time-boxed","Daily standup","Cascata","Sprint Review"], c:[0,1,3], m:true, e:"SCRUM: sprint time-boxed, daily, review. Non è cascata."},
-{t:"PROC", q:"In quale ordine avvengono in SCRUM?", o:["Daily → Planning → Review","Planning → Sprint (con Daily) → Review → Retrospective","Review → Planning","Solo Daily"], c:[1], m:false, e:"Sequenza: Planning all'inizio, Daily durante, Review e Retro alla fine."},
 {t:"PROC", q:"Quale tra queste NON è una pratica agile?", o:["TDD","Pair programming","Big Design Up Front (BDUF)","Continuous Integration"], c:[2], m:false, e:"BDUF è cascata (tutto il design prima). Agile: design emergente."},
 {t:"PROC", q:"Una caratteristica di Kanban (NON di SCRUM puro):", o:["Sprint a durata fissa","WIP limits e flusso continuo","Sprint Review","Sprint Planning"], c:[1], m:false, e:"Kanban: flusso continuo + WIP limit. Niente sprint fissi."},
 {t:"PROC", q:"Cosa è VERO sui processi software (scegli una o più):", o:["Definiscono ruoli","Definiscono attività","Definiscono tempi","Eliminano i bug"], c:[0,1,2], m:true, e:"Processo = ruoli + attività + tempi. Non elimina bug per magia."},
@@ -4152,7 +4095,6 @@ const QUIZ = [
 // TDD
 {t:"TDD", q:"\"Test-first\" significa:", o:["Test scritti prima del codice","Test scritti dopo il codice","Niente test","Solo per Singleton"], c:[0], m:false, e:"Test-first: scrivere test PRIMA del codice (TDD)."},
 {t:"TDD", q:"Quale tra questi è uno strumento tipico di TDD?", o:["JUnit","Selenium","Postman","Tutti i precedenti (a diversi livelli)"], c:[3], m:false, e:"JUnit (unit), Selenium (E2E), Postman (API)."},
-{t:"TDD", q:"\"Mocking framework\" è:", o:["Una libreria per creare mock/stub","Un compiler","Un linguaggio","Niente"], c:[0], m:false, e:"Mocking: librerie come Mockito, Sinon, jest mock."},
 
 // Cross
 {t:"GRASP", q:"Nel diagramma di sequenza, ogni messaggio è motivato da un GRASP. Vero o falso?", o:["Vero (Information Expert, Creator, ecc.)","Falso, sono casuali","Solo Singleton","Solo Composite"], c:[0], m:false, e:"Ogni delega in un SD dovrebbe essere giustificata da un GRASP."},
