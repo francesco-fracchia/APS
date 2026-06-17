@@ -205,7 +205,7 @@
   .fc-mnemo::before{content:"🧠 "}
   .fc-img{margin-top:12px;background:#fff;border:1px solid var(--line);border-radius:9px;padding:8px;text-align:center}
   .fc-img:empty{display:none}
-  .fc-img img{max-width:60%;height:auto;max-height:144px;display:inline-block;border-radius:6px}
+  .fc-img img{max-width:90%;height:auto;max-height:260px;display:inline-block;border-radius:6px}
   .fc-img .cap{font-size:.72rem;color:var(--faint);margin-top:4px;font-style:italic}
   .fc-explain{text-align:left;margin-top:10px;padding:10px 12px;background:var(--blue-w);border:1px solid #d1ddff;border-radius:8px;font-size:.88rem;color:var(--ink);line-height:1.45}
   .fc-explain p{margin:.2rem 0 .6rem}
@@ -214,6 +214,10 @@
   .fc-explain code{background:#dde6ff;color:#1e3a8a;padding:1px 5px;border-radius:4px;font-size:.85em}
   .fc-explain-h{font-weight:700;color:var(--blue);font-size:.78rem;text-transform:uppercase;letter-spacing:.04em;margin-top:6px}
   .fc-explain-h:first-child{margin-top:0}
+  .fc-explain .fc-acron{margin:.3rem 0 .5rem;padding:6px 10px;background:#fbe9f5;border:1px dashed #e69ed1;border-radius:6px;color:#7a2462;font-size:.86rem;text-align:center}
+  .fc-explain .fc-draw{margin:.3rem 0 0;padding-left:1.3rem;counter-reset:dstep}
+  .fc-explain .fc-draw li{margin:.35rem 0;list-style:none;position:relative;padding-left:1.6rem}
+  .fc-explain .fc-draw li::before{counter-increment:dstep;content:counter(dstep);position:absolute;left:0;top:1px;width:1.2rem;height:1.2rem;border-radius:50%;background:var(--violet);color:#fff;font-size:.72rem;font-weight:700;display:flex;align-items:center;justify-content:center}
   .hintf{margin-top:12px;font-size:.75rem;color:var(--faint);text-align:center}
   .flashctrl{display:flex;gap:9px;justify-content:center;align-items:center;margin-top:14px;flex-wrap:wrap}
   .flashcount{font-weight:700;color:var(--soft);min-width:56px;text-align:center}
@@ -1182,6 +1186,15 @@
       <li><b>Adapter</b> — implementa Target e contiene un riferimento all'Adaptee; in <code>request()</code> chiama <code>adaptee.specificRequest()</code></li>
       <li><b>Adaptee</b> — classe preesistente con interfaccia diversa; non viene modificata</li>
     </ul>
+    <div class="fc-explain-h">🎨 Disegnalo a mente</div>
+    <p class="fc-acron"><b>C·T·A·A</b> — "Cane (Client) Trova Adattatore Antico"</p>
+    <ol class="fc-draw">
+      <li>Disegna 4 rettangoli affiancati: <b>Client</b> | <b>Target</b> (con «interface» sopra il nome) | <b>Adapter</b> | <b>Adaptee</b>.</li>
+      <li><b>Client → Target</b>: freccia normale (associazione).</li>
+      <li><b>Adapter ⊳ Target</b>: triangolo vuoto + linea <i>tratteggiata</i> (realizza).</li>
+      <li><b>Adapter → Adaptee</b>: freccia normale (Adapter contiene un riferimento).</li>
+      <li>Nota gialla su <code>Adapter.request()</code>: "<code>adaptee.specificRequest()</code>".</li>
+    </ol>
   </div>
 
   <h3>2. Factory <span class="pill c">creazionale</span></h3>
@@ -1212,6 +1225,15 @@
       <li><b>Factory</b> — Pure Fabrication con <code>create(): Product</code>; decide quale concreto istanziare</li>
       <li><b>Client</b> — tiene un riferimento alla Factory e chiama solo <code>factory.create()</code></li>
     </ul>
+    <div class="fc-explain-h">🎨 Disegnalo a mente</div>
+    <p class="fc-acron"><b>P·CP·F·C</b> — "Pizze Cuoce Fabbrica al Cliente"</p>
+    <ol class="fc-draw">
+      <li>Centro: <b>Product</b> «interface» (con i metodi del prodotto).</li>
+      <li>Sotto Product: <b>ConcreteProductA</b> e <b>ConcreteProductB</b>. Ciascuno ⊳ Product con triangolo + linea <i>tratteggiata</i> (realizzano).</li>
+      <li>A destra: <b>Factory</b> con il metodo <code>+ create(): Product</code>.</li>
+      <li><b>Client → Factory</b>: freccia normale (ha-una Factory).</li>
+      <li><b>Client → Product</b>: freccia <i>tratteggiata</i> di dipendenza (usa Product, mai conosce i Concrete).</li>
+    </ol>
   </div>
 
   <h3>3. Singleton <span class="pill c">creazionale</span></h3>
@@ -1238,6 +1260,15 @@
       <li><b>Singleton</b> — ha attributo statico <u>instance</u>, costruttore privato e metodo statico <u>getInstance()</u></li>
       <li><b>Client</b> — chiama <code>Singleton.getInstance()</code> ovunque servisse l'istanza</li>
     </ul>
+    <div class="fc-explain-h">🎨 Disegnalo a mente</div>
+    <p class="fc-acron"><b>I·C·G</b> — "Istanza Chiusa, Getter" (3 elementi NON negoziabili)</p>
+    <ol class="fc-draw">
+      <li>Un solo rettangolo grande: <b>Singleton</b>. In alto a destra metti <b>"1"</b> (cardinalità: una sola istanza).</li>
+      <li>Attributi: <code>- <u>instance</u>: Singleton</code> (sottolineato = static).</li>
+      <li>Metodi: <code>- Singleton()</code> in PRIVATO (segno meno) — la "porta chiusa".</li>
+      <li>Sotto: <code>+ <u>getInstance()</u>: Singleton</code> sottolineato (l'unica via d'accesso).</li>
+      <li>A fianco: <b>Client</b>. Freccia tratteggiata di dipendenza Client → Singleton.</li>
+    </ol>
   </div>
   <div class="box warn"><div class="t">⚠️ Trappola del prof</div>
     Versione lazy senza synchronized: due thread possono creare 2 istanze.
@@ -1274,6 +1305,15 @@
       <li><b>Context</b> — ha l'attributo <code>strategy</code>, un <code>setStrategy(s)</code> per cambiarla a runtime, e in <code>doSomething()</code> chiama <code>strategy.execute()</code></li>
       <li><b>Client</b> — inietta nel Context la strategia voluta</li>
     </ul>
+    <div class="fc-explain-h">🎨 Disegnalo a mente</div>
+    <p class="fc-acron"><b>S·CS·CT·C</b> — "Strategia in tasca, Context Calcola, Cliente sceglie"</p>
+    <ol class="fc-draw">
+      <li>In alto: <b>Strategy</b> «interface» con <code>+ execute(data)</code>.</li>
+      <li>Sotto Strategy: 2–3 <b>ConcreteStrategyA/B/C</b>. Ognuna ⊳ Strategy con triangolo + linea <i>tratteggiata</i>.</li>
+      <li>A sinistra di Strategy: <b>Context</b>. Attributo <code>- strategy: Strategy</code>. Metodi <code>+ setStrategy(s)</code> e <code>+ doSomething()</code>.</li>
+      <li><b>Context → Strategy</b>: freccia normale (il cuore: Context HA una Strategy).</li>
+      <li><b>Client → Context</b>: dipendenza tratteggiata. Il Client inietta la strategia.</li>
+    </ol>
   </div>
 
   <h3>5. Composite <span class="pill a">strutturale</span></h3>
@@ -1303,6 +1343,16 @@
       <li><b>Composite</b> — implementa Component, contiene <code>0..*</code> Component figli; la sua <code>operation()</code> delega a ciascun figlio</li>
       <li><b>Client</b> — lavora solo con Component: non distingue foglie e gruppi</li>
     </ul>
+    <div class="fc-explain-h">🎨 Disegnalo a mente</div>
+    <p class="fc-acron"><b>C·L·C</b> — "Componente padre, Leaf foglia, Composite matrioska" (0..* è il cuore)</p>
+    <ol class="fc-draw">
+      <li>In alto: <b>Component</b> «interface» con <code>+ operation()</code>.</li>
+      <li>Sotto a sinistra: <b>Leaf</b>. ⊳ Component (triangolo + tratteggiata).</li>
+      <li>Sotto a destra: <b>Composite</b>. ⊳ Component (triangolo + tratteggiata).</li>
+      <li><b>IL CUORE</b>: dal <b>Composite</b> parte una freccia normale con <b>0..*</b> che <i>torna su a Component</i>. Senza ricorsione non è Composite.</li>
+      <li>Metodi Composite: <code>add(c) · remove(c) · operation()</code> che itera i figli.</li>
+      <li>A lato: <b>Client</b> con dipendenza tratteggiata a Component.</li>
+    </ol>
   </div>
 
   <h3>6. Facade <span class="pill a">strutturale</span></h3>
@@ -1331,6 +1381,15 @@
       <li><b>Subsystem A/B/C…</b> — le classi reali del sottosistema; il Client non le tocca</li>
       <li><b>Client</b> — interagisce solo con Facade</li>
     </ul>
+    <div class="fc-explain-h">🎨 Disegnalo a mente</div>
+    <p class="fc-acron"><b>C → F → S·S·S</b> — "Cliente vede solo il bottone, dietro c'è il sottosistema"</p>
+    <ol class="fc-draw">
+      <li>A sinistra: <b>Client</b>. Al centro: <b>Facade</b>. A destra: 3 rettangoli <b>SubsystemA · B · C</b>.</li>
+      <li><b>Client → Facade</b>: freccia normale.</li>
+      <li><b>Facade → A · B · C</b>: 3 frecce normali (Facade conosce e usa).</li>
+      <li><b>NIENTE</b> frecce dal Client alle classi del sottosistema (regola d'oro).</li>
+      <li>Facade espone <code>+ subsystemOperation()</code> che dentro chiama in sequenza A.foo() + B.bar() + C.baz().</li>
+    </ol>
   </div>
 
   <h3>7. Observer <span class="pill v">comportamentale</span></h3>
@@ -1360,6 +1419,15 @@
       <li><b>ConcreteSubscriber A/B…</b> — implementano Subscriber; nel loro <code>update()</code> leggono i dati dal Publisher e reagiscono ciascuno a modo suo</li>
       <li><b>Client</b> — crea Publisher e Subscriber, e fa le <code>subscribe()</code></li>
     </ul>
+    <div class="fc-explain-h">🎨 Disegnalo a mente</div>
+    <p class="fc-acron"><b>P → 0..* S → CS</b> — "Publisher tiene la rubrica, chiama update su tutti" (0..* è il cuore)</p>
+    <ol class="fc-draw">
+      <li>A sinistra: <b>Publisher (Subject)</b>. A destra in alto: <b>Subscriber</b> «interface» con <code>+ update(subject)</code>.</li>
+      <li><b>IL CUORE</b>: <b>Publisher → Subscriber</b> con freccia normale + <b>0..*</b> sul lato Subscriber. Il Publisher tiene la lista.</li>
+      <li>Publisher: <code>- subscribers: Subscriber[]</code>, <code>- state</code>, <code>+ subscribe(s) · + unsubscribe(s) · + notifySubscribers()</code>.</li>
+      <li>Sotto Subscriber: <b>ConcreteSubscriberA/B</b>. ⊳ Subscriber (triangolo + tratteggiata).</li>
+      <li>Nota gialla su <code>notifySubscribers()</code>: "forEach s in subscribers: s.update(this)".</li>
+    </ol>
   </div>
 
   <div class="box warn"><div class="t">⚠️ Trappole GoF (super frequenti all'orale)</div>
@@ -5422,6 +5490,14 @@ function renderCard(autoTrigger) {
           ['Target (IAdapter)', "«interface» — il contratto che il Client si aspetta"],
           ['Adapter', "implementa Target e contiene un riferimento all'Adaptee; in <code>request()</code> chiama <code>adaptee.specificRequest()</code>"],
           ['Adaptee', "classe preesistente con interfaccia diversa; non viene modificata"]
+        ],
+        acron: "<b>C·T·A·A</b> — \"Cane (Client) Trova Adattatore Antico\"",
+        draw: [
+          "Disegna 4 rettangoli affiancati: <b>Client</b> | <b>Target</b> (con «interface» sopra il nome) | <b>Adapter</b> | <b>Adaptee</b>.",
+          "<b>Client → Target</b>: freccia normale (associazione, ha-un Target).",
+          "<b>Adapter ⊳ Target</b>: triangolo vuoto + linea <i>tratteggiata</i> (realizza l'interfaccia).",
+          "<b>Adapter → Adaptee</b>: freccia normale (Adapter contiene un riferimento all'Adaptee).",
+          "Nota gialla su <code>Adapter.request()</code>: \"<code>adaptee.specificRequest()</code>\"."
         ]
       },
       Factory: {
@@ -5432,6 +5508,14 @@ function renderCard(autoTrigger) {
           ['ConcreteProduct A/B…', "le implementazioni reali; il Client non le vede"],
           ['Factory', "Pure Fabrication con <code>create(): Product</code>; decide quale concreto istanziare"],
           ['Client', "tiene un riferimento alla Factory e chiama solo <code>factory.create()</code>"]
+        ],
+        acron: "<b>P·CP·F·C</b> — \"Pizze Cuoce Fabbrica al Cliente\"",
+        draw: [
+          "Centro: <b>Product</b> «interface» (con i metodi del prodotto).",
+          "Sotto Product: <b>ConcreteProductA</b> e <b>ConcreteProductB</b>. Ciascuno ⊳ Product con triangolo + linea <i>tratteggiata</i> (realizzano).",
+          "A destra: <b>Factory</b> con il metodo <code>+ create(): Product</code> (sottolineato se statico).",
+          "<b>Client → Factory</b>: freccia normale (ha-una Factory).",
+          "<b>Client → Product</b>: freccia tratteggiata di <i>dipendenza</i> (usa Product come ritorno, mai conosce i Concrete)."
         ]
       },
       Singleton: {
@@ -5440,6 +5524,14 @@ function renderCard(autoTrigger) {
         classes: [
           ['Singleton', "ha attributo statico <u>instance</u>, costruttore privato e metodo statico <u>getInstance()</u>"],
           ['Client', "chiama <code>Singleton.getInstance()</code> ovunque servisse l'istanza"]
+        ],
+        acron: "<b>I·C·G</b> — \"Istanza Chiusa, Getter\" (3 elementi NON negoziabili)",
+        draw: [
+          "Un solo rettangolo grande: <b>Singleton</b>. In alto a destra metti <b>\"1\"</b> (cardinalità: una sola istanza).",
+          "Sezione attributi: <code>- <u>instance</u>: Singleton</code> (sottolineato = static).",
+          "Sezione metodi: <code>- Singleton()</code> in PRIVATO (segno meno) — è la \"porta chiusa\".",
+          "Sotto: <code>+ <u>getInstance()</u>: Singleton</code> sottolineato (l'unica via d'accesso).",
+          "A fianco: <b>Client</b>. Freccia tratteggiata di dipendenza Client → Singleton (lo chiama, non lo possiede)."
         ]
       },
       Strategy: {
@@ -5450,6 +5542,14 @@ function renderCard(autoTrigger) {
           ['ConcreteStrategyA/B/C', "le implementazioni reali degli algoritmi"],
           ['Context', "ha l'attributo <code>strategy</code>, un <code>setStrategy(s)</code> per cambiarla a runtime, e in <code>doSomething()</code> chiama <code>strategy.execute()</code>"],
           ['Client', "inietta nel Context la strategia voluta"]
+        ],
+        acron: "<b>S·CS·CT·C</b> — \"Strategia in tasca, Context Calcola, Cliente sceglie\"",
+        draw: [
+          "In alto: <b>Strategy</b> «interface» con <code>+ execute(data)</code>.",
+          "Sotto Strategy: 2–3 <b>ConcreteStrategyA/B/C</b>. Ognuna ⊳ Strategy con triangolo + linea <i>tratteggiata</i> (realizza).",
+          "A sinistra di Strategy: <b>Context</b>. Attributo <code>- strategy: Strategy</code>. Metodi <code>+ setStrategy(s)</code> e <code>+ doSomething()</code>.",
+          "<b>Context → Strategy</b>: freccia normale (Context HA una Strategy). È il cuore: la strategia è un campo del Context.",
+          "<b>Client → Context</b>: dipendenza tratteggiata. Il Client inietta la strategia con <code>setStrategy</code>."
         ]
       },
       Composite: {
@@ -5460,6 +5560,15 @@ function renderCard(autoTrigger) {
           ['Leaf', "implementa Component; nodo foglia senza figli"],
           ['Composite', "implementa Component, contiene <code>0..*</code> Component figli; la sua <code>operation()</code> delega a ciascun figlio"],
           ['Client', "lavora solo con Component: non distingue foglie e gruppi"]
+        ],
+        acron: "<b>C·L·C</b> — \"Componente padre, Leaf foglia, Composite matrioska\" (0..* è il cuore)",
+        draw: [
+          "In alto: <b>Component</b> «interface» con <code>+ operation()</code>.",
+          "Sotto a sinistra: <b>Leaf</b>. ⊳ Component (triangolo + tratteggiata).",
+          "Sotto a destra: <b>Composite</b>. ⊳ Component (triangolo + tratteggiata).",
+          "<b>IL CUORE</b>: dal <b>Composite</b> parte una freccia normale con <b>0..*</b> che <i>torna su a Component</i>. Questa ricorsione fa l'albero — senza non è Composite.",
+          "Metodi di Composite: <code>add(c) · remove(c) · operation()</code> dove operation itera i figli e chiama la loro <code>operation()</code>.",
+          "A lato: <b>Client</b> con dipendenza tratteggiata a Component (tratta tutto uguale)."
         ]
       },
       Facade: {
@@ -5469,6 +5578,14 @@ function renderCard(autoTrigger) {
           ['Facade', "il punto d'ingresso unico; espone metodi semplici, dentro orchestra il sottosistema"],
           ['SubsystemA/B/C', "le classi reali del sottosistema; il Client non le tocca"],
           ['Client', "interagisce solo con Facade"]
+        ],
+        acron: "<b>C → F → S·S·S</b> — \"Cliente vede solo il bottone, dietro c'è il sottosistema\"",
+        draw: [
+          "A sinistra: <b>Client</b>. Al centro: <b>Facade</b>. A destra: 3 rettangoli del sottosistema <b>SubsystemA · SubsystemB · SubsystemC</b>.",
+          "<b>Client → Facade</b>: freccia normale (associazione, ha-una Facade).",
+          "<b>Facade → A · B · C</b>: 3 frecce normali (Facade conosce e usa le classi del sottosistema).",
+          "<b>NIENTE</b> frecce dal Client alle classi del sottosistema. Questa è la regola: il Client le ignora.",
+          "Facade espone metodi alto livello: <code>+ subsystemOperation()</code>. Dentro chiama A.foo() + B.bar() + C.baz()."
         ]
       },
       'Façade': {
@@ -5478,6 +5595,14 @@ function renderCard(autoTrigger) {
           ['Facade', "il punto d'ingresso unico; espone metodi semplici, dentro orchestra il sottosistema"],
           ['SubsystemA/B/C', "le classi reali del sottosistema; il Client non le tocca"],
           ['Client', "interagisce solo con Facade"]
+        ],
+        acron: "<b>C → F → S·S·S</b> — \"Cliente vede solo il bottone, dietro c'è il sottosistema\"",
+        draw: [
+          "A sinistra: <b>Client</b>. Al centro: <b>Facade</b>. A destra: 3 rettangoli del sottosistema <b>A · B · C</b>.",
+          "<b>Client → Facade</b>: freccia normale.",
+          "<b>Facade → A · B · C</b>: 3 frecce normali.",
+          "<b>NIENTE</b> frecce dal Client al sottosistema (il Client lo ignora completamente).",
+          "Facade espone <code>+ subsystemOperation()</code> che dentro chiama in sequenza A.foo() + B.bar() + C.baz()."
         ]
       },
       Observer: {
@@ -5488,6 +5613,14 @@ function renderCard(autoTrigger) {
           ['Subscriber', "«interface» — definisce <code>update(subject)</code>"],
           ['ConcreteSubscriber', "implementa Subscriber; nel suo <code>update()</code> legge i dati dal Publisher e reagisce"],
           ['Client', "crea Publisher e Subscriber, e fa le <code>attach</code>"]
+        ],
+        acron: "<b>P → 0..* S → CS</b> — \"Publisher tiene la rubrica, chiama update su tutti\" (0..* è il cuore)",
+        draw: [
+          "A sinistra: <b>Publisher (Subject)</b>. A destra in alto: <b>Subscriber</b> «interface» con <code>+ update(subject)</code>.",
+          "<b>IL CUORE</b>: <b>Publisher → Subscriber</b> con freccia normale + <b>0..*</b> sul lato Subscriber. Il Publisher tiene la lista.",
+          "Publisher ha: <code>- subscribers: Subscriber[]</code>, <code>- state</code>, metodi <code>+ subscribe(s) · + unsubscribe(s) · + notifySubscribers()</code>.",
+          "Sotto Subscriber: <b>ConcreteSubscriberA/B</b>. Ognuno ⊳ Subscriber con triangolo + tratteggiata (realizzano).",
+          "Nota gialla su <code>notifySubscribers()</code>: \"forEach s in subscribers: s.update(this)\"."
         ]
       }
     };
@@ -5497,11 +5630,15 @@ function renderCard(autoTrigger) {
     }
     if (found) {
       const lis = found.classes.map(c => '<li><b>'+c[0]+'</b> — '+c[1]+'</li>').join('');
+      const drawLis = (found.draw||[]).map(s => '<li>'+s+'</li>').join('');
+      const acron = found.acron ? '<p class="fc-acron">'+found.acron+'</p>' : '';
+      const drawBox = drawLis ? '<div class="fc-explain-h">🎨 Disegnalo a mente</div>'+acron+'<ol class="fc-draw">'+drawLis+'</ol>' : '';
       imgEl.innerHTML =
         '<img src="_uml_appunti/'+found.file+'" alt="Schema UML '+found.name+'" loading="lazy">' +
         '<div class="cap">📐 Schema UML — '+found.name+'</div>' +
         '<div class="fc-explain"><div class="fc-explain-h">⚙️ Come funziona</div><p>'+found.how+'</p>' +
-        '<div class="fc-explain-h">🧩 Le classi</div><ul>'+lis+'</ul></div>';
+        '<div class="fc-explain-h">🧩 Le classi</div><ul>'+lis+'</ul>' +
+        drawBox + '</div>';
     } else {
       imgEl.innerHTML = '';
     }
