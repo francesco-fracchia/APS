@@ -207,6 +207,13 @@
   .fc-img:empty{display:none}
   .fc-img img{max-width:100%;height:auto;max-height:240px;display:inline-block;border-radius:6px}
   .fc-img .cap{font-size:.72rem;color:var(--faint);margin-top:4px;font-style:italic}
+  .fc-explain{text-align:left;margin-top:10px;padding:10px 12px;background:var(--blue-w);border:1px solid #d1ddff;border-radius:8px;font-size:.88rem;color:var(--ink);line-height:1.45}
+  .fc-explain p{margin:.2rem 0 .6rem}
+  .fc-explain ul{margin:.2rem 0 0;padding-left:1.1rem}
+  .fc-explain li{margin:.25rem 0}
+  .fc-explain code{background:#dde6ff;color:#1e3a8a;padding:1px 5px;border-radius:4px;font-size:.85em}
+  .fc-explain-h{font-weight:700;color:var(--blue);font-size:.78rem;text-transform:uppercase;letter-spacing:.04em;margin-top:6px}
+  .fc-explain-h:first-child{margin-top:0}
   .hintf{margin-top:12px;font-size:.75rem;color:var(--faint);text-align:center}
   .flashctrl{display:flex;gap:9px;justify-content:center;align-items:center;margin-top:14px;flex-wrap:wrap}
   .flashcount{font-weight:700;color:var(--soft);min-width:56px;text-align:center}
@@ -5268,16 +5275,98 @@ function renderCard(autoTrigger) {
   document.getElementById('fc-q').textContent = c.q;
   document.getElementById('fc-a').textContent = c.a;
   document.getElementById('fc-m').textContent = c.m || '';
-  // Schema UML per i GoF: rileva il pattern dal testo della domanda
+  // Schema UML + spiegazione discorsiva per i GoF
   const imgEl = document.getElementById('fc-img');
   if (imgEl) {
-    const GOF_IMG = {Adapter:'uml_adapter.png',Factory:'uml_factory.png',Singleton:'uml_singleton.png',Strategy:'uml_strategy.png',Composite:'uml_composite.png',Facade:'uml_facade.png','Façade':'uml_facade.png',Observer:'uml_observer.png'};
+    const GOF_INFO = {
+      Adapter: {
+        file: 'uml_adapter.png',
+        how: "Il <b>Client</b> vuole usare un servizio ma il sistema esistente (<b>Adaptee</b>) ha un'interfaccia incompatibile. Si interpone un <b>Adapter</b> che <i>realizza</i> l'interfaccia attesa dal Client (<b>Target</b>) e, al suo interno, <i>traduce</i> ogni chiamata in una chiamata all'Adaptee. Il Client non sa che dietro c'è una traduzione.",
+        classes: [
+          ['Client', "chi vuole il servizio; conosce solo Target"],
+          ['Target (IAdapter)', "«interface» — il contratto che il Client si aspetta"],
+          ['Adapter', "implementa Target e contiene un riferimento all'Adaptee; in <code>request()</code> chiama <code>adaptee.specificRequest()</code>"],
+          ['Adaptee', "classe preesistente con interfaccia diversa; non viene modificata"]
+        ]
+      },
+      Factory: {
+        file: 'uml_factory.png',
+        how: "Il <b>Client</b> non costruisce direttamente i prodotti (<code>new ConcreteProductA()</code>) ma chiede alla <b>Factory</b> di farlo. La Factory ritorna sempre il <b>Product</b> (interfaccia), nascondendo quale sottoclasse concreta è stata creata. Cambiare l'implementazione = modificare solo la Factory.",
+        classes: [
+          ['Product', "«interface» — il tipo che il Client conosce"],
+          ['ConcreteProduct A/B…', "le implementazioni reali; il Client non le vede"],
+          ['Factory', "Pure Fabrication con <code>create(): Product</code>; decide quale concreto istanziare"],
+          ['Client', "tiene un riferimento alla Factory e chiama solo <code>factory.create()</code>"]
+        ]
+      },
+      Singleton: {
+        file: 'uml_singleton.png',
+        how: "Si vuole garantire che esista <b>una sola istanza</b> di una classe e renderla accessibile globalmente. Il costruttore viene reso <i>privato</i>: nessuno può fare <code>new</code> dall'esterno. L'accesso passa da un metodo statico <code>getInstance()</code> che, la prima volta, crea l'istanza e la salva in un attributo statico; nelle volte successive la ritorna.",
+        classes: [
+          ['Singleton', "ha attributo statico <u>instance</u>, costruttore privato e metodo statico <u>getInstance()</u>"],
+          ['Client', "chiama <code>Singleton.getInstance()</code> ovunque servisse l'istanza"]
+        ]
+      },
+      Strategy: {
+        file: 'uml_strategy.png',
+        how: "Servono <b>algoritmi intercambiabili</b> per lo stesso scopo (es. tre tipi di calcolo sconto). Si definisce un'interfaccia <b>Strategy</b> con il metodo <code>execute()</code> e tante <b>ConcreteStrategy</b> quante varianti. Il <b>Context</b> tiene un riferimento a una Strategy corrente e, quando deve fare il lavoro, delega: <code>strategy.execute()</code>. Niente <code>if/switch</code>: il polimorfismo sceglie.",
+        classes: [
+          ['Strategy', "«interface» — il contratto comune (<code>execute(data)</code>)"],
+          ['ConcreteStrategyA/B/C', "le implementazioni reali degli algoritmi"],
+          ['Context', "ha l'attributo <code>strategy</code>, un <code>setStrategy(s)</code> per cambiarla a runtime, e in <code>doSomething()</code> chiama <code>strategy.execute()</code>"],
+          ['Client', "inietta nel Context la strategia voluta"]
+        ]
+      },
+      Composite: {
+        file: 'uml_composite.png',
+        how: "Servono strutture <b>ad albero</b> (cartelle/file, menu/voci) trattando il singolo e il gruppo allo <i>stesso modo</i>. Si definisce <b>Component</b> come interfaccia comune con <code>operation()</code>. La <b>Leaf</b> è il nodo terminale. Il <b>Composite</b> contiene una lista di Component (figli) e, nella sua <code>operation()</code>, itera sui figli chiamando ricorsivamente la loro <code>operation()</code>. Il Client tratta tutto come Component.",
+        classes: [
+          ['Component', "«interface» — definisce <code>operation()</code> e (opzionale) <code>add/remove/getChildren</code>"],
+          ['Leaf', "implementa Component; nodo foglia senza figli"],
+          ['Composite', "implementa Component, contiene <code>0..*</code> Component figli; la sua <code>operation()</code> delega a ciascun figlio"],
+          ['Client', "lavora solo con Component: non distingue foglie e gruppi"]
+        ]
+      },
+      Facade: {
+        file: 'uml_facade.png',
+        how: "Un sottosistema è formato da molte classi che il Client dovrebbe orchestrare a mano. Si introduce una <b>Facade</b>: una classe unica con metodi ad alto livello (<code>doX()</code>, <code>doY()</code>) che, dietro le quinte, chiama in sequenza le classi del sottosistema. Il Client conosce solo la Facade. Accoppiamento ridotto al minimo.",
+        classes: [
+          ['Facade', "il punto d'ingresso unico; espone metodi semplici, dentro orchestra il sottosistema"],
+          ['SubsystemA/B/C', "le classi reali del sottosistema; il Client non le tocca"],
+          ['Client', "interagisce solo con Facade"]
+        ]
+      },
+      'Façade': {
+        file: 'uml_facade.png',
+        how: "Un sottosistema è formato da molte classi che il Client dovrebbe orchestrare a mano. Si introduce una <b>Facade</b>: una classe unica con metodi ad alto livello che, dietro le quinte, chiama in sequenza le classi del sottosistema. Il Client conosce solo la Facade. Accoppiamento ridotto al minimo.",
+        classes: [
+          ['Facade', "il punto d'ingresso unico; espone metodi semplici, dentro orchestra il sottosistema"],
+          ['SubsystemA/B/C', "le classi reali del sottosistema; il Client non le tocca"],
+          ['Client', "interagisce solo con Facade"]
+        ]
+      },
+      Observer: {
+        file: 'uml_observer.png',
+        how: "Un <b>Publisher</b> (Subject) cambia stato e deve <i>notificare</i> tanti <b>Subscriber</b> interessati, senza sapere chi sono. Il Publisher mantiene una lista di Subscriber (interfaccia con <code>update()</code>). Chi è interessato si registra con <code>attach()</code>. Al cambio di stato, il Publisher fa <code>notifyAll()</code> che itera sulla lista e chiama <code>s.update(this)</code>. Ogni Subscriber decide cosa farsene.",
+        classes: [
+          ['Publisher (Subject)', "ha <code>0..*</code> Subscriber, metodi <code>attach/detach/notifyAll</code>; quando cambia stato fa partire <code>notifyAll()</code>"],
+          ['Subscriber', "«interface» — definisce <code>update(subject)</code>"],
+          ['ConcreteSubscriber', "implementa Subscriber; nel suo <code>update()</code> legge i dati dal Publisher e reagisce"],
+          ['Client', "crea Publisher e Subscriber, e fa le <code>attach</code>"]
+        ]
+      }
+    };
     let found = null;
     if (c.t === 'GoF') {
-      for (const k in GOF_IMG) { if (c.q.indexOf(k) !== -1) { found = {name:k, file:GOF_IMG[k]}; break; } }
+      for (const k in GOF_INFO) { if (c.q.indexOf(k) !== -1) { found = Object.assign({name:k}, GOF_INFO[k]); break; } }
     }
     if (found) {
-      imgEl.innerHTML = '<img src="_uml_appunti/'+found.file+'" alt="Schema UML '+found.name+'" loading="lazy"><div class="cap">📐 Schema UML — '+found.name+'</div>';
+      const lis = found.classes.map(c => '<li><b>'+c[0]+'</b> — '+c[1]+'</li>').join('');
+      imgEl.innerHTML =
+        '<img src="_uml_appunti/'+found.file+'" alt="Schema UML '+found.name+'" loading="lazy">' +
+        '<div class="cap">📐 Schema UML — '+found.name+'</div>' +
+        '<div class="fc-explain"><div class="fc-explain-h">⚙️ Come funziona</div><p>'+found.how+'</p>' +
+        '<div class="fc-explain-h">🧩 Le classi</div><ul>'+lis+'</ul></div>';
     } else {
       imgEl.innerHTML = '';
     }
