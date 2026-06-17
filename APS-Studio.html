@@ -213,6 +213,12 @@
   .quiz-bar .score{font-weight:700;color:var(--blue);margin-left:auto}
   .quiz-bar .score.ok{color:var(--green)}
   .quiz-bar .score.bad{color:var(--red)}
+  .quiz-nav{display:flex;gap:12px;justify-content:center;align-items:center;margin:12px 0;flex-wrap:wrap}
+  .quiz-progress-wrap{flex:1;min-width:200px;max-width:500px;display:flex;flex-direction:column;align-items:center;gap:5px}
+  .quiz-progress{width:100%;height:8px;background:#eef0f3;border-radius:4px;overflow:hidden}
+  .quiz-progress-fill{height:100%;background:linear-gradient(90deg,var(--green),var(--blue));width:0%;transition:width .3s}
+  .quiz-counter{font-weight:700;color:var(--soft);font-size:.85rem;font-family:'Inter','Segoe UI',Arial,sans-serif}
+  kbd{display:inline-block;padding:2px 6px;border-radius:4px;border:1px solid var(--line);background:#fafbfd;font-size:.8rem;font-family:'JetBrains Mono','Consolas',monospace;box-shadow:0 1px 0 var(--line)}
   .quiz-q{background:var(--paper);border:1px solid var(--line);border-left:4px solid var(--blue);border-radius:9px;padding:13px 17px;margin:11px 0;box-shadow:var(--shadow);page-break-inside:avoid}
   .quiz-q.correct{border-left-color:var(--green);background:#f3fbf5}
   .quiz-q.wrong{border-left-color:var(--red);background:#fdf5f6}
@@ -1357,15 +1363,32 @@
   <p class="lead">Banca di domande a risposta multipla che simulano le crocette filtro dell'esame. Filtra per topic, rispondi, verifica.</p>
 
   <div class="quiz-bar">
-    <button class="btn" onclick="quizCheckAll()">✓ Verifica tutto</button>
-    <button class="btn" onclick="quizReset()">↻ Reset</button>
     <button class="btn" onclick="quizShuffle()">🔀 Mischia</button>
+    <button class="btn" onclick="quizReset()">↻ Reset</button>
     <button class="btn" onclick="quizOnlyWrong()">🔴 Solo sbagliate</button>
     <span class="score" id="quiz-score">— / —</span>
   </div>
   <div class="topic-filters" id="quiz-filters"></div>
+
+  <!-- Slideshow controls -->
+  <div class="quiz-nav">
+    <button class="btn" onclick="quizPrev()">← Prec</button>
+    <div class="quiz-progress-wrap">
+      <div class="quiz-progress"><div class="quiz-progress-fill" id="quiz-progress-fill"></div></div>
+      <div class="quiz-counter" id="quiz-counter">0 / 0</div>
+    </div>
+    <button class="btn" onclick="quizNext()">Succ →</button>
+  </div>
+
   <div id="quiz-container"></div>
-  <p class="hint" style="text-align:center;margin-top:14px">💡 Modalità: clicca <b>Verifica tutto</b> per controllare le risposte e vedere le spiegazioni. Le verdi sono corrette, le rosse sbagliate, le arancioni tratteggiate erano quelle che mancavano da selezionare.</p>
+
+  <div class="quiz-nav" style="margin-top:14px">
+    <button class="btn" onclick="quizPrev()">← Prec</button>
+    <button class="btn" id="quiz-check-btn" onclick="quizCheckCurrent()" style="background:var(--blue);color:#fff;border-color:var(--blue);font-weight:700">✓ Verifica risposta</button>
+    <button class="btn" onclick="quizNext()">Succ →</button>
+  </div>
+
+  <p class="hint" style="text-align:center;margin-top:14px">💡 Una domanda alla volta. Rispondi, premi <b>✓ Verifica</b>, leggi la spiegazione, poi <b>Succ →</b>.<br>Scorciatoie tastiera: <kbd>←</kbd> <kbd>→</kbd> naviga · <kbd>Spazio</kbd>/<kbd>Invio</kbd> verifica · <kbd>S</kbd> mischia.</p>
 
   <h2 class="sec" id="esame-sim"><span class="chip">🎓</span>Esame simulato</h2>
   <p class="lead">Domande casuali dalle categorie scelte. Progresso live. Risultati per topic alla fine. Setup → vai.</p>
@@ -3662,6 +3685,8 @@ let quizCurrent = 'ALL';
 let quizOrder = QUIZ.map((_,i)=>i);
 let quizSelected = {}; // {questionIdx: Set of optIndexes}
 let quizChecked = false;
+let quizIdx = 0;            // indice slideshow nella quizOrder
+let quizResults = {};       // {questionIdx: boolean correct}
 
 function quizBuildFilters() {
   const cont = document.getElementById('quiz-filters');
@@ -3688,42 +3713,127 @@ function quizSetTopic(t) {
   quizCurrent = t;
   quizOrder = (t === 'ALL') ? QUIZ.map((_,i)=>i) : QUIZ.map((q,i)=>q.t===t?i:-1).filter(i=>i>=0);
   quizSelected = {};
+  quizResults = {};
   quizChecked = false;
+  quizIdx = 0;
   document.querySelectorAll('#quiz-filters button').forEach(b => b.classList.toggle('on', b.dataset.t === t));
   quizRender();
 }
+// SLIDESHOW: mostra solo la domanda corrente
 function quizRender() {
   const cont = document.getElementById('quiz-container');
   if (!cont) return;
   cont.innerHTML = '';
-  quizOrder.forEach((idx, displayIdx) => {
-    const q = QUIZ[idx];
-    const div = document.createElement('div');
-    div.className = 'quiz-q';
-    div.dataset.qi = idx;
-    const multiHint = q.m ? '<span class="multi-hint">(una o più alternative)</span>' : '';
-    const inputType = q.m ? 'checkbox' : 'radio';
-    let optsHtml = '';
-    q.o.forEach((opt, oi) => {
-      const sel = quizSelected[idx] && quizSelected[idx].has(oi);
-      optsHtml += '<label class="opt" data-oi="'+oi+'"><input type="'+inputType+'" name="q'+idx+'" '+(sel?'checked':'')+' onchange="quizSelect('+idx+','+oi+','+q.m+')"><span>'+opt+'</span></label>';
-    });
-    const hasTeoria = !!TOPIC_TO_TEORIA[q.t];
-    const hasCard = (typeof cards !== 'undefined') && cards.some(c => c.t === q.t);
-    const linksHtml =
-      '<div class="goto-btns">'+
-      (hasCard ? '<button class="goto-btn flash" onclick="gotoFlashcards(\''+q.t+'\')" title="Vai alle flashcard di '+(QUIZ_TOPIC_LABEL[q.t]||q.t)+'">🃏 Flashcard '+(QUIZ_TOPIC_LABEL[q.t]||q.t)+'</button>' : '')+
-      (hasTeoria ? '<button class="goto-btn teoria" onclick="gotoTeoria(\''+q.t+'\')" title="Vai alla teoria di '+(QUIZ_TOPIC_LABEL[q.t]||q.t)+'">📚 Teoria</button>' : '')+
-      '</div>';
-    div.innerHTML =
-      '<div class="qhead"><span>Domanda '+(displayIdx+1)+'/'+quizOrder.length+'</span><span class="pill v">'+(QUIZ_TOPIC_LABEL[q.t]||q.t)+'</span></div>'+
-      '<div class="qtext">'+q.q+' '+multiHint+'</div>'+
-      optsHtml+
-      '<div class="expl"><b>Spiegazione</b>: '+q.e+'</div>'+
-      linksHtml;
-    cont.appendChild(div);
+  if (!quizOrder.length) {
+    cont.innerHTML = '<div class="quiz-q"><div class="qtext" style="text-align:center;color:var(--soft)">Nessuna domanda per questo filtro.</div></div>';
+    document.getElementById('quiz-counter').textContent = '0 / 0';
+    document.getElementById('quiz-progress-fill').style.width = '0%';
+    quizUpdateScore();
+    return;
+  }
+  if (quizIdx >= quizOrder.length) quizIdx = quizOrder.length - 1;
+  if (quizIdx < 0) quizIdx = 0;
+  const idx = quizOrder[quizIdx];
+  const q = QUIZ[idx];
+  const div = document.createElement('div');
+  div.className = 'quiz-q';
+  div.dataset.qi = idx;
+  const multiHint = q.m ? '<span class="multi-hint">(una o più alternative)</span>' : '';
+  const inputType = q.m ? 'checkbox' : 'radio';
+  let optsHtml = '';
+  q.o.forEach((opt, oi) => {
+    const sel = quizSelected[idx] && quizSelected[idx].has(oi);
+    optsHtml += '<label class="opt" data-oi="'+oi+'"><input type="'+inputType+'" name="q'+idx+'" '+(sel?'checked':'')+' onchange="quizSelect('+idx+','+oi+','+q.m+')"><span>'+opt+'</span></label>';
   });
+  const hasTeoria = !!TOPIC_TO_TEORIA[q.t];
+  const hasCard = (typeof cards !== 'undefined') && cards.some(c => c.t === q.t);
+  const linksHtml =
+    '<div class="goto-btns">'+
+    (hasCard ? '<button class="goto-btn flash" onclick="gotoFlashcards(\''+q.t+'\')" title="Vai alle flashcard">🃏 Flashcard '+(QUIZ_TOPIC_LABEL[q.t]||q.t)+'</button>' : '')+
+    (hasTeoria ? '<button class="goto-btn teoria" onclick="gotoTeoria(\''+q.t+'\')" title="Vai alla teoria">📚 Teoria</button>' : '')+
+    '</div>';
+  div.innerHTML =
+    '<div class="qhead"><span>Domanda '+(quizIdx+1)+'/'+quizOrder.length+'</span><span class="pill v">'+(QUIZ_TOPIC_LABEL[q.t]||q.t)+'</span></div>'+
+    '<div class="qtext">'+q.q+' '+multiHint+'</div>'+
+    optsHtml+
+    '<div class="expl"><b>Spiegazione</b>: '+q.e+'</div>'+
+    linksHtml;
+  cont.appendChild(div);
+  // Se già verificata, riapplica lo stato
+  if (quizResults.hasOwnProperty(idx)) {
+    quizApplyVerifyToCard(div, idx);
+  }
+  // Aggiorna counter + barra
+  const counter = document.getElementById('quiz-counter');
+  if (counter) counter.textContent = (quizIdx+1) + ' / ' + quizOrder.length;
+  const fill = document.getElementById('quiz-progress-fill');
+  if (fill) fill.style.width = ((quizIdx+1) / quizOrder.length * 100) + '%';
+  // Aggiorna bottone Verifica
+  updateQuizCheckBtn();
   quizUpdateScore();
+}
+function updateQuizCheckBtn() {
+  const btn = document.getElementById('quiz-check-btn');
+  if (!btn || !quizOrder.length) return;
+  const idx = quizOrder[quizIdx];
+  if (quizResults.hasOwnProperty(idx)) {
+    btn.textContent = '✓ Verificata';
+    btn.style.background = 'var(--soft)';
+    btn.style.borderColor = 'var(--soft)';
+  } else {
+    btn.textContent = '✓ Verifica risposta';
+    btn.style.background = 'var(--blue)';
+    btn.style.borderColor = 'var(--blue)';
+  }
+}
+function quizApplyVerifyToCard(card, idx) {
+  const q = QUIZ[idx];
+  const userSel = quizSelected[idx] || new Set();
+  const correctSet = new Set(q.c);
+  const isCorrect = quizResults[idx];
+  card.classList.add('checked');
+  card.classList.toggle('correct', isCorrect);
+  card.classList.toggle('wrong', !isCorrect);
+  card.querySelectorAll('label.opt').forEach(lbl => {
+    const oi = parseInt(lbl.dataset.oi);
+    const sel = userSel.has(oi);
+    const isC = correctSet.has(oi);
+    if (sel && isC) lbl.classList.add('correct-opt');
+    else if (sel && !isC) lbl.classList.add('wrong-opt');
+    else if (!sel && isC) lbl.classList.add('missed');
+  });
+}
+// Verifica SOLO la domanda corrente
+function quizCheckCurrent() {
+  if (!quizOrder.length) return;
+  const idx = quizOrder[quizIdx];
+  if (quizResults.hasOwnProperty(idx)) {
+    // già verificata → vai alla prossima
+    quizNext();
+    return;
+  }
+  const q = QUIZ[idx];
+  const userSel = quizSelected[idx] || new Set();
+  const correctSet = new Set(q.c);
+  let isCorrect = userSel.size === correctSet.size;
+  if (isCorrect) userSel.forEach(v => { if (!correctSet.has(v)) isCorrect = false; });
+  quizResults[idx] = isCorrect;
+  const card = document.querySelector('.quiz-q[data-qi="'+idx+'"]');
+  if (card) quizApplyVerifyToCard(card, idx);
+  updateQuizCheckBtn();
+  quizUpdateScore();
+}
+function quizNext() {
+  if (!quizOrder.length) return;
+  quizIdx = (quizIdx + 1) % quizOrder.length;
+  quizRender();
+  document.getElementById('quiz').scrollIntoView({behavior:'smooth', block:'start'});
+}
+function quizPrev() {
+  if (!quizOrder.length) return;
+  quizIdx = (quizIdx - 1 + quizOrder.length) % quizOrder.length;
+  quizRender();
+  document.getElementById('quiz').scrollIntoView({behavior:'smooth', block:'start'});
 }
 function quizSelect(qi, oi, multi) {
   if (quizChecked) return;
@@ -3774,7 +3884,9 @@ function quizCheckAll() {
 }
 function quizReset() {
   quizSelected = {};
+  quizResults = {};
   quizChecked = false;
+  quizIdx = 0;
   quizRender();
 }
 function quizShuffle() {
@@ -3783,34 +3895,59 @@ function quizShuffle() {
     [quizOrder[i], quizOrder[j]] = [quizOrder[j], quizOrder[i]];
   }
   quizSelected = {};
+  quizResults = {};
   quizChecked = false;
+  quizIdx = 0;
   quizRender();
 }
 function quizOnlyWrong() {
-  if (!quizChecked) { alert('Prima clicca "Verifica tutto" per identificare le sbagliate.'); return; }
   const wrongIds = [];
-  quizOrder.forEach(idx => {
-    const q = QUIZ[idx];
-    const userSel = quizSelected[idx] || new Set();
-    const correctSet = new Set(q.c);
-    let isCorrect = userSel.size === correctSet.size;
-    if (isCorrect) userSel.forEach(v => { if (!correctSet.has(v)) isCorrect = false; });
-    if (!isCorrect) wrongIds.push(idx);
+  Object.keys(quizResults).forEach(idxStr => {
+    if (!quizResults[idxStr]) wrongIds.push(parseInt(idxStr));
   });
+  if (!Object.keys(quizResults).length) { alert('Prima rispondi e verifica almeno qualche domanda.'); return; }
   if (!wrongIds.length) { alert('🎉 Nessuna sbagliata! Sei a posto.'); return; }
   quizOrder = wrongIds;
   quizSelected = {};
+  quizResults = {};
   quizChecked = false;
+  quizIdx = 0;
   quizRender();
 }
 function quizUpdateScore() {
   const s = document.getElementById('quiz-score');
   if (!s) return;
-  if (!quizChecked) {
+  const answeredCount = Object.keys(quizResults).length;
+  if (!answeredCount) {
     s.textContent = '— / '+quizOrder.length;
     s.classList.remove('ok','bad');
+    return;
   }
+  let correct = 0;
+  Object.values(quizResults).forEach(v => { if (v) correct++; });
+  const pct = answeredCount ? Math.round(correct/answeredCount*100) : 0;
+  s.textContent = correct+' / '+answeredCount+' verificate ('+pct+'%)';
+  s.classList.toggle('ok', pct >= 75);
+  s.classList.toggle('bad', pct < 50 && answeredCount >= 3);
 }
+// Scorciatoie tastiera per la slideshow del quiz
+document.addEventListener('keydown', (e) => {
+  if (document.activeElement && ['INPUT','TEXTAREA','SELECT'].includes(document.activeElement.tagName)) return;
+  // solo se la sezione quiz è in viewport (controllo approssimativo)
+  const quizSec = document.getElementById('quiz');
+  if (!quizSec) return;
+  const r = quizSec.getBoundingClientRect();
+  const inView = r.top < window.innerHeight && r.bottom > 0;
+  // sezione esame ha già le sue scorciatoie → evito conflitto
+  const examLive = document.getElementById('exam-live');
+  const examActive = examLive && !examLive.classList.contains('hidden');
+  if (examActive) return;
+  if (!inView) return;
+  if (e.key === 'ArrowRight') { e.preventDefault(); quizNext(); }
+  else if (e.key === 'ArrowLeft') { e.preventDefault(); quizPrev(); }
+  else if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); quizCheckCurrent(); }
+  else if (e.key === 's' || e.key === 'S') { e.preventDefault(); quizShuffle(); }
+});
 quizBuildFilters();
 quizRender();
 
