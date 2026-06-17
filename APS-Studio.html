@@ -1366,8 +1366,10 @@
     <button class="btn" onclick="quizShuffle()">🔀 Mischia</button>
     <button class="btn" onclick="quizReset()">↻ Reset</button>
     <button class="btn" onclick="quizOnlyWrong()">🔴 Solo sbagliate</button>
+    <button class="btn" id="quiz-check-all-btn" onclick="quizCheckAll()" style="background:var(--green);color:#fff;border-color:var(--green);font-weight:700">✓ Verifica tutto (fine sessione)</button>
     <span class="score" id="quiz-score">— / —</span>
   </div>
+  <p class="hint" style="margin:0 0 10px;font-size:.82rem;color:var(--soft)">💡 Per non farti influenzare dai risultati: rispondi a tutte le domande senza premere "Verifica risposta", poi clicca <b>✓ Verifica tutto</b> alla fine per il riepilogo completo.</p>
   <div class="topic-filters" id="quiz-filters"></div>
 
   <!-- Slideshow controls -->
@@ -1389,6 +1391,25 @@
   </div>
 
   <p class="hint" style="text-align:center;margin-top:14px">💡 Una domanda alla volta. Rispondi, premi <b>✓ Verifica</b>, leggi la spiegazione, poi <b>Succ →</b>.<br>Scorciatoie tastiera: <kbd>←</kbd> <kbd>→</kbd> naviga · <kbd>Spazio</kbd>/<kbd>Invio</kbd> verifica · <kbd>S</kbd> mischia.</p>
+
+  <!-- Riepilogo "Verifica tutto" (nascosto fino al click) -->
+  <div class="exam-card hidden" id="quiz-summary">
+    <div class="exam-results">
+      <h3 id="quiz-summary-title">📊 Riepilogo sessione</h3>
+      <div class="exam-score-big" id="quiz-summary-big">0/0</div>
+      <div class="exam-pct" id="quiz-summary-pct">0%</div>
+      <p id="quiz-summary-msg" style="color:var(--soft);margin:10px 0"></p>
+    </div>
+    <div class="exam-breakdown">
+      <h4>📊 Risultati per topic</h4>
+      <div id="quiz-summary-topics"></div>
+    </div>
+    <div class="exam-action" style="justify-content:center">
+      <button class="exam-btn-primary" onclick="quizSummaryReview()">🔍 Rivedi domanda per domanda</button>
+      <button class="btn" onclick="quizSummaryClose()">✕ Chiudi riepilogo</button>
+      <button class="btn" onclick="quizOnlyWrong(); quizSummaryClose();" style="background:var(--red);color:#fff;border-color:var(--red)">🔴 Riprova solo sbagliate</button>
+    </div>
+  </div>
 
   <h2 class="sec" id="esame-sim"><span class="chip">🎓</span>Esame simulato</h2>
   <p class="lead">Domande casuali dalle categorie scelte. Progresso live. Risultati per topic alla fine. Setup → vai.</p>
@@ -3846,41 +3867,81 @@ function quizSelect(qi, oi, multi) {
   }
 }
 function quizCheckAll() {
-  quizChecked = true;
-  let correct = 0;
+  if (!quizOrder.length) return;
+  // Verifica TUTTE le domande del pool corrente (anche non risposte = sbagliate)
+  let answered = 0, correct = 0, wrong = 0, skipped = 0;
+  const byTopic = {};
   quizOrder.forEach(idx => {
     const q = QUIZ[idx];
-    const card = document.querySelector('.quiz-q[data-qi="'+idx+'"]');
-    if (!card) return;
     const userSel = quizSelected[idx] || new Set();
     const correctSet = new Set(q.c);
-    let isCorrect = true;
-    // Per essere corretta: user ha selezionato esattamente le corrette
-    if (userSel.size !== correctSet.size) isCorrect = false;
-    else userSel.forEach(v => { if (!correctSet.has(v)) isCorrect = false; });
-    card.classList.add('checked');
-    card.classList.toggle('correct', isCorrect);
-    card.classList.toggle('wrong', !isCorrect);
-    if (isCorrect) correct++;
-    // Marca ogni opzione
-    card.querySelectorAll('label.opt').forEach(lbl => {
-      const oi = parseInt(lbl.dataset.oi);
-      const sel = userSel.has(oi);
-      const isC = correctSet.has(oi);
-      if (sel && isC) lbl.classList.add('correct-opt');
-      else if (sel && !isC) lbl.classList.add('wrong-opt');
-      else if (!sel && isC) lbl.classList.add('missed');
-    });
+    const wasAnswered = userSel.size > 0;
+    let isCorrect = false;
+    if (wasAnswered) {
+      isCorrect = userSel.size === correctSet.size;
+      if (isCorrect) userSel.forEach(v => { if (!correctSet.has(v)) isCorrect = false; });
+      answered++;
+    } else {
+      skipped++;
+    }
+    // Salva il risultato (per "Solo sbagliate" e re-render della card)
+    quizResults[idx] = isCorrect;
+    if (isCorrect) correct++; else wrong++;
+    // Stat per topic
+    if (!byTopic[q.t]) byTopic[q.t] = {ok:0, tot:0};
+    byTopic[q.t].tot++;
+    if (isCorrect) byTopic[q.t].ok++;
   });
+  // Mostra il riepilogo
   const total = quizOrder.length;
   const pct = total ? Math.round(correct/total*100) : 0;
-  const s = document.getElementById('quiz-score');
-  s.textContent = correct+' / '+total+' ('+pct+'%)';
-  s.classList.toggle('ok', pct >= 75);
-  s.classList.toggle('bad', pct < 50);
-  // scroll alla prima sbagliata
-  const firstWrong = document.querySelector('.quiz-q.wrong');
-  if (firstWrong) firstWrong.scrollIntoView({behavior:'smooth', block:'center'});
+  const big = document.getElementById('quiz-summary-big');
+  big.textContent = correct + ' / ' + total;
+  big.className = 'exam-score-big ' + (pct >= 75 ? 'ok' : (pct >= 50 ? 'mid' : 'bad'));
+  document.getElementById('quiz-summary-pct').textContent = pct + '%';
+  const msg = document.getElementById('quiz-summary-msg');
+  let msgText = '';
+  if (skipped > 0) msgText = '⚠️ ' + skipped + ' domanda/e non risposta/e (contate come sbagliate). ';
+  if (pct >= 90) msgText += '🌟 Sei pronto! Performance da esame.';
+  else if (pct >= 75) msgText += '✅ Buono. Rivedi le sbagliate.';
+  else if (pct >= 50) msgText += '⚠️ Insufficienza al limite. Ripassa i topic deboli.';
+  else msgText += '🔴 Da rivedere. Concentrati sui topic deboli.';
+  msg.textContent = msgText;
+  // Breakdown per topic
+  const breakdown = document.getElementById('quiz-summary-topics');
+  breakdown.innerHTML = '';
+  Object.keys(byTopic).sort((a,b) => {
+    const pa = byTopic[a].ok / byTopic[a].tot;
+    const pb = byTopic[b].ok / byTopic[b].tot;
+    return pa - pb; // peggiori primi
+  }).forEach(t => {
+    const tb = byTopic[t];
+    const tp = Math.round(tb.ok/tb.tot*100);
+    const cls = tp >= 75 ? 'ok' : (tp >= 50 ? 'mid' : 'bad');
+    const row = document.createElement('div');
+    row.className = 'exam-topic-row ' + cls;
+    row.innerHTML = '<span class="name">'+(QUIZ_TOPIC_LABEL[t]||t)+'</span>'+
+                  '<div class="bar-bg"><div class="bar-fill" style="width:'+tp+'%"></div></div>'+
+                  '<span class="pct">'+tb.ok+'/'+tb.tot+' ('+tp+'%)</span>';
+    breakdown.appendChild(row);
+  });
+  // Apri il riepilogo
+  document.getElementById('quiz-summary').classList.remove('hidden');
+  document.getElementById('quiz-summary').scrollIntoView({behavior:'smooth', block:'start'});
+  // Aggiorna score nella barra
+  quizUpdateScore();
+}
+function quizSummaryClose() {
+  document.getElementById('quiz-summary').classList.add('hidden');
+}
+function quizSummaryReview() {
+  // chiudi il riepilogo, vai alla prima sbagliata e re-render la card con la colorazione
+  document.getElementById('quiz-summary').classList.add('hidden');
+  const firstWrongIdx = quizOrder.findIndex(idx => quizResults[idx] === false);
+  if (firstWrongIdx >= 0) quizIdx = firstWrongIdx;
+  else quizIdx = 0;
+  quizRender();
+  document.getElementById('quiz').scrollIntoView({behavior:'smooth', block:'start'});
 }
 function quizReset() {
   quizSelected = {};
