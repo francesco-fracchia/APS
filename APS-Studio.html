@@ -2827,6 +2827,15 @@ const cards = [
 {t:"GoF", q:"Observer — flusso notify.", a:"Cambio stato → notifySubscribers() → forEach s in subscribers: s.update(this).", m:"🔔 STATE CHANGES → CICLA LA LISTA → CHIAMA update() SU OGNUNO. Pattern \"telefono a catena\"."},
 {t:"GoF", q:"Observer — eccezione a quale principio?", a:"Separazione Modello-Vista: il Modello conosce le Viste, ma solo come Subscriber.", m:"⚠️ ECCEZIONE LEGITTIMA al Modello-Vista. Il Modello CONOSCE le Viste, ma solo come \"Subscriber\" anonimi. Non sa che sono Viste."},
 
+// ===== Classificazione GoF per categoria =====
+{t:"GoF", q:"Quali sono i pattern GoF COMPORTAMENTALI (dei 7 del prof)?", a:"Strategy + Observer (2).", m:"🎭 COMPORTAMENTALE = come gli oggetti COMUNICANO/INTERAGISCONO tra loro. Dei 7 del prof: SO → Strategy · Observer. 2-3-2 → l'ultimo 2."},
+{t:"GoF", q:"Quali sono i pattern GoF CREAZIONALI (dei 7 del prof)?", a:"Factory + Singleton (2).", m:"🏭 CREAZIONALE = come si CREANO gli oggetti. Dei 7 del prof: FS → Factory · Singleton. 2-3-2 → il primo 2."},
+{t:"GoF", q:"Quali sono i pattern GoF STRUTTURALI (dei 7 del prof)?", a:"Adapter + Composite + Facade (3).", m:"🏗️ STRUTTURALE = come gli oggetti si COMPONGONO. Dei 7 del prof: ACF → Adapter · Composite · Facade. 2-3-2 → il 3 centrale."},
+{t:"GoF", q:"Cosa caratterizza un pattern \"comportamentale\"?", a:"Riguarda le interazioni e responsabilità tra oggetti (come comunicano, come si distribuisce il lavoro).", m:"COMPORTAMENTO = come oggetti GIRANO le palle tra loro. Strategy/Observer/State/Command/Iterator (su 11 totali GoF)."},
+{t:"GoF", q:"Cosa caratterizza un pattern \"creazionale\"?", a:"Riguarda i meccanismi di creazione degli oggetti, disaccoppiando il client dalle classi concrete.", m:"CREAZIONE = come arrivano al mondo. Factory/Singleton/Builder/Prototype/Abstract Factory (5 totali GoF)."},
+{t:"GoF", q:"Cosa caratterizza un pattern \"strutturale\"?", a:"Riguarda la composizione di classi/oggetti per formare strutture più grandi.", m:"STRUTTURA = come si MONTANO insieme. Adapter/Composite/Facade/Decorator/Bridge/Proxy/Flyweight (7 totali GoF)."},
+{t:"GoF", q:"Suddivisione totale GoF per categoria.", a:"5 creazionali + 7 strutturali + 11 comportamentali = 23 totali. (5-7-11)", m:"5-7-11 = somma 23. 🧠 Mnemonico: 5+7+11 cresce (più sono concettualmente fini i pattern strutturali, ancora di più i comportamentali)."},
+
 // ===== UML LEGENDA =====
 {t:"UML", q:"Triangolo vuoto + linea continua.", a:"Generalizzazione (ereditarietà): sottoclasse → superclasse.", m:"🔺 EREDITARIETÀ = \"sono un\". Cane ───▷ Animale (il cane PUNTA al padre Animale). Solido (legame strutturale, eredito davvero)."},
 {t:"UML", q:"Triangolo vuoto + linea tratteggiata.", a:"Realizzazione: classe → «interface».", m:"🔺- - - REALIZZAZIONE = \"prometto di...\". Stesso triangolo dell'eredità ma TRATTEGGIATO (effimero: implemento il contratto, non eredito sangue)."},
