@@ -2914,7 +2914,7 @@ const cards = [
 {t:"UML", q:"Verso del triangolo di ereditarietà.", a:"Sempre verso il padre (superclasse o interfaccia). Mai il contrario.", m:"⬆️ Il triangolo PUNTA SEMPRE AL PADRE. Pensa al figlio che indica papà: \"vengo da lui\". Mai il contrario."},
 {t:"UML", q:"Sottolineato in UML.", a:"Static (di classe, non di istanza).", m:"➖ Sottolineato = ELEVATO ALLA CLASSE (non legato a un'istanza). Si pensa: \"unica per tutti, sottolineata in evidenza\". Tipico nel Singleton."},
 {t:"UML", q:"«interface» significa.", a:"Stereotipo (tra virgolette francesi sopra il nome): è un'interfaccia.", m:"«» VIRGOLETTE FRANCESI = stereotipo = \"etichetta speciale\". Sopra il nome della classe per dire \"sono di un tipo speciale\". Es. «interface», «abstract», «Controller»."},
-{t:"UML", q:"«abstract» significa.", a:"Stereotipo che indica classe astratta (anche con nome in corsivo).", m:"📐 «abstract» o nome in CORSIVO. Significa: \"non puoi instanziarmi direttamente, devi estendermi\". Tipo Cliente in NEED-A-BREAK?."},
+{t:"UML", q:"«abstract» significa.", a:"Stereotipo che indica classe astratta (anche con nome in corsivo).", m:"📐 «abstract» o nome in CORSIVO. Significa: \"non puoi instanziarmi direttamente, devi estendermi\". Es. Cliente astratto, Standard/VIP concreti."},
 {t:"UML", q:"Una classe con stereotipo «entity» suggerisce:", a:"Classe di dominio persistente (pattern enterprise). Rappresenta un concetto del business che deve essere salvato (DB).", m:"🏷️ «entity» = ENTITÀ = pezzo di mondo da SALVARE. Pattern enterprise (Cliente, Ordine, Prodotto). Va in dominio + finisce nel DB."},
 {t:"UML", q:"Stereotipi enterprise tipici (3).", a:"«entity» (dominio persistente) · «control» (logica di caso d'uso) · «boundary» (interfaccia col mondo esterno: UI o sistema esterno).", m:"🏷️ ECB = Entity-Control-Boundary. Triade del MVC \"con stereotipi\". E=dato persistente, C=logica del caso d'uso (≈Use-Case Controller), B=confine UI/esterno."},
 {t:"UML", q:"«control» (stereotipo) indica cosa?", a:"Una classe che orchestra la logica di un caso d'uso (≈Use-Case Controller GRASP).", m:"🎮 «control» = REGISTA del caso d'uso. Coordina entity e boundary. Simile al Use-Case Controller di GRASP."},
@@ -3284,7 +3284,6 @@ const QUIZ = [
 {t:"GoF", q:"Singleton: elementi essenziali nello schema UML?", o:["Attributo static instance (sottolineato)","Costruttore privato","Metodo static getInstance()","Più sottoclassi"], c:[0,1,2], m:true, e:"3 elementi: instance static, costruttore privato, getInstance() static."},
 {t:"GoF", q:"Trappola del Singleton lazy:", o:["Funziona sempre","Senza synchronized due thread possono creare 2 istanze","Non si può istanziare","Richiede setter"], c:[1], m:false, e:"Lazy senza lock → race condition: 2 thread, 2 istanze."},
 {t:"GoF", q:"Strategy serve a:", o:["Trattare gruppo/atomico uguali","Algoritmi intercambiabili dietro la stessa interfaccia","Connettere due interfacce","Creare istanze uniche"], c:[1], m:false, e:"Strategy: politiche di algoritmi intercambiabili."},
-{t:"GoF", q:"Strategy vs State:", o:["Sono lo stesso pattern","Strategy = client sceglie l'algoritmo. State = l'oggetto cambia da solo in base allo stato","Strategy è creazionale, State è strutturale","State realizza Strategy"], c:[1], m:false, e:"Differenza chiave: chi sceglie l'algoritmo (esterno vs interno)."},
 {t:"GoF", q:"Composite — cuore del pattern:", o:["Un solo metodo","Freccia 0..* da Composite verso Component (ricorsione)","Una classe wrapper","Un costruttore privato"], c:[1], m:false, e:"Senza la lista 0..* di Component dentro Composite non c'è ricorsione = non è Composite."},
 {t:"GoF", q:"Facade vs Adapter:", o:["Sono lo stesso pattern","Facade semplifica (N→1), Adapter traduce (1↔1)","Sono entrambi creazionali","Facade è comportamentale"], c:[1], m:false, e:"Facade = un solo ingresso verso più sottosistemi. Adapter = traduce una sola interfaccia."},
 {t:"GoF", q:"Observer:", o:["Publisher tiene lista 0..* di Subscriber e li notifica","Una sola istanza globale","Lista immutabile","Una catena di comandi"], c:[0], m:false, e:"Publisher mantiene una lista di Subscriber registrati e li notifica su evento."},
@@ -3365,7 +3364,6 @@ const QUIZ = [
 
 // ===== NUOVI: GoF avanzato =====
 {t:"GoF", q:"In Composite, qual è la freccia cruciale?", o:["Quella tra Client e Composite","La 0..* da Composite verso Component","Quella tra Leaf e Client","Quella tra Leaf e Composite"], c:[1], m:false, e:"Senza la freccia 0..* da Composite a Component, non c'è ricorsione, non è Composite."},
-{t:"GoF", q:"Strategy vs State, differenza chiave:", o:["Sono identici","Strategy: il client sceglie. State: l'oggetto cambia da solo in base allo stato interno","Strategy è creazionale, State è strutturale","State realizza Strategy"], c:[1], m:false, e:"Chi sceglie l'algoritmo: esterno (Strategy) o interno (State)."},
 {t:"GoF", q:"Facade semplifica un sottosistema. Adapter invece:", o:["Lo nasconde","Traduce un'interfaccia in un'altra incompatibile","Lo crea","Lo distrugge"], c:[1], m:false, e:"Facade N→1 (semplifica). Adapter 1↔1 (traduce). Differenza ricorrente all'esame."},
 {t:"GoF", q:"Observer è l'eccezione a quale principio?", o:["Low Coupling","Separazione Modello-Vista","High Cohesion","Pure Fabrication"], c:[1], m:false, e:"Observer è l'eccezione legittima: il Modello conosce le Viste, ma SOLO come interfaccia Subscriber."},
 {t:"GoF", q:"Singleton: trappola più nota del prof.", o:["Costruttore pubblico","Lazy senza synchronized: due thread possono creare 2 istanze","Manca il metodo getInstance()","Troppi attributi"], c:[1], m:false, e:"Lazy senza lock → race condition → 2 istanze. Il pattern \"Single\"-ton si rompe."},
@@ -3568,7 +3566,6 @@ const QUIZ = [
 {t:"GoF", q:"Adapter: chi NON va modificato?", o:["Il Client","L'Adapter","L'Adaptee (preesistente)","L'interfaccia Target"], c:[2], m:false, e:"L'Adaptee è preesistente, non lo tocchi."},
 {t:"GoF", q:"Factory restituisce:", o:["Una classe concreta nota","Un'interfaccia (Product)","Sempre un Singleton","Sempre void"], c:[1], m:false, e:"Factory ritorna interfaccia → client disaccoppiato."},
 {t:"GoF", q:"Quale tra questi NON è uno dei 7 del prof?", o:["Adapter","Factory","Visitor","Strategy"], c:[2], m:false, e:"Visitor NON è tra i 7 del prof. Lui spiega: Factory, Singleton, Adapter, Composite, Facade, Strategy, Observer."},
-{t:"GoF", q:"\"Bridge\" è un pattern:", o:["GoF strutturale","GoF comportamentale","Non esiste","GRASP"], c:[0], m:false, e:"Bridge = GoF strutturale (ma non tra i 7 del prof)."},
 {t:"GoF", q:"Strategy realizza quale GRASP?", o:["Solo Information Expert","Polymorphism + Protected Variations","Solo Creator","Solo Singleton"], c:[1], m:false, e:"Strategy = Polymorphism + Protected Variations."},
 {t:"GoF", q:"In Composite, Leaf:", o:["Contiene una lista di figli","NON contiene figli, è il caso atomico","È un Singleton","È un Controller"], c:[1], m:false, e:"Leaf = caso atomico, foglia dell'albero."},
 {t:"GoF", q:"Facade Controller è:", o:["Sempre un anti-pattern","Un caso speciale di Facade GoF","Un GRASP avanzato","Non esiste"], c:[1], m:false, e:"Façade Controller = caso speciale di Facade (controller che fa da facciata al sistema)."},
@@ -3753,7 +3750,6 @@ const QUIZ = [
 {t:"INTERAZ", q:"In SD, parametri del messaggio:", o:["Tra parentesi accanto al nome","Mai","Solo testo libero","Solo numeri"], c:[0], m:false, e:"Sintassi: messaggio(par1, par2)."},
 
 // Cross-topic
-{t:"GoF", q:"In NEED-A-BREAK?, le tipologie di pagamento (Standard/Premium/VIP) si modellano meglio con:", o:["Singleton","Strategy (politiche intercambiabili)","Composite","Adapter"], c:[1], m:false, e:"Politiche di pagamento per tipo cliente → Strategy."},
 {t:"GoF", q:"Per gestire una gerarchia di Cliente (astratto) con Standard/VIP, il pattern di base è:", o:["Solo Strategy","Polymorphism + eventualmente Strategy per comportamenti variabili","Solo Singleton","Solo Composite"], c:[1], m:false, e:"Polymorphism per i comportamenti per tipo + Strategy per estensibilità."},
 {t:"GRASP", q:"Strategy realizza quali GRASP?", o:["Solo Information Expert","Polymorphism + Protected Variations","Solo Creator","Solo Singleton"], c:[1], m:false, e:"Strategy = Polymorphism + Protected Variations."},
 {t:"GRASP", q:"Facade realizza quali GRASP?", o:["Solo Singleton","Indirection + Protected Variations","Solo Creator","Solo Composite"], c:[1], m:false, e:"Facade = Indirection (intermediario) + PV (interfaccia stabile)."},
@@ -3907,7 +3903,6 @@ const QUIZ = [
 {t:"DOM", q:"Vincoli di unicità nel modello di dominio si scrivono:", o:["Come metodo","Come note UML o vincoli OCL","Mai","Solo nel codice"], c:[1], m:false, e:"Nota o vincolo OCL: \"{unique}\", \"{key}\"."},
 
 // SSD/CONTR
-{t:"SSD", q:"In NEED-A-BREAK?, lo scenario \"Vendi Cialde\" ha quanti SSD?", o:["0","Almeno 1 (per scenario principale)","Sempre 10","Solo per bug"], c:[1], m:false, e:"Almeno 1 per scenario principale. Possibili extra per alternativi."},
 {t:"CONTR", q:"Una post-cond \"Magazzino.stato aggiornato\" è di tipo:", o:["Creazione","Modifica di attributo","Associazione","Distruzione"], c:[1], m:false, e:"Modifica di attributo (stato cambia valore)."},
 {t:"CONTR", q:"\"Pre: scatole disponibili in magazzino\" è una:", o:["Post","Pre-cond","Trigger","Niente"], c:[1], m:false, e:"Stato richiesto PRIMA: pre-condizione."},
 
@@ -3922,15 +3917,10 @@ const QUIZ = [
 {t:"INTERAZ", q:"\"Activation bar\" è:", o:["La barra verticale che indica il periodo attivo dell'oggetto","Solo per Singleton","Niente","Solo per Composite"], c:[0], m:false, e:"Barra rettangolare = focus di controllo / activation."},
 
 // GRASP
-{t:"GRASP", q:"In NEED-A-BREAK?, chi calcola il ricavo totale di una Vendita?", o:["Il Magazzino","La Vendita stessa (Information Expert)","Il Controller","Il database"], c:[1], m:false, e:"Vendita ha le scatole vendute → calcola il totale (Expert)."},
-{t:"GRASP", q:"In NEED-A-BREAK?, chi crea la Fattura?", o:["Il Cliente","La Vendita (composizione Vendita◆Fattura → Creator)","Il Singleton","La UI"], c:[1], m:false, e:"Vendita contiene Fattura (composizione) → Vendita la crea (Creator)."},
-{t:"GRASP", q:"In NEED-A-BREAK?, chi verifica la disponibilità di scatole?", o:["La UI","Il Magazzino (Information Expert, ha le scatole)","Il database direttamente","Il Cliente"], c:[1], m:false, e:"Il Magazzino ha la collezione delle scatole → fa lui il check (Expert)."},
 {t:"GRASP", q:"Quando uso Polymorphism + Strategy nei pagamenti?", o:["Mai","Quando il tipo di cliente determina le modalità di pagamento ammesse (Standard solo contanti/carta, Premium anche credito)","Solo per Singleton","Solo per Composite"], c:[1], m:false, e:"Politiche di pagamento per tipo cliente → Polymorphism (GRASP) + Strategy (GoF)."},
 {t:"GRASP", q:"Per gestire il Singleton del DB connection, quale GRASP è alla base?", o:["Solo Information Expert","Indirection + Pure Fabrication","Solo Creator","Solo Composite"], c:[1], m:false, e:"DB Pool/Connection = Pure Fabrication + Indirection."},
 
 // GoF
-{t:"GoF", q:"In NEED-A-BREAK?, per gestire pagamenti per tipologia cliente uso:", o:["Singleton","Strategy (politiche intercambiabili)","Composite","Adapter"], c:[1], m:false, e:"Strategy: politiche di pagamento per tipo cliente."},
-{t:"GoF", q:"In GYM-FIT, per il limite prenotazioni per tipo socio uso:", o:["Strategy o Polymorphism (politiche di limite intercambiabili)","Singleton","Composite","Adapter"], c:[0], m:false, e:"Strategy/Polymorphism: limite per Standard=1, Premium=3, VIP=∞."},
 {t:"GoF", q:"Per integrare un servizio di pagamenti esterno (Stripe) uso:", o:["Adapter","Singleton","Composite","Strategy"], c:[0], m:false, e:"Servizio esterno con API diversa → Adapter (traduco l'interfaccia)."},
 {t:"GoF", q:"Per mandare notifiche a più sistemi al cambio stato di un Ordine uso:", o:["Singleton","Observer (Publisher/Subscriber)","Composite","Adapter"], c:[1], m:false, e:"Cambio stato → notifica più sistemi → Observer."},
 {t:"GoF", q:"Per modellare un menu gerarchico (voci dentro voci) uso:", o:["Composite","Strategy","Adapter","Singleton"], c:[0], m:false, e:"Struttura ad albero ricorsiva → Composite."},
@@ -3983,7 +3973,6 @@ const QUIZ = [
 {t:"DOM", q:"Trappola: usare int come tipo nel modello di dominio?", o:["Sempre OK","Solo per attributi semplici (codice numerico, quantità); per concetti complessi serve classe","Mai","Solo per Singleton"], c:[1], m:false, e:"Attributi sì tipo semplice. Se è un concetto, classe."},
 {t:"UC", q:"Trappola: descrivere la UI di dettaglio in UC essenziale?", o:["Sempre OK","No, l'essenziale astrae dalla UI","Solo per Singleton","Solo Composite"], c:[1], m:false, e:"UC essenziale: COSA fa, non come (UI di dettaglio è nel formato \"reale\")."},
 {t:"GRASP", q:"Trappola: Controller fa anche la business logic dettagliata?", o:["Sì sempre","No: Controller coordina, DELEGA al dominio per la logica vera","Solo se Singleton","Solo per Composite"], c:[1], m:false, e:"Controller coordina, non gestisce la logica direttamente (low coupling)."},
-{t:"GoF", q:"Trappola: confondere Strategy e State?", o:["Sono uguali","Strategy: client sceglie · State: oggetto cambia da solo in base allo stato","Solo Strategy esiste","Solo State esiste"], c:[1], m:false, e:"Differenza chiave: chi decide il cambio comportamento."},
 {t:"GoF", q:"Trappola: confondere Adapter e Facade?", o:["Sono uguali","Adapter traduce 1↔1 · Facade semplifica N→1","Solo Adapter","Solo Facade"], c:[1], m:false, e:"Adapter: traduzione 1↔1. Facade: semplificazione N→1."},
 {t:"GoF", q:"Trappola: Facade nasconde sempre il sottosistema?", o:["No","Sì: il Client conosce SOLO la Facade","Solo se Singleton","Solo se Composite"], c:[1], m:false, e:"Facade nasconde i dettagli interni al Client."},
 
@@ -4020,12 +4009,9 @@ const QUIZ = [
 {t:"REQ", q:"\"Tempo di risposta < 200ms al 95%\" è:", o:["Funzionale","Obiettivo","Requisito non funzionale VERIFICABILE","Bug"], c:[2], m:false, e:"Quantificato e misurabile = non funzionale verificabile."},
 
 // UC
-{t:"UC", q:"In un UC \"Vendi Cialde\" (NEED-A-BREAK?), l'attore primario è:", o:["Il fornitore","L'impiegato del negozio","Il cliente diretto","Il fisco"], c:[1], m:false, e:"L'impiegato usa il sistema per vendere cialde."},
-{t:"UC", q:"In un UC \"Prenota Corso\" (GYM-FIT), l'attore primario è:", o:["Il socio","Il receptionist","L'istruttore","Il fornitore"], c:[1], m:false, e:"Il receptionist usa il sistema per prenotare al socio."},
 {t:"UC", q:"\"Prelievo bancomat\" è un UC di quale livello?", o:["Sommario","Obiettivo utente","Sotto-funzione","Niente"], c:[1], m:false, e:"Obiettivo utente: una sessione che produce valore (i soldi)."},
 {t:"UC", q:"\"Autenticati\" è un UC di quale livello?", o:["Sommario","Obiettivo utente","Sotto-funzione","Niente"], c:[2], m:false, e:"Sotto-funzione: passo riusabile da molti UC."},
 {t:"UC", q:"\"Gestione completa magazzino\" è:", o:["Sommario (obiettivo ampio, più sessioni)","Obiettivo utente","Sotto-funzione","Niente"], c:[0], m:false, e:"Sommario: obiettivo grande non realizzabile in una sessione."},
-{t:"UC", q:"In NEED-A-BREAK?, \"Autentica impiegato\" è:", o:["Sommario","Obiettivo utente","Sotto-funzione (include)","Sempre extend"], c:[2], m:false, e:"Sotto-funzione, tipicamente «include» in altri UC."},
 {t:"UC", q:"Quanti SSD si fanno per UC tipicamente?", o:["1 (per scenario principale)","10","100","0"], c:[0], m:false, e:"1 per scenario principale (+ eventuali alternativi)."},
 
 // DOM
@@ -4058,7 +4044,6 @@ const QUIZ = [
 
 // GRASP - quiz approfonditi
 {t:"GRASP", q:"In un esercizio: chi crea Vendita?", o:["Sempre Cliente","Sempre Magazzino","Il Controller (Pure Fabrication) o l'oggetto che la contiene/usa","Solo Singleton"], c:[2], m:false, e:"Spesso il Controller crea la Vendita via Pure Fabrication."},
-{t:"GRASP", q:"In NEED-A-BREAK?, il Magazzino conosce le ScatolaCialde, quindi è Information Expert per:", o:["Calcolo del prezzo","Verifica disponibilità + rimuovi scatole","Solo per Singleton","Solo per Composite"], c:[1], m:false, e:"Magazzino ha le scatole → fa lui verifica e rimozione."},
 {t:"GRASP", q:"Una classe di pure fabrication tipica del progetto è:", o:["Cliente","ServiziDiSistema, FacadeController, Repository","Sempre Singleton","Solo Adapter"], c:[1], m:false, e:"Controller, Service, Repository sono tipici Pure Fabrication."},
 {t:"GRASP", q:"Cosa è VERO sulla scelta di Controller?", o:["Sempre 1 per progetto (god class)","Multipli Use-Case Controllers per evitare bloated controller","Solo Singleton","Niente"], c:[1], m:false, e:"Use-Case Controllers (uno per UC) evitano il bloated controller."},
 
