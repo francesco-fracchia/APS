@@ -219,6 +219,41 @@
   .quiz-progress-fill{height:100%;background:linear-gradient(90deg,var(--green),var(--blue));width:0%;transition:width .3s}
   .quiz-counter{font-weight:700;color:var(--soft);font-size:.85rem;font-family:'Inter','Segoe UI',Arial,sans-serif}
   kbd{display:inline-block;padding:2px 6px;border-radius:4px;border:1px solid var(--line);background:#fafbfd;font-size:.8rem;font-family:'JetBrains Mono','Consolas',monospace;box-shadow:0 1px 0 var(--line)}
+  /* ============ DASHBOARD PROGRESSI ============ */
+  .prog-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin:14px 0}
+  .prog-card{background:var(--paper);border:1px solid var(--line);border-radius:11px;padding:14px 16px;box-shadow:var(--shadow);text-align:center}
+  .prog-card .label{font-size:.72rem;color:var(--soft);text-transform:uppercase;letter-spacing:.5px;font-weight:700;margin-bottom:6px}
+  .prog-card .value{font-size:2rem;font-weight:800;color:var(--blue);line-height:1.1}
+  .prog-card .sub{font-size:.78rem;color:var(--soft);margin-top:4px}
+  .prog-card.green .value{color:var(--green)}
+  .prog-card.violet .value{color:var(--violet)}
+  .prog-card.amber .value{color:var(--amber)}
+  .prog-card.red .value{color:var(--red)}
+  .prog-section{background:var(--paper);border:1px solid var(--line);border-radius:11px;padding:16px 20px;margin:14px 0;box-shadow:var(--shadow)}
+  .prog-section h4{margin:0 0 12px;color:var(--blue);font-size:1rem}
+  .prog-topic-row{display:flex;align-items:center;gap:11px;margin:7px 0;padding:9px 12px;background:#fafbfd;border:1px solid var(--line);border-radius:8px}
+  .prog-topic-row .tname{font-weight:600;min-width:120px;font-size:.92rem}
+  .prog-topic-row .tbar-bg{flex:1;height:9px;background:#eef0f3;border-radius:5px;overflow:hidden;min-width:80px}
+  .prog-topic-row .tbar-fill{height:100%;border-radius:5px;background:var(--blue);transition:width .5s}
+  .prog-topic-row.ok .tbar-fill{background:var(--green)}
+  .prog-topic-row.mid .tbar-fill{background:var(--amber)}
+  .prog-topic-row.bad .tbar-fill{background:var(--red)}
+  .prog-topic-row .tpct{font-weight:700;font-size:.88rem;min-width:80px;text-align:right}
+  .prog-topic-row.ok .tpct{color:var(--green)}
+  .prog-topic-row.mid .tpct{color:var(--amber)}
+  .prog-topic-row.bad .tpct{color:var(--red)}
+  .prog-history{max-height:280px;overflow-y:auto}
+  .prog-session-row{display:grid;grid-template-columns:1fr auto auto auto;gap:10px;align-items:center;padding:8px 12px;border-bottom:1px solid var(--line);font-size:.88rem}
+  .prog-session-row:last-child{border-bottom:0}
+  .prog-session-row .date{color:var(--soft);font-size:.82rem}
+  .prog-session-row .src{font-weight:600;font-size:.82rem;color:var(--violet)}
+  .prog-session-row .pct{font-weight:700;font-size:.92rem}
+  .prog-session-row.ok .pct{color:var(--green)}
+  .prog-session-row.mid .pct{color:var(--amber)}
+  .prog-session-row.bad .pct{color:var(--red)}
+  .prog-iobar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:14px 0;padding:11px 14px;background:#eef4fb;border:1px solid #cfdce8;border-radius:9px;font-size:.88rem}
+  .prog-streak-flame{font-size:2.4rem}
+  .prog-empty{text-align:center;color:var(--soft);font-style:italic;padding:18px 0}
   .quiz-q{background:var(--paper);border:1px solid var(--line);border-left:4px solid var(--blue);border-radius:9px;padding:13px 17px;margin:11px 0;box-shadow:var(--shadow);page-break-inside:avoid}
   .quiz-q.correct{border-left-color:var(--green);background:#f3fbf5}
   .quiz-q.wrong{border-left-color:var(--red);background:#fdf5f6}
@@ -361,6 +396,7 @@
     <a href="#flash"><span class="n">🃏</span>Flashcard (259)</a>
     <a href="#quiz"><span class="n">📝</span>Quiz crocette</a>
     <a href="#esame-sim"><span class="n">🎓</span>Esame simulato</a>
+    <a href="#progressi"><span class="n">📈</span>Progressi</a>
     <a href="#esercizio"><span class="n">📄</span>Esercizio scritto</a>
     <a href="#bigino"><span class="n">🔥</span>Super Bigino</a>
   </nav>
@@ -1518,6 +1554,37 @@
       <button class="exam-btn-primary" onclick="examRestart()">🔄 Nuovo esame</button>
       <button class="btn" onclick="examReviewWrong()">🔴 Rivedi solo sbagliate</button>
     </div>
+  </div>
+
+  <h2 class="sec" id="progressi"><span class="chip">📈</span>Progressi</h2>
+  <p class="lead">I tuoi progressi complessivi su quiz ed esami simulati. Salvati automaticamente nel browser. Esporta in JSON per backup/sync tra dispositivi.</p>
+
+  <!-- Dashboard principale -->
+  <div class="prog-grid" id="prog-stats">
+    <!-- popolato da JS -->
+  </div>
+
+  <!-- Performance per topic -->
+  <div class="prog-section">
+    <h4>📊 Performance per topic (tutte le sessioni)</h4>
+    <div id="prog-topics"></div>
+  </div>
+
+  <!-- Storico sessioni -->
+  <div class="prog-section">
+    <h4>📋 Storico ultime sessioni</h4>
+    <div id="prog-history" class="prog-history"></div>
+  </div>
+
+  <!-- Backup / Restore -->
+  <div class="prog-iobar">
+    <button class="btn" onclick="exportProgress()">💾 Esporta progressi (.json)</button>
+    <label class="btn" style="cursor:pointer;display:inline-flex;align-items:center;gap:6px">
+      📂 Importa progressi (.json)
+      <input type="file" accept=".json,application/json" onchange="importProgress(event)" style="display:none">
+    </label>
+    <button class="btn" onclick="resetProgress()" style="background:var(--red);color:#fff;border-color:var(--red)">🗑️ Cancella tutti i progressi</button>
+    <span style="margin-left:auto;font-size:.78rem;color:var(--soft);font-style:italic">💡 Salvati in <code>localStorage</code> del browser. Per portarli su un altro dispositivo: Esporta → Importa.</span>
   </div>
 
   <h2 class="sec" id="esercizio"><span class="chip">📄</span>Esercizio scritto · GYM-FIT</h2>
@@ -4131,6 +4198,209 @@ quizBuildBatch();
 quizRender();
 quizUpdateBatchInfo();
 
+// ============= TRACKING PROGRESSI COMPLESSIVI =============
+const PROGRESS_KEY = 'aps_studio_progress_v1';
+let progressData = {
+  sessions: [],        // [{ts, source:'quiz'|'esame', filter, total, correct, byTopic:{t:{ok,tot}}}]
+  topicStats: {},      // {t: {seen, correct}}
+  dailyStreak: {lastDate: null, days: 0},
+  firstUse: null,
+  totalAnswered: 0
+};
+
+function loadProgress() {
+  try {
+    const raw = localStorage.getItem(PROGRESS_KEY);
+    if (raw) {
+      const parsed = JSON.parse(raw);
+      progressData = Object.assign(progressData, parsed);
+    }
+  } catch(e) { console.warn('loadProgress error', e); }
+  if (!progressData.firstUse) {
+    progressData.firstUse = Date.now();
+    saveProgress();
+  }
+}
+function saveProgress() {
+  try {
+    localStorage.setItem(PROGRESS_KEY, JSON.stringify(progressData));
+  } catch(e) { console.warn('saveProgress error', e); }
+}
+function todayStr() {
+  const d = new Date();
+  return d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0');
+}
+function updateStreak() {
+  const today = todayStr();
+  const last = progressData.dailyStreak.lastDate;
+  if (last === today) return; // già contato oggi
+  if (!last) {
+    progressData.dailyStreak.days = 1;
+  } else {
+    // Calcola se ieri ha studiato (streak continua) o no (reset)
+    const lastDate = new Date(last + 'T00:00:00');
+    const todayDate = new Date(today + 'T00:00:00');
+    const diffDays = Math.round((todayDate - lastDate) / 86400000);
+    if (diffDays === 1) progressData.dailyStreak.days++;
+    else progressData.dailyStreak.days = 1; // reset
+  }
+  progressData.dailyStreak.lastDate = today;
+}
+function recordSession(source, filterLabel, correct, total, byTopic) {
+  updateStreak();
+  // Registra sessione
+  progressData.sessions.push({
+    ts: Date.now(),
+    source: source,         // 'quiz' o 'esame'
+    filter: filterLabel,    // es. 'Tutti' o 'GoF'
+    total: total,
+    correct: correct,
+    byTopic: byTopic        // {t: {ok, tot}}
+  });
+  // Limita a ultime 200 sessioni per evitare bloat
+  if (progressData.sessions.length > 200) progressData.sessions.shift();
+  // Aggiorna stat per topic cumulative
+  Object.keys(byTopic).forEach(t => {
+    if (!progressData.topicStats[t]) progressData.topicStats[t] = {seen:0, correct:0};
+    progressData.topicStats[t].seen += byTopic[t].tot;
+    progressData.topicStats[t].correct += byTopic[t].ok;
+  });
+  progressData.totalAnswered += total;
+  saveProgress();
+  renderProgress();
+}
+
+function renderProgress() {
+  const statsEl = document.getElementById('prog-stats');
+  if (!statsEl) return;
+  const sessions = progressData.sessions;
+  const totalSessions = sessions.length;
+  const totalAnswered = progressData.totalAnswered;
+  let totalCorrect = 0;
+  sessions.forEach(s => totalCorrect += s.correct);
+  const avgPct = totalAnswered ? Math.round(totalCorrect/totalAnswered*100) : 0;
+  const streak = progressData.dailyStreak.days || 0;
+  const lastSession = sessions.length ? sessions[sessions.length-1] : null;
+  const lastPct = lastSession ? Math.round(lastSession.correct/lastSession.total*100) : 0;
+  // Cards
+  statsEl.innerHTML =
+    '<div class="prog-card"><div class="label">Sessioni completate</div><div class="value">'+totalSessions+'</div><div class="sub">quiz + esami simulati</div></div>'+
+    '<div class="prog-card green"><div class="label">Domande risposte</div><div class="value">'+totalAnswered+'</div><div class="sub">'+totalCorrect+' corrette</div></div>'+
+    '<div class="prog-card violet"><div class="label">Media corrette</div><div class="value">'+avgPct+'%</div><div class="sub">su tutte le sessioni</div></div>'+
+    '<div class="prog-card amber"><div class="label">Streak giorni</div><div class="value"><span class="prog-streak-flame">'+(streak>=3?'🔥':'⚡')+'</span> '+streak+'</div><div class="sub">'+(streak>0?'consecutivi di studio':'inizia oggi!')+'</div></div>'+
+    '<div class="prog-card '+(lastPct>=75?'green':lastPct>=50?'amber':'red')+'"><div class="label">Ultima sessione</div><div class="value">'+(lastSession?lastPct+'%':'—')+'</div><div class="sub">'+(lastSession?(lastSession.correct+'/'+lastSession.total+' · '+lastSession.filter):'nessuna ancora')+'</div></div>';
+  // Topic breakdown
+  const topicsEl = document.getElementById('prog-topics');
+  const ts = progressData.topicStats;
+  const topicCodes = Object.keys(ts).filter(t => ts[t].seen > 0);
+  if (!topicCodes.length) {
+    topicsEl.innerHTML = '<div class="prog-empty">Nessuna domanda risposta ancora. Vai a 📝 Quiz crocette o 🎓 Esame simulato.</div>';
+  } else {
+    topicsEl.innerHTML = '';
+    topicCodes.sort((a,b) => (ts[a].correct/ts[a].seen) - (ts[b].correct/ts[b].seen)).forEach(t => {
+      const tb = ts[t];
+      const pct = Math.round(tb.correct/tb.seen*100);
+      const cls = pct >= 75 ? 'ok' : (pct >= 50 ? 'mid' : 'bad');
+      const label = (typeof QUIZ_TOPIC_LABEL !== 'undefined' && QUIZ_TOPIC_LABEL[t]) || t;
+      const row = document.createElement('div');
+      row.className = 'prog-topic-row ' + cls;
+      row.innerHTML = '<span class="tname">'+label+'</span>'+
+                    '<div class="tbar-bg"><div class="tbar-fill" style="width:'+pct+'%"></div></div>'+
+                    '<span class="tpct">'+tb.correct+'/'+tb.seen+' ('+pct+'%)</span>';
+      topicsEl.appendChild(row);
+    });
+  }
+  // Storico
+  const historyEl = document.getElementById('prog-history');
+  if (!sessions.length) {
+    historyEl.innerHTML = '<div class="prog-empty">Nessuna sessione registrata ancora.</div>';
+  } else {
+    historyEl.innerHTML = '';
+    // ultime 30, dalla più recente
+    sessions.slice(-30).reverse().forEach(s => {
+      const pct = Math.round(s.correct/s.total*100);
+      const cls = pct >= 75 ? 'ok' : (pct >= 50 ? 'mid' : 'bad');
+      const dt = new Date(s.ts);
+      const dateStr = dt.getDate()+'/'+(dt.getMonth()+1)+'/'+dt.getFullYear()+' '+String(dt.getHours()).padStart(2,'0')+':'+String(dt.getMinutes()).padStart(2,'0');
+      const srcLabel = s.source === 'quiz' ? '📝 Quiz' : '🎓 Esame';
+      const row = document.createElement('div');
+      row.className = 'prog-session-row ' + cls;
+      row.innerHTML = '<span class="date">'+dateStr+'</span>'+
+                    '<span class="src">'+srcLabel+'</span>'+
+                    '<span>'+s.filter+'</span>'+
+                    '<span class="pct">'+s.correct+'/'+s.total+' ('+pct+'%)</span>';
+      historyEl.appendChild(row);
+    });
+  }
+}
+
+function exportProgress() {
+  const blob = new Blob([JSON.stringify(progressData, null, 2)], {type:'application/json'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  const d = new Date();
+  const fname = 'aps-studio-progressi-' + d.getFullYear() + String(d.getMonth()+1).padStart(2,'0') + String(d.getDate()).padStart(2,'0') + '.json';
+  a.href = url;
+  a.download = fname;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+function importProgress(e) {
+  const file = e.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = (ev) => {
+    try {
+      const data = JSON.parse(ev.target.result);
+      if (!data.sessions || !Array.isArray(data.sessions)) throw new Error('formato non valido');
+      if (!confirm('Importare ' + data.sessions.length + ' sessioni? I progressi attuali verranno SOVRASCRITTI.')) {
+        e.target.value = ''; return;
+      }
+      progressData = Object.assign({sessions:[], topicStats:{}, dailyStreak:{lastDate:null,days:0}, firstUse:null, totalAnswered:0}, data);
+      saveProgress();
+      renderProgress();
+      alert('✅ Progressi importati con successo.');
+    } catch(err) {
+      alert('❌ Errore: il file non sembra un export valido di APS-Studio.\n' + err.message);
+    }
+    e.target.value = '';
+  };
+  reader.readAsText(file);
+}
+function resetProgress() {
+  if (!confirm('⚠️ Cancellare TUTTI i progressi? Questa operazione è irreversibile.\nSuggerimento: esporta prima il backup .json.')) return;
+  if (!confirm('Sei sicuro? Conferma: tutte le sessioni e statistiche verranno perse.')) return;
+  progressData = {sessions:[], topicStats:{}, dailyStreak:{lastDate:null,days:0}, firstUse:Date.now(), totalAnswered:0};
+  saveProgress();
+  renderProgress();
+  alert('🗑️ Progressi cancellati.');
+}
+
+// Hook in quizCheckAll: registra la sessione dopo la verifica
+const _origQuizCheckAll = quizCheckAll;
+quizCheckAll = function() {
+  _origQuizCheckAll.apply(this, arguments);
+  // Calcola dati per recordSession
+  if (!quizOrder.length) return;
+  let correct = 0;
+  const byTopic = {};
+  quizOrder.forEach(idx => {
+    const q = QUIZ[idx];
+    if (quizResults[idx]) correct++;
+    if (!byTopic[q.t]) byTopic[q.t] = {ok:0, tot:0};
+    byTopic[q.t].tot++;
+    if (quizResults[idx]) byTopic[q.t].ok++;
+  });
+  const filterLabel = (quizCurrent === 'ALL') ? 'Tutti' : (QUIZ_TOPIC_LABEL[quizCurrent] || quizCurrent);
+  recordSession('quiz', filterLabel + ' (sess. '+(quizBatchIdx+1)+'/'+quizTotalBatches()+')', correct, quizOrder.length, byTopic);
+};
+
+// Carica progressi all'avvio + render
+loadProgress();
+renderProgress();
+
 // ============= ESAME SIMULATO =============
 let examState = {
   pool: [],          // domande estratte
@@ -4377,6 +4647,13 @@ function examShowResults() {
                   + '<span class="pct">'+tb.ok+'/'+tb.tot+' ('+p+'%)</span>';
     breakdown.appendChild(row);
   });
+  // Registra nei progressi (solo se non in modalità review wrong, per evitare doppi conteggi)
+  if (typeof recordSession === 'function' && !examState.wrongOnlyMode) {
+    const cats = Array.from(examState.selectedCats);
+    const filterLabel = (cats.length === Object.keys(QUIZ_TOPIC_LABEL).length) ? 'Tutti' :
+                       (cats.length === 1 ? (QUIZ_TOPIC_LABEL[cats[0]]||cats[0]) : (cats.length+' topic'));
+    recordSession('esame', filterLabel, ok, tot, byTopic);
+  }
   document.getElementById('exam-sim').scrollIntoView({behavior:'smooth', block:'start'});
 }
 function examRestart() {
