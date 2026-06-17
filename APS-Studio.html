@@ -71,6 +71,9 @@
   .box.key .t{color:var(--green)}
   .box.warn{background:var(--amber-w);border-color:#f3e2bd}
   .box.warn .t{color:var(--amber)}
+  .note-cit{background:#fbf5ff;border:1px solid #e5d4f5;border-left:3px solid var(--violet);border-radius:8px;padding:10px 14px;margin:12px 0;font-size:.93rem;color:#3a2e4a;position:relative}
+  .note-cit .who{display:block;margin-top:6px;font-style:italic;color:var(--violet);font-size:.8rem;letter-spacing:.02em}
+  .note-cit .who::before{content:"📝 "}
   .analogy{font-style:italic;color:var(--soft);border-left:3px solid var(--teal);padding-left:12px;margin:8px 0}
   table{width:100%;border-collapse:collapse;margin:12px 0;font-size:.92rem;background:var(--paper);
     border-radius:11px;overflow:hidden;box-shadow:var(--shadow)}
@@ -852,6 +855,10 @@
   <div class="box warn"><div class="t">⚠️ Trappola d'esame</div>
     NON dire "Ideazione = requisiti, Costruzione = implementazione". Ogni fase fa tutte le discipline.
   </div>
+  <div class="note-cit">
+    Le cattive pratiche di UP sono: tentare di definire tutti i requisiti all'inizio (cascata mascherata da UP), pianificare in dettaglio l'intero progetto sin dall'inizio, considerare le iterazioni iniziali come "esplorative usa-e-getta" invece che produttive, comprimere tutto il design prima del codice.
+    <span class="who">Appunti di Sofia (autorizzata) — cattive pratiche UP</span>
+  </div>
   <h3>Le 5 discipline UP (dimensioni del lavoro, ortogonali alle fasi)</h3>
   <div class="box expl"><div class="t">📖 Discipline ≠ Fasi</div>
     <p>Le <b>4 fasi</b> sono il tempo (IECT, in ordine). Le <b>discipline</b> sono il tipo di lavoro. Una stessa iterazione ne fa <b>parecchie insieme</b>, dosandole. Sono come pentole su un fornello: tutte accese in ogni iterazione, alcune più alte di altre.</p>
@@ -926,6 +933,10 @@
       <li><b>3 test</b> (<span class="cz">CED</span>): <span class="cz">Capo</span> · <span class="cz">Elemento</span> atomico · <span class="cz">Discreto</span>.</li>
     </ul>
   </div>
+  <div class="note-cit">
+    <b>Test del capo</b>: il capo chiede "Che fai tutto il giorno?" e tu rispondi "il login!". Se non supera questo test, probabilmente il livello di dettaglio è troppo basso (ma vale la pena tenerlo se è comunque utile). <b>Test EBP (Elementary Business Process)</b>: l'attività deve essere eseguibile in una sola sessione di lavoro, in risposta a un evento business, produrre un valore osservabile e misurabile, e lasciare il sistema in stato consistente.
+    <span class="who">Appunti di Blue (autorizzata) — test del capo + EBP</span>
+  </div>
   <div class="quizhead">Auto-interrogazione</div>
   <div class="quiz">
     <details class="q"><summary>Cos'è un caso d'uso?</summary><div class="ans">Storia testuale attore↔sistema per un obiettivo, con scenari.</div></details>
@@ -950,6 +961,10 @@
   </div>
   <div class="box mnem"><div class="t">🧠 Mnemonico</div>
     <b>Composizione ◆ = Crea</b>: la parte muore col tutto → suggerisce il GRASP <b>Creator</b>.
+  </div>
+  <div class="note-cit">
+    Errore comune nel modello di dominio: rappresentare qualcosa come attributo quando dovrebbe essere una classe concettuale (con relativa associazione). Esempio: <code>cliente</code> dentro <code>Sale</code> come stringa è sbagliato — è la classe <code>Cliente</code> con associazione <code>Sale → Cliente</code>. Per l'iterazione 1, conviene sempre preferire classe + associazione.
+    <span class="who">Appunti di Sofia (autorizzata) — errore attributo vs classe</span>
   </div>
   <div class="quizhead">Auto-interrogazione</div>
   <div class="quiz">
@@ -1004,6 +1019,10 @@
   </div>
   <div class="box mnem"><div class="t">🧠 Quando usare quale</div>
     <p><b>Stretta</b> = sistemi critici, alta sicurezza, vita lunga (banche, militari). <b>Rilassata</b> = applicazioni web tipiche, dove l'overhead di rispettare la stretta non porta benefici reali.</p>
+  </div>
+  <div class="note-cit">
+    Un <b>rilassamento legittimo</b> della regola "dipendenze solo verso il basso" è il pattern <b>Observer</b>: gli oggetti del dominio inviano messaggi a oggetti della UI, visti però solo "indirettamente" tramite un'interfaccia (es. <code>PropertyListener</code>). L'oggetto di dominio non sa che il listener è un oggetto UI: rispetta lo spirito della stratificazione pur attraversandola in superficie.
+    <span class="who">Appunti di Sofia (autorizzata) — Observer come rilassamento legittimo</span>
   </div>
 
   <h3>Sotto-strati della logica applicativa</h3>
@@ -1101,6 +1120,10 @@
     • <b>Protected Variations</b> è principio <b>ombrello</b>, si realizza con altri pattern.<br>
     • <b>Pure Fabrication</b>: mostra COME interagisce (sequence), non basta crearla.
   </div>
+  <div class="note-cit">
+    <b>Esempio canonico Information Expert</b>: per recuperare e presentare una qualsiasi <code>Square</code> (dato il nome), qualche oggetto deve conoscere tutti gli <code>Square</code>. Queste informazioni sono possedute da <code>Board</code> → la responsabilità va a <code>Board</code>. Information Expert guida verso una scelta che sostiene Low Coupling: se metti la responsabilità altrove, l'accoppiamento complessivo sarà più alto perché più oggetti o info dovranno essere condivisi.
+    <span class="who">Appunti di Sofia (autorizzata) — esempio Board/Square e legame con Low Coupling</span>
+  </div>
 
   <div class="quizhead">Auto-interrogazione</div>
   <div class="quiz">
@@ -1176,6 +1199,10 @@
   </div>
   <div class="box warn"><div class="t">⚠️ Trappola del prof</div>
     Versione lazy senza synchronized: due thread possono creare 2 istanze.
+  </div>
+  <div class="note-cit">
+    Nei diagrammi di interazione UML, un oggetto Singleton è contrassegnato da un <b>"1" nell'angolo superiore destro della lifeline</b> (stessa notazione anche sui rettangoli di classe in un class diagram). È il segno grafico veloce che il prof si aspetta di vedere quando disegni una sequence che coinvolge un Singleton.
+    <span class="who">Appunti di Sofia (autorizzata) — notazione Singleton "1" in UML</span>
   </div>
 
   <h3>4. Strategy <span class="pill v">comportamentale</span></h3>
@@ -1369,6 +1396,10 @@
       <li><b>4 eventi</b> (<span class="cz">CSVT</span>): <span class="cz">Creation · Signal · Value · Transition temporale</span>.</li>
     </ul>
   </div>
+  <div class="note-cit">
+    La macchina a stati modella il <b>ciclo di vita</b> di un oggetto: la sequenza di stati interrompibili in cui si trova in risposta agli eventi durante la sua vita. Un ciclo comincia di solito dallo stato iniziale (pallino pieno) e finisce quando arriva nello stato finale (pallino con bordo). Si applica a oggetti il cui comportamento <i>dipende</i> dallo stato — un oggetto "passivo" senza salti comportamentali non ha bisogno di state machine.
+    <span class="who">Appunti di Blue (autorizzata) — definizione di ciclo di vita</span>
+  </div>
   <h3>Stati compositi (annidati)</h3>
   <div class="box expl"><div class="t">📖 Quando uno stato ne contiene altri</div>
     <p>Uno <b>stato composito</b> è uno stato che a sua volta contiene una <i>sotto-macchina</i> di stati. Si usa per gestire la complessità: invece di disegnare 20 stati allo stesso livello, ne raggruppi 5 dentro uno stato "in viaggio", e dentro quello modelli il dettaglio.</p>
@@ -1471,6 +1502,10 @@
   <div class="box expl"><div class="t">📖 Sintomo, non malattia</div>
     <p>Un <b>code smell</b> è un <i>indizio</i> che qualcosa nel codice è strutturato male. NON è un bug: il codice funziona. È un campanello d'allarme che dice "qui c'è debito tecnico". Il refactoring serve a rimuoverli.</p>
     <p>Il termine viene da Martin Fowler. La logica: se entri in una stanza e c'è puzza, non è morto nessuno — ma c'è qualcosa che andrebbe pulito.</p>
+  </div>
+  <div class="note-cit">
+    Un <b>code smell</b> indica una serie di caratteristiche nel codice che possono essere indice di <b>cattive pratiche di programmazione</b> (difetti di programmazione). Non implica che il codice sia bacato, ma che la sua forma renderà più difficili e rischiosi i cambiamenti futuri.
+    <span class="who">Appunti di Sofia (autorizzata) — definizione di code smell</span>
   </div>
 
   <h3>Catalogo dei principali code smell</h3>
