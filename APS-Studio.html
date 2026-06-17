@@ -203,6 +203,10 @@
   .fc-mnemo{margin-top:10px;background:var(--violet-w);border:1px solid #e0d6ff;border-radius:8px;padding:7px 11px;font-size:.88rem;color:var(--violet);font-style:italic;text-align:left}
   .fc-mnemo:empty{display:none}
   .fc-mnemo::before{content:"🧠 "}
+  .fc-img{margin-top:12px;background:#fff;border:1px solid var(--line);border-radius:9px;padding:8px;text-align:center}
+  .fc-img:empty{display:none}
+  .fc-img img{max-width:100%;height:auto;max-height:240px;display:inline-block;border-radius:6px}
+  .fc-img .cap{font-size:.72rem;color:var(--faint);margin-top:4px;font-style:italic}
   .hintf{margin-top:12px;font-size:.75rem;color:var(--faint);text-align:center}
   .flashctrl{display:flex;gap:9px;justify-content:center;align-items:center;margin-top:14px;flex-wrap:wrap}
   .flashcount{font-weight:700;color:var(--soft);min-width:56px;text-align:center}
@@ -1722,6 +1726,7 @@
           <div class="fc-topic" id="fc-topic-b">topic</div>
           <div class="atext" id="fc-a">risposta…</div>
           <div class="fc-mnemo" id="fc-m"></div>
+          <div class="fc-img" id="fc-img"></div>
         </div>
       </div>
       <div class="flashctrl">
@@ -5263,6 +5268,20 @@ function renderCard(autoTrigger) {
   document.getElementById('fc-q').textContent = c.q;
   document.getElementById('fc-a').textContent = c.a;
   document.getElementById('fc-m').textContent = c.m || '';
+  // Schema UML per i GoF: rileva il pattern dal testo della domanda
+  const imgEl = document.getElementById('fc-img');
+  if (imgEl) {
+    const GOF_IMG = {Adapter:'uml_adapter.png',Factory:'uml_factory.png',Singleton:'uml_singleton.png',Strategy:'uml_strategy.png',Composite:'uml_composite.png',Facade:'uml_facade.png','Façade':'uml_facade.png',Observer:'uml_observer.png'};
+    let found = null;
+    if (c.t === 'GoF') {
+      for (const k in GOF_IMG) { if (c.q.indexOf(k) !== -1) { found = {name:k, file:GOF_IMG[k]}; break; } }
+    }
+    if (found) {
+      imgEl.innerHTML = '<img src="_uml_appunti/'+found.file+'" alt="Schema UML '+found.name+'" loading="lazy"><div class="cap">📐 Schema UML — '+found.name+'</div>';
+    } else {
+      imgEl.innerHTML = '';
+    }
+  }
   document.getElementById('fc-count').textContent = (idx+1) + '/' + order.length;
   document.getElementById('flashcard').classList.remove('flipped');
   // Popolazione bottoni di navigazione
