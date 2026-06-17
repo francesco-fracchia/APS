@@ -5222,8 +5222,14 @@ function examUpdateProgress() {
   const done = examState.idx;
   const pct = total ? Math.round(done/total*100) : 0;
   document.getElementById('exam-progress-fill').style.width = pct + '%';
-  document.getElementById('exam-correct').textContent = examState.correct;
-  document.getElementById('exam-wrong').textContent = examState.wrong;
+  // In modalità "alla fine" il counter NON deve rivelare giuste/sbagliate per non influenzare
+  if (examState.fbMode === 'final' && !examState.finished) {
+    document.getElementById('exam-correct').textContent = '?';
+    document.getElementById('exam-wrong').textContent = '?';
+  } else {
+    document.getElementById('exam-correct').textContent = examState.correct;
+    document.getElementById('exam-wrong').textContent = examState.wrong;
+  }
 }
 function examNext() {
   const btn = document.getElementById('exam-next-btn');
