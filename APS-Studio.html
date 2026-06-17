@@ -2983,17 +2983,6 @@ const cards = [
 {t:"TDD", q:"Differenza mock vs stub.", a:"<b>Stub</b> = fornisce risposte predefinite (passivo). <b>Mock</b> = verifica anche COME è stato chiamato (assertion sulla chiamata).", m:"📞 STUB risponde \"sì/42\" e basta. 🎬 MOCK risponde E memorizza chi/quando/quanto è stato chiamato per fare assert nel test."},
 {t:"TDD", q:"Perché si usano mock invece del DB vero nei test?", a:"Velocità (millisecondi vs secondi), determinismo (no dipendenze esterne flaky), isolamento (testi una classe alla volta).", m:"⚡ VELOCITÀ + 🎯 DETERMINISMO + 🔬 ISOLAMENTO. Test che fa una vera query SQL è lento E può fallire per cause esterne (rete giù) → test \"flaky\" inaffidabile."},
 
-// ===== PROG2COD — dal progetto UML al codice =====
-{t:"PROG2COD", q:"Passaggio da progettazione UML a codice — principio chiave.", a:"I nomi UML (classi, attributi, metodi, associazioni) guidano direttamente la scrittura del codice: stesso nome, stessa semantica.", m:"📐➡️💻 UML = pre-codice in linguaggio universale. Se nel diagramma c'è <code>Cliente.calcolaTotale()</code>, in codice scriverai <code>cliente.calcolaTotale()</code>. Mantieni la TRADUZIONE 1:1."},
-{t:"PROG2COD", q:"In iterativo, durante l'implementazione si possono cambiare i diagrammi?", a:"Sì. In approccio iterativo/agile è normale che il design evolva mentre si codifica; i diagrammi vengono aggiornati o rifatti.", m:"🔄 ITERATIVO ≠ CASCATA. In cascata: design congelato → codice. In iterativo: design e codice si influenzano a vicenda. Cambi durante il codice = normale."},
-{t:"PROG2COD", q:"Come si mappa una molteplicità 1..* (o 0..*) in codice?", a:"Con una collezione: List, Set, array, Collection a seconda del linguaggio.", m:"📋 0..* / 1..* in UML = <code>List&lt;X&gt;</code> in codice. Es. <code>Sale</code> ha 1..* <code>SaleLineItem</code> → <code>private List&lt;SaleLineItem&gt; items;</code>."},
-{t:"PROG2COD", q:"I diagrammi di interazione (sequence) servono a:", a:"Guidare l'implementazione dei metodi: mostrano CHI chiama COSA e in quale ordine, traducendosi quasi 1:1 in chiamate di metodo.", m:"📞 SEQUENCE = TRACCIA del codice. Ogni messaggio nel diagramma → una riga di codice (chiamata di metodo). Disegnare il sequence è quasi scrivere lo pseudocodice."},
-{t:"PROG2COD", q:"L'ereditarietà UML (generalizzazione) si traduce in codice come:", a:"<code>extends</code> (per classi). La realizzazione (verso «interface») si traduce con <code>implements</code>.", m:"🔺 EREDITARIETÀ = extends (Java/C#) / : in C++. 🔺- - - REALIZZAZIONE = implements. Triangolo solido vs tratteggiato → keyword diversa."},
-{t:"PROG2COD", q:"La composizione UML (◆ rombo pieno) si traduce in codice come:", a:"Il contenitore crea la parte e ne gestisce il ciclo di vita: la parte vive e muore col tutto.", m:"◆ COMPOSIZIONE → la parte nasce DENTRO il contenitore: <code>this.motore = new Motore();</code>. Se distruggi l'Auto, il Motore muore con lei. Suggerisce GRASP Creator."},
-{t:"PROG2COD", q:"L'aggregazione UML (◇ rombo vuoto) si traduce in codice come:", a:"Il contenitore tiene un riferimento alla parte, ma la parte è creata altrove e vive indipendentemente.", m:"◇ AGGREGAZIONE → la parte viene PASSATA al contenitore: <code>uni.iscrivi(studente)</code>. Se l'università chiude, lo studente vive ancora altrove."},
-{t:"PROG2COD", q:"Un'associazione orientata in UML in codice diventa:", a:"Un attributo (campo) della classe sorgente che contiene il riferimento all'altra classe.", m:"➡️ A → B in UML = <code>class A { private B b; }</code>. La freccia indica chi conosce chi: A ha B come campo, B non sa di A."},
-{t:"PROG2COD", q:"Sintassi UML di un metodo (cosa scrive il prof).", a:"<code>visibilità nome(parametro: Tipo): TipoRitorno</code>. Es. <code>+ calcolaTotale(sconto: double): double</code>.", m:"🎯 FORMA STANDARD: simbolo visibilità (+/-/#/~) + nome + ( parametri tipizzati ) + : + tipo di ritorno. È la firma del metodo \"in UML\"."},
-{t:"PROG2COD", q:"Cosa NON deve cambiare passando da UML a codice?", a:"I nomi delle classi e dei metodi pubblici: sono il contratto. Si possono cambiare strutture interne, mai i nomi del modello.", m:"🔒 NOMI PUBBLICI = CONTRATTO. Il modello UML è la \"specifica\": il codice ne è la realizzazione. Cambiare nome = rompere il contratto col modello."},
 ];
 
 // Topic descrittivi (per filtri)
@@ -3001,10 +2990,9 @@ const TOPIC_LABEL = {
   PROC:"Processi", AGILE:"Agile/Scrum", UP:"UP", REQ:"Requisiti",
   UC:"Casi d'uso", ARCH:"Architettura", DOM:"Dominio", SSD:"SSD",
   CONTR:"Contratti", INTERAZ:"Interazione", GRASP:"GRASP", GoF:"GoF",
-  UML:"UML", CLASSI:"Classi", STATI:"Stati", ATTIV:"Attività", TDD:"TDD",
-  PROG2COD:"Da UML a codice"
+  UML:"UML", CLASSI:"Classi", STATI:"Stati", ATTIV:"Attività", TDD:"TDD"
 };
-const TOPIC_ORDER = ["PROC","AGILE","UP","REQ","UC","ARCH","DOM","SSD","CONTR","INTERAZ","GRASP","GoF","UML","CLASSI","STATI","ATTIV","TDD","PROG2COD"];
+const TOPIC_ORDER = ["PROC","AGILE","UP","REQ","UC","ARCH","DOM","SSD","CONTR","INTERAZ","GRASP","GoF","UML","CLASSI","STATI","ATTIV","TDD"];
 
 let currentTopic = 'ALL';
 let order = cards.map((_, i) => i);
@@ -3322,10 +3310,6 @@ const QUIZ = [
 {t:"TDD", q:"Perché scrivere il test PRIMA del codice?", o:["Garantisce testabilità","Costringe a pensare all'interfaccia","Dà una rete di sicurezza per il refactoring","Velocizza il deploy"], c:[0,1,2], m:true, e:"3 motivi principali del TDD: testabilità, design dell'interfaccia, sicurezza per modifiche future."},
 
 // ===== Passaggio progettazione → codice =====
-{t:"PROG2COD", q:"Quale affermazione sul passaggio da progettazione a codice è VERA?", o:["Le associazioni 1..* vanno evitate","I nomi nei diagrammi possono guidare la scrittura del codice","Durante l'implementazione non si possono fare modifiche","I diagrammi di interazione non sono usabili come guida"], c:[1], m:false, e:"VERO: i nomi UML guidano la scrittura del codice. Le altre sono falsità classiche all'esame."},
-{t:"PROG2COD", q:"In un approccio iterativo, durante l'implementazione si possono apportare cambiamenti al progetto?", o:["Sì, è normale che emergano modifiche e si raffinino i diagrammi","No, mai: il progetto è immutabile","Solo dopo approvazione formale","Solo in cascata"], c:[0], m:false, e:"Nell'iterativo/agile è normale che il design evolva durante l'implementazione."},
-{t:"PROG2COD", q:"Come si mappano associazioni 1..* in codice?", o:["Si evitano","Con collezioni (List, Set, Array)","Solo con database","Con singolo oggetto"], c:[1], m:false, e:"1..* si rappresenta naturalmente con collezioni nel codice."},
-{t:"PROG2COD", q:"I diagrammi di interazione (sequence) servono per:", o:["Generare codice automaticamente","Guidare la scrittura dei metodi mostrando le collaborazioni","Sostituire i test","Sostituire i requisiti"], c:[1], m:false, e:"I sequence diagram mostrano CHI chiama COSA, guidando l'implementazione dei metodi."},
 
 // ===== NUOVI: AGILE, SCRUM, MAPPA PROCESSI =====
 {t:"PROC", q:"Agile è un processo software?", o:["Sì, è un processo con regole rigide","No, è una filosofia/mindset che si applica sopra un processo","Sì, è equivalente a SCRUM","No, è un linguaggio di modellazione"], c:[1], m:false, e:"Agile è una filosofia (Manifesto 2001), non un processo. SCRUM, XP, Kanban sono metodi che la realizzano."},
@@ -3610,8 +3594,6 @@ const QUIZ = [
 {t:"TDD", q:"\"Large class\" code smell — soluzione tipica:", o:["Aggiungere altri attributi","Extract Class (estrarre più classi con responsabilità coese)","Eliminare la classe","Renderla statica"], c:[1], m:false, e:"Extract Class: spezzare la classe grande in più classi coese."},
 
 // PROG2COD
-{t:"PROG2COD", q:"L'associazione 0..* in UML si traduce in codice come:", o:["Un singolo oggetto","Una collezione (List, Set, Array)","Un attributo nullable","Niente"], c:[1], m:false, e:"0..* in codice = collezione."},
-{t:"PROG2COD", q:"L'ereditarietà UML si traduce in codice come:", o:["Composizione","extends (classe) o implements (interfaccia)","Singleton","Friend"], c:[1], m:false, e:"Generalizzazione → extends. Realizzazione → implements."},
 
 // ===== BATCH 3: varianti, esempi, trappole =====
 
@@ -3731,9 +3713,6 @@ const QUIZ = [
 {t:"TDD", q:"\"Magic numbers\" è un code smell perché:", o:["Aumenta performance","Numeri letterali senza significato chiaro nel codice (es. 86400)","Solo per Singleton","Niente"], c:[1], m:false, e:"Magic numbers: usare costanti con nome (es. SECONDS_PER_DAY)."},
 
 // PROG2COD varianti
-{t:"PROG2COD", q:"La composizione UML (◆) in codice si traduce con:", o:["Riferimento a oggetto creato e distrutto col contenitore","Sempre Singleton","Solo static","Solo interfaccia"], c:[0], m:false, e:"Composizione: il contenitore crea la parte e gestisce la sua vita."},
-{t:"PROG2COD", q:"L'aggregazione UML (◇) in codice si traduce con:", o:["La parte viene creata altrove e passata al contenitore","Sempre Singleton","Solo static","Solo costruttore privato"], c:[0], m:false, e:"Aggregazione: la parte è creata altrove, il contenitore tiene solo un riferimento."},
-{t:"PROG2COD", q:"In codice, l'associazione orientata si realizza con:", o:["Un attributo che riferisce all'altra classe","Sempre eredità","Sempre static","Sempre Singleton"], c:[0], m:false, e:"Attributo che contiene il riferimento all'altra classe."},
 
 // SSD/CONTR varianti
 {t:"SSD", q:"In SSD, le frecce di ritorno:", o:["Sono sempre obbligatorie","Sono opzionali (tratteggiate, con valore di ritorno)","Continue + freccia","Niente"], c:[1], m:false, e:"Ritorni in SSD: tratteggiate, mostrano valore di ritorno."},
@@ -3755,7 +3734,6 @@ const QUIZ = [
 {t:"GRASP", q:"Facade realizza quali GRASP?", o:["Solo Singleton","Indirection + Protected Variations","Solo Creator","Solo Composite"], c:[1], m:false, e:"Facade = Indirection (intermediario) + PV (interfaccia stabile)."},
 {t:"GRASP", q:"Observer realizza quali GRASP?", o:["Solo Singleton","Indirection + Protected Variations","Solo Creator","Solo Composite"], c:[1], m:false, e:"Observer = Indirection (publisher) + PV (interfaccia Subscriber)."},
 {t:"GRASP", q:"Quando aggregare i Repository come Pure Fabrication?", o:["Mai","Quando vogliamo isolare la persistenza dal dominio","Solo per Singleton","Solo per Composite"], c:[1], m:false, e:"Repository = classico Pure Fabrication + Indirection."},
-{t:"PROG2COD", q:"\"public + nome(parametri): tipo\" in UML mappa a:", o:["Sempre static","Metodo pubblico in codice","Solo abstract","Solo Singleton"], c:[1], m:false, e:"Notazione UML: visibilità + nome(par): tipo_ret."},
 
 // Mappa processi
 {t:"PROC", q:"\"UP è un processo iterativo\" è VERO o FALSO?", o:["Falso","Vero","Dipende","Solo in cascata"], c:[1], m:false, e:"UP è iterativo, incrementale, evolutivo."},
@@ -4361,9 +4339,9 @@ const QUIZ_TOPIC_LABEL = {
   PROC:"Processi", UP:"UP", REQ:"Requisiti", UC:"Casi d'uso",
   DOM:"Dominio", SSD:"SSD", CONTR:"Contratti", ARCH:"Architettura",
   INTERAZ:"Interazione", GRASP:"GRASP", GoF:"GoF", UML:"UML",
-  CLASSI:"Classi", STATI:"Stati", TDD:"TDD", PROG2COD:"Prog→Codice"
+  CLASSI:"Classi", STATI:"Stati", TDD:"TDD"
 };
-const QUIZ_TOPIC_ORDER = ["PROC","UP","REQ","UC","DOM","SSD","CONTR","ARCH","INTERAZ","GRASP","GoF","UML","CLASSI","STATI","TDD","PROG2COD"];
+const QUIZ_TOPIC_ORDER = ["PROC","UP","REQ","UC","DOM","SSD","CONTR","ARCH","INTERAZ","GRASP","GoF","UML","CLASSI","STATI","TDD"];
 
 // ============= MAPPING TOPIC → SEZIONE TEORIA (per link di approfondimento) =============
 const TOPIC_TO_TEORIA = {
@@ -4376,7 +4354,7 @@ const TOPIC_TO_TEORIA = {
   GRASP:'grasp',
   GoF:'gof',
   UML:'uml',
-  CLASSI:'class', PROG2COD:'class',
+  CLASSI:'class',
   STATI:'stati', ATTIV:'stati',
   TDD:'tdd'
 };
