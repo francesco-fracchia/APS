@@ -250,6 +250,21 @@
   .exam-setup-row label{display:flex;align-items:center;gap:6px;color:var(--soft);font-weight:600}
   .exam-setup-row select,.exam-setup-row input[type=number]{padding:7px 11px;border-radius:8px;border:1px solid var(--line);background:var(--paper);font-family:inherit;font-size:.92rem;color:var(--ink)}
   .exam-action{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+  /* ============ LINK DI APPROFONDIMENTO ============ */
+  .goto-btns{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+  .goto-btn{display:inline-flex;align-items:center;gap:5px;padding:5px 10px;border-radius:14px;border:1px solid var(--line);background:var(--paper);color:var(--soft);cursor:pointer;font-size:.78rem;font-weight:600;transition:.15s;text-decoration:none;font-family:inherit}
+  .goto-btn:hover{border-color:var(--blue);color:var(--blue);background:#f0f4ff}
+  .goto-btn.teoria{background:#eef4fb;border-color:#cfdce8;color:var(--blue)}
+  .goto-btn.teoria:hover{background:var(--blue);color:#fff;border-color:var(--blue)}
+  .goto-btn.flash{background:#f0eaff;border-color:#dccdff;color:var(--violet)}
+  .goto-btn.flash:hover{background:var(--violet);color:#fff;border-color:var(--violet)}
+  .goto-btn.quiz{background:#fff4e6;border-color:#f3e2bd;color:var(--amber)}
+  .goto-btn.quiz:hover{background:var(--amber);color:#fff;border-color:var(--amber)}
+  .fc-topic-link{font-size:.7rem;text-transform:uppercase;letter-spacing:1px;color:var(--blue);font-weight:700;margin-bottom:9px;text-align:center;cursor:pointer;text-decoration:underline;text-decoration-style:dotted;text-underline-offset:3px}
+  .fc-topic-link:hover{color:var(--violet)}
+  .flashctrl-goto{display:flex;gap:8px;justify-content:center;margin-top:10px;flex-wrap:wrap}
+  .flash-pulse{animation:pulseHL 1.4s ease-in-out 2}
+  @keyframes pulseHL{0%,100%{box-shadow:0 0 0 0 rgba(56,88,233,0)}50%{box-shadow:0 0 0 8px rgba(56,88,233,.25)}}
   .exam-btn-primary{padding:12px 24px;background:var(--blue);color:#fff;border:0;border-radius:9px;cursor:pointer;font-weight:700;font-size:.95rem;transition:.15s}
   .exam-btn-primary:hover{background:#2746c4}
   .exam-btn-primary:disabled{background:#aaa;cursor:not-allowed}
@@ -1302,6 +1317,9 @@
         <div class="flashcount" id="fc-count">0/0</div>
         <button class="btn" onclick="nextCard(event)">Succ →</button>
         <button class="btn" onclick="shuffleCards(event)">🔀 Mischia</button>
+      </div>
+      <div class="flashctrl-goto" id="fc-goto-box">
+        <!-- popolato dinamicamente da renderCard -->
       </div>
       <div class="flashctrl" style="margin-top:10px;border-top:1px dashed var(--line);padding-top:12px">
         <button class="btn" id="btn-play" onclick="audioToggle()">🔊 Ascolta</button>
@@ -3595,6 +3613,51 @@ const QUIZ_TOPIC_LABEL = {
 };
 const QUIZ_TOPIC_ORDER = ["PROC","UP","REQ","UC","DOM","SSD","CONTR","ARCH","INTERAZ","GRASP","GoF","UML","CLASSI","STATI","TDD","PROG2COD"];
 
+// ============= MAPPING TOPIC → SEZIONE TEORIA (per link di approfondimento) =============
+const TOPIC_TO_TEORIA = {
+  PROC:'mappa-proc', AGILE:'mappa-proc',
+  UP:'up', REQ:'up',
+  UC:'uc',
+  DOM:'dom',
+  SSD:'ssd', CONTR:'ssd',
+  ARCH:'arch', INTERAZ:'arch',
+  GRASP:'grasp',
+  GoF:'gof',
+  UML:'uml',
+  CLASSI:'class', PROG2COD:'class',
+  STATI:'stati', ATTIV:'stati',
+  TDD:'tdd'
+};
+
+// Naviga alla sezione di teoria del topic dato
+function gotoTeoria(t) {
+  const sec = TOPIC_TO_TEORIA[t];
+  if (!sec) return;
+  const el = document.getElementById(sec);
+  if (el) {
+    el.scrollIntoView({behavior:'smooth', block:'start'});
+    el.classList.add('flash-pulse');
+    setTimeout(() => el.classList.remove('flash-pulse'), 3000);
+  }
+}
+// Naviga alla sezione flashcard e applica il filtro del topic
+function gotoFlashcards(t) {
+  const sec = document.getElementById('flash');
+  if (sec) sec.scrollIntoView({behavior:'smooth', block:'start'});
+  // Applica filtro topic se la funzione esiste
+  if (typeof setTopic === 'function' && cards && cards.some(c => c.t === t)) {
+    setTopic(t);
+  }
+  const fl = document.getElementById('flashcard');
+  if (fl) { fl.classList.add('flash-pulse'); setTimeout(() => fl.classList.remove('flash-pulse'), 3000); }
+}
+// Naviga alla sezione quiz e applica il filtro del topic
+function gotoQuiz(t) {
+  const sec = document.getElementById('quiz');
+  if (sec) sec.scrollIntoView({behavior:'smooth', block:'start'});
+  if (typeof quizSetTopic === 'function') quizSetTopic(t);
+}
+
 let quizCurrent = 'ALL';
 let quizOrder = QUIZ.map((_,i)=>i);
 let quizSelected = {}; // {questionIdx: Set of optIndexes}
@@ -3645,11 +3708,19 @@ function quizRender() {
       const sel = quizSelected[idx] && quizSelected[idx].has(oi);
       optsHtml += '<label class="opt" data-oi="'+oi+'"><input type="'+inputType+'" name="q'+idx+'" '+(sel?'checked':'')+' onchange="quizSelect('+idx+','+oi+','+q.m+')"><span>'+opt+'</span></label>';
     });
+    const hasTeoria = !!TOPIC_TO_TEORIA[q.t];
+    const hasCard = (typeof cards !== 'undefined') && cards.some(c => c.t === q.t);
+    const linksHtml =
+      '<div class="goto-btns">'+
+      (hasCard ? '<button class="goto-btn flash" onclick="gotoFlashcards(\''+q.t+'\')" title="Vai alle flashcard di '+(QUIZ_TOPIC_LABEL[q.t]||q.t)+'">🃏 Flashcard '+(QUIZ_TOPIC_LABEL[q.t]||q.t)+'</button>' : '')+
+      (hasTeoria ? '<button class="goto-btn teoria" onclick="gotoTeoria(\''+q.t+'\')" title="Vai alla teoria di '+(QUIZ_TOPIC_LABEL[q.t]||q.t)+'">📚 Teoria</button>' : '')+
+      '</div>';
     div.innerHTML =
       '<div class="qhead"><span>Domanda '+(displayIdx+1)+'/'+quizOrder.length+'</span><span class="pill v">'+(QUIZ_TOPIC_LABEL[q.t]||q.t)+'</span></div>'+
       '<div class="qtext">'+q.q+' '+multiHint+'</div>'+
       optsHtml+
-      '<div class="expl"><b>Spiegazione</b>: '+q.e+'</div>';
+      '<div class="expl"><b>Spiegazione</b>: '+q.e+'</div>'+
+      linksHtml;
     cont.appendChild(div);
   });
   quizUpdateScore();
@@ -3843,7 +3914,26 @@ function examRenderQuestion() {
   const q = item.q;
   document.getElementById('exam-current-num').textContent = (i+1) + ' / ' + total;
   document.getElementById('exam-qnum').textContent = (i+1);
-  document.getElementById('exam-qtopic').textContent = QUIZ_TOPIC_LABEL[q.t] || q.t;
+  // Aggiorna topic + link di approfondimento (pill cliccabile + bottoni)
+  const tEl = document.getElementById('exam-qtopic');
+  tEl.textContent = QUIZ_TOPIC_LABEL[q.t] || q.t;
+  tEl.title = 'Vai alla teoria di ' + (QUIZ_TOPIC_LABEL[q.t] || q.t);
+  tEl.style.cursor = 'pointer';
+  tEl.onclick = () => gotoTeoria(q.t);
+  // Aggiorna links container
+  let linksBox = document.getElementById('exam-q-links');
+  if (!linksBox) {
+    linksBox = document.createElement('div');
+    linksBox.id = 'exam-q-links';
+    linksBox.className = 'goto-btns';
+    const qtext = document.getElementById('exam-qtext');
+    qtext.parentNode.insertBefore(linksBox, qtext.nextSibling);
+  }
+  const hasCard = (typeof cards !== 'undefined') && cards.some(c => c.t === q.t);
+  const hasTeoria = !!TOPIC_TO_TEORIA[q.t];
+  linksBox.innerHTML =
+    (hasCard ? '<button class="goto-btn flash" onclick="gotoFlashcards(\''+q.t+'\')">🃏 Flashcard '+(QUIZ_TOPIC_LABEL[q.t]||q.t)+'</button>' : '') +
+    (hasTeoria ? '<button class="goto-btn teoria" onclick="gotoTeoria(\''+q.t+'\')">📚 Teoria</button>' : '');
   const multi = q.m ? '<span class="multi">(una o più alternative)</span>' : '';
   document.getElementById('exam-qtext').innerHTML = q.q + ' ' + multi;
   const opts = document.getElementById('exam-opts');
@@ -4030,16 +4120,33 @@ function renderCard(autoTrigger) {
   if (!order.length) {
     document.getElementById('fc-q').textContent = '(nessuna card per questo topic)';
     document.getElementById('fc-count').textContent = '0/0';
+    const gb = document.getElementById('fc-goto-box'); if (gb) gb.innerHTML = '';
     return;
   }
   const c = cards[order[idx]];
-  document.getElementById('fc-topic').textContent = TOPIC_LABEL[c.t] || c.t;
-  document.getElementById('fc-topic-b').textContent = TOPIC_LABEL[c.t] || c.t;
+  const label = TOPIC_LABEL[c.t] || c.t;
+  // Topic in alto/sotto: cliccabili → teoria
+  ['fc-topic','fc-topic-b'].forEach(id => {
+    const el = document.getElementById(id);
+    el.textContent = label;
+    el.style.cursor = 'pointer';
+    el.title = 'Vai alla teoria di ' + label;
+    el.onclick = (e) => { e.stopPropagation(); gotoTeoria(c.t); };
+  });
   document.getElementById('fc-q').textContent = c.q;
   document.getElementById('fc-a').textContent = c.a;
   document.getElementById('fc-m').textContent = c.m || '';
   document.getElementById('fc-count').textContent = (idx+1) + '/' + order.length;
   document.getElementById('flashcard').classList.remove('flipped');
+  // Popolazione bottoni di navigazione
+  const gb = document.getElementById('fc-goto-box');
+  if (gb) {
+    const hasTeoria = !!TOPIC_TO_TEORIA[c.t];
+    const hasQuiz = (typeof QUIZ !== 'undefined') && QUIZ.some(q => q.t === c.t);
+    gb.innerHTML =
+      (hasTeoria ? '<button class="goto-btn teoria" onclick="gotoTeoria(\''+c.t+'\')" title="Vai alla teoria">📚 Teoria '+label+'</button>' : '') +
+      (hasQuiz ? '<button class="goto-btn quiz" onclick="gotoQuiz(\''+c.t+'\')" title="Vai al quiz">📝 Quiz '+label+'</button>' : '');
+  }
 }
 function flipCard(e) {
   // Se il click viene dal bottone speak o sui controlli, non girare
