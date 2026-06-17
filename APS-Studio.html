@@ -3384,7 +3384,6 @@ const QUIZ = [
 {t:"PROC", q:"Quale tra questi è un metodo agile?", o:["Cascata","SCRUM","UP rigido","Modello a V"], c:[1], m:false, e:"SCRUM è un metodo agile. Cascata e UP rigido NO. Modello a V è una variante della cascata."},
 {t:"PROC", q:"XP (Extreme Programming) è:", o:["Un linguaggio di programmazione","Un metodo agile","Un anti-pattern","Una versione di UP"], c:[1], m:false, e:"XP è un metodo agile, focus su pratiche di sviluppo (pair programming, TDD, refactoring continuo)."},
 {t:"PROC", q:"Kanban è:", o:["Un metodo agile basato su flusso continuo","Una variante di SCRUM","Un linguaggio UML","Una metrica"], c:[0], m:false, e:"Kanban: visualizzazione del flusso, limiti WIP, niente sprint fissi."},
-{t:"PROC", q:"Manifesto Agile: anno di pubblicazione?", o:["1995","2001","2010","2020"], c:[1], m:false, e:"Il Manifesto Agile è del 2001."},
 {t:"PROC", q:"Caratteristica condivisa da tutti i metodi agili:", o:["Iterazioni brevi","Cascata pura","Niente test","Documentazione esaustiva"], c:[0], m:false, e:"Tutti i metodi agili sono iterativi con cicli brevi."},
 {t:"PROC", q:"Il \"daily standup\" di SCRUM dura:", o:["Tutta la mattina","15 minuti circa","Un'ora","Un giorno"], c:[1], m:false, e:"Il daily standup è max ~15 min, in piedi, per allinearsi."},
 {t:"PROC", q:"Sprint planning serve a:", o:["Decidere cosa includere nello sprint","Sostituire il backlog","Eliminare i ruoli","Cambiare metodo"], c:[0], m:false, e:"Sprint planning = inizio sprint, si seleziona dal backlog cosa fare."},
@@ -3495,7 +3494,6 @@ const QUIZ = [
 {t:"GoF", q:"Facade: tipico uso:", o:["Tradurre interfacce","Semplificare l'accesso a un sottosistema complesso","Memorizzare istanze uniche","Costruire alberi"], c:[1], m:false, e:"Facade = unico ingresso che orchestra internamente."},
 {t:"GoF", q:"Observer: chi tiene la lista?", o:["Il Subscriber","Il Publisher","Il Client","Il Singleton"], c:[1], m:false, e:"Publisher tiene la lista 0..* di Subscriber."},
 {t:"GoF", q:"Singleton: getInstance() è:", o:["Privato","Pubblico statico","Astratto","Protected"], c:[1], m:false, e:"Public static getInstance(). Sottolineato in UML."},
-{t:"GoF", q:"Adapter: chi NON va modificato?", o:["Il Client","L'Adapter","L'Adaptee (preesistente)","L'interfaccia Target"], c:[2], m:false, e:"L'Adaptee è preesistente, non lo tocchi."},
 {t:"GoF", q:"Factory restituisce:", o:["Una classe concreta nota","Un'interfaccia (Product)","Sempre un Singleton","Sempre void"], c:[1], m:false, e:"Factory ritorna interfaccia → client disaccoppiato."},
 {t:"GoF", q:"Quale tra questi NON è uno dei 7 del prof?", o:["Adapter","Factory","Visitor","Strategy"], c:[2], m:false, e:"Visitor NON è tra i 7 del prof. Lui spiega: Factory, Singleton, Adapter, Composite, Facade, Strategy, Observer."},
 {t:"GoF", q:"Strategy realizza quale GRASP?", o:["Solo Information Expert","Polymorphism + Protected Variations","Solo Creator","Solo Singleton"], c:[1], m:false, e:"Strategy = Polymorphism + Protected Variations."},
@@ -3577,7 +3575,6 @@ const QUIZ = [
 // REQ varianti
 {t:"REQ", q:"\"Il sistema deve gestire 1000 utenti contemporaneamente\" è:", o:["Funzionale","Non funzionale (scalabilità)","Né uno né l'altro","Solo SCRUM"], c:[1], m:false, e:"Scalabilità = qualità → non funzionale."},
 {t:"REQ", q:"\"Il sistema deve permettere di esportare in PDF\" è:", o:["Funzionale","Non funzionale","Solo per backup","Anti-pattern"], c:[0], m:false, e:"Funzionalità (capacità di esportare) = funzionale."},
-{t:"REQ", q:"\"Il sistema deve avere un'interfaccia accessibile WCAG 2.1\" è:", o:["Funzionale","Non funzionale (usabilità/accessibilità)","Niente","Bug"], c:[1], m:false, e:"Accessibilità = qualità → non funzionale."},
 {t:"REQ", q:"\"Il sistema deve cifrare le password con bcrypt\" è:", o:["Funzionale","Non funzionale (sicurezza)","Solo manutenzione","Nessuno"], c:[1], m:false, e:"Sicurezza = qualità → non funzionale."},
 {t:"REQ", q:"Quale elaborato contiene il vocabolario condiviso col cliente?", o:["Visione","Glossario","Modello UC","Architettura"], c:[1], m:false, e:"Glossario = vocabolario condiviso, parte degli elaborati requisiti."},
 {t:"REQ", q:"La \"visione\" UP è:", o:["Un elenco di bug","Una sintesi di alto livello del progetto (business case, obiettivi)","Solo per il PM","Un test"], c:[1], m:false, e:"Visione: documento di alto livello, contesto, obiettivi, valore."},
@@ -3642,7 +3639,6 @@ const QUIZ = [
 {t:"CLASSI", q:"Una classe astratta in UML si distingue:", o:["Niente","Nome in corsivo o stereotipo «abstract»","Sottolineato","In grassetto"], c:[1], m:false, e:"Corsivo o «abstract»."},
 {t:"CLASSI", q:"Un'interfaccia in UML si distingue:", o:["Nessun simbolo","Stereotipo «interface» sopra il nome","Sottolineato","Doppia linea"], c:[1], m:false, e:"Stereotipo «interface»."},
 {t:"CLASSI", q:"In UML, un attributo \"derived\" si scrive:", o:["Con /","Con ~","Con *","Con #"], c:[0], m:false, e:"Slash / prima del nome = attributo derivato (calcolato)."},
-{t:"CLASSI", q:"Esempio: \"/eta: int\" significa:", o:["Età static","Età derivata (calcolata da dataNascita)","Età private","Età obsoleta"], c:[1], m:false, e:"/ = derivato. Esempio: età calcolata da data di nascita."},
 {t:"CLASSI", q:"Un metodo statico in UML si rappresenta:", o:["Con #","Con ~","Sottolineato","Tra parentesi quadre"], c:[2], m:false, e:"Sottolineato = static. Tipico per getInstance()."},
 
 // STATI varianti
@@ -3829,7 +3825,6 @@ const QUIZ = [
 {t:"CONTR", q:"\"Pre: scatole disponibili in magazzino\" è una:", o:["Post","Pre-cond","Trigger","Niente"], c:[1], m:false, e:"Stato richiesto PRIMA: pre-condizione."},
 
 // ARCH
-{t:"ARCH", q:"Hexagonal Architecture (ports & adapters) è una variante:", o:["Di cascata","Layered con dominio al centro e adapter esterni","Sempre rigida","Solo UI"], c:[1], m:false, e:"Hexagonal: dominio al centro, adapter per UI/DB/API agli esterni."},
 {t:"ARCH", q:"In layering pulito, il dominio NON dovrebbe:", o:["Avere business logic","Importare framework di UI o ORM","Avere classi","Niente"], c:[1], m:false, e:"Dominio = puro, non importa framework esterni."},
 {t:"ARCH", q:"DTO (Data Transfer Object) sta in quale strato?", o:["Solo dominio","Tipicamente nello strato applicazione/presentazione (interfaccia tra livelli)","Solo persistenza","Niente"], c:[1], m:false, e:"DTO: oggetto per trasferire dati tra strati (es. UI ↔ application)."},
 
@@ -3866,7 +3861,6 @@ const QUIZ = [
 {t:"STATI", q:"\"Transition action\" si esegue:", o:["Prima della transizione","Mentre la transizione avviene (in mezzo, atomicamente)","Solo per fork","Niente"], c:[1], m:false, e:"Action della transizione: eseguita atomicamente durante la transizione."},
 
 // ATTIV
-{t:"ATTIV", q:"\"Decision node\" in attività si rappresenta come:", o:["Cerchio","Rombo con guardia sui rami in uscita","Triangolo","Quadrato"], c:[1], m:false, e:"Rombo + guardie [cond] sui rami → decisione."},
 {t:"ATTIV", q:"\"Action\" in attività è:", o:["Solo per Singleton","Unità atomica di lavoro","Solo decorazione","Niente"], c:[1], m:false, e:"Action: passo atomico di lavoro nell'attività."},
 
 // TDD
@@ -4017,14 +4011,12 @@ const QUIZ = [
 
 // PROC
 {t:"PROC", q:"Quale tra questi NON è un principio del Manifesto Agile?", o:["Software funzionante","Documentazione sopra tutto","Risposta al cambiamento","Collaborazione col cliente"], c:[1], m:false, e:"Documentazione sopra tutto è l'OPPOSTO del valore agile."},
-{t:"PROC", q:"\"Devops\" è:", o:["Un metodo agile puro","Una pratica/cultura che integra sviluppo e operations","Solo per cloud","Solo Singleton"], c:[1], m:false, e:"DevOps: cultura che unisce Dev e Ops per consegnare continuamente."},
 {t:"PROC", q:"Tipico evento di SCRUM che NON c'è in cascata:", o:["Document review","Daily standup","UML drawing","Compilazione"], c:[1], m:false, e:"Daily standup è SCRUM-specifico."},
 {t:"PROC", q:"Time-boxing significa:", o:["Tempo fisso, scope variabile","Scope fisso, tempo variabile","Niente fisso","Solo per Singleton"], c:[0], m:false, e:"Time-box: durata fissa, lavoro si adatta."},
 {t:"PROC", q:"Una pratica caratteristica di XP:", o:["Pair programming","Documentazione esaustiva","Cascata","Big bang"], c:[0], m:false, e:"XP: pair programming, TDD, refactoring continuo."},
 
 // UP
 {t:"UP", q:"In UP, l'ultima iterazione di Costruzione produce:", o:["Niente","Beta candidate per la Transizione","Cancellazione","Solo bug"], c:[1], m:false, e:"Fine Costruzione: pronto per la beta (Transizione)."},
-{t:"UP", q:"UP è descritto in un libro famoso di:", o:["Sommerville","Larman (e Jacobson, Booch, Rumbaugh)","Date","Knuth"], c:[1], m:false, e:"UP: Jacobson, Booch, Rumbaugh (\"3 amigos\"). Libro di studio: Larman."},
 {t:"UP", q:"Quale tra questi è il libro di riferimento del corso APS?", o:["Sommerville: SE","Larman: Applying UML and Patterns","Booch: OO Analysis","Knuth: Art of Programming"], c:[1], m:false, e:"Larman: \"Applying UML and Patterns\"."},
 {t:"UP", q:"UP è specificamente progettato per software:", o:["Procedurale","Funzionale","Orientato agli oggetti (OO)","Solo script"], c:[2], m:false, e:"UP è per software OO."},
 {t:"UP", q:"\"Inception\" in UP è:", o:["Ideazione","Fine progetto","Solo per Singleton","Niente"], c:[0], m:false, e:"Inception = Ideazione (nome inglese)."},
@@ -4152,16 +4144,8 @@ const QUIZ = [
 // ===== BATCH 8: storia, esercizi tipo orale, mappe avanzate =====
 
 // PROC - storia
-{t:"PROC", q:"Anno del Manifesto Agile?", o:["1991","2001","2011","2021"], c:[1], m:false, e:"2001."},
-{t:"PROC", q:"Anno del libro Design Patterns della Gang of Four?", o:["1984","1994","2004","2014"], c:[1], m:false, e:"GoF book: 1994."},
-{t:"PROC", q:"Chi sono i \"3 amigos\" di UP?", o:["Jacobson, Booch, Rumbaugh","Larman, Sommerville, Pressman","Bezos, Gates, Jobs","Niente"], c:[0], m:false, e:"3 amigos = Ivar Jacobson, Grady Booch, James Rumbaugh."},
-{t:"PROC", q:"Da chi è scritto \"Applying UML and Patterns\"?", o:["Larman","Sommerville","Booch","Knuth"], c:[0], m:false, e:"Craig Larman, libro del corso APS."},
-{t:"PROC", q:"\"Software craftsmanship\" è un movimento legato a:", o:["Cascata","Agile e qualità del codice","Solo Singleton","Solo Composite"], c:[1], m:false, e:"Software craftsmanship: estensione dell'agile sulla qualità del codice."},
-{t:"PROC", q:"Quanti sono i firmatari originali del Manifesto Agile?", o:["3","17","100","1"], c:[1], m:false, e:"17 firmatari originali (Beck, Sutherland, Schwaber, Cockburn, ecc.)."},
 
 // UP - approfondimenti
-{t:"UP", q:"\"Architecturally significant\" sono i requisiti che:", o:["Hanno impatto sul sistema architetturalmente","Sono solo cosmetici","Sono solo non funzionali","Niente"], c:[0], m:false, e:"Architetturalmente significativi = vanno in Elaborazione, definiscono l'architettura."},
-{t:"UP", q:"\"Iteration assessment\" si fa:", o:["A fine iterazione, per valutare cosa migliorare","All'inizio iterazione","Mai","Solo per Singleton"], c:[0], m:false, e:"Assessment a fine iterazione: cosa funziona, cosa no, cambi per la prossima."},
 {t:"UP", q:"In UP, l'attività di gestione del progetto produce:", o:["Phase plan","Iteration plan","Risk list","Tutti e tre"], c:[3], m:false, e:"Project management UP: phase plan, iteration plan, risk list."},
 {t:"UP", q:"Vantaggio chiave dell'approccio UP rispetto alla cascata:", o:["Più documenti","Riduzione del rischio dovuta a iterazioni precoci","Solo veloce","Solo cheap"], c:[1], m:false, e:"Iterazioni precoci affrontano i rischi prima → meno sorprese tardive."},
 
@@ -4272,9 +4256,7 @@ const QUIZ = [
 {t:"STATI", q:"\"CSVT\" è mnemonico per:", o:["I 4 tipi di eventi (Chiamata, Segnale, Variazione, Temporale)","Le 4 fasi UP","Niente","Solo Singleton"], c:[0], m:false, e:"CSVT = 4 eventi macchina a stati."},
 {t:"TDD", q:"\"RGR\" è mnemonico per:", o:["Le 4 fasi UP","Il ciclo TDD (Red, Green, Refactor)","Niente","Solo Singleton"], c:[1], m:false, e:"RGR = ciclo TDD."},
 {t:"TDD", q:"\"UIEA\" è mnemonico per:", o:["I 4 livelli di test (Unità, Integrazione, E2E, Accettazione)","Le 4 fasi UP","Niente","Solo Singleton"], c:[0], m:false, e:"UIEA = 4 livelli test."},
-{t:"TDD", q:"\"PEVR\" è mnemonico per:", o:["Le 4 proprietà di un test di unità (Piccolo, Eseguibile isolato, Veloce, Ripetibile)","Le 4 fasi UP","Niente","Solo Singleton"], c:[1], m:false, e:"PEVR = proprietà test unità."},
 {t:"GoF", q:"\"5-7-11\" è mnemonico per:", o:["Distribuzione dei 23 GoF per famiglia (Creazionali-Strutturali-Comportamentali)","Le fasi UP","Niente","Solo Singleton"], c:[0], m:false, e:"5+7+11 = 23 GoF."},
-{t:"GoF", q:"\"2-3-2\" è mnemonico per:", o:["I 7 GoF del prof per famiglia","Le fasi UP","Niente","Solo Singleton"], c:[0], m:false, e:"2+3+2 = 7 GoF del prof."},
 ];
 
 const QUIZ_TOPIC_LABEL = {
