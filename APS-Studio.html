@@ -4345,6 +4345,39 @@ function gotoFlashcards(t) {
   const fl = document.getElementById('flashcard');
   if (fl) { fl.classList.add('flash-pulse'); setTimeout(() => fl.classList.remove('flash-pulse'), 3000); }
 }
+// Dal quiz alla flashcard più rilevante: match testuale tra (q.q+q.e) e (card.q+card.a+card.m)
+const _FC_STOP = new Set(['di','a','da','in','con','su','per','tra','fra','il','lo','la','i','gli','le','un','una','uno','e','o','ma','se','che','chi','cui','è','sono','ha','ho','hai','si','mi','ti','vi','al','del','dei','delle','dal','dalla','nel','nei','negli','sul','sulla','quale','cosa','come','quali','quando','dove','quanto','perché','perche','non','ne','ci','suo','sua','suoi','sue','tuo','tua','tuoi','tue','mio','mia','miei','mie','solo','anche','sempre','mai','ogni','molto','tanto','più','meno','già','ancora','dopo','prima','sopra','sotto','dentro','fuori','vero','falso']);
+function _fcTokens(s) {
+  return (s||'').toString().toLowerCase()
+    .replace(/<[^>]+>/g,' ').replace(/[^a-zà-úA-Z0-9 ]/g,' ')
+    .split(/\s+/).filter(w => w.length >= 3 && !_FC_STOP.has(w));
+}
+function gotoFlashcardForQuiz(qIdx) {
+  if (typeof QUIZ === 'undefined' || !QUIZ[qIdx]) return;
+  const q = QUIZ[qIdx];
+  const sec = document.getElementById('flash');
+  if (sec) sec.scrollIntoView({behavior:'smooth', block:'start'});
+  if (typeof setTopic === 'function' && cards && cards.some(c => c.t === q.t)) {
+    setTopic(q.t);
+  }
+  // Cerca la flashcard del topic con miglior overlap col testo della quiz
+  const queryTok = _fcTokens(q.q + ' ' + (q.e||''));
+  const queryBag = new Set(queryTok);
+  let bestI = -1, bestScore = -1;
+  for (let i = 0; i < order.length; i++) {
+    const c = cards[order[i]];
+    if (c.t !== q.t) continue;
+    const tok = _fcTokens(c.q + ' ' + c.a + ' ' + (c.m||''));
+    let s = 0; for (const w of tok) if (queryBag.has(w)) s++;
+    if (s > bestScore) { bestScore = s; bestI = i; }
+  }
+  if (bestI >= 0 && bestScore > 0) {
+    idx = bestI;
+    renderCard(false);
+  }
+  const fl = document.getElementById('flashcard');
+  if (fl) { fl.classList.add('flash-pulse'); setTimeout(() => fl.classList.remove('flash-pulse'), 3000); }
+}
 // Naviga alla sezione quiz e applica il filtro del topic
 function gotoQuiz(t) {
   const sec = document.getElementById('quiz');
@@ -4489,7 +4522,7 @@ function quizRender() {
   const hasCard = (typeof cards !== 'undefined') && cards.some(c => c.t === q.t);
   const linksHtml =
     '<div class="goto-btns">'+
-    (hasCard ? '<button class="goto-btn flash" onclick="gotoFlashcards(\''+q.t+'\')" title="Vai alle flashcard">🃏 Flashcard '+(QUIZ_TOPIC_LABEL[q.t]||q.t)+'</button>' : '')+
+    (hasCard ? '<button class="goto-btn flash" onclick="gotoFlashcardForQuiz('+idx+')" title="Vai alla flashcard più rilevante">🃏 Flashcard '+(QUIZ_TOPIC_LABEL[q.t]||q.t)+'</button>' : '')+
     (hasTeoria ? '<button class="goto-btn teoria" onclick="gotoTeoria(\''+q.t+'\')" title="Vai alla teoria">📚 Teoria</button>' : '')+
     '</div>';
   div.innerHTML =
@@ -5088,8 +5121,9 @@ function examRenderQuestion() {
   }
   const hasCard = (typeof cards !== 'undefined') && cards.some(c => c.t === q.t);
   const hasTeoria = !!TOPIC_TO_TEORIA[q.t];
+  const qIdx = QUIZ.indexOf(q);
   linksBox.innerHTML =
-    (hasCard ? '<button class="goto-btn flash" onclick="gotoFlashcards(\''+q.t+'\')">🃏 Flashcard '+(QUIZ_TOPIC_LABEL[q.t]||q.t)+'</button>' : '') +
+    (hasCard ? '<button class="goto-btn flash" onclick="gotoFlashcardForQuiz('+qIdx+')">🃏 Flashcard '+(QUIZ_TOPIC_LABEL[q.t]||q.t)+'</button>' : '') +
     (hasTeoria ? '<button class="goto-btn teoria" onclick="gotoTeoria(\''+q.t+'\')">📚 Teoria</button>' : '');
   const multi = q.m ? '<span class="multi">(una o più alternative)</span>' : '';
   document.getElementById('exam-qtext').innerHTML = q.q + ' ' + multi;
@@ -5305,9 +5339,10 @@ function buildReviewCard(a, num, total, isCorrect) {
   });
   const hasTeoria = !!TOPIC_TO_TEORIA[q.t];
   const hasCard = (typeof cards !== 'undefined') && cards.some(c => c.t === q.t);
+  const qIdx = QUIZ.indexOf(q);
   const linksHtml =
     '<div class="goto-btns" style="margin-top:8px">'+
-    (hasCard ? '<button class="goto-btn flash" onclick="gotoFlashcards(\''+q.t+'\')">🃏 Flashcard '+(QUIZ_TOPIC_LABEL[q.t]||q.t)+'</button>' : '')+
+    (hasCard ? '<button class="goto-btn flash" onclick="gotoFlashcardForQuiz('+qIdx+')">🃏 Flashcard '+(QUIZ_TOPIC_LABEL[q.t]||q.t)+'</button>' : '')+
     (hasTeoria ? '<button class="goto-btn teoria" onclick="gotoTeoria(\''+q.t+'\')">📚 Teoria</button>' : '')+
     '</div>';
   card.innerHTML =
