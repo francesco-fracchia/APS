@@ -324,6 +324,24 @@
   .exam-feedback.ok{display:block;background:#e6f6ee;border-left:3px solid var(--green);color:#0e6b58}
   .exam-feedback.bad{display:block;background:#fdeaec;border-left:3px solid var(--red);color:#911322}
   .exam-feedback b{display:block;margin-bottom:4px}
+  .exam-review-card{background:var(--paper);border:1px solid var(--line);border-left:4px solid var(--red);border-radius:9px;padding:14px 18px;margin:11px 0;box-shadow:var(--shadow)}
+  .exam-review-card.ok{border-left-color:var(--green)}
+  .exam-rev-head{display:flex;align-items:center;gap:11px;margin-bottom:9px;flex-wrap:wrap;font-size:.85rem}
+  .exam-rev-num{font-weight:700;color:var(--soft);font-size:.78rem;text-transform:uppercase;letter-spacing:.5px}
+  .exam-rev-status{margin-left:auto;font-weight:700;font-size:.82rem}
+  .exam-rev-status.ok{color:var(--green)}
+  .exam-rev-status.bad{color:var(--red)}
+  .exam-rev-q{font-weight:600;font-size:1rem;line-height:1.4;margin:8px 0 11px;color:var(--ink)}
+  .exam-rev-opts{margin:9px 0}
+  .exam-rev-opt{padding:9px 12px;margin:5px 0;border-radius:8px;border:1px solid var(--line);background:#fafbfd;display:flex;justify-content:space-between;align-items:center;gap:11px;font-size:.93rem;flex-wrap:wrap}
+  .exam-rev-opt.user-correct{background:#e6f6ee;border-color:var(--green);font-weight:600;color:#0e6b58}
+  .exam-rev-opt.user-wrong{background:#fdeaec;border-color:var(--red);color:#911322}
+  .exam-rev-opt.missed{background:#fff4e6;border-color:var(--amber);border-style:dashed;color:#7a5d00;font-weight:600}
+  .rev-badge{font-size:.74rem;font-weight:700;padding:3px 8px;border-radius:11px;white-space:nowrap}
+  .rev-badge.ok{background:var(--green);color:#fff}
+  .rev-badge.bad{background:var(--red);color:#fff}
+  .rev-badge.missed{background:var(--amber);color:#fff}
+  .exam-rev-expl{background:#fffaef;border-left:3px solid var(--amber);padding:10px 13px;border-radius:7px;margin-top:11px;font-size:.9rem;color:#5a4a18;line-height:1.45}
   .exam-results{text-align:center;padding:22px}
   .exam-results h3{font-size:1.5rem;margin:8px 0;border:0;padding:0}
   .exam-score-big{font-size:3.5rem;font-weight:800;letter-spacing:-1px;margin:10px 0}
@@ -1551,8 +1569,16 @@
     </div>
 
     <div class="exam-action" style="justify-content:center">
-      <button class="exam-btn-primary" onclick="examRestart()">🔄 Nuovo esame</button>
-      <button class="btn" onclick="examReviewWrong()">🔴 Rivedi solo sbagliate</button>
+      <button class="exam-btn-primary" id="exam-show-wrong-btn" onclick="examShowWrongReview()" style="background:var(--amber);border-color:var(--amber)">📋 Vedi correzioni</button>
+      <button class="btn" onclick="examReviewWrong()">🔄 Rifai solo sbagliate</button>
+      <button class="btn" onclick="examRestart()">🔄 Nuovo esame</button>
+    </div>
+
+    <!-- Review delle domande (nascosta finché non clicchi "Vedi correzioni") -->
+    <div id="exam-wrong-review" class="hidden" style="margin-top:18px">
+      <h4 style="color:var(--amber);margin:18px 0 10px">📋 Domande sbagliate (con correzione)</h4>
+      <div id="exam-wrong-review-list"></div>
+      <div id="exam-correct-section" style="margin-top:18px"></div>
     </div>
   </div>
 
@@ -4675,6 +4701,81 @@ function examReviewWrong() {
   document.getElementById('exam-results').classList.add('hidden');
   document.getElementById('exam-live').classList.remove('hidden');
   examRenderQuestion();
+}
+
+// Mostra il dettaglio delle sbagliate (e opzionalmente delle giuste) inline nella schermata risultati
+function examShowWrongReview() {
+  const block = document.getElementById('exam-wrong-review');
+  const list = document.getElementById('exam-wrong-review-list');
+  const correctSection = document.getElementById('exam-correct-section');
+  const btn = document.getElementById('exam-show-wrong-btn');
+  if (!block.classList.contains('hidden')) {
+    block.classList.add('hidden');
+    btn.textContent = '📋 Vedi correzioni';
+    return;
+  }
+  const wrongs = examState.answers.filter(a => !a.correct);
+  const corrects = examState.answers.filter(a => a.correct);
+  list.innerHTML = '';
+  if (!wrongs.length) {
+    list.innerHTML = '<div style="text-align:center;padding:18px;color:var(--green);font-weight:600">🎉 Nessuna sbagliata in questo esame!</div>';
+  } else {
+    wrongs.forEach((a, i) => {
+      list.appendChild(buildReviewCard(a, i+1, wrongs.length, false));
+    });
+  }
+  correctSection.innerHTML = '';
+  if (corrects.length) {
+    const details = document.createElement('details');
+    details.style.marginTop = '14px';
+    details.innerHTML = '<summary style="cursor:pointer;font-weight:700;color:var(--green);padding:10px 14px;background:#e6f6ee;border-radius:9px;border:1px solid #cdeede">✅ Mostra anche le ' + corrects.length + ' giuste</summary>';
+    const inner = document.createElement('div');
+    inner.style.marginTop = '12px';
+    corrects.forEach((a, i) => {
+      inner.appendChild(buildReviewCard(a, i+1, corrects.length, true));
+    });
+    details.appendChild(inner);
+    correctSection.appendChild(details);
+  }
+  block.classList.remove('hidden');
+  btn.textContent = '📋 Nascondi correzioni';
+  block.scrollIntoView({behavior:'smooth', block:'start'});
+}
+
+function buildReviewCard(a, num, total, isCorrect) {
+  const q = a.q;
+  const userSel = a.selected || new Set();
+  const correctSet = new Set(q.c);
+  const card = document.createElement('div');
+  card.className = 'exam-review-card ' + (isCorrect ? 'ok' : 'bad');
+  let optsHtml = '';
+  q.o.forEach((opt, oi) => {
+    const sel = userSel.has(oi);
+    const isC = correctSet.has(oi);
+    let cls = 'exam-rev-opt';
+    let badge = '';
+    if (sel && isC) { cls += ' user-correct'; badge = '<span class="rev-badge ok">✅ Tua risposta corretta</span>'; }
+    else if (sel && !isC) { cls += ' user-wrong'; badge = '<span class="rev-badge bad">❌ Tua risposta sbagliata</span>'; }
+    else if (!sel && isC) { cls += ' missed'; badge = '<span class="rev-badge missed">🟠 Corretta (non scelta)</span>'; }
+    optsHtml += '<div class="'+cls+'">'+opt+badge+'</div>';
+  });
+  const hasTeoria = !!TOPIC_TO_TEORIA[q.t];
+  const hasCard = (typeof cards !== 'undefined') && cards.some(c => c.t === q.t);
+  const linksHtml =
+    '<div class="goto-btns" style="margin-top:8px">'+
+    (hasCard ? '<button class="goto-btn flash" onclick="gotoFlashcards(\''+q.t+'\')">🃏 Flashcard '+(QUIZ_TOPIC_LABEL[q.t]||q.t)+'</button>' : '')+
+    (hasTeoria ? '<button class="goto-btn teoria" onclick="gotoTeoria(\''+q.t+'\')">📚 Teoria</button>' : '')+
+    '</div>';
+  card.innerHTML =
+    '<div class="exam-rev-head"><span class="exam-rev-num">'+num+' / '+total+'</span>'+
+    '<span class="pill v">'+(QUIZ_TOPIC_LABEL[q.t]||q.t)+'</span>'+
+    (isCorrect ? '<span class="exam-rev-status ok">✅ Corretta</span>' : '<span class="exam-rev-status bad">❌ Sbagliata</span>')+
+    '</div>'+
+    '<div class="exam-rev-q">'+q.q+(q.m?' <span style="color:var(--violet);font-size:.8rem;font-weight:600">(una o più alternative)</span>':'')+'</div>'+
+    '<div class="exam-rev-opts">'+optsHtml+'</div>'+
+    '<div class="exam-rev-expl"><b>💡 Spiegazione:</b> '+q.e+'</div>'+
+    linksHtml;
+  return card;
 }
 function examAbort() {
   if (confirm('Terminare l\'esame ora? Vedrai i risultati parziali.')) {
