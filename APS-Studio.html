@@ -852,12 +852,64 @@
   <div class="box warn"><div class="t">⚠️ Trappola d'esame</div>
     NON dire "Ideazione = requisiti, Costruzione = implementazione". Ogni fase fa tutte le discipline.
   </div>
+  <h3>Le 5 discipline UP (dimensioni del lavoro, ortogonali alle fasi)</h3>
+  <div class="box expl"><div class="t">📖 Discipline ≠ Fasi</div>
+    <p>Le <b>4 fasi</b> sono il tempo (IECT, in ordine). Le <b>discipline</b> sono il tipo di lavoro. Una stessa iterazione ne fa <b>parecchie insieme</b>, dosandole. Sono come pentole su un fornello: tutte accese in ogni iterazione, alcune più alte di altre.</p>
+  </div>
+  <div class="box key"><div class="t">⭐ Le 5 discipline core (RADIT)</div>
+    <ul>
+      <li><b>R</b>equisiti — scoperta e modellazione di ciò che il sistema deve fare (UC, dominio iniziale)</li>
+      <li><b>A</b>nalisi & Design — modellazione OO della soluzione (dominio, SSD, contratti, sequence, classi)</li>
+      <li><b>D</b>eploy / Implementazione — codice</li>
+      <li><b>I</b>ntegrazione & Test — test di vario livello</li>
+      <li><b>T</b>rasversali: Configuration & Change Management · Project Management · Environment</li>
+    </ul>
+    <p style="margin-top:8px;font-style:italic">Tipica enfasi: in <b>Ideazione</b> dominano Requisiti; in <b>Elaborazione</b> sale Analisi&Design; in <b>Costruzione</b> dominano Codice e Test; in <b>Transizione</b> dominano Test di accettazione e Deploy.</p>
+  </div>
+
+  <h3>Workshop dei requisiti</h3>
+  <div class="box expl"><div class="t">📖 Cos'è</div>
+    <p>Un <b>workshop dei requisiti</b> è una sessione intensa (1-3 giorni) in cui cliente + analisti + sviluppatori si chiudono in una stanza, scrivono insieme UC, dominio, vincoli. UP ne fa <b>più volte</b>, soprattutto nelle prime iterazioni di Elaborazione, raffinando i requisiti basandosi sui feedback delle release precedenti.</p>
+  </div>
+  <div class="box mnem"><div class="t">🧠 Perché non basta uno solo a inizio progetto</div>
+    <p>Cascata = 1 workshop iniziale gigante → si scopre tardi che si è capito male. UP = workshop ripetuti corti → si correggono i fraintendimenti SUBITO.</p>
+  </div>
+
+  <h3>Analisi del rischio in UP</h3>
+  <div class="box expl"><div class="t">📖 UP è "risk-driven"</div>
+    <p>Una delle caratteristiche distintive di UP è <b>affrontare prima i rischi maggiori</b>. Si tiene una <b>lista dei rischi</b> aggiornata: rischi tecnici (es. "l'integrazione col fornitore di pagamenti potrebbe fallire"), rischi di requisiti (es. "il cliente non è sicuro di X"), rischi di pianificazione.</p>
+  </div>
+  <div class="box key"><div class="t">⭐ Tipi di rischio</div>
+    <ul>
+      <li><b>Rischio tecnico</b>: \"funzionerà X?\" → affrontato con <b>spike</b> (prototipi rapidi) e prime iterazioni di Elaborazione</li>
+      <li><b>Rischio sui requisiti</b>: \"abbiamo capito bene?\" → affrontato con workshop + release frequenti al cliente</li>
+      <li><b>Rischio di pianificazione</b>: \"ce la facciamo nei tempi?\" → time-box + scope flessibile</li>
+      <li><b>Rischio di risorse</b>: \"avremo il team giusto?\" → gestione del progetto</li>
+    </ul>
+    <p style="margin-top:8px"><b>Conseguenza pratica</b>: la prima iterazione di Elaborazione attacca il rischio architetturale più alto, NON il caso d'uso più \"facile\".</p>
+  </div>
+
+  <h3>Le 4 milestone UP</h3>
+  <div class="box key"><div class="t">⭐ Una per ogni fine fase</div>
+    <table style="font-size:.9rem">
+      <tr><th>Fine fase</th><th>Milestone</th><th>Cosa si verifica</th></tr>
+      <tr><td>Ideazione</td><td>LO — Lifecycle Objectives</td><td>Il progetto è fattibile? Vale la pena?</td></tr>
+      <tr><td>Elaborazione</td><td>LA — Lifecycle Architecture</td><td>L'architettura è stabile? I rischi maggiori sono mitigati?</td></tr>
+      <tr><td>Costruzione</td><td>IOC — Initial Operational Capability</td><td>Il software è pronto per la beta?</td></tr>
+      <tr><td>Transizione</td><td>PR — Product Release</td><td>Il prodotto è in produzione dai clienti finali</td></tr>
+    </table>
+  </div>
+
   <div class="quizhead">Auto-interrogazione</div>
   <div class="quiz">
     <details class="q"><summary>Cosa significa UP?</summary><div class="ans">Unified Process — iterativo, incrementale, evolutivo OO.</div></details>
     <details class="q"><summary>4 fasi UP.</summary><div class="ans">Ideazione · Elaborazione · Costruzione · Transizione (IECT).</div></details>
     <details class="q"><summary>3 caratteristiche.</summary><div class="ans">Casi d'uso · Architettura · Iterativo (CAI).</div></details>
     <details class="q"><summary>Iterazione vs release vs incremento.</summary><div class="ans">Iterazione = mini-ciclo (2-6 sett). Release = versione funzionante. Incremento = differenza tra due release.</div></details>
+    <details class="q"><summary>Differenza fase vs disciplina.</summary><div class="ans">Fasi = tempo (4: IECT). Discipline = tipo di lavoro (Requisiti, A&D, Codice, Test, Trasversali). Ogni iterazione fa più discipline insieme.</div></details>
+    <details class="q"><summary>Cos'è un workshop dei requisiti?</summary><div class="ans">Sessione 1-3 giorni con cliente+analisti+dev per scrivere UC/dominio. UP ne fa più volte, raffinando.</div></details>
+    <details class="q"><summary>4 tipi di rischio in UP.</summary><div class="ans">Tecnico, requisiti, pianificazione, risorse. UP affronta prima i maggiori.</div></details>
+    <details class="q"><summary>Le 4 milestone UP.</summary><div class="ans">LO (fine Ideazione), LA (fine Elaborazione), IOC (fine Costruzione), PR (fine Transizione).</div></details>
   </div>
 
   <!-- ===== 02 UC ===== -->
@@ -942,11 +994,75 @@
       <li><b>Sequence</b> = temporale · <b>Communication</b> = strutturale.</li>
     </ul>
   </div>
+  <h3>Strati stretti vs rilassati</h3>
+  <div class="box expl"><div class="t">📖 Due varianti dello stesso schema a strati</div>
+    <p>L'architettura a strati si presenta in due varianti:</p>
+    <ul>
+      <li><b>A strati STRETTA</b>: ogni strato può chiamare <i>solo</i> lo strato immediatamente sottostante. Massimo isolamento, accoppiamento minimo, ma richiede di "passare attraverso" gli strati intermedi anche per chiamate banali.</li>
+      <li><b>A strati RILASSATA</b>: uno strato può chiamare strati <i>non immediatamente sottostanti</i>. Più pragmatica: la UI può chiamare direttamente un servizio tecnico (es. logging) senza passare dal dominio.</li>
+    </ul>
+  </div>
+  <div class="box mnem"><div class="t">🧠 Quando usare quale</div>
+    <p><b>Stretta</b> = sistemi critici, alta sicurezza, vita lunga (banche, militari). <b>Rilassata</b> = applicazioni web tipiche, dove l'overhead di rispettare la stretta non porta benefici reali.</p>
+  </div>
+
+  <h3>Sotto-strati della logica applicativa</h3>
+  <div class="box expl"><div class="t">📖 Dentro lo strato di logica</div>
+    <p>Quando il sistema cresce, lo strato di "logica applicativa" si divide tipicamente in due sotto-strati:</p>
+    <ul>
+      <li><b>Strato di dominio</b>: le classi che modellano i concetti del business (Ordine, Cliente, Pagamento). Contiene le regole di business.</li>
+      <li><b>Strato application (o "service layer")</b>: orchestra le richieste della UI verso il dominio. Implementa i casi d'uso. Non contiene business logic, la <i>compone</i>.</li>
+    </ul>
+    <p>I Controller GRASP vivono di solito nello strato application.</p>
+  </div>
+
+  <h3>Package Diagram</h3>
+  <div class="box expl"><div class="t">📖 Una vista a "scatole"</div>
+    <p>Un <b>package diagram</b> raggruppa le classi in package (namespace). Mostra le <b>dipendenze tra package</b>: si disegna una <b>linea tratteggiata + freccia piena</b> dal package dipendente verso quello da cui dipende.</p>
+    <p>Lo scopo è verificare la "regola d'oro": il diagramma package non deve avere frecce che salgono verso strati superiori. Se le ha, c'è una dipendenza ciclica o un'inversione architetturale da correggere.</p>
+  </div>
+  <div class="box key"><div class="t">⭐ Regole pratiche sui package</div>
+    <ul>
+      <li>Un package è un <b>namespace</b>: due classi con lo stesso nome possono coesistere in package diversi (es. <code>vendita.Cliente</code> vs <code>marketing.Cliente</code>).</li>
+      <li>Le dipendenze tra package devono formare un <b>DAG</b> (grafo aciclico). Cicli = anti-pattern.</li>
+      <li>Un package coeso ha classi che cambiano <b>insieme</b> per le stesse ragioni.</li>
+    </ul>
+  </div>
+
+  <h3>Cosa significa "accoppiamento" e "coesione" — tipologie</h3>
+  <div class="box expl"><div class="t">📖 Non tutto l'accoppiamento è uguale</div>
+    <p>Quando si dice "accoppiamento basso" non significa "zero accoppiamento" — significa "accoppiamento <i>necessario</i> minimo". E ci sono <b>livelli</b> di accoppiamento, dal più tollerabile al più tossico:</p>
+    <ol>
+      <li><b>Accoppiamento per dati</b> (data coupling) — accettabile: passi parametri semplici a un metodo</li>
+      <li><b>Accoppiamento per record</b> (stamp coupling) — accettabile: passi un oggetto strutturato</li>
+      <li><b>Accoppiamento per controllo</b> (control coupling) — sospetto: passi un flag che cambia il comportamento dell'altro</li>
+      <li><b>Accoppiamento per dati comuni</b> (common coupling) — pericoloso: condividi una variabile globale</li>
+      <li><b>Accoppiamento per contenuto</b> (content coupling) — tossico: una classe accede ai dati interni di un'altra (rotture incapsulamento)</li>
+    </ol>
+  </div>
+  <div class="box key"><div class="t">⭐ Livelli di coesione (analoghi)</div>
+    <p>Dalla peggiore alla migliore:</p>
+    <ul>
+      <li><b>Coincidente</b> — funzioni messe insieme a caso (classe \"Utility\")</li>
+      <li><b>Logica</b> — operazioni dello stesso "tipo" generale</li>
+      <li><b>Temporale</b> — operazioni eseguite nello stesso momento (es. \"InitSystem\")</li>
+      <li><b>Procedurale</b> — operazioni in sequenza</li>
+      <li><b>Sui dati</b> — operazioni che lavorano sugli stessi dati</li>
+      <li><b>Funzionale</b> (ideale) — operazioni che contribuiscono a una sola, ben definita funzione</li>
+    </ul>
+    <p style="margin-top:8px"><b>Test mentale</b>: se descrivendo la classe usi "e" / "oppure" troppe volte, hai bassa coesione.</p>
+  </div>
+
   <div class="quizhead">Auto-interrogazione</div>
   <div class="quiz">
     <details class="q"><summary>3 strati.</summary><div class="ans">Presentazione (UI) · Dominio · Persistenza/Servizi.</div></details>
     <details class="q"><summary>Regola dipendenze.</summary><div class="ans">Solo verso il basso. Superiore conosce inferiore, mai il contrario.</div></details>
     <details class="q"><summary>Sequence vs Communication.</summary><div class="ans">Stesso contenuto: sequence temporale, communication strutturale.</div></details>
+    <details class="q"><summary>Stretta vs rilassata.</summary><div class="ans">Stretta = solo strato immediatamente sotto. Rilassata = anche strati più giù.</div></details>
+    <details class="q"><summary>Dominio vs application.</summary><div class="ans">Dominio = regole di business. Application = orchestrazione dei casi d'uso.</div></details>
+    <details class="q"><summary>Cos'è un package diagram.</summary><div class="ans">Vista UML dei package e delle loro dipendenze (linea tratteggiata + freccia piena verso ciò da cui dipende).</div></details>
+    <details class="q"><summary>Peggior tipo di accoppiamento.</summary><div class="ans">Content coupling: una classe accede ai dati interni di un'altra.</div></details>
+    <details class="q"><summary>Miglior tipo di coesione.</summary><div class="ans">Funzionale: tutte le operazioni della classe contribuiscono a una sola funzione ben definita.</div></details>
   </div>
 
   <!-- ===== 06 GRASP ===== -->
@@ -1194,10 +1310,50 @@
     </ul>
   </div>
 
+  <h3>Le 4 visibilità tra oggetti (PALV) — concetto chiave del prof</h3>
+  <div class="box expl"><div class="t">📖 "Visibilità" non è solo public/private</div>
+    <p>Quando il prof chiede "che visibilità ha questo oggetto rispetto a quell'altro?", non sta chiedendo public/private. Sta chiedendo <b>come</b> un oggetto A può vedere/raggiungere un oggetto B per mandargli un messaggio. Ci sono <b>4 modi</b>, mnemonico <b>PALV</b>:</p>
+  </div>
+  <div class="box key"><div class="t">⭐ Le 4 visibilità tra oggetti</div>
+    <table style="font-size:.9rem">
+      <tr><th>Tipo</th><th>Come A vede B</th><th>Durata</th></tr>
+      <tr><td><b>Per Attributo</b></td><td>B è un campo (attributo) di A</td><td>Permanente: A vede B finché vive</td></tr>
+      <tr><td><b>Per Parametro</b></td><td>B arriva ad A come parametro di un metodo</td><td>Per la durata del metodo</td></tr>
+      <tr><td><b>Locale</b></td><td>A crea B dentro un metodo o lo riceve come valore di ritorno</td><td>Per la durata del metodo</td></tr>
+      <tr><td><b>Globale</b></td><td>B è raggiungibile da ovunque (es. Singleton)</td><td>Permanente per tutto il sistema</td></tr>
+    </table>
+  </div>
+  <div class="box mnem"><div class="t">🧠 Mnemonico</div>
+    <p><b>PALV</b> → \"Permanente attributo, Arriva parametro, Locale temporanea, Visibile globalmente\".</p>
+    <p>Suggerimento operativo: quando in un sequence diagram c'è una freccia da A a B, devi giustificare <b>come A vede B</b>. Una delle 4 risposte.</p>
+  </div>
+
+  <h3>Convenzioni di sintassi UML estese</h3>
+  <div class="box key"><div class="t">⭐ Notazione di attributi e operazioni</div>
+    <ul>
+      <li><b>Attributo derivato</b>: prefisso <code>/</code> davanti al nome (es. <code>/età</code> calcolata da dataNascita)</li>
+      <li><b>Attributo di classe (static)</b>: nome sottolineato</li>
+      <li><b>Operazione astratta</b>: nome in <i>corsivo</i> (oppure <code>{abstract}</code>)</li>
+      <li><b>Operazione di classe (static)</b>: nome sottolineato</li>
+      <li><b>Operazione con eccezione</b>: <code>+ metodo() throws X</code></li>
+      <li><b>Operazione di query</b>: <code>{query}</code> dopo la signature — segnala che non ha effetti collaterali</li>
+    </ul>
+  </div>
+
+  <h3>Classi parametriche (generics)</h3>
+  <div class="box expl"><div class="t">📖 Quando una classe è "tipo X"</div>
+    <p>Una <b>classe parametrica</b> ha uno o più tipi parametro. Es. <code>List&lt;T&gt;</code> dove T è il tipo degli elementi. In UML si disegna con un rettangolo tratteggiato in alto a destra che contiene i parametri.</p>
+    <p>Una <b>classe vincolata</b> (bound) fissa il parametro: <code>List&lt;String&gt;</code> è una versione di <code>List&lt;T&gt;</code> con T=String.</p>
+  </div>
+
   <div class="quizhead">Auto-interrogazione</div>
   <div class="quiz">
-    <details class="q"><summary>4 visibilità UML.</summary><div class="ans">+ public · - private · # protected · ~ package.</div></details>
+    <details class="q"><summary>4 visibilità UML (modificatori).</summary><div class="ans">+ public · - private · # protected · ~ package.</div></details>
+    <details class="q"><summary>4 visibilità tra oggetti (PALV).</summary><div class="ans">Per Attributo · Per Parametro · Locale · Globale.</div></details>
+    <details class="q"><summary>Quando uso "per parametro"?</summary><div class="ans">Quando l'oggetto target arriva come parametro del metodo che lo usa. Visibilità temporanea, dura solo il metodo.</div></details>
     <details class="q"><summary>Modello di dominio vs Diagramma di classi di progetto.</summary><div class="ans">Dominio = analisi, no metodi. Classi progetto = progettazione, tutto presente.</div></details>
+    <details class="q"><summary>Attributo derivato in UML.</summary><div class="ans">Prefisso / davanti al nome. Es. /età calcolata da altri attributi.</div></details>
+    <details class="q"><summary>Cos'è una classe parametrica.</summary><div class="ans">Una classe con tipi parametro (generics), es. List&lt;T&gt;. La vincolata fissa il parametro: List&lt;String&gt;.</div></details>
   </div>
 
   <!-- ===== 10 STATI ===== -->
@@ -1213,10 +1369,67 @@
       <li><b>4 eventi</b> (<span class="cz">CSVT</span>): <span class="cz">Creation · Signal · Value · Transition temporale</span>.</li>
     </ul>
   </div>
+  <h3>Stati compositi (annidati)</h3>
+  <div class="box expl"><div class="t">📖 Quando uno stato ne contiene altri</div>
+    <p>Uno <b>stato composito</b> è uno stato che a sua volta contiene una <i>sotto-macchina</i> di stati. Si usa per gestire la complessità: invece di disegnare 20 stati allo stesso livello, ne raggruppi 5 dentro uno stato "in viaggio", e dentro quello modelli il dettaglio.</p>
+    <p>Esempio classico: un ordine in "Spedizione" contiene sotto-stati "Imballaggio → In transito → In consegna". Tutta la sotto-macchina è invisibile al livello superiore.</p>
+  </div>
+
+  <h3>Stati compositi ortogonali (concorrenza)</h3>
+  <div class="box expl"><div class="t">📖 Più sotto-macchine in PARALLELO</div>
+    <p>Uno <b>stato composito ortogonale</b> contiene <b>più regioni</b> che evolvono <b>indipendentemente, in parallelo</b>. Si separano con linee tratteggiate dentro lo stato.</p>
+    <p>Esempio: uno studente all'università. Una regione modella "esami" (dato/non-dato), un'altra "tasse" (pagate/non-pagate). Le due regioni cambiano indipendentemente.</p>
+  </div>
+  <div class="box mnem"><div class="t">🧠 Quando entri/esci da uno stato ortogonale</div>
+    <p>Entrando: tutte le regioni partono dal loro stato iniziale. Uscendo: tutte le regioni vengono terminate (anche se non sono a fine).</p>
+  </div>
+
+  <h3>Pseudo-stati di history (H e H*)</h3>
+  <div class="box expl"><div class="t">📖 "Ricordami dove ero"</div>
+    <p>Uno <b>pseudo-stato di history</b> ricorda il sotto-stato che era attivo l'ultima volta che si è usciti da uno stato composito. Quando si rientra, invece di tornare allo stato iniziale, si torna direttamente dove si era.</p>
+    <ul>
+      <li><b>H</b> (history semplice) — ricorda solo il sotto-stato del primo livello annidato</li>
+      <li><b>H*</b> (history profonda / deep history) — ricorda anche eventuali sotto-sotto-stati (gerarchia completa)</li>
+    </ul>
+    <p>Esempio: un videogioco in pausa. Quando l'utente clicca "Riprendi", il gioco torna allo stato esatto in cui era (livello 3, missione 2, posizione X) → history.</p>
+  </div>
+
+  <h3>Altri pseudo-stati</h3>
+  <div class="box key"><div class="t">⭐ Catalogo pseudo-stati UML</div>
+    <table style="font-size:.9rem">
+      <tr><th>Simbolo</th><th>Nome</th><th>A cosa serve</th></tr>
+      <tr><td>● (pallino nero)</td><td>Initial</td><td>Punto di ingresso della macchina</td></tr>
+      <tr><td>⊙ (bersaglio)</td><td>Final</td><td>Fine della macchina/regione</td></tr>
+      <tr><td>◇ (rombo)</td><td>Choice</td><td>Bivio dinamico basato su guardie</td></tr>
+      <tr><td>▬ (barra orizzontale)</td><td>Fork / Join</td><td>Divide o ricongiunge flussi paralleli</td></tr>
+      <tr><td>H / H*</td><td>History semplice / profonda</td><td>Ricorda l'ultimo sotto-stato</td></tr>
+      <tr><td>● su bordo</td><td>Entry point</td><td>Punto di ingresso "specializzato" per un composito</td></tr>
+      <tr><td>⊗ su bordo</td><td>Exit point</td><td>Punto di uscita specializzato</td></tr>
+    </table>
+  </div>
+
+  <h3>Anatomia completa di uno stato</h3>
+  <div class="box expl"><div class="t">📖 Cosa può contenere uno stato</div>
+    <p>Dentro un rettangolo arrotondato si possono scrivere:</p>
+    <ul>
+      <li><code>entry / azione</code> — azione eseguita all'ingresso dello stato</li>
+      <li><code>exit / azione</code> — azione eseguita all'uscita</li>
+      <li><code>do / attività</code> — attività che dura quanto si rimane nello stato</li>
+      <li><code>evento / azione</code> — transizione interna (NON cambia stato)</li>
+    </ul>
+    <p>Una <b>transizione interna</b> è diversa da una self-transition: la self-transition esce e rientra (esegue entry/exit), la transizione interna no.</p>
+  </div>
+
   <div class="quizhead">Auto-interrogazione</div>
   <div class="quiz">
     <details class="q"><summary>Sintassi transizione.</summary><div class="ans">evento [condizione] / azione</div></details>
     <details class="q"><summary>4 eventi.</summary><div class="ans">Creation · Signal · Value · Transition temporale (CSVT).</div></details>
+    <details class="q"><summary>Stato composito semplice.</summary><div class="ans">Uno stato che contiene una sotto-macchina (una regione).</div></details>
+    <details class="q"><summary>Stato composito ortogonale.</summary><div class="ans">Stato con più regioni concorrenti, ognuna con la propria sotto-macchina.</div></details>
+    <details class="q"><summary>H vs H*.</summary><div class="ans">H ricorda solo il sotto-stato del primo livello. H* (deep) ricorda tutta la gerarchia annidata.</div></details>
+    <details class="q"><summary>Fork e join.</summary><div class="ans">Fork divide il flusso in più rami concorrenti. Join li ricongiunge.</div></details>
+    <details class="q"><summary>Self-transition vs interna.</summary><div class="ans">Self esce e rientra (esegue entry/exit). Interna non esce, non triggera entry/exit.</div></details>
+    <details class="q"><summary>Cos'è il pseudo-stato choice.</summary><div class="ans">Rombo: bivio dinamico tra rami, scelto in base a guardie valutate a runtime.</div></details>
   </div>
 
   <!-- ===== 11 TDD ===== -->
@@ -1231,11 +1444,115 @@
     <b>UIEA</b> = 4 livelli test: Unità · Integrazione · E2E · Accettazione<br>
     <b>PEVR</b> = 4 proprietà unità: Piccolo · Eseguibile isolato · Veloce · Ripetibile
   </div>
+  <h3>I 3 obiettivi pratici del TDD</h3>
+  <div class="box key"><div class="t">⭐ Cosa ti dà TDD oltre ai test</div>
+    <ul>
+      <li><b>Design guidato dai test</b>: scrivendo prima il test, sei costretto a pensare all'<i>interfaccia</i> della classe prima dell'<i>implementazione</i>. Risultato: API più pulite, accoppiamento più basso.</li>
+      <li><b>Rete di sicurezza per il refactoring</b>: avere test rapidi che girano in pochi secondi ti permette di modificare il codice senza paura. Se rompi qualcosa, te lo dice subito.</li>
+      <li><b>Documentazione viva</b>: i test funzionano come esempi di uso della classe. A differenza dei commenti, non vanno fuori sincrono col codice.</li>
+    </ul>
+  </div>
+
+  <h3>La piramide dei test</h3>
+  <div class="box expl"><div class="t">📖 Come distribuire i test</div>
+    <p>L'idea: avere <b>molti test di unità</b> (veloci, granulari, alla base), <b>meno test di integrazione</b> al centro, <b>pochissimi test E2E</b> in cima. Il motivo è il <b>costo</b>: gli unitari girano in ms, gli E2E in secondi/minuti. Se inverti la piramide ("gelato rovesciato") hai una pipeline lenta e fragile.</p>
+  </div>
+  <div class="box key"><div class="t">⭐ I 4 livelli (dal più basso al più alto)</div>
+    <table style="font-size:.9rem">
+      <tr><th>Livello</th><th>Cosa testa</th><th>Velocità</th><th>Quanti</th></tr>
+      <tr><td><b>Unità</b></td><td>Singola classe/metodo isolato</td><td>Millisecondi</td><td>Migliaia</td></tr>
+      <tr><td><b>Integrazione</b></td><td>Più moduli che collaborano</td><td>Decimi di sec</td><td>Centinaia</td></tr>
+      <tr><td><b>End-to-end</b></td><td>Intero flusso utente</td><td>Secondi/minuti</td><td>Decine</td></tr>
+      <tr><td><b>Accettazione</b></td><td>Criteri di business (cliente firma)</td><td>Manuali o E2E</td><td>Pochi</td></tr>
+    </table>
+  </div>
+
+  <h3>Cosa è un "code smell"</h3>
+  <div class="box expl"><div class="t">📖 Sintomo, non malattia</div>
+    <p>Un <b>code smell</b> è un <i>indizio</i> che qualcosa nel codice è strutturato male. NON è un bug: il codice funziona. È un campanello d'allarme che dice "qui c'è debito tecnico". Il refactoring serve a rimuoverli.</p>
+    <p>Il termine viene da Martin Fowler. La logica: se entri in una stanza e c'è puzza, non è morto nessuno — ma c'è qualcosa che andrebbe pulito.</p>
+  </div>
+
+  <h3>Catalogo dei principali code smell</h3>
+  <div class="box key"><div class="t">⭐ I "bloaters" (codice gonfio)</div>
+    <ul>
+      <li><b>Long Method</b>: metodo troppo lungo. Refactoring: <i>Extract Method</i>.</li>
+      <li><b>Large Class</b>: classe con troppi attributi/metodi. Refactoring: <i>Extract Class</i>.</li>
+      <li><b>Long Parameter List</b>: troppi parametri in un metodo. Refactoring: <i>Introduce Parameter Object</i>.</li>
+      <li><b>Primitive Obsession</b>: usare tipi primitivi (string, int) dove servirebbe un oggetto (es. CodiceFiscale come string). Refactoring: <i>Replace Data Value with Object</i>.</li>
+      <li><b>Data Clumps</b>: gli stessi 3-4 parametri/attributi compaiono insieme ovunque. Refactoring: <i>Extract Class</i>.</li>
+    </ul>
+  </div>
+  <div class="box key"><div class="t">⭐ Object-orientation abusers (mal-uso OO)</div>
+    <ul>
+      <li><b>Switch Statements</b>: switch/if-else lunghi sul tipo di oggetto. Refactoring: <i>Replace Conditional with Polymorphism</i>.</li>
+      <li><b>Refused Bequest</b>: sottoclasse che non usa l'eredità del padre. Suggerisce che l'eredità è sbagliata, forse serve composizione.</li>
+      <li><b>Alternative Classes with Different Interfaces</b>: due classi fanno cose simili ma con metodi diversi. Refactoring: uniformare le interfacce.</li>
+    </ul>
+  </div>
+  <div class="box key"><div class="t">⭐ Change preventers (frenano i cambiamenti)</div>
+    <ul>
+      <li><b>Divergent Change</b>: una classe cambia per N motivi diversi. Bassa coesione. Refactoring: <i>Extract Class</i>.</li>
+      <li><b>Shotgun Surgery</b>: un cambiamento richiede di toccare N classi sparse. Refactoring: <i>Move Method/Field</i> per concentrare le responsabilità.</li>
+      <li><b>Parallel Inheritance Hierarchies</b>: ogni volta che aggiungi una sottoclasse di A, devi aggiungerne una di B. Refactoring: collassare le gerarchie.</li>
+    </ul>
+  </div>
+  <div class="box key"><div class="t">⭐ Couplers (accoppiamento eccessivo)</div>
+    <ul>
+      <li><b>Feature Envy</b>: metodo che usa più i dati di un'altra classe che della propria. Refactoring: <i>Move Method</i> nella classe "invidiata".</li>
+      <li><b>Inappropriate Intimacy</b>: due classi conoscono troppi dettagli interni l'una dell'altra.</li>
+      <li><b>Message Chains</b>: catene tipo <code>a.getB().getC().getD()</code>. Refactoring: <i>Hide Delegate</i>.</li>
+      <li><b>Middle Man</b>: una classe non fa altro che delegare a un'altra. Refactoring: <i>Remove Middle Man</i>.</li>
+    </ul>
+  </div>
+  <div class="box key"><div class="t">⭐ Dispensables (codice sacrificabile)</div>
+    <ul>
+      <li><b>Comments</b>: commenti che spiegano cosa fa il codice. Spesso indicano codice poco chiaro: <i>Extract Method</i> con un nome esplicativo.</li>
+      <li><b>Duplicate Code</b>: stesso codice in più posti. Refactoring: <i>Extract Method</i> + chiamata, oppure <i>Pull Up Method</i> nella superclasse.</li>
+      <li><b>Lazy Class</b>: classe che fa troppo poco per giustificare la propria esistenza. Refactoring: <i>Inline Class</i>.</li>
+      <li><b>Dead Code</b>: codice mai eseguito. Refactoring: cancellalo. (Git lo ricorda se ti serve.)</li>
+      <li><b>Speculative Generality</b>: astrazioni create "in caso servano in futuro". YAGNI (You Aren't Gonna Need It).</li>
+    </ul>
+  </div>
+
+  <h3>Le tecniche di refactoring principali</h3>
+  <div class="box key"><div class="t">⭐ I "verbi" del refactoring</div>
+    <ul>
+      <li><b>Extract Method / Class</b>: estrai una porzione coesa in un nuovo metodo o classe.</li>
+      <li><b>Inline Method / Class</b>: l'opposto. Quando l'astrazione non vale l'overhead, espandi.</li>
+      <li><b>Move Method / Field</b>: sposta in una classe più appropriata (es. Feature Envy).</li>
+      <li><b>Rename</b>: cambia nome per chiarezza. Il refactoring più importante.</li>
+      <li><b>Introduce Parameter Object</b>: raggruppa parametri correlati in un oggetto.</li>
+      <li><b>Replace Conditional with Polymorphism</b>: sostituisci switch su tipo con classi che fanno overriding.</li>
+      <li><b>Pull Up / Push Down Method</b>: sposta metodi nella gerarchia di ereditarietà.</li>
+      <li><b>Hide Delegate</b>: nascondi catene di getter dietro un metodo facade.</li>
+    </ul>
+    <p style="margin-top:8px;font-style:italic">Regola d'oro: <b>un refactoring alla volta</b>, test passanti dopo ognuno. Non mescolare refactoring con cambi di comportamento.</p>
+  </div>
+
+  <h3>Quando fare refactoring (e quando NO)</h3>
+  <div class="box warn"><div class="t">⚠️ Le 3 occasioni giuste</div>
+    <ul>
+      <li><b>Regola del tre</b> (Fowler): la prima volta scrivi, la seconda noti la duplicazione (e fastidio), la terza rifattorizzi.</li>
+      <li><b>Quando aggiungi una feature</b>: se il codice attuale non rende facile aggiungerla, prima rifattorizza, poi aggiungi.</li>
+      <li><b>Quando fixi un bug</b>: a volte il bug è sintomo di smell. Risolvendo il smell, il bug sparisce e altri non emergeranno.</li>
+    </ul>
+    <p><b>QUANDO NON</b>: codice che stai per buttare via, codice di terze parti, codice senza test (prima scrivi i test "characterization").</p>
+  </div>
+
   <div class="quizhead">Auto-interrogazione</div>
   <div class="quiz">
     <details class="q"><summary>Ciclo TDD.</summary><div class="ans">Red → Green → Refactor (RGR).</div></details>
     <details class="q"><summary>4 livelli test.</summary><div class="ans">Unità · Integrazione · E2E · Accettazione (UIEA).</div></details>
     <details class="q"><summary>4 proprietà test unità.</summary><div class="ans">Piccolo · Eseguibile isolato · Veloce · Ripetibile (PEVR).</div></details>
+    <details class="q"><summary>Cosa è la piramide dei test.</summary><div class="ans">Tanti test di unità alla base, meno di integrazione, pochi E2E in cima. Distribuzione che minimizza costo e massimizza feedback rapido.</div></details>
+    <details class="q"><summary>Cos'è un code smell.</summary><div class="ans">Indizio che il codice è strutturato male. Non è un bug, è un sintomo. Si rimuove col refactoring.</div></details>
+    <details class="q"><summary>Esempi di "bloater" code smells.</summary><div class="ans">Long Method, Large Class, Long Parameter List, Primitive Obsession, Data Clumps.</div></details>
+    <details class="q"><summary>Feature Envy e refactoring relativo.</summary><div class="ans">Metodo che usa più i dati di un'altra classe che della propria. Refactoring: Move Method nella classe invidiata.</div></details>
+    <details class="q"><summary>Shotgun Surgery.</summary><div class="ans">Un cambiamento richiede di modificare N classi sparse. Refactoring: Move Method/Field per concentrare le responsabilità.</div></details>
+    <details class="q"><summary>Cosa è la "regola del tre" di Fowler.</summary><div class="ans">La prima volta scrivi, la seconda noti la duplicazione, la terza rifattorizzi.</div></details>
+    <details class="q"><summary>Quando NON fare refactoring.</summary><div class="ans">Codice che stai per buttare, codice di terze parti, codice senza test (prima scrivi test characterization).</div></details>
+    <details class="q"><summary>Replace Conditional with Polymorphism — quando si usa.</summary><div class="ans">Quando hai switch/if lunghi sul tipo di oggetto. Sostituisci con classi che fanno overriding (collegato a Polymorphism GRASP).</div></details>
   </div>
 
   <hr>
@@ -2125,6 +2442,45 @@ const cards = [
 {t:"PROC", q:"Perché la cascata fallisce spesso?", a:"Non è flessibile ai cambiamenti; richiede requisiti stabili dall'inizio.", m:"🧊 Cascata = ghiacciata: rigida. Se il cliente cambia idea a metà progetto, devi sciogliere tutto e ricominciare."},
 {t:"PROC", q:"Sviluppo iterativo, incrementale ed evolutivo.", a:"Multiple iterazioni a durata fissa (2-6 sett.) in cui si svolgono TUTTE le attività; si adatta il lavoro al tempo, non viceversa.", m:"🍕 Pizza a fette: NON cuoci tutta la pizza e poi tagli (cascata). Cuoci una fetta, la assaggi, regoli sale, cuoci la prossima. Time-box = la fetta non si allarga, il condimento sì."},
 {t:"PROC", q:"3 vantaggi dell'iterativo.", a:"Flessibilità ai cambiamenti · Riduzione rischi precoce · Feedback utente fin da subito.", m:"FRF → \"Faccio · Riduco · Feedback\". Pensa al cuoco che fa assaggiare ogni fetta al cliente: se il sale non va, lo sa SUBITO, non a torta finita."},
+
+// ===== NUOVE flashcard sui topic teoria espansi =====
+{t:"UP", q:"Le 5 discipline UP.", a:"Requisiti · Analisi&Design · Implementazione · Test · Trasversali (Config&Change, Project Mgmt, Environment).", m:"RADIT. Discipline = dimensioni di lavoro, ortogonali alle fasi. Ogni iterazione ne fa più insieme, con enfasi diversa."},
+{t:"UP", q:"Workshop dei requisiti — cos'è.", a:"Sessione intensa 1-3 giorni con cliente+analisti+dev per scrivere UC/dominio insieme. UP ne fa più volte raffinando.", m:"Cascata = 1 workshop iniziale gigante (scopri tardi gli errori). UP = workshop corti ripetuti."},
+{t:"UP", q:"Le 4 milestone UP.", a:"LO (fine Ideazione: fattibilità) · LA (fine Elaborazione: architettura stabile) · IOC (fine Costruzione: pronto beta) · PR (fine Transizione: in produzione).", m:"Una per fine fase: \"obiettivi-architettura-capacità-rilascio\"."},
+{t:"UP", q:"4 tipi di rischio in UP.", a:"Tecnico · Requisiti · Pianificazione · Risorse.", m:"UP è \"risk-driven\": la prima iterazione di Elaborazione attacca il rischio più alto, NON l'UC più facile."},
+{t:"UP", q:"\"Risk-driven\" cosa significa concretamente.", a:"Si tiene una lista dei rischi aggiornata e si attaccano i maggiori per primi (prime iterazioni di Elaborazione).", m:"Pensa al chirurgo: opera prima il tumore (rischio alto), poi le cose minori."},
+{t:"ARCH", q:"Stretta vs rilassata — differenza.", a:"Stretta: uno strato chiama SOLO quello immediatamente sottostante. Rilassata: può chiamare anche strati più giù.", m:"Stretta = sistemi critici (banche/militari). Rilassata = webapp tipiche."},
+{t:"ARCH", q:"Sotto-strati della logica applicativa.", a:"Strato di dominio (regole business: Ordine, Cliente) + Strato application/service (orchestra i casi d'uso, niente business logic).", m:"I Controller GRASP vivono nel layer application."},
+{t:"ARCH", q:"Package Diagram — come si disegna una dipendenza.", a:"Linea tratteggiata + freccia piena dal package dipendente verso quello da cui dipende.", m:"Le dipendenze tra package devono formare un DAG. Cicli = anti-pattern."},
+{t:"ARCH", q:"5 livelli di accoppiamento (dal migliore al peggiore).", a:"Per dati < per record < per controllo < per dati comuni < per contenuto.", m:"Per contenuto = una classe legge i dati interni di un'altra. Il più tossico (rotture incapsulamento)."},
+{t:"ARCH", q:"6 livelli di coesione (dal peggiore al migliore).", a:"Coincidente < logica < temporale < procedurale < sui dati < funzionale.", m:"Funzionale = una classe, una funzione ben definita. Ideale. Coincidente = funzioni random (classe \"Utility\")."},
+{t:"ARCH", q:"Test mentale per coesione bassa.", a:"Se descrivendo la classe usi \"e\" / \"oppure\" troppe volte, hai bassa coesione.", m:"\"Ordine fa il calcolo del totale E manda l'email E salva su DB E genera PDF\" → 4 responsabilità, da spezzare."},
+{t:"CLASSI", q:"Le 4 visibilità tra oggetti (PALV).", a:"Per Attributo · Per Parametro · Locale · Globale.", m:"Quando il prof chiede \"come A vede B?\", la risposta è una delle 4. NON public/private (quelle sono modificatori UML)."},
+{t:"CLASSI", q:"Visibilità per attributo — durata.", a:"Permanente: A vede B finché A è vivo. B è un campo (attributo) di A.", m:"Il caso più comune: il Repository ha-un Connection come attributo."},
+{t:"CLASSI", q:"Visibilità per parametro — durata.", a:"Temporanea: A vede B solo per la durata del metodo che lo riceve come parametro.", m:"Es. metodo addCliente(c: Cliente) → durante quel metodo, la classe vede il cliente."},
+{t:"CLASSI", q:"Visibilità locale — durata.", a:"Temporanea: A crea B dentro un metodo (es. con new) o lo riceve come valore di ritorno.", m:"Es. \"Vendita v = creaVendita()\" → durante il metodo che chiama, vedo v."},
+{t:"CLASSI", q:"Visibilità globale — durata.", a:"Permanente per tutto il sistema. Tipico esempio: un Singleton accessibile da ovunque.", m:"Aumenta accoppiamento globale, da usare con parsimonia."},
+{t:"CLASSI", q:"Attributo derivato in UML — sintassi.", a:"Prefisso / davanti al nome. Es. /età calcolata da dataNascita.", m:"\"/\" = derivato, calcolato, non memorizzato."},
+{t:"CLASSI", q:"Classe parametrica vs vincolata.", a:"Parametrica: ha tipi parametro (List&lt;T&gt;). Vincolata (bound): fissa il parametro (List&lt;String&gt;).", m:"In UML si disegna con un rettangolo tratteggiato in alto a destra che contiene i parametri."},
+{t:"STATI", q:"Stato composito semplice — definizione.", a:"Stato che contiene UNA sotto-macchina (una regione).", m:"Es. \"In viaggio\" contiene sotto-stati \"Imballaggio → In transito → In consegna\"."},
+{t:"STATI", q:"Stato composito ortogonale — definizione.", a:"Stato con PIÙ regioni concorrenti, separate da linee tratteggiate, che evolvono indipendentemente.", m:"Es. Studente: una regione \"esami\", una regione \"tasse\". Cambiano in parallelo."},
+{t:"STATI", q:"H (history semplice) cosa ricorda?", a:"Solo il sotto-stato del primo livello annidato (un solo livello di gerarchia).", m:"Pensa al videogioco in pausa che ricorda solo il livello, non la posizione esatta."},
+{t:"STATI", q:"H* (history profonda) cosa ricorda?", a:"Tutta la gerarchia annidata: sotto-sotto-stati e oltre.", m:"\"Deep history\": videogioco in pausa che ricorda livello + missione + posizione + inventario."},
+{t:"STATI", q:"Pseudo-stato Choice — simbolo e scopo.", a:"Rombo ◇. Bivio dinamico tra rami, basato su guardie valutate a runtime.", m:"Diverso da Junction (statico): Choice valuta a runtime, Junction è solo grafico."},
+{t:"STATI", q:"Fork e Join — simbolo.", a:"Barra orizzontale. Fork divide il flusso in più rami concorrenti, Join li ricongiunge.", m:"Spostandosi su una macchina ortogonale: Fork attiva tutte le regioni, Join le ricongiunge."},
+{t:"STATI", q:"Self-transition vs transizione interna.", a:"Self-transition: esce e rientra (esegue entry/exit). Interna: NON esce, non triggera entry/exit, si scrive dentro lo stato.", m:"Differenza sottile ma cruciale all'orale."},
+{t:"STATI", q:"Cosa puoi scrivere dentro uno stato UML.", a:"entry / azione · exit / azione · do / attività · evento / azione (transizione interna).", m:"Entry = all'ingresso. Exit = all'uscita. Do = mentre ci sei. Transizione interna = scattano senza cambiare stato."},
+{t:"TDD", q:"3 obiettivi pratici del TDD.", a:"Design guidato dai test · rete di sicurezza per il refactoring · documentazione viva.", m:"Tre vantaggi che vanno OLTRE il \"semplice avere test\"."},
+{t:"TDD", q:"Cosa è la piramide dei test.", a:"Tanti test di unità alla base, meno di integrazione al centro, pochi E2E in cima. Minimizza costo, massimizza feedback rapido.", m:"\"Gelato rovesciato\" (inversa) = pipeline lenta e fragile, anti-pattern."},
+{t:"TDD", q:"Primitive Obsession — cos'è.", a:"Usare tipi primitivi (string, int) dove servirebbe un oggetto strutturato (es. CodiceFiscale come string semplice).", m:"Refactoring: Replace Data Value with Object."},
+{t:"TDD", q:"Data Clumps — cos'è.", a:"Gli stessi 3-4 dati/parametri compaiono insieme ovunque. Suggerisce di averli aggregati in un oggetto.", m:"Refactoring: Extract Class."},
+{t:"TDD", q:"Divergent Change — cos'è.", a:"Una classe cambia per N motivi diversi. Bassa coesione: ha più di una responsabilità.", m:"Refactoring: Extract Class per separare le responsabilità."},
+{t:"TDD", q:"Shotgun Surgery — cos'è.", a:"Un singolo cambiamento richiede di modificare N classi sparse. Concettualmente l'opposto di Divergent Change.", m:"Refactoring: Move Method/Field per concentrare le responsabilità nello stesso posto."},
+{t:"TDD", q:"Message Chains — cos'è.", a:"Catene tipo a.getB().getC().getD(). Espone troppi dettagli interni della struttura.", m:"Refactoring: Hide Delegate."},
+{t:"TDD", q:"Speculative Generality — cos'è.", a:"Astrazioni create \"in caso servano in futuro\" ma usate da un solo cliente.", m:"YAGNI: You Aren't Gonna Need It. Astrai SOLO quando hai 2-3 casi reali."},
+{t:"TDD", q:"Replace Conditional with Polymorphism — quando.", a:"Quando hai switch/if-else lunghi sul tipo di oggetto. Sostituisci con classi che fanno overriding.", m:"È il refactoring che applica concretamente Polymorphism GRASP."},
+{t:"TDD", q:"Regola del tre di Fowler.", a:"Prima volta scrivi · seconda noti la duplicazione · terza rifattorizzi.", m:"Evita di astrarre prematuramente. Aspetta che il pattern emerga davvero."},
+{t:"TDD", q:"Quando NON fare refactoring.", a:"Codice che stai per buttare · codice di terze parti · codice senza test (prima scrivi test \"characterization\").", m:"Refactoring senza test = russian roulette."},
 {t:"PROC", q:"Agile è un processo?", a:"NO. È una filosofia/mindset (Manifesto 2001). Non si sostituisce a un processo, si applica SOPRA un processo/metodo.", m:"🤸 Agile = STILE DI GUIDA, non l'auto. Puoi guidare \"agile\" qualsiasi processo iterativo (anche UP)."},
 {t:"PROC", q:"SCRUM è la stessa cosa di Agile?", a:"NO. Agile è il CAPPELLO (filosofia). SCRUM è UNO DEI VESTITI sotto quel cappello (metodo concreto che la realizza).", m:"☂️ Agile = OMBRELLO. SCRUM, XP, Kanban, Crystal = le SPECIE sotto l'ombrello. Confondere genere e specie = errore d'esame."},
 {t:"PROC", q:"3 livelli da tenere distinti.", a:"1) Processo (concetto generico) · 2) Modello di organizzazione (cascata/iterativo) · 3) Cose concrete (UP=processo, Agile=filosofia, SCRUM=metodo).", m:"🚗 MOTORE (processo) · CAMBIO (modello: 1ª/automatico) · MARCHE (UP, SCRUM) · STILE DI GUIDA (agile)."},
@@ -2819,6 +3175,47 @@ const QUIZ = [
 {t:"TDD", q:"Sequenza corretta del ciclo TDD:", o:["Code → Test → Refactor","Red → Green → Refactor","Test → Refactor → Code","Plan → Do → Check"], c:[1], m:false, e:"RGR: Red (test fallisce) → Green (codice minimo) → Refactor."},
 {t:"TDD", q:"Il refactoring cambia il comportamento esterno?", o:["Sì, sempre","No, solo la struttura interna","Solo in caso di bug","Solo in agile"], c:[1], m:false, e:"Refactoring = struttura interna invariata nel comportamento. Se cambia il comportamento, NON è refactoring."},
 {t:"TDD", q:"Quale tra questi NON è un code smell?", o:["Long method","Duplicated code","High cohesion","Feature envy"], c:[2], m:false, e:"High cohesion è una QUALITÀ desiderata, non un smell. Gli altri sono problemi da risolvere."},
+
+// ===== NUOVE crocette sui topic teoria espansi =====
+{t:"UP", q:"Le 5 discipline UP sono:", o:["Requisiti, A&D, Implementazione, Test, Trasversali","Solo Requisiti e Test","Ideazione, Elaborazione, Costruzione, Transizione, Bug","Solo cascata"], c:[0], m:false, e:"RADIT: Requisiti, Analisi&Design, Implementazione, Test, Trasversali. Le fasi sono il TEMPO, le discipline sono il TIPO di lavoro."},
+{t:"UP", q:"In Elaborazione UP, quale disciplina è più enfatizzata?", o:["Requisiti","Analisi & Design","Solo Test","Solo Codice"], c:[1], m:false, e:"Elaborazione = nucleo architetturale, quindi Analysis & Design è in primo piano."},
+{t:"UP", q:"In Costruzione UP, quali discipline dominano?", o:["Solo Requisiti","Implementazione + Test","Solo Project Mgmt","Solo Trasversali"], c:[1], m:false, e:"Costruzione = produzione massiva di codice + test."},
+{t:"UP", q:"Cos'è un workshop dei requisiti?", o:["Una riunione del PM da solo","Sessione 1-3 giorni con cliente+analisti+dev per scrivere UC/dominio insieme","Solo per la beta","Solo a fine progetto"], c:[1], m:false, e:"UP ne fa più volte, raffinando i requisiti basandosi sui feedback delle release precedenti."},
+{t:"UP", q:"Quale tra questi è la milestone di fine Elaborazione?", o:["LO (Lifecycle Objectives)","LA (Lifecycle Architecture)","IOC (Initial Operational Capability)","PR (Product Release)"], c:[1], m:false, e:"LA = fine Elaborazione: architettura stabile, rischi mitigati."},
+{t:"UP", q:"LO (Lifecycle Objectives) è la milestone di fine:", o:["Ideazione","Elaborazione","Costruzione","Transizione"], c:[0], m:false, e:"LO = fine Ideazione: fattibilità verificata."},
+{t:"UP", q:"4 tipi di rischio gestiti in UP:", o:["Tecnico, Requisiti, Pianificazione, Risorse","Solo bug","Solo crash","Solo politici"], c:[0], m:false, e:"UP è risk-driven: lista dei rischi aggiornata, attacchi i maggiori per primi."},
+{t:"UP", q:"\"Risk-driven\" significa:", o:["Eliminare ogni rischio prima di iniziare","Attaccare i rischi maggiori nelle prime iterazioni di Elaborazione","Solo gestione di bug","Solo agile"], c:[1], m:false, e:"La prima iterazione di Elaborazione attacca l'architettura e i rischi maggiori."},
+{t:"ARCH", q:"Architettura a strati STRETTA:", o:["Uno strato chiama anche strati non immediatamente sotto","Uno strato chiama SOLO lo strato immediatamente sottostante","Niente strati","Sempre Singleton"], c:[1], m:false, e:"Stretta = isolamento massimo, ogni strato isolato dai non adiacenti."},
+{t:"ARCH", q:"Architettura a strati RILASSATA:", o:["UI chiama solo Dominio","Uno strato può chiamare strati non immediatamente sottostanti","Niente strati","Sempre per Singleton"], c:[1], m:false, e:"Rilassata = pragmatica, accetta scorciatoie verso strati più giù."},
+{t:"ARCH", q:"Lo strato di dominio contiene:", o:["UI components","Le regole di business (classi del dominio)","Solo SQL","Solo file di config"], c:[1], m:false, e:"Strato di dominio = business rules. Application orchestra, dominio implementa."},
+{t:"ARCH", q:"Lo strato application (service layer) serve a:", o:["Sostituire la UI","Orchestrare le richieste della UI verso il dominio","Sostituire i test","Solo per Singleton"], c:[1], m:false, e:"Application orchestra i casi d'uso, non contiene business logic."},
+{t:"ARCH", q:"Una dipendenza tra package in UML si disegna con:", o:["Linea continua + freccia piena","Linea tratteggiata + freccia piena verso il package da cui dipende","Solo testo","Rombo pieno"], c:[1], m:false, e:"Tratteggiata + freccia piena è la dipendenza standard UML."},
+{t:"ARCH", q:"Le dipendenze tra package devono formare:", o:["Un ciclo","Un DAG (grafo aciclico)","Una stella","Nessuna struttura"], c:[1], m:false, e:"Cicli tra package = anti-pattern, indica dipendenze sbagliate."},
+{t:"ARCH", q:"Il livello peggiore di accoppiamento è:", o:["Per dati (data coupling)","Per record (stamp coupling)","Per contenuto (content coupling) — una classe legge i dati interni di un'altra","Per controllo"], c:[2], m:false, e:"Content coupling rompe l'incapsulamento. Il più tossico."},
+{t:"ARCH", q:"Il livello migliore di coesione è:", o:["Coincidente","Temporale","Funzionale (una classe = una funzione ben definita)","Logica"], c:[2], m:false, e:"Funzionale = ideale. Coincidente = peggio (funzioni messe insieme a caso)."},
+{t:"ARCH", q:"Test mentale per bassa coesione:", o:["Conto le righe","Se descrivendo la classe uso \"e\" / \"oppure\" troppe volte","Conto i parametri","Solo per Singleton"], c:[1], m:false, e:"\"Ordine fa il totale E manda email E salva su DB\" → 3 responsabilità, bassa coesione."},
+{t:"CLASSI", q:"Le 4 visibilità tra oggetti (PALV) sono:", o:["+ - # ~","Per Attributo, Per Parametro, Locale, Globale","Public, Private, Protected, Package","Solo Singleton"], c:[1], m:false, e:"PALV ≠ modificatori UML. È come l'oggetto A vede/raggiunge l'oggetto B per mandargli un messaggio."},
+{t:"CLASSI", q:"Quale tra queste è visibilità PERMANENTE (non per la durata del metodo)?", o:["Per parametro","Locale","Per attributo o Globale","Niente"], c:[2], m:false, e:"Attributo: vivo come l'oggetto. Globale: vivo per tutto il sistema."},
+{t:"CLASSI", q:"In un sequence diagram, una freccia da A a B richiede di giustificare:", o:["Come A vede B (PALV)","Solo il nome","Solo la firma","Solo i parametri"], c:[0], m:false, e:"All'orale: ogni messaggio in un SD deve poter essere giustificato dalla visibilità (PALV) di chi manda verso chi riceve."},
+{t:"CLASSI", q:"Un attributo derivato in UML si scrive:", o:["Sottolineato","Con / davanti al nome","In corsivo","Tra parentesi"], c:[1], m:false, e:"/eta = derivato, calcolato da dataNascita. Non si memorizza, si calcola al volo."},
+{t:"CLASSI", q:"Una classe parametrica in UML è:", o:["Una classe astratta","Una classe con tipi parametro (es. List<T>)","Una classe Singleton","Una classe finale"], c:[1], m:false, e:"Generics. La versione \"vincolata\" fissa il parametro: List<String>."},
+{t:"STATI", q:"Uno stato composito SEMPLICE contiene:", o:["Una sola regione (sotto-macchina)","Più regioni concorrenti","Niente","Solo final"], c:[0], m:false, e:"Composito semplice = 1 regione. Ortogonale = più regioni in parallelo."},
+{t:"STATI", q:"Uno stato composito ORTOGONALE contiene:", o:["Una sola regione","Più regioni concorrenti che evolvono indipendentemente","Solo bug","Solo Singleton"], c:[1], m:false, e:"Es. Studente: regione esami + regione tasse in parallelo."},
+{t:"STATI", q:"H (history semplice) ricorda:", o:["Solo lo stato iniziale","Solo il sotto-stato del primo livello annidato","Tutta la gerarchia","Niente"], c:[1], m:false, e:"H = un livello. H* = tutti i livelli (deep history)."},
+{t:"STATI", q:"H* (deep history) ricorda:", o:["Un solo livello","Tutta la gerarchia annidata, anche sotto-sotto-stati","Solo bug","Solo Singleton"], c:[1], m:false, e:"Deep: ricorda livello + missione + posizione + tutto."},
+{t:"STATI", q:"Lo pseudo-stato \"Choice\" è:", o:["Rombo: bivio dinamico in base a guardie valutate a runtime","Stato finale","Stato iniziale","Fork"], c:[0], m:false, e:"Choice ◇ valuta le guardie a runtime. Junction è statico."},
+{t:"STATI", q:"Fork in una macchina a stati serve a:", o:["Terminare l'intera macchina","Dividere il flusso in più rami concorrenti","Solo Singleton","Niente"], c:[1], m:false, e:"Fork = divide. Join = ricongiunge. Tipici per macchine ortogonali."},
+{t:"STATI", q:"Differenza self-transition vs transizione interna:", o:["Sono identiche","Self esce e rientra (esegue entry/exit). Interna NON esce, scritta dentro lo stato","Solo Singleton","Niente"], c:[1], m:false, e:"Sottile ma cruciale all'orale: la transizione interna non triggera entry/exit."},
+{t:"STATI", q:"Dentro un rettangolo arrotondato di uno stato posso scrivere:", o:["entry/exit/do/transizioni interne","Solo il nome","Solo bug","Solo if/else"], c:[0], m:false, e:"entry / exit / do (mentre ci sei) / transizioni interne (evento / azione)."},
+{t:"TDD", q:"Cos'è la \"piramide dei test\"?", o:["Tutto E2E","Tanti unit alla base, meno integration, pochi E2E in cima","Solo manuali","Solo Singleton"], c:[1], m:false, e:"Piramide normale: ottimizza costo/feedback. Inversa = \"gelato rovesciato\", anti-pattern."},
+{t:"TDD", q:"Primitive Obsession è:", o:["Avere troppi metodi","Usare tipi primitivi dove servirebbe un oggetto strutturato","Solo per Singleton","Niente"], c:[1], m:false, e:"Es. CodiceFiscale come string semplice senza validazione. Refactoring: Replace Data Value with Object."},
+{t:"TDD", q:"Data Clumps è:", o:["Troppi dati casuali","Gli stessi 3-4 dati compaiono insieme ovunque","Solo bug","Solo cascata"], c:[1], m:false, e:"Refactoring: Extract Class per raggruppare."},
+{t:"TDD", q:"Divergent Change vs Shotgun Surgery:", o:["Sono identici","Divergent = una classe cambia per N motivi. Shotgun = N classi cambiano per 1 motivo","Solo Singleton","Niente"], c:[1], m:false, e:"Concettualmente opposti. Divergent = coesione bassa. Shotgun = accoppiamento sparso."},
+{t:"TDD", q:"Message Chains tipo a.getB().getC().getD():", o:["Sono ottime","Sono un code smell: espongono troppi dettagli interni","Sempre da fare","Solo per Singleton"], c:[1], m:false, e:"Refactoring: Hide Delegate (un metodo che espone solo ciò che serve)."},
+{t:"TDD", q:"Speculative Generality è:", o:["Sempre buona","Astrazioni create \"in caso servano\" ma usate da un solo cliente. Anti-pattern (YAGNI)","Solo bug","Solo Singleton"], c:[1], m:false, e:"YAGNI: You Aren't Gonna Need It. Astrai solo quando hai 2-3 casi reali."},
+{t:"TDD", q:"Replace Conditional with Polymorphism — quando si applica?", o:["Mai","Quando hai switch/if-else lunghi sul tipo di un oggetto","Solo Singleton","Solo cascata"], c:[1], m:false, e:"È la realizzazione concreta del GRASP Polymorphism."},
+{t:"TDD", q:"Regola del tre di Fowler:", o:["Prima scrivi · seconda noti la duplicazione · terza rifattorizzi","Solo per Singleton","Mai","Solo bug"], c:[0], m:false, e:"Evita di astrarre prematuramente. Aspetta che il pattern emerga davvero."},
+{t:"TDD", q:"Quando NON fare refactoring?", o:["Sempre meglio farlo","Codice che stai per buttare · terze parti · codice senza test","Solo per Singleton","Mai"], c:[1], m:false, e:"Refactoring senza test = russian roulette. Prima scrivi i test \"characterization\"."},
 
 // ===== NUOVI: UML legenda =====
 {t:"UML", q:"Linea continua + triangolo vuoto:", o:["Generalizzazione (ereditarietà)","Realizzazione","Aggregazione","Dipendenza"], c:[0], m:false, e:"Continua + triangolo vuoto = ereditarietà (sottoclasse → superclasse)."},
