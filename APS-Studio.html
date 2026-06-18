@@ -1585,17 +1585,76 @@
   <!-- ===== 05 ARCHITETTURA ===== -->
   <h2 class="sec" id="arch"><span class="chip">05</span>Architettura + Diagrammi di interazione</h2>
 
-  <div class="box expl"><div class="t">📖 In parole semplici</div>
-    <p>Il software OO si organizza a <b>3 strati</b>: <b>Presentazione</b> (UI) → <b>Dominio</b> (business) → <b>Persistenza/Servizi</b>. Le dipendenze vanno <b>SOLO verso il basso</b>: la UI non sa di SQL, il dominio non sa di pixel.</p>
-    <p>I diagrammi di interazione mostrano la <b>collaborazione</b> tra oggetti per un'operazione. <b>Sequence</b> = vista temporale (lifelines verticali). <b>Communication</b> = vista strutturale (rete con messaggi numerati). Stesso contenuto, viste diverse.</p>
-  </div>
-  <div class="box key"><div class="t">⭐ Da ricordare</div>
+  <h3>Cos'è l'architettura software</h3>
+  <div class="box expl"><div class="t">📖 Definizione completa</div>
+    <p>Un'<b>architettura software</b> è l'insieme delle <b>decisioni significative</b> sull'organizzazione di un sistema software. In particolare comprende:</p>
     <ul>
-      <li><b>3 strati</b>: <span class="cz">UI · Dominio · Persistenza/Servizi</span>.</li>
-      <li>Regola d'oro: dipendenze solo <span class="cz">verso il basso</span>.</li>
-      <li><b>Sequence</b> = temporale · <b>Communication</b> = strutturale.</li>
+      <li>la scelta degli <b>elementi strutturali</b> da cui è composto il sistema e delle relative <b>interfacce</b>;</li>
+      <li>il <b>comportamento</b> specificato dalla <b>collaborazione</b> tra questi elementi;</li>
+      <li>la <b>composizione</b> di questi elementi strutturali e comportamentali in <b>sottosistemi</b> via via più ampi;</li>
+      <li>lo <b>stile architetturale</b> che guida questa organizzazione.</li>
     </ul>
   </div>
+
+  <h3>L'architettura a strati (Layered Architecture)</h3>
+  <div class="box expl"><div class="t">📖 Lo "stile" più comune</div>
+    <p>L'architettura di un sistema software può essere organizzata secondo diversi "stili". Uno stile molto comune per l'<b>architettura logica</b> è l'<b>architettura a strati</b>: il sistema è formato da un insieme di elementi chiamati <b>strati</b>. Ciascuno strato è un <b>gruppo a grana grossa</b> di classi, package o sottosistemi che ha <b>responsabilità coese</b> rispetto a un aspetto importante del sistema.</p>
+    <p>Gli strati sono organizzati in modo tale che i <b>"più alti"</b> (come UI) ricorrano ai servizi dei <b>"più bassi"</b>. Normalmente non avviene il contrario.</p>
+  </div>
+  <div class="box key"><div class="t">⭐ I 3 strati di base (vista semplificata)</div>
+    <table style="font-size:.92rem">
+      <tr><th>Strato</th><th>Cosa contiene</th></tr>
+      <tr><td><b>Interfaccia utente (UI, presentazione)</b></td><td>Oggetti software per gestire l'interazione con l'utente: finestre, menu, pulsanti, gestione degli eventi.</td></tr>
+      <tr><td><b>Logica applicativa e oggetti di dominio</b></td><td>Oggetti software che rappresentano <b>concetti del dominio</b> che soddisfano i requisiti dell'applicazione.</td></tr>
+      <tr><td><b>Servizi tecnici</b></td><td>Oggetti e sottosistemi d'uso generale che forniscono servizi tecnici di supporto (es. accesso a DB). Indipendenti dall'applicazione e <b>riusabili</b> in altri sistemi.</td></tr>
+    </table>
+    <p style="margin-top:6px"><b>Regola d'oro</b>: dipendenze e collaborazioni vanno <b>dagli strati più alti a quelli più bassi</b>. La UI non sa di SQL, il dominio non sa di pixel.</p>
+  </div>
+
+  <h3>La vista estesa: 6 strati tipici nei sistemi informatici</h3>
+  <div class="box key"><div class="t">⭐ Decomposizione tipica</div>
+    <table style="font-size:.9rem">
+      <tr><th>Strato</th><th>Responsabilità · Esempi</th></tr>
+      <tr><td><b>UI (Presentation, View)</b></td><td>Finestre della GUI, report, interfaccia vocale; HTML, XML, JavaScript</td></tr>
+      <tr><td><b>Application</b></td><td>Gestisce richieste dallo strato UI, workflow, transizioni tra finestre</td></tr>
+      <tr><td><b>Domain (Business, Application Logic)</b></td><td>Gestisce richieste dallo strato Application, implementa <b>regole di dominio</b>, servizi di dominio</td></tr>
+      <tr><td><b>Business Infrastructure</b></td><td>Servizi aziendali generali e di basso livello; es. <code>CurrencyConverter</code></td></tr>
+      <tr><td><b>Technical Services</b></td><td>Servizi tecnici di livello (relativamente) alto; es. Persistence, Security</td></tr>
+      <tr><td><b>Foundation</b></td><td>Servizi tecnici di basso livello, strutture dati, thread, matematica; file, DB</td></tr>
+    </table>
+  </div>
+
+  <h3>Diagrammi di interazione</h3>
+  <div class="box expl"><div class="t">📖 Sequence e Communication</div>
+    <p>I <b>diagrammi di interazione</b> mostrano la <b>collaborazione</b> tra oggetti per un'operazione.</p>
+    <ul>
+      <li><b>Sequence diagram</b> = vista <b>temporale</b> (lifelines verticali, frecce orizzontali in sequenza dall'alto al basso).</li>
+      <li><b>Communication diagram</b> = vista <b>strutturale</b> (rete di oggetti con messaggi numerati per indicare l'ordine).</li>
+    </ul>
+    <p><b>Stesso contenuto, viste diverse</b>: scegli quella che chiarisce meglio l'aspetto che ti interessa.</p>
+  </div>
+
+  <h3>I 6 vantaggi dell'architettura a strati</h3>
+  <div class="box key"><div class="t">⭐ Perché usarla</div>
+    <ol>
+      <li><b>Separazione degli interessi</b>: alto vs basso livello, servizi generali vs specifici. Riduce accoppiamento, migliora coesione, aumenta riuso e chiarezza.</li>
+      <li><b>Complessità incapsulata</b> e decomposta per ogni strato.</li>
+      <li><b>Strati sostituibili</b>: alcuni strati possono essere sostituiti con nuove implementazioni (di solito non per i livelli bassi Technical Services e Foundation).</li>
+      <li>Gli <b>strati bassi</b> contengono funzioni <b>riutilizzabili</b>.</li>
+      <li><b>Distribuibilità</b>: alcuni strati possono essere distribuiti (in primo luogo Domain e Servizi Tecnici).</li>
+      <li><b>Sviluppo team-friendly</b>: la segmentazione logica facilita il lavoro parallelo dei team.</li>
+    </ol>
+  </div>
+
+  <h3>Oggetto di dominio e Livello (tier)</h3>
+  <div class="box expl"><div class="t">📖 Due concetti precisi</div>
+    <p>Un <b>oggetto di dominio</b> è un oggetto software che <b>rappresenta una cosa nello spazio del dominio del problema</b> e ha <b>logica applicativa o di business</b> correlata. Es. l'oggetto <code>Sale</code> è in grado di calcolare il suo totale.</p>
+    <p>Lo strato della logica applicativa, quando contiene oggetti di dominio per gestire la logica, si chiama più precisamente <b>strato del dominio</b>.</p>
+  </div>
+  <div class="box warn"><div class="t">⚠️ Strato (layer) ≠ Livello (tier)</div>
+    <b>Layer (strato)</b> è una distinzione <i>logica</i>. <b>Tier (livello)</b> indica un <b>nodo fisico di elaborazione</b>. Due cose diverse: un'app a 3 layer può girare su un solo tier, o essere distribuita su più tier.
+  </div>
+
   <h3>Strati stretti vs rilassati</h3>
   <div class="box expl"><div class="t">📖 Due varianti dello stesso schema a strati</div>
     <p>L'architettura a strati si presenta in due varianti:</p>
