@@ -414,6 +414,7 @@
     <div class="stage">📅 Piano</div>
     <a href="#piano"><span class="n">P</span>Piano 10 giorni + orale</a>
     <div class="stage">📚 Teoria</div>
+    <a href="#intro-sw"><span class="n">📚</span>Ingegneria del software</a>
     <a href="#mappa-proc"><span class="n">🗺️</span>Mappa processi</a>
     <a href="#up"><span class="n">01</span>UP — Unified Process</a>
     <a href="#uc"><span class="n">02</span>Casi d'uso</a>
@@ -782,6 +783,138 @@
   <hr>
 
   <!-- ============================== TEORIA ============================== -->
+
+  <!-- ===== 00 INTRODUZIONE — INGEGNERIA DEL SOFTWARE ===== -->
+  <h2 class="sec" id="intro-sw"><span class="chip">📚</span>Ingegneria del software</h2>
+  <p class="lead">Il punto di partenza: cos'è un software, le sue caratteristiche essenziali, i tipi di applicazione, cos'è la disciplina dell'ingegneria del software.</p>
+
+  <h3>Cos'è un software</h3>
+  <p>Un <b>software</b> è un programma per computer <i>e</i> la documentazione ad esso associata: specifica dei requisiti, modelli di progetto, manuale utente, ecc. Non è solo il codice eseguibile, ma tutto il pacchetto che ne accompagna costruzione e uso.</p>
+  <p>I prodotti software si dividono in due grandi categorie:</p>
+  <ul>
+    <li><b>Generici</b>: sviluppati per un ampio insieme di clienti (elaboratori di testo, database). Le specifiche del sistema sono <b>proprietà dello sviluppatore</b> e le modifiche sono decisioni a carico suo.</li>
+    <li><b>Personalizzati (custom)</b>: sviluppati per un singolo cliente in base alle sue esigenze. Le specifiche sono <b>proprietà del cliente</b>.</li>
+  </ul>
+  <p>Un nuovo software può essere creato in tre modi: <b>sviluppando nuovi programmi</b>, <b>personalizzando sistemi software preesistenti</b>, o <b>riusando il software esistente</b>.</p>
+  <div class="box mnem"><div class="t">🧠 Mnemonico</div>
+    <b>"Software ≠ codice"</b>. Il software comprende anche specifica, modelli, manuali. Se il prof chiede "cos'è il software?" non rispondere "il codice".
+  </div>
+
+  <h3>Le 4 caratteristiche essenziali (MEFA)</h3>
+  <p>Un buon software possiede 4 caratteristiche fondamentali:</p>
+  <div class="box key"><div class="t">⭐ MEFA — Mantenibilità · Efficienza · Fidatezza · Accettabilità</div>
+    <ul>
+      <li><b>Mantenibilità</b>: deve essere scritto in maniera tale da essere compreso da altri sviluppatori e quindi <i>facilmente aggiornabile</i> per andare incontro ai requisiti mutevoli del cliente.</li>
+      <li><b>Efficienza</b>: usa in modo adeguato le risorse, garantisce <i>buone tempistiche di reattività</i>.</li>
+      <li><b>Fidatezza</b>: deve essere <i>affidabile, sempre disponibile, sicuro</i>.</li>
+      <li><b>Accettabilità</b>: deve essere usato da utenti — quindi <i>accettato, compreso e facile da usare</i>.</li>
+    </ul>
+  </div>
+  <div class="box mnem"><div class="t">🧠 Mnemonico</div>
+    <b>MEFA</b> → "Mio Edificio Funziona Anche". Mantenibilità · Efficienza · Fidatezza · Accettabilità.
+  </div>
+
+  <h3>Gli 8 tipi di applicazione</h3>
+  <div class="box key"><div class="t">⭐ Tipologie di sistemi software</div>
+    <table style="font-size:.9rem">
+      <tr><th>Tipo</th><th>Caratteristica</th></tr>
+      <tr><td><b>Stand-alone</b></td><td>Eseguite su computer locale (PC), tutte le funzionalità integrate, no rete necessaria</td></tr>
+      <tr><td><b>Interattive su transazioni</b></td><td>Eseguite su computer remoto, utenti accedono dai propri terminali (es. e-commerce, web app)</td></tr>
+      <tr><td><b>Embedded (controllo integrato)</b></td><td>Controllano e gestiscono dispositivi hardware</td></tr>
+      <tr><td><b>Elaborazione batch</b></td><td>Sistemi aziendali che elaborano dati in grandi lotti senza interazione utente</td></tr>
+      <tr><td><b>Intrattenimento</b></td><td>Destinati all'uso personale per intrattenere l'utente</td></tr>
+      <tr><td><b>Modellazione e simulazione</b></td><td>Scienziati/ingegneri modellano processi o situazioni fisiche con oggetti interagenti</td></tr>
+      <tr><td><b>Raccolta dati</b></td><td>Raccolgono dati dall'ambiente tramite sensori e li inviano ad altri sistemi</td></tr>
+      <tr><td><b>Sistemi di sistemi</b></td><td>Composti da una serie di altri sistemi software</td></tr>
+    </table>
+  </div>
+  <div class="box warn"><div class="t">⚠️ Nota chiave</div>
+    Il termine <b>"prodotti software"</b> indica già di per sé un <i>approccio ingegneristico</i>: non è solo codice scritto, è prodotto pensato per essere consegnato, mantenuto, evoluto.
+  </div>
+
+  <h3>Cos'è l'ingegneria del software</h3>
+  <div class="box expl"><div class="t">📖 Definizione</div>
+    <p>L'<b>ingegneria del software</b> è una <i>disciplina ingegneristica</i> che si occupa di tutti gli aspetti della produzione di software di buona qualità, dalle prime fasi della specifica del sistema fino alla manutenzione del sistema dopo la sua messa in uso.</p>
+    <p>Riguarda quindi <i>non solo</i> il processo tecnico di sviluppo, ma anche la <b>gestione del progetto</b>, lo <b>sviluppo di strumenti e metodi</b> per supportare la produzione.</p>
+    <p>Essendo una disciplina ingegneristica, utilizza teoria e metodi appropriati per risolvere i problemi tenendo conto dei <b>vincoli organizzativi e finanziari</b>.</p>
+  </div>
+  <div class="box key"><div class="t">⭐ Obiettivo</div>
+    Produrre <b>sistemi affidabili e sicuri</b>, in modo <b>economico e rapido</b>. L'ingegneria del software si occupa di sviluppo <i>cost-effective</i>, <i>di qualità</i> e <i>aderente a ciò che è richiesto</i>.
+  </div>
+  <div class="box warn"><div class="t">⚠️ Costi reali</div>
+    I costi del software <b>dominano</b> i costi dei sistemi informatici (spesso superiori a quelli dell'hardware). La <b>manutenzione</b> costa più dello sviluppo. Per sistemi a lunga durata, i costi di manutenzione possono essere <i>parecchie volte superiori</i> ai costi di sviluppo.
+  </div>
+  <div class="box mnem"><div class="t">🧠 Sintesi</div>
+    L'ingegneria del software consta di <b>metodologie · tecniche · strumenti</b>.
+  </div>
+
+  <h3>Perché fallisce un progetto software</h3>
+  <div class="box key"><div class="t">⭐ Due cause principali</div>
+    <ol>
+      <li><b>Crescente complessità del sistema</b>: mentre le tecniche aiutano a costruire sistemi più grandi, le esigenze cambiano — i sistemi devono essere consegnati più rapidamente, sono richiesti sistemi sempre più grandi e con capacità prima ritenute impossibili.</li>
+      <li><b>Mancato utilizzo dei metodi di ingegneria del software</b>: è facile scrivere programmi senza metodi e tecniche, ma il risultato è software più <i>costoso e meno affidabile</i> di quanto dovrebbe essere.</li>
+    </ol>
+    <p style="margin-top:8px"><b>Fallimenti tipici</b>: non rispetta i vincoli di tempo o costo, non viene accettato dall'utente finale.</p>
+  </div>
+  <div class="box expl"><div class="t">📖 Da qui nascono i processi software</div>
+    <p>Serve una <b>metodologia disciplinata</b> per passare dall'idea al software distribuibile. Vengono in aiuto i <b>processi software</b>: un modo formale/semi-formale che descrive come suddividere il passaggio idea→sw in passi più piccoli e gestibili.</p>
+  </div>
+
+  <h3>Cos'è un processo software</h3>
+  <div class="box key"><div class="t">⭐ Definizione completa</div>
+    <p>Un processo software è un <b>insieme strutturato di attività</b> che organizza lo sviluppo del software. La descrizione di un processo comprende:</p>
+    <ul>
+      <li>gli <b>artefatti</b> che devono essere prodotti (modelli, codice);</li>
+      <li>le <b>attività</b> che devono essere svolte e in che ordine;</li>
+      <li>i <b>ruoli</b> (chi si occupa di cosa);</li>
+      <li>le <b>pre/post condizioni</b>.</li>
+    </ul>
+  </div>
+  <div class="box key"><div class="t">⭐ Attività comuni a tutti i processi software</div>
+    <ol>
+      <li><b>Analisi dei requisiti</b></li>
+      <li><b>Progettazione</b></li>
+      <li><b>Implementazione</b> del sistema</li>
+      <li><b>Validazione</b> (verifica che il sistema soddisfi i requisiti del cliente)</li>
+      <li><b>Evoluzione</b> (aggiornamenti voluti dal cliente)</li>
+    </ol>
+  </div>
+
+  <h3>Analisi vs Progettazione</h3>
+  <div class="box expl"><div class="t">📖 "Fare la cosa giusta" vs "fare la cosa bene"</div>
+    <p>Analisi e progettazione hanno <b>obiettivi diversi</b> (perseguiti in modi diversi) ma sono attività <b>fortemente sinergiche</b>:</p>
+    <ul>
+      <li><b>Analisi</b> — <i>fare la cosa giusta</i>. Enfatizza un'<b>investigazione del problema</b> e dei suoi requisiti, non della soluzione. Si analizza il <i>dominio del problema</i>: cosa richiede il cliente.</li>
+      <li><b>Progettazione</b> — <i>fare la cosa bene</i>. Enfatizza una <b>soluzione concettuale</b> che soddisfa i requisiti del problema.</li>
+    </ul>
+  </div>
+  <div class="box key"><div class="t">⭐ Orientamento agli oggetti</div>
+    <ul>
+      <li><b>Analisi OO (AOO)</b>: enfatizza l'<i>identificazione dei concetti</i> (reali) o degli <b>oggetti</b> nel dominio del problema. Es. in un sistema per voli aerei: <code>Aereo</code>, <code>Volo</code>, <code>Pilota</code>.</li>
+      <li><b>Progettazione OO (POO)</b>: enfatizza la <i>definizione di oggetti software</i> che <b>collaborano</b> per soddisfare i requisiti. Es. l'oggetto software <code>Aereo</code> ha attributo <code>codiceDiRegistrazione</code> e metodo <code>getVoliEffettuati()</code>.</li>
+    </ul>
+  </div>
+
+  <h3>UML come strumento</h3>
+  <div class="box expl"><div class="t">📖 Lo strumento principe</div>
+    <p>L'<b>UML (Unified Modeling Language)</b> è il linguaggio standard di notazione usato in Analisi e Progettazione OO. Non è un metodo né un processo: è un <i>vocabolario grafico</i> condiviso per esprimere modelli del sistema (dominio, classi, interazioni, stati, attività).</p>
+    <p>Lo useremo trasversalmente in tutte le sezioni successive.</p>
+  </div>
+
+  <div class="quizhead">Auto-interrogazione</div>
+  <div class="quiz">
+    <details class="q"><summary>Cos'è un software?</summary><div class="ans">Un programma per computer + la documentazione associata (specifica, modelli di progetto, manuale utente).</div></details>
+    <details class="q"><summary>Software generico vs custom.</summary><div class="ans">Generico: per più clienti, specifiche dello sviluppatore. Custom: per un singolo cliente, specifiche del cliente.</div></details>
+    <details class="q"><summary>Le 4 caratteristiche essenziali (MEFA).</summary><div class="ans">Mantenibilità · Efficienza · Fidatezza · Accettabilità.</div></details>
+    <details class="q"><summary>Cos'è l'ingegneria del software?</summary><div class="ans">Disciplina ingegneristica che si occupa di tutti gli aspetti della produzione di software di qualità: dalla specifica iniziale alla manutenzione. Comprende metodologie, tecniche, strumenti, gestione progetto.</div></details>
+    <details class="q"><summary>Perché fallisce un progetto sw?</summary><div class="ans">(1) Crescente complessità dei sistemi; (2) Mancato uso dei metodi di ingegneria del software.</div></details>
+    <details class="q"><summary>Cos'è un processo software?</summary><div class="ans">Insieme strutturato di attività per organizzare lo sviluppo. Definisce artefatti, attività, ordine, ruoli, pre/post condizioni.</div></details>
+    <details class="q"><summary>5 attività comuni a tutti i processi.</summary><div class="ans">Analisi requisiti · Progettazione · Implementazione · Validazione · Evoluzione.</div></details>
+    <details class="q"><summary>Analisi vs Progettazione.</summary><div class="ans">Analisi = "fare la cosa giusta" (investigazione del problema). Progettazione = "fare la cosa bene" (soluzione concettuale che soddisfa i requisiti).</div></details>
+    <details class="q"><summary>AOO vs POO.</summary><div class="ans">AOO: identificare i concetti del dominio (Aereo, Volo, Pilota). POO: definire gli oggetti software che collaborano (Aereo con attributi e metodi).</div></details>
+  </div>
+
+  <hr>
 
   <!-- ===== 01 UP ===== -->
   <h2 class="sec" id="mappa-proc"><span class="chip">🗺️</span>Mappa dei processi software</h2>
