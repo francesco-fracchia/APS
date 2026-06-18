@@ -1434,18 +1434,146 @@
 
   <!-- ===== 04 SSD ===== -->
   <h2 class="sec" id="ssd"><span class="chip">04</span>SSD + Contratti</h2>
-  <p class="lead">Dal caso d'uso testuale a una formalizzazione eseguibile.</p>
+  <p class="lead">Dal caso d'uso testuale a una formalizzazione degli eventi di input/output (SSD) e dei cambiamenti di stato (Contratti). Sono parte dei <b>Requisiti</b>, non della progettazione.</p>
 
-  <div class="box expl"><div class="t">📖 In parole semplici</div>
-    <p><b>SSD</b> = Sequence Diagram con il sistema come scatola nera. Mostra gli <b>eventi di sistema</b> attore→sistema senza preoccuparsi del dentro. Uno per UC.</p>
-    <p><b>Contratto</b> = descrizione precisa di cosa cambia nello stato del sistema quando un'operazione si conclude. Uno per ogni evento di sistema dell'SSD.</p>
-  </div>
-  <div class="box key"><div class="t">⭐ Da ricordare</div>
+  <h3>Cos'è un SSD</h3>
+  <div class="box expl"><div class="t">📖 Definizione</div>
+    <p>Un <b>Diagramma di Sequenza di Sistema (SSD)</b> mostra gli <b>eventi di input e output</b> dei sistemi in discussione. Fa parte del <b>Modello dei Casi d'uso</b>:</p>
     <ul>
-      <li><b>SSD</b>: sistema come <span class="cz">unica scatola nera</span>. Uno per UC.</li>
-      <li><b>4 elementi contratto</b>: <span class="cz">Nome · Pre · Post · Riferimenti</span> al UC.</li>
-      <li><b>Post-condizioni</b>: istanze <span class="cz">create/cancellate</span>, attributi <span class="cz">modificati</span>, associazioni <span class="cz">formate/spezzate</span>.</li>
+      <li>Visualizza le <b>interazioni implicate</b> dai casi d'uso.</li>
+      <li>Viene creato maggiormente durante l'<b>Elaborazione</b>.</li>
+      <li>NON è un elaborato ufficiale di UP, anche se i creatori di UP ne riconoscono l'utilità.</li>
     </ul>
+  </div>
+  <div class="box key"><div class="t">⭐ Cosa mostra un SSD</div>
+    <p>Per un particolare corso di eventi all'interno di un caso d'uso (uno scenario), un SSD mostra:</p>
+    <ul>
+      <li>Gli <b>attori esterni</b> che interagiscono direttamente con il sistema (primari o di supporto).</li>
+      <li>Il sistema visto come <b>scatola nera</b>: non interessa cosa fa internamente, solo I/O delle operazioni con gli attori.</li>
+      <li>Gli <b>eventi di sistema</b> generati dagli attori e quelli inter-sistema.</li>
+    </ul>
+  </div>
+  <div class="box warn"><div class="t">⚠️ NO la GUI</div>
+    Negli SSD si <b>astrae dalla GUI</b>: <i>non</i> si dice "il cassiere preme il pulsante next", ma si mostra l'operazione di sistema <code>enterItem(...)</code> che la UI scambia con lo strato di dominio.
+  </div>
+
+  <h3>Eventi di sistema e operazioni di sistema</h3>
+  <div class="box expl"><div class="t">📖 Definizioni</div>
+    <ul>
+      <li>Un <b>evento</b> in UML è qualcosa di importante o degno di nota durante l'esecuzione.</li>
+      <li>Un <b>evento di sistema</b> è un evento <i>esterno</i> al sistema, di input, di solito generato da un attore per interagire con il sistema.</li>
+      <li>Un'<b>operazione</b> in UML rappresenta una trasformazione o un'interrogazione che un oggetto può eseguire.</li>
+      <li>Un'<b>operazione di sistema</b> è una trasformazione o un'interrogazione che <i>il sistema</i> può eseguire. È un'operazione pubblica dell'<b>interfaccia di sistema</b>.</li>
+    </ul>
+  </div>
+  <div class="box mnem"><div class="t">🧠 UML non definisce "di sistema"</div>
+    UML è un linguaggio, non una metodologia: definisce solo "evento", "operazione", "diagramma di sequenza". La qualifica di "<b>di sistema</b>" enfatizza l'applicazione di questi elementi al sistema considerato a <b>scatola nera</b>.
+  </div>
+
+  <h3>Come si scrivono gli eventi di sistema</h3>
+  <div class="box key"><div class="t">⭐ Regole di nomenclatura</div>
+    <ul>
+      <li>Espressi a <b>livello astratto, di intenzione</b>, non descrivendo l'azione concreta. Es. <code>enterItem</code> ✅ invece di <code>scan</code> ❌.</li>
+      <li>Iniziare con un <b>verbo</b>: <code>add</code>, <code>enter</code>, <code>end</code>, <code>make</code>, <code>create</code>…</li>
+      <li><b>Parametri</b>: preferibilmente <b>valori di tipo dato</b> (numero, codice identificativo, data). Evitare oggetti complessi.</li>
+      <li><b>Risposte del sistema</b>: mostrate come elenco di dati restituiti (non come azioni), poste nelle "variabili" sulla freccia tratteggiata di ritorno.</li>
+    </ul>
+  </div>
+
+  <h3>Linee guida e perché disegnarli</h3>
+  <div class="box key"><div class="t">⭐ Quando disegnare un SSD</div>
+    <p>Disegnare un SSD <b>per lo scenario principale di successo di ciascun caso d'uso</b>, nonché per <b>scenari alternativi più frequenti o complessi</b>.</p>
+  </div>
+  <div class="box expl"><div class="t">📖 Perché servono</div>
+    <p>Il software deve essere progettato per <b>gestire questi eventi</b> e generare risposte. Un sistema reagisce a 3 cose:</p>
+    <ol>
+      <li><b>Eventi esterni</b> da parte di attori (umani o sistemi informatici).</li>
+      <li><b>Eventi temporali</b>.</li>
+      <li><b>Guasti o eccezioni</b> (spesso da sorgenti esterne).</li>
+    </ol>
+    <p>Per descrivere le funzioni e il comportamento "a scatola nera" del sistema, usiamo 3 modelli combinati:</p>
+    <ul>
+      <li><b>Casi d'uso</b> (cosa fa, testuale)</li>
+      <li><b>Diagrammi di sequenza di sistema</b> (eventi I/O ordinati)</li>
+      <li><b>Contratti delle operazioni di sistema</b> (cambiamenti di stato precisi)</li>
+    </ul>
+  </div>
+
+  <h3>Cos'è un contratto delle operazioni</h3>
+  <div class="box expl"><div class="t">📖 Definizione</div>
+    <p>Un <b>contratto</b> descrive i <b>cambiamenti</b> agli oggetti in un modello di dominio come risultato di un'<i>operazione di sistema</i> — <b>senza descrivere come</b> questi cambiamenti avvengono. Per questo motivo i contratti sono parte del <b>Modello dei Casi d'uso</b> (elaborato Requisiti, non progettazione).</p>
+    <p>Un contratto è <b>relativo a una sola operazione di sistema</b>.</p>
+  </div>
+  <div class="box key"><div class="t">⭐ Influenza tra elaborati</div>
+    <p>Input per i contratti:</p>
+    <ul>
+      <li><b>Operazioni di sistema</b> identificate negli SSD.</li>
+      <li><b>Modello di dominio</b> (oggetti, attributi, collegamenti modificati).</li>
+      <li><b>Testi dei casi d'uso</b> (aiutano a definire le post-condizioni).</li>
+    </ul>
+    <p style="margin-top:6px">Output dei contratti → input per la <b>progettazione a oggetti</b>: descrivono i cambiamenti necessari negli oggetti software o nella base di dati.</p>
+  </div>
+
+  <h3>Le sezioni di un contratto</h3>
+  <div class="box key"><div class="t">⭐ Template</div>
+    <table style="font-size:.92rem">
+      <tr><th>Sezione</th><th>Cosa contiene</th></tr>
+      <tr><td><b>Operazione</b></td><td>Nome e parametri (firma) dell'operazione</td></tr>
+      <tr><td><b>Riferimenti</b></td><td>Casi d'uso in cui può verificarsi questa operazione</td></tr>
+      <tr><td><b>Pre-condizioni</b></td><td>Ipotesi <i>significative</i> sullo stato del sistema o degli oggetti del Modello di Dominio <b>prima</b> dell'esecuzione (non banalità: cose utili al lettore)</td></tr>
+      <tr><td><b>Post-condizioni</b></td><td>⭐ <b>LA PIÙ IMPORTANTE</b>. Cambiamenti di stato degli oggetti del Modello di Dominio <b>dopo</b> il completamento dell'operazione</td></tr>
+    </table>
+  </div>
+
+  <h3>Le 3 categorie di post-condizioni</h3>
+  <div class="box key"><div class="t">⭐ Cosa può comparire nelle post-condizioni</div>
+    <ol>
+      <li><b>Creazione o cancellazione di oggetto</b> (istanza di una classe).</li>
+      <li><b>Cambiamento di valore di attributo</b>.</li>
+      <li><b>Formazione o rottura di collegamento</b> (istanza di un'associazione).</li>
+    </ol>
+    <p style="margin-top:6px;font-style:italic">Esempio rottura: "È stato rotto il collegamento tra la <code>SalesLineItem</code> selezionata e la <code>Sale</code> corrente".</p>
+  </div>
+  <div class="box warn"><div class="t">⚠️ Le post-condizioni NON sono azioni</div>
+    Sono <b>dichiarazioni circa lo stato</b> degli oggetti <i>dopo</i> l'esecuzione. NON "fai X, poi fai Y", ma "è stato creato X, il collegamento Y esiste".
+    <p style="margin-top:6px">Linea guida: <b>verbo al passato</b>. "<i>è stata creata</i>" / "<i>è stato rotto</i>" / "<i>è stato modificato</i>".</p>
+  </div>
+
+  <h3>Lo "spirito del palcoscenico"</h3>
+  <div class="box expl"><div class="t">📖 Analogia del sipario</div>
+    <p>Sofia e il libro descrivono questa analogia per le post-condizioni:</p>
+    <ol>
+      <li>Il sistema e i suoi oggetti sono sul <b>palcoscenico</b> di un teatro.</li>
+      <li>Si fa una <b>foto</b> al palcoscenico.</li>
+      <li>Si <b>chiude il sipario</b> e si applica l'operazione (rumore dietro le quinte).</li>
+      <li>Si <b>apre il sipario</b> e si fa una <b>seconda foto</b>.</li>
+      <li>Si <b>confrontano le foto</b>: le post-condizioni descrivono le differenze.</li>
+    </ol>
+    <p>Le post-condizioni non descrivono il "rumore" (come accadono i cambiamenti), ma solo il <i>cambio di stato</i> osservato.</p>
+  </div>
+
+  <h3>Prospettiva della conoscenza</h3>
+  <div class="box expl"><div class="t">📖 "Conoscere" un oggetto vs "crearlo"</div>
+    <p>Il cambiamento di stato va espresso in termini di oggetti e collegamenti del Modello di dominio, secondo la <b>prospettiva della conoscenza</b> da parte del sistema:</p>
+    <ul>
+      <li>"È stata creata un'istanza X" si interpreta come "<i>è iniziata la conoscenza da parte del sistema</i> dell'istanza X". Es. in <code>enterItem</code>, l'inizio della conoscenza di una <code>SalesLineItem</code> coincide con la sua creazione.</li>
+      <li>Non è lecito scrivere "<i>è stata creata un'istanza di <code>ProductDescription</code></i>" tra le post-condizioni di <code>enterItem</code>: il sistema <b>già conosce</b> tutte le descrizioni dei prodotti in vendita.</li>
+    </ul>
+  </div>
+
+  <h3>Pre-condizioni — cosa metterci</h3>
+  <div class="box key"><div class="t">⭐ Linea guida</div>
+    <p>Le pre-condizioni descrivono <b>ipotesi significative</b> sullo stato del sistema <i>prima</i> dell'esecuzione dell'operazione: una descrizione sintetica dello <i>stato di avanzamento</i> del caso d'uso. Indicare anche gli <b>oggetti rilevanti</b> a quel punto.</p>
+    <p style="margin-top:6px"><b>Esempio</b> (pre-condizioni di <code>enterItem</code>):</p>
+    <ul>
+      <li>Una vendita è già iniziata ma non ancora conclusa.</li>
+      <li>È stata eseguita l'operazione <code>makeNewSale</code> (esattamente una volta).</li>
+      <li>L'operazione <code>enterItem</code> potrebbe essere già stata eseguita (zero o più volte).</li>
+      <li>Stato di avanzamento: "<i>è in corso una vendita</i>".</li>
+    </ul>
+  </div>
+  <div class="box warn"><div class="t">⚠️ I contratti non sono sempre necessari</div>
+    Spesso l'effetto di un'operazione di sistema è già <b>chiaro dal caso d'uso</b>, dal dominio, o dalla conoscenza del developer. Si scrivono contratti <b>quando serve dettaglio e precisione maggiori</b>.
   </div>
   <div class="quizhead">Auto-interrogazione</div>
   <div class="quiz">
