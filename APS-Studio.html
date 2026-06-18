@@ -1174,21 +1174,103 @@
 
   <!-- ===== 02 UC ===== -->
   <h2 class="sec" id="uc"><span class="chip">02</span>Casi d'uso</h2>
-  <p class="lead">Storia testuale di un'interazione attore↔sistema per raggiungere un obiettivo.</p>
+  <p class="lead">Storie scritte in linguaggio naturale di un attore che usa un sistema per raggiungere un obiettivo. Strumento principale per catturare i requisiti funzionali.</p>
 
-  <div class="box expl"><div class="t">📖 In parole semplici</div>
-    <p>Un <b>UC</b> è il <b>copione</b> di un dialogo tra un attore e il sistema, con scenario principale + alternative. È testo, non disegno. Il diagramma UC è solo un indice; il contenuto è nel testo.</p>
+  <h3>Cos'è un caso d'uso</h3>
+  <div class="box expl"><div class="t">📖 Definizione</div>
+    <p>I casi d'uso sono <b>storie scritte in linguaggio naturale</b> di qualche <b>attore</b> che usa un sistema per <b>raggiungere un obiettivo</b>. Non sono disegni: il diagramma dei casi d'uso è solo un indice, il contenuto vero è nel <i>testo</i>.</p>
+    <p>Uno <b>scenario</b> (o istanza del caso d'uso) è una <b>sequenza specifica</b> di azioni e interazioni tra l'attore e il sistema. Un caso d'uso è una <i>collezione di scenari correlati</i>, sia di successo che di fallimento, che descrivono un attore che usa un sistema per raggiungere un obiettivo specifico.</p>
   </div>
-  <div class="box key"><div class="t">⭐ Da ricordare</div>
+  <div class="box warn"><div class="t">⚠️ Chi li scrive</div>
+    Il compito di individuare gli attori e i casi d'uso è dell'<b>analista di sistema</b>. Non è del cliente da solo né del developer da solo: nasce dal workshop tra le parti.
+  </div>
+
+  <h3>Gli attori</h3>
+  <div class="box expl"><div class="t">📖 Definizione di attore</div>
+    <p>Un <b>attore</b> è qualcosa o qualcuno dotato di <b>comportamento</b>. Può essere una persona, un altro sistema software, un sensore. Anche il sistema in costruzione (System under Discussion, SuD) è considerato un attore <i>quando ricorre ai servizi di altri sistemi</i>.</p>
+  </div>
+  <div class="box key"><div class="t">⭐ 3 (+1) tipi di attore</div>
     <ul>
-      <li><b>4 attori</b> (<span class="cz">PFSF</span>): <span class="cz">Primario · Fuori scena · Secondario · Fattore esterno</span>.</li>
-      <li><b>3 formati</b>: alto livello · essenziale · <span class="cz">esteso</span> (con pre/post-condizioni e alternative).</li>
-      <li><b>3 test</b> (<span class="cz">CED</span>): <span class="cz">Capo</span> · <span class="cz">Elemento</span> atomico · <span class="cz">Discreto</span>.</li>
+      <li><b>Attore primario</b>: ha obiettivi che vengono soddisfatti dall'uso dei servizi del SuD. Inizia il caso d'uso.</li>
+      <li><b>Attore di supporto</b>: fornisce un servizio al SuD (es. servizio di autorizzazione pagamento, database esterno).</li>
+      <li><b>Attore fuori scena</b>: ha un <b>interesse</b> nel comportamento del caso d'uso (stakeholder) ma <b>non è un attore</b> diretto. Es. il fisco, l'azienda proprietaria.</li>
+      <li>Spesso <b>attore primario e attore finale coincidono</b>, perché chi usa direttamente il sistema raggiunge anche i propri obiettivi.</li>
+    </ul>
+  </div>
+
+  <h3>I 3 formati di caso d'uso</h3>
+  <div class="box key"><div class="t">⭐ Dal più sintetico al più dettagliato</div>
+    <table style="font-size:.9rem">
+      <tr><th>Formato</th><th>Cosa contiene</th><th>Quando si usa</th></tr>
+      <tr><td><b>Breve</b></td><td>Riepilogo conciso dello <i>scenario principale di successo</i>, in 1-2 frasi.</td><td>Fase di Ideazione, sondaggio iniziale.</td></tr>
+      <tr><td><b>Informale</b></td><td>Più paragrafi in linguaggio naturale, scenario principale + flussi alternativi.</td><td>Quando si vuole più dettaglio senza struttura formale.</td></tr>
+      <tr><td><b>Dettagliato (esteso)</b></td><td>Tutti i passi e le variazioni nel dettaglio, con pre-condizioni, garanzie di successo, scenari alternativi, requisiti speciali.</td><td>UC critici per l'architettura, in Elaborazione. Il 10-20% dei casi d'uso va scritto in dettaglio.</td></tr>
+    </table>
+  </div>
+  <div class="box warn"><div class="t">⚠️ Errore tipico</div>
+    "Nessun caso d'uso è stato scritto in dettaglio". Non significa che TUTTI vadano in dettaglio: bastano il <b>10-20%</b>, quelli architettonicamente significativi.
+  </div>
+
+  <h3>Template del caso d'uso dettagliato (le 12 sezioni)</h3>
+  <div class="box key"><div class="t">⭐ Struttura del UC esteso</div>
+    <ol style="font-size:.92rem">
+      <li><b>Nome del Caso d'Uso</b> — inizia con un <b>verbo</b> (es. "Vendi prodotti", "Autentica utente")</li>
+      <li><b>Portata (scope)</b> — il sistema che si sta progettando (es. POS, applicazione web)</li>
+      <li><b>Livello</b> — "Obiettivo utente" (alto) o "Sottofunzione" (basso, es. autenticazione)</li>
+      <li><b>Attore primario</b> — chi inizia il caso d'uso</li>
+      <li><b>Parti interessate e interessi</b> — a chi interessa e cosa desidera ottenere</li>
+      <li><b>Pre-condizioni</b> — cosa deve essere vero <i>all'inizio</i> del caso d'uso</li>
+      <li><b>Garanzia di successo (post-condizioni)</b> — cosa deve essere vero <i>se il caso d'uso si completa</i></li>
+      <li><b>Scenario principale di successo</b> — sequenza comune di passi, di successo, incondizionato</li>
+      <li><b>Estensioni</b> — scenari alternativi, di successo e di fallimento</li>
+      <li><b>Requisiti speciali</b> — requisiti non funzionali correlati (performance, sicurezza…)</li>
+      <li><b>Elenco variabili tecnologiche e dei dati</b> — varianti nei metodi di I/O e nei formati</li>
+      <li><b>Frequenza di ripetizione</b> — quanto spesso si esegue (informativo)</li>
+    </ol>
+  </div>
+
+  <h3>Stile essenziale vs concreto</h3>
+  <div class="box expl"><div class="t">📖 Come si scrive un UC</div>
+    <p>Bisogna scrivere i casi d'uso in <b>stile essenziale</b>: ignorare l'interfaccia utente e concentrarsi sullo <i>scopo dell'attore</i>.</p>
+    <table style="font-size:.9rem">
+      <tr><th>Stile essenziale ✅</th><th>Stile concreto ❌</th></tr>
+      <tr><td>"L'amministratore si identifica, il sistema autentica l'identità"</td><td>"L'amministratore immette ID e password nella finestra di dialogo (fig. 3), il sistema autentica, il sistema visualizza la finestra 'edit users' (fig. 4)"</td></tr>
+    </table>
+    <p style="margin-top:6px"><b>Soggetto + verbo chiari</b>: "il sistema autentica l'amministratore", non "l'amministratore viene autenticato".</p>
+  </div>
+  <div class="box key"><div class="t">⭐ Stile "scatola nera"</div>
+    <p>I casi d'uso si scrivono a <b>scatola nera</b>: specificano <i>cosa</i> deve dare il sistema (comportamento), <b>non come</b> lo farà (progettazione).</p>
+    <table style="font-size:.9rem">
+      <tr><th>Scatola nera ✅</th><th>NON scatola nera ❌</th></tr>
+      <tr><td>"Il sistema registra la vendita"</td><td>"Il sistema memorizza la vendita in un database / esegue un'istruzione SQL INSERT"</td></tr>
+    </table>
+  </div>
+
+  <h3>Come trovare i casi d'uso (procedura)</h3>
+  <div class="box key"><div class="t">⭐ I 4 passi</div>
+    <ol>
+      <li><b>Scegliere il confine di sistema</b> (system boundary). Cosa è dentro? Cosa è fuori? Es. nel POS, il servizio di autorizzazione pagamento è <i>fuori</i> dai confini.</li>
+      <li><b>Identificare gli attori primari</b> (chi ha obiettivi che il SuD soddisfa).</li>
+      <li><b>Identificare gli obiettivi</b> per ogni attore primario → elenco attori-obiettivi.</li>
+      <li><b>Definire i casi d'uso</b> che soddisfano questi obiettivi (uno per obiettivo utente).</li>
+    </ol>
+    <p style="margin-top:8px;font-style:italic">Approccio alternativo: <b>analisi degli eventi</b> — quali eventi sollecitano il sistema? Chi li genera? Perché?</p>
+  </div>
+  <div class="box mnem"><div class="t">🧠 Naming convention</div>
+    Il <b>nome</b> del caso d'uso deve essere <b>simile all'obiettivo dell'utente</b>. Inizia con un verbo: "Vendi prodotti", "Gestisci prenotazioni", "Autentica operatore".
+  </div>
+
+  <h3>I 3 test per riconoscere un caso d'uso valido (CED)</h3>
+  <div class="box key"><div class="t">⭐ Test del Capo · EBP · Dimensione</div>
+    <ul>
+      <li><b>Test del Capo</b>: se il capo chiede "Cos'hai fatto tutto il giorno?" e tu rispondi col nome del caso d'uso, è felice? Se non lo è, probabilmente il livello è troppo basso. <i>Login</i> ❌ → <i>Vendi prodotti</i> ✅.</li>
+      <li><b>Test EBP</b> (Elementary Business Process): un caso d'uso deve essere un'<b>attività eseguibile in una sola sessione di lavoro</b>, in risposta a un <b>evento business</b>, che produce un <b>valore osservabile e misurabile</b>, e lascia il sistema in <b>stato consistente</b>.</li>
+      <li><b>Test della Dimensione</b> (o atomicità): il caso d'uso ha tra i <b>5 e 10 passi</b>. Troppo pochi → probabilmente è una sotto-funzione. Troppi → probabilmente sono più casi d'uso.</li>
     </ul>
   </div>
   <div class="note-cit">
-    <b>Test del capo</b>: il capo chiede "Che fai tutto il giorno?" e tu rispondi "il login!". Se non supera questo test, probabilmente il livello di dettaglio è troppo basso (ma vale la pena tenerlo se è comunque utile). <b>Test EBP (Elementary Business Process)</b>: l'attività deve essere eseguibile in una sola sessione di lavoro, in risposta a un evento business, produrre un valore osservabile e misurabile, e lasciare il sistema in stato consistente.
-    <span class="who">Appunti di Blue (autorizzata) — test del capo + EBP</span>
+    Riassunto del prof: piuttosto che chiederci "cos'è un caso d'uso valido", interroghiamoci su <i>quale livello di attenzione</i> sia utile per esprimere casi d'uso per l'analisi dei requisiti applicativi. Regola generale: un caso d'uso rispetta i 3 test.
+    <span class="who">Appunti di Sofia (autorizzata) — i 3 test sui casi d'uso</span>
   </div>
   <div class="quizhead">Auto-interrogazione</div>
   <div class="quiz">
@@ -1200,24 +1282,148 @@
 
   <!-- ===== 03 DOMINIO ===== -->
   <h2 class="sec" id="dom"><span class="chip">03</span>Modello di dominio</h2>
-  <p class="lead">Fotografia del mondo reale del problema tradotta in classi.</p>
+  <p class="lead">Il modello più importante dell'<b>Analisi OO</b>: rappresentazione visuale delle classi concettuali del mondo reale del problema. È un <i>dizionario visuale</i>, NON una raffigurazione di oggetti software.</p>
 
-  <div class="box expl"><div class="t">📖 In parole semplici</div>
-    <p>Mappa concettuale del business (Cliente, Ordine, Prodotto e come si collegano). È fatto in <b>analisi</b>, non progettazione: niente metodi, niente classi tecniche.</p>
-  </div>
-  <div class="box key"><div class="t">⭐ Da ricordare</div>
+  <h3>Cos'è un modello di dominio</h3>
+  <div class="box expl"><div class="t">📖 Definizione</div>
+    <p>Un <b>modello di dominio</b> è una <b>rappresentazione visuale</b> di <b>classi concettuali</b> o di oggetti del mondo reale in un dominio di interesse. Applicando UML, viene realizzato come uno o più <b>diagrammi delle classi UML</b> in cui <i>NON</i> sono definite operazioni e in cui sono mostrate:</p>
     <ul>
-      <li><b>SÌ</b>: <span class="cz">classi del dominio</span> · <span class="cz">attributi semplici</span> · <span class="cz">associazioni con molteplicità</span>.</li>
-      <li><b>NO</b>: <span class="cz">metodi</span> · <span class="cz">tipi primitivi</span> · <span class="cz">classi software/tecniche</span>.</li>
-      <li>Aggregazione (◇) vs Composizione (◆): <span class="cz">parte vive senza</span> vs <span class="cz">parte muore col tutto</span>.</li>
+      <li><b>Classi concettuali</b> o oggetti di dominio</li>
+      <li><b>Associazioni</b> tra classi concettuali</li>
+      <li><b>Attributi</b> delle classi concettuali</li>
+    </ul>
+    <p>Nel modello di dominio i tipi degli attributi <b>vengono omessi</b> o usati a alto livello (es. tipo <code>soldi</code>, <code>data</code>).</p>
+  </div>
+  <div class="box warn"><div class="t">⚠️ NON è un modello del software</div>
+    Il modello di dominio <b>NON mostra</b> elementi/classi software, metodi o responsabilità. È un <i>dizionario visuale</i> del business, non un diagramma di progetto.
+  </div>
+  <div class="box key"><div class="t">⭐ A cosa serve</div>
+    <ul>
+      <li>Comprendere il <b>dominio del sistema</b> da realizzare e il suo <b>vocabolario</b> (analisi).</li>
+      <li>Essere <b>fonte di ispirazione</b> per lo strato del dominio nel progetto OO.</li>
     </ul>
   </div>
-  <div class="box mnem"><div class="t">🧠 Mnemonico</div>
-    <b>Composizione ◆ = Crea</b>: la parte muore col tutto → suggerisce il GRASP <b>Creator</b>.
+
+  <h3>Cos'è una classe concettuale</h3>
+  <div class="box expl"><div class="t">📖 Definizione</div>
+    <p>Una <b>classe concettuale</b> è un'<b>idea, una cosa o un oggetto</b> del mondo reale. Rappresenta un concetto e un insieme di oggetti che possiedono <b>caratteristiche strutturali</b> (attributi e associazioni) e <b>caratteristiche comportamentali</b> uniformi.</p>
+    <p>Una classe concettuale ha 3 aspetti che è utile distinguere:</p>
+    <ul>
+      <li><b>Simbolo</b> (es. il rettangolo UML con il nome)</li>
+      <li><b>Intensione</b> (la definizione del concetto: cos'è un "Cliente"?)</li>
+      <li><b>Estensione</b> (l'insieme degli oggetti che corrispondono)</li>
+    </ul>
+  </div>
+  <div class="box mnem"><div class="t">🧠 Intensionale vs estensionale</div>
+    A livello <b>intensionale</b> si parla di <i>classi e associazioni</i>. A livello <b>estensionale</b> di <i>oggetti e link</i>. L'oggetto è istanza della classe; il link è istanza dell'associazione.
+  </div>
+
+  <h3>I 3 passi per costruire il modello di dominio</h3>
+  <div class="box key"><div class="t">⭐ Procedura</div>
+    <ol>
+      <li><b>Trovare le classi concettuali</b></li>
+      <li><b>Disegnarle come classi</b> in un diagramma UML</li>
+      <li><b>Aggiungere associazioni e attributi</b></li>
+    </ol>
+  </div>
+
+  <h3>3 strategie per trovare le classi concettuali</h3>
+  <div class="box key"><div class="t">⭐ Strategie</div>
+    <ol>
+      <li><b>Riusare o modificare modelli esistenti</b> (di domini simili già modellati).</li>
+      <li><b>Utilizzare un elenco di categorie comuni</b> di classi concettuali (vedi tabella sotto).</li>
+      <li><b>Identificare nomi e locuzioni nominali</b> nei <i>casi d'uso</i> già scritti — sono candidati a diventare classi concettuali.</li>
+    </ol>
+  </div>
+
+  <h3>Categorie comuni di classi concettuali</h3>
+  <div class="box key"><div class="t">⭐ Catalogo di linee guida</div>
+    <table style="font-size:.88rem">
+      <tr><th>Categoria</th><th>Esempi</th></tr>
+      <tr><td><b>Transazioni commerciali</b> (sono critiche, riguardano denaro: <i>inizia da qui</i>)</td><td>Sale, Payment, Reservation</td></tr>
+      <tr><td><b>Righe/elementi di transazioni</b> (spesso composti)</td><td>SalesLineItem</td></tr>
+      <tr><td><b>Prodotti o servizi</b> correlati a una transazione</td><td>Item, Flight, Seat</td></tr>
+      <tr><td><b>Dove viene registrata la transazione</b></td><td>Register, FlightManifest</td></tr>
+      <tr><td><b>Ruoli di persone/organizzazioni</b> correlati alle transazioni (attori dei casi d'uso)</td><td>Cashier, Customer, Passenger</td></tr>
+      <tr><td><b>Luogo della transazione</b>; luogo del servizio</td><td>Store, Airport, Plane</td></tr>
+      <tr><td><b>Eventi significativi</b> (spesso con ora/luogo da ricordare)</td><td>Sale, Payment, Flight</td></tr>
+      <tr><td><b>Oggetti fisici</b> (importanti per software di controllo/simulazioni)</td><td>Item, Register, Board, Airplane</td></tr>
+      <tr><td><b>Descrizione di oggetti</b></td><td>ProductDescription</td></tr>
+      <tr><td><b>Cataloghi</b></td><td>ProductCatalog</td></tr>
+      <tr><td><b>Contenitori</b> di oggetti (fisici o di informazioni)</td><td>Store, Bin, Airplane</td></tr>
+      <tr><td><b>Oggetti in un contenitore</b></td><td>Item, Square, Passenger</td></tr>
+      <tr><td><b>Altri sistemi</b> che collaborano</td><td>CreditAuthorizationSystem</td></tr>
+      <tr><td><b>Registrazioni</b> finanziarie, di lavoro, contrattuali, legali</td><td>Receipt, MaintenanceLog</td></tr>
+      <tr><td><b>Strumenti finanziari</b></td><td>Cash, Check</td></tr>
+      <tr><td><b>Piani, manuali, documenti</b> di riferimento</td><td>DailyPriceChangeList, RepairSchedule</td></tr>
+    </table>
+  </div>
+
+  <h3>Lo spirito del cartografo</h3>
+  <div class="box expl"><div class="t">📖 Crea il modello come un cartografo</div>
+    <ol>
+      <li><b>Usa i nomi esistenti sul territorio</b> (termini del dominio). Es. modello per prenotazioni aeree: il cliente lo chiami <code>Passeggero</code>, non <code>Utente</code>.</li>
+      <li><b>Escludi caratteristiche irrilevanti</b> o fuori della portata. Considera solo quello relativo all'<b>iterazione corrente</b>. Es. nel Monopoly iterazione 1, niente carte → niente classe <code>Card</code>.</li>
+      <li><b>Non aggiungere cose che non ci sono</b>. Resta fedele al dominio reale.</li>
+    </ol>
+  </div>
+  <div class="box warn"><div class="t">⚠️ Errori comuni</div>
+    <ul>
+      <li>Rappresentare qualcosa come <b>attributo</b> quando dovrebbe essere una <b>classe concettuale</b> con associazione. Esempio: <code>cliente</code> come stringa dentro <code>Sale</code> → sbagliato, è una classe <code>Cliente</code> con associazione <code>Sale → Cliente</code>.</li>
+      <li>Inserire <b>classi software/tecniche</b> (es. <code>Database</code>, <code>List</code>, <code>Manager</code>): non sono di dominio.</li>
+      <li>Mettere <b>metodi</b>: il dominio non li ha.</li>
+    </ul>
+    <p style="margin-top:6px;font-style:italic">Per l'iterazione 1 conviene <b>preferire classe + associazione</b> anche nel dubbio: è facile semplificare poi.</p>
+  </div>
+
+  <h3>Classe descrizione</h3>
+  <div class="box expl"><div class="t">📖 Quando aggiungerla</div>
+    <p>Una <b>classe descrizione</b> contiene informazioni che descrivono <i>qualcos'altro</i>. Esempio classico:</p>
+    <ul>
+      <li><code>Item</code>: un oggetto fisico del negozio, magari con numero di serie</li>
+      <li><code>ProductSpecification</code>: la <b>specifica</b> del prodotto (descrizione, prezzo unitario) comune a tutti gli <code>Item</code> di quel tipo</li>
+    </ul>
+    <p>Aggiungere classi descrizione serve a <b>ridurre ridondanze</b> e duplicazioni di informazioni, evitando errori dovuti a info ripetute.</p>
+  </div>
+
+  <h3>Associazioni</h3>
+  <div class="box expl"><div class="t">📖 Definizione</div>
+    <p>In UML, un'<b>associazione</b> è la <b>relazione</b> tra due o più classificatori che comporta <b>connessioni</b> tra le rispettive <b>istanze</b>. È una relazione tra classi (più precisamente, tra le istanze di queste classi).</p>
+  </div>
+  <div class="box key"><div class="t">⭐ Linee guida</div>
+    <ul>
+      <li>Mostrare solo le associazioni che implicano la <b>conoscenza di una relazione che deve essere memorizzata</b> per una certa <b>durata di tempo</b> (millisecondi o anni).</li>
+      <li><b>Evitare di inserire troppe associazioni</b>: il modello diventa illeggibile.</li>
+      <li>Usare l'<b>elenco di associazioni comuni</b> come check-list.</li>
+    </ul>
+  </div>
+  <div class="box key"><div class="t">⭐ Categorie di associazioni comuni</div>
+    <table style="font-size:.88rem">
+      <tr><th>Categoria</th><th>Esempi</th></tr>
+      <tr><td>A è una transazione correlata a un'altra transazione B</td><td>CashPayment-Sale, Cancellation-Reservation</td></tr>
+      <tr><td>A è un elemento/riga di una transazione B</td><td>SalesLineItem-Sale</td></tr>
+      <tr><td>A è un prodotto/servizio per una transazione B</td><td>Item-SalesLineItem, Flight-Reservation</td></tr>
+      <tr><td>A è un ruolo correlato a una transazione B</td><td>Customer-Sale, Passenger-Flight</td></tr>
+      <tr><td>A è una parte fisica/logica di B</td><td>Wing-Plane, SalesLineItem-Sale</td></tr>
+      <tr><td>A è contenuto fisicamente/logicamente in B</td><td>Item-Store, Square-Board</td></tr>
+      <tr><td>A è una descrizione di B</td><td>ProductDescription-Item</td></tr>
+      <tr><td>A è un'organizzazione/sistema esterno noto a B</td><td>CreditAuthorizationSystem-Store</td></tr>
+    </table>
+  </div>
+
+  <h3>Attributi e associazioni: quando uno, quando l'altro</h3>
+  <div class="box key"><div class="t">⭐ Regola pratica</div>
+    <ul>
+      <li><b>Attributo</b> se il dato è un <i>tipo semplice</i> (numero, stringa breve, data, soldi) che non ha una propria vita autonoma.</li>
+      <li><b>Classe + associazione</b> se il dato è un <i>concetto del dominio</i> con identità, attributi propri, possibili associazioni a sua volta.</li>
+    </ul>
+  </div>
+  <div class="box mnem"><div class="t">🧠 Composizione vs Aggregazione</div>
+    <b>◆ Composizione</b> (rombo pieno): la parte vive e muore col tutto → suggerisce GRASP <b>Creator</b>. <b>◇ Aggregazione</b> (rombo vuoto): la parte ha vita propria, il contenitore la "usa".
   </div>
   <div class="note-cit">
-    Errore comune nel modello di dominio: rappresentare qualcosa come attributo quando dovrebbe essere una classe concettuale (con relativa associazione). Esempio: <code>cliente</code> dentro <code>Sale</code> come stringa è sbagliato — è la classe <code>Cliente</code> con associazione <code>Sale → Cliente</code>. Per l'iterazione 1, conviene sempre preferire classe + associazione.
-    <span class="who">Appunti di Sofia (autorizzata) — errore attributo vs classe</span>
+    Definizione del libro: "Un modello di dominio NON è una raffigurazione di oggetti software, piuttosto è un <b>dizionario visuale</b> dei concetti del dominio". Il modello di dominio è il modello più importante dell'OOA.
+    <span class="who">Appunti di Sofia (autorizzata) — definizione del modello di dominio</span>
   </div>
   <div class="quizhead">Auto-interrogazione</div>
   <div class="quiz">
