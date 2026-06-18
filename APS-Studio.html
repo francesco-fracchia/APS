@@ -988,25 +988,130 @@
   <hr>
 
   <h2 class="sec" id="up"><span class="chip">01</span>UP — Unified Process</h2>
-  <p class="lead">Processo iterativo, incrementale, evolutivo per software OO.</p>
+  <p class="lead">Il processo <b>iterativo, evolutivo, adattivo</b> con time-boxing breve, pilotato dai casi d'uso, centrato sull'architettura. Diffuso e con pratiche prese da altri metodi iterativi (XP, Scrum).</p>
 
-  <div class="box expl"><div class="t">📖 In parole semplici</div>
-    <p><b>UP</b> non è il modello a cascata (analisi→progetto→codice tutto una volta). UP è <b>iterativo</b>: si fa tutto, più volte, in piccole iterazioni di 2-6 settimane, ognuna delle quali produce una <b>release</b> funzionante.</p>
+  <h3>Cos'è UP</h3>
+  <div class="box expl"><div class="t">📖 Definizione</div>
+    <p>Il <b>Processo Unificato (UP)</b> è un <b>processo software iterativo, evolutivo e adattivo</b>, con <b>time-boxing breve</b>. È <b>diffuso</b> nell'industria e include pratiche tratte da altri metodi iterativi (Extreme Programming, Scrum).</p>
+    <p>NON è cascata (analisi→progetto→codice tutto una volta). UP <b>fa tutto, più volte</b>, in piccole iterazioni di 2-6 settimane, ognuna delle quali produce una <b>release</b>: software <i>eseguibile, testato e integrato</i>, anche se parziale.</p>
   </div>
-  <div class="box key"><div class="t">⭐ Da ricordare</div>
+  <div class="box key"><div class="t">⭐ Le 3 caratteristiche fondamentali (CAI)</div>
     <ul>
-      <li><b>4 fasi</b> (<span class="cz">IECT</span>): <span class="cz">Ideazione · Elaborazione · Costruzione · Transizione</span>.</li>
-      <li><b>3 caratteristiche</b> (<span class="cz">CAI</span>): pilotato dai <span class="cz">Casi d'uso</span> · centrato sull'<span class="cz">Architettura</span> · <span class="cz">Iterativo</span>.</li>
-      <li>Ogni iterazione fa <b>tutte</b> le discipline, cambia solo l'<span class="cz">enfasi</span>.</li>
+      <li><b>Pilotato dai Casi d'uso</b>: i requisiti guidano il lavoro.</li>
+      <li><b>Centrato sull'Architettura</b>: le prime iterazioni si concentrano sulla costruzione, test e stabilizzazione dell'architettura.</li>
+      <li><b>Iterativo</b> (e incrementale, evolutivo): tante mini-cascate timeboxed.</li>
     </ul>
   </div>
-  <div class="box warn"><div class="t">⚠️ Trappola d'esame</div>
-    NON dire "Ideazione = requisiti, Costruzione = implementazione". Ogni fase fa tutte le discipline.
+  <div class="box key"><div class="t">⭐ Pratiche fondamentali UP</div>
+    <ul>
+      <li>Affrontare durante le <b>prime iterazioni</b> i <b>rischi maggiori</b> (architetturali, tecnici, di requisiti).</li>
+      <li>Sviluppare in <b>iterazioni brevi e timeboxed</b> (2-6 settimane).</li>
+      <li>Pianificare il lavoro adattivamente, <b>guidati dai casi d'uso</b>.</li>
+      <li><b>Test continuo</b> e <b>integrazione continua</b>.</li>
+      <li>Coinvolgere il <b>cliente</b> a ogni release.</li>
+    </ul>
+  </div>
+
+  <h3>Iterazione UP — la cellula del processo</h3>
+  <div class="box expl"><div class="t">📖 Anatomia di un'iterazione</div>
+    <p>Un'iterazione UP dura <b>2-6 settimane</b>, è <b>time-boxed</b>: una volta fissata, la durata <b>non può cambiare</b>. È possibile cambiare il <i>carico di lavoro</i> per iterazione, mai la <i>lunghezza</i>.</p>
+    <p>Ogni iterazione comporta: scelta di un <b>sottoinsieme di requisiti</b>, progettazione, implementazione, testing. Comprende quindi <b>tutte le attività</b> (analisi, design, codice, test) ma con <i>enfasi diversa</i> in base alla fase.</p>
+    <p>Il risultato di ogni iterazione è un <b>sistema eseguibile, testato e integrato</b> anche se parziale. L'eseguibile permette al cliente di dare feedback.</p>
+  </div>
+  <div class="box key"><div class="t">⭐ Regole sull'iterazione</div>
+    <ul>
+      <li>I <b>requisiti vengono fissati</b> all'inizio (durante la pianificazione iterativa) e <b>bloccati</b> per tutta la durata.</li>
+      <li>I <b>committenti</b> possono interagire col team solo al <b>termine</b> di un'iterazione, non durante.</li>
+      <li>A <b>metà iterazione</b> il team può decidere di <b>cambiare il piano</b> se valuta di non riuscire a raggiungere gli obiettivi nei tempi.</li>
+      <li>Ciò che si apprende in un'iterazione si usa per <b>migliorare il processo</b> nelle iterazioni successive.</li>
+    </ul>
+  </div>
+  <div class="box mnem"><div class="t">🧠 Mnemonico</div>
+    <b>Iterazione = mini-progetto</b>. Pianifico → faccio → consegno → riparto. Time-box rigido sul tempo, flessibile sullo scope.
+  </div>
+
+  <h3>Pianificazione iterativa e workshop dei requisiti</h3>
+  <div class="box expl"><div class="t">📖 Come si pianifica</div>
+    <p>UP <b>non pianifica</b> in dettaglio l'intero progetto all'inizio. La pianificazione è <b>guidata dai rischi</b> e adattiva, iterazione per iterazione.</p>
+    <p><b>Prima di ogni iterazione</b> si tiene una <b>riunione di pianificazione</b> in cui si sceglie un piccolo set di requisiti su cui lavorare. <b>Prima dell'iterazione 1</b> si tiene anche il primo <b>workshop dei requisiti</b> timeboxed (es. 2 giorni). I workshop si ripetono <b>più volte</b>, soprattutto verso la fine di ogni iterazione, raffinando i requisiti sulla base dei feedback.</p>
+  </div>
+  <div class="box mnem"><div class="t">🧠 Cascata vs UP sui workshop</div>
+    <p>Cascata = 1 workshop iniziale gigante → si scopre tardi che si è capito male. UP = workshop ripetuti corti → fraintendimenti corretti SUBITO.</p>
+  </div>
+
+  <h3>Analisi del rischio — UP è "risk-driven"</h3>
+  <div class="box expl"><div class="t">📖 Affrontare i rischi maggiori prima</div>
+    <p>Una caratteristica distintiva di UP è <b>affrontare prima i rischi maggiori</b>. Si tiene una <b>lista dei rischi</b> aggiornata e si attaccano i più alti per primi (prime iterazioni di Elaborazione).</p>
+  </div>
+  <div class="box key"><div class="t">⭐ Tipi di rischio</div>
+    <ul>
+      <li><b>Rischio tecnico</b>: "funzionerà X?" → affrontato con <b>spike</b> (prototipi rapidi) e prime iterazioni di Elaborazione</li>
+      <li><b>Rischio sui requisiti</b>: "abbiamo capito bene?" → workshop + release frequenti al cliente</li>
+      <li><b>Rischio di pianificazione</b>: "ce la facciamo nei tempi?" → time-box + scope flessibile</li>
+      <li><b>Rischio di risorse</b>: "avremo il team giusto?" → gestione del progetto</li>
+    </ul>
+    <p style="margin-top:8px"><b>Conseguenza pratica</b>: la prima iterazione di Elaborazione attacca il rischio architetturale più alto, NON il caso d'uso più "facile".</p>
+  </div>
+
+  <h3>Le 4 fasi UP (IECT)</h3>
+  <div class="box warn"><div class="t">⚠️ Attenzione: fase ≠ disciplina</div>
+    Le fasi sono <b>tempo</b> (in ordine: 4 fasi). Le discipline sono <b>tipi di lavoro</b>. Una stessa iterazione fa <b>parecchie discipline insieme</b>, con enfasi diversa. NON dire "Ideazione = requisiti, Costruzione = implementazione": <i>ogni fase fa tutte le discipline</i>.
+  </div>
+  <div class="box key"><div class="t">⭐ Le 4 fasi in ordine</div>
+    <table style="font-size:.9rem">
+      <tr><th>Fase</th><th>Focus</th><th>Output principale</th></tr>
+      <tr><td><b>Ideazione</b></td><td>Visione, fattibilità, scope</td><td>Documento di visione, glossario, UC essenziali, lista rischi iniziale</td></tr>
+      <tr><td><b>Elaborazione</b></td><td>Architettura stabile, rischi mitigati</td><td>Architettura eseguibile (skeleton), UC raffinati, modello di dominio, contratti, sequence/communication</td></tr>
+      <tr><td><b>Costruzione</b></td><td>Funzionalità complete, beta-ready</td><td>Software pronto per beta, documentazione utente preliminare</td></tr>
+      <tr><td><b>Transizione</b></td><td>Deploy e accettazione cliente</td><td>Prodotto in produzione, manuale finale, training</td></tr>
+    </table>
+    <p style="margin-top:8px;font-style:italic">In questo corso ci concentriamo principalmente sulle fasi di <b>Ideazione</b> ed <b>Elaborazione</b> con le relative discipline ed elaborati.</p>
+  </div>
+
+  <h3>Le 4 milestone UP</h3>
+  <div class="box key"><div class="t">⭐ Una per fine fase</div>
+    <table style="font-size:.9rem">
+      <tr><th>Fine fase</th><th>Milestone</th><th>Cosa si verifica</th></tr>
+      <tr><td>Ideazione</td><td>LO — Lifecycle Objectives</td><td>Il progetto è fattibile? Vale la pena?</td></tr>
+      <tr><td>Elaborazione</td><td>LA — Lifecycle Architecture</td><td>L'architettura è stabile? I rischi maggiori sono mitigati?</td></tr>
+      <tr><td>Costruzione</td><td>IOC — Initial Operational Capability</td><td>Il software è pronto per la beta?</td></tr>
+      <tr><td>Transizione</td><td>PR — Product Release</td><td>Il prodotto è in produzione dai clienti finali</td></tr>
+    </table>
+  </div>
+
+  <h3>Cattive pratiche di UP</h3>
+  <div class="box warn"><div class="t">⚠️ Cosa NON è UP (anche se sembra)</div>
+    <ul>
+      <li>Tentare di <b>definire tutti i requisiti all'inizio</b> (cascata mascherata da UP).</li>
+      <li><b>Pianificare in dettaglio l'intero progetto</b> sin dall'inizio.</li>
+      <li>Pensare che UP consista nel <b>produrre più elaborati possibile</b>.</li>
+      <li>Pensare che <b>ogni fase abbia una sola attività</b> (e/o viceversa).</li>
+      <li>Considerare le iterazioni iniziali come <b>esplorative usa-e-getta</b> invece che produttive.</li>
+      <li><b>Comprimere tutto il design</b> prima del codice.</li>
+    </ul>
   </div>
   <div class="note-cit">
-    Le cattive pratiche di UP sono: tentare di definire tutti i requisiti all'inizio (cascata mascherata da UP), pianificare in dettaglio l'intero progetto sin dall'inizio, considerare le iterazioni iniziali come "esplorative usa-e-getta" invece che produttive, comprimere tutto il design prima del codice.
-    <span class="who">Appunti di Sofia (autorizzata) — cattive pratiche UP</span>
+    Riassunto: in UP <b>quasi tutto è opzionale</b>. Si scelgono gli elaborati e le pratiche utili al progetto, si scartano le altre. La rigidità è anti-UP.
+    <span class="who">Appunti di Blue (autorizzata) — UP è adattivo</span>
   </div>
+
+  <h3>UP agile</h3>
+  <div class="box expl"><div class="t">📖 UP nello spirito agile</div>
+    <p>Si può adottare UP <b>con spirito agile</b>. Oltre alle solite pratiche UP, si aggiungono:</p>
+    <ul>
+      <li>Un <b>piccolo insieme di attività ed elaborati</b> (solo quelli davvero utili).</li>
+      <li>Team piccoli (≤ 7 persone) responsabili del software.</li>
+      <li>Forte enfasi su <b>cliente coinvolto</b>, <b>feedback frequenti</b>, <b>working software</b>.</li>
+      <li>Documentazione minima, comunicazione faccia-a-faccia.</li>
+    </ul>
+  </div>
+
+  <h3>Diagramma degli elaborati UP</h3>
+  <div class="box expl"><div class="t">📖 Cos'è</div>
+    <p>Il diagramma degli elaborati di UP mostra <i>quali artefatti</i> vengono prodotti, in quale fase vengono <b>iniziati</b> (giallo) e in quale fase vengono <b>raffinati</b> (verde). Non sono tutti obbligatori: UP è adattivo. Sono <i>opzionali</i> e si scelgono a seconda del progetto.</p>
+    <p>Tipici elaborati: visione, glossario, modello di dominio, casi d'uso (essenziali → estesi), contratti delle operazioni, SSD, sequence diagram, modello di progetto delle classi, architettura.</p>
+  </div>
+
   <h3>Le 5 discipline UP (dimensioni del lavoro, ortogonali alle fasi)</h3>
   <div class="box expl"><div class="t">📖 Discipline ≠ Fasi</div>
     <p>Le <b>4 fasi</b> sono il tempo (IECT, in ordine). Le <b>discipline</b> sono il tipo di lavoro. Una stessa iterazione ne fa <b>parecchie insieme</b>, dosandole. Sono come pentole su un fornello: tutte accese in ogni iterazione, alcune più alte di altre.</p>
@@ -2789,6 +2894,14 @@ const cards = [
 
 // ===== UP =====
 {t:"UP", q:"Cosa significa UP?", a:"Unified Process: processo iterativo, incrementale, evolutivo per software OO.", m:"🇺 \"Unified\" perché unifica le best practices in un solo framework. È il \"buffet\" dei processi: serviti, ma con criterio."},
+{t:"UP", q:"Definizione completa di UP.", a:"Processo software iterativo, evolutivo e adattivo, con time-boxing breve. Diffuso, include pratiche tratte da altri metodi iterativi (XP, Scrum). Pilotato dai casi d'uso e centrato sull'architettura.", m:"🔁 ITERATIVO + 🌱 EVOLUTIVO + 🎯 ADATTIVO + ⏱️ TIME-BOXED. 4 parole chiave da pronunciare all'orale."},
+{t:"UP", q:"Risultato di un'iterazione UP.", a:"Un sistema eseguibile, testato e integrato (anche se parziale). Permette al cliente di dare feedback.", m:"📦 Ogni iterazione = MINI-PRODOTTO consegnabile, non documentazione. Working software > documenti."},
+{t:"UP", q:"Time-box dell'iterazione UP — regola chiave.", a:"La durata (2-6 settimane) NON può cambiare. Si può cambiare il carico di lavoro per iterazione, mai la lunghezza.", m:"⏱️ TIME-BOX RIGIDO sul tempo, FLESSIBILE sullo scope. Se non finisci tutto, tagli features, non tempo."},
+{t:"UP", q:"Quando si possono cambiare i requisiti durante un'iterazione?", a:"Mai. I requisiti sono fissati durante la pianificazione e bloccati per tutta la durata. I committenti interagiscono solo a fine iterazione.", m:"🔒 REQUISITI CONGELATI per la durata. Il team lavora senza interruzioni. Cambiamenti = prossima iterazione."},
+{t:"UP", q:"Workshop dei requisiti — quando si tengono?", a:"Il primo è prima dell'iterazione 1. Altri si tengono verso la fine di ogni iterazione, raffinando sulla base dei feedback.", m:"🤝 Workshop = sessione intensa 1-3 giorni cliente+analisti+dev. UP ne fa MOLTI ripetuti, non uno solo iniziale."},
+{t:"UP", q:"Cattive pratiche di UP (5).", a:"1) Definire tutti i requisiti all'inizio (cascata); 2) Pianificare in dettaglio tutto il progetto; 3) Produrre più elaborati possibile; 4) Pensare che ogni fase abbia una sola attività; 5) Comprimere il design prima del codice.", m:"❌ Anti-UP = rigidità + esaustività + cascata mascherata. UP è ADATTIVO, quasi tutto è opzionale."},
+{t:"UP", q:"UP agile cosa aggiunge?", a:"Piccolo insieme di attività ed elaborati, team ≤7, cliente molto coinvolto, feedback frequenti, working software, documentazione minima.", m:"🪶 UP agile = UP LEGGERO. Stessi principi, meno elaborati, più comunicazione."},
+{t:"UP", q:"Quali fasi UP trattiamo nel corso?", a:"Principalmente Ideazione ed Elaborazione, con le relative discipline ed elaborati.", m:"🎯 Il prof si concentra su I+E. Costruzione e Transizione sono meno toccate."},
 {t:"UP", q:"4 fasi UP.", a:"Ideazione · Elaborazione · Costruzione · Transizione.", m:"IECT → \"Io Elaboro, Costruisco, Trasferisco\". Pensa a un palazzo: Idea (architetto pensa) · Elaboro (disegno strutturale) · Costruisco (muratori) · Transito (consegno chiavi al cliente)."},
 {t:"UP", q:"3 caratteristiche UP.", a:"Pilotato dai casi d'uso · centrato sull'architettura · iterativo.", m:"CAI → \"Caso d'uso, Architettura, Iterativo\". Il timoniere CAI: guarda la rotta (use case), tiene salda la barca (architettura), gira sempre il timone (iterazioni)."},
 {t:"UP", q:"Iterazione vs release vs incremento.", a:"Iterazione = mini-ciclo (2-6 sett). Release = versione funzionante. Incremento = diff tra due release.", m:"⛏️ Iterazione = il MARTELLO (lo strumento) · Release = la STATUA (il risultato a fine colpo) · Incremento = il TRUCIOLO che si stacca tra due colpi."},
