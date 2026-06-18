@@ -1732,12 +1732,59 @@
 
   <!-- ===== 06 GRASP ===== -->
   <h2 class="sec" id="grasp"><span class="chip">06</span>GRASP — 9 principi</h2>
-  <p class="lead">Le 9 regole per decidere <i>a chi assegnare una responsabilità</i>.</p>
+  <p class="lead">Le 9 regole per decidere <i>a chi assegnare una responsabilità</i>. Nascono dalla Responsibility-Driven Design (RDD) e codificano principi base di assegnazione delle responsabilità a oggetti.</p>
 
-  <div class="box expl"><div class="t">📖 In parole semplici</div>
-    <p><b>GRASP</b> = General Responsibility Assignment Software Patterns. <b>Principi</b> (non pattern con UML) che rispondono sempre alla stessa domanda. 5 base + 4 avanzati.</p>
+  <h3>Progettazione guidata dalle responsabilità (RDD)</h3>
+  <div class="box expl"><div class="t">📖 La base concettuale dei GRASP</div>
+    <p>Un modo comune di pensare alla progettazione di oggetti software (e di componenti su larga scala) è in termini di <b>responsabilità, ruoli e collaborazioni</b>. Questi aspetti fanno parte di un approccio più ampio chiamato <b>Responsibility-Driven Design (RDD)</b>.</p>
+    <p>Nella RDD, gli oggetti software sono considerati <b>dotati di responsabilità</b>: per responsabilità si intende un'<i>astrazione di ciò che fa o rappresenta un oggetto</i>. UML definisce una responsabilità come "<b>un contratto o un obbligo di un classificatore</b>".</p>
   </div>
-  <div class="box mnem"><div class="t">🧠 Mnemonici</div>
+  <div class="box key"><div class="t">⭐ I 2 tipi di responsabilità</div>
+    <table style="font-size:.92rem">
+      <tr><th>Di "fare" (doing)</th><th>Di "conoscere" (knowing)</th></tr>
+      <tr><td>
+        <ul>
+          <li>Fare qualcosa esso stesso (calcolo, creazione di un oggetto)</li>
+          <li>Chiedere ad altri oggetti di eseguire azioni</li>
+          <li>Controllare e coordinare le attività di altri oggetti</li>
+        </ul>
+      </td><td>
+        <ul>
+          <li>Conoscere i propri dati privati incapsulati</li>
+          <li>Conoscere gli oggetti correlati</li>
+          <li>Conoscere cose che può derivare o calcolare</li>
+        </ul>
+      </td></tr>
+    </table>
+    <p style="margin-top:6px;font-style:italic">Le responsabilità di "<b>conoscenza</b>" sono spesso deducibili dal <b>Modello di Dominio</b> grazie agli attributi e alle associazioni che mostra.</p>
+  </div>
+  <div class="box warn"><div class="t">⚠️ La responsabilità è un'astrazione</div>
+    <b>NON esiste una corrispondenza diretta</b> nel software: nel sw vengono definite <b>classi, metodi e variabili</b> per soddisfare responsabilità. Una responsabilità grande (es. "fornire accesso a un DB relazionale") può coinvolgere centinaia di classi e metodi.
+  </div>
+
+  <h3>Il flusso di lavoro della RDD</h3>
+  <div class="box key"><div class="t">⭐ I 3 passi</div>
+    <ol>
+      <li><b>Identifica le responsabilità</b> e considerale una alla volta.</li>
+      <li>Chiediti a <b>quale oggetto software</b> assegnare questa responsabilità (potrebbe essere uno già identificato o uno nuovo).</li>
+      <li>Chiediti <b>come</b> l'oggetto scelto soddisfa questa responsabilità (da solo o collaborando). L'identificazione di una <b>collaborazione</b> porta spesso ad identificare <b>nuove responsabilità</b>.</li>
+    </ol>
+  </div>
+  <div class="box expl"><div class="t">📖 Quando si decidono le responsabilità</div>
+    <p>Le decisioni sull'assegnazione delle responsabilità possono essere prese durante la <b>codifica</b> o la <b>modellazione</b>. Nell'ambito di UML, <b>disegnare i diagrammi di interazione</b> diventa l'occasione per considerare tali responsabilità (realizzate come metodi). Le scelte di progetto fatte nei sequence diagram devono poi essere coerenti con i GRASP.</p>
+  </div>
+
+  <h3>Cos'è un pattern</h3>
+  <div class="box expl"><div class="t">📖 Definizione</div>
+    <p>Un buon <b>pattern</b> è una <b>coppia problema/soluzione</b> ben conosciuta e con un <b>nome</b>, che può essere applicata in nuovi contesti, con consigli su come applicarla in situazioni nuove e con una discussione sui relativi <b>compromessi, implementazioni, variazioni</b>.</p>
+    <p>I pattern <b>NON affermano nuove idee</b>: codificano soluzioni, idiomi e principi già ampiamente utilizzati e dimostrati corretti. Il <b>nome</b> facilita comprensione, memorizzazione e comunicazione.</p>
+  </div>
+
+  <h3>I 9 pattern GRASP</h3>
+  <div class="box expl"><div class="t">📖 Cosa sono</div>
+    <p>I <b>pattern GRASP</b> (General Responsibility Assignment Software Patterns) danno un nome e descrivono <i>principi di base</i> per la progettazione di oggetti e l'<b>assegnazione di responsabilità</b>. Sono <b>9 principi</b>, suddivisi tradizionalmente in 5 base + 4 avanzati.</p>
+  </div>
+  <div class="box mnem"><div class="t">🧠 Mnemonici per i nomi</div>
     <b>Base (CILHC)</b>: Creator · Information Expert · Low Coupling · High Cohesion · Controller.<br>
     <b>Avanzati (PPIP)</b>: Polymorphism · Pure Fabrication · Indirection · Protected Variations.
   </div>
